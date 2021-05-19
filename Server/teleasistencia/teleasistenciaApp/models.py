@@ -89,7 +89,7 @@ class Tipo_Modalidad_Paciente(models.Model):
 
 
 class Paciente(models.Model):
-    id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL)
+    id_terminal = models.ForeignKey('Terminal', null=True, on_delete=models.SET_NULL)
     id_persona = models.ForeignKey(Persona, null=True, on_delete=models.SET_NULL)
     tiene_ucr = models.BooleanField(null=False, default=False)
     numero_expediente = models.CharField(max_length=200)
@@ -123,6 +123,10 @@ class Relacion_Paciente_Centro(models.Model):
     def __str__(self):
         return self.id_paciente+"-->"+self.id_centro_sanitario
 
+class Tipo_Vivienda(models.Model):
+    nombre = models.CharField(max_length=200, null=False)
+    def __str__(self):
+        return self.nombre
 
 class Terminal(models.Model):
     numero_terminal = models.CharField(max_length=30, null=False)
@@ -134,10 +138,7 @@ class Terminal(models.Model):
         return self.id_paciente+" "+self.numero_terminal
 
 
-class Tipo_Vivienda(models.Model):
-    nombre = models.CharField(max_length=200, null=False)
-    def __str__(self):
-        return self.nombre
+
 
 
 class Relacion_Terminal_Recurso_Comunitario(models.Model):
@@ -150,7 +151,7 @@ class Relacion_Terminal_Recurso_Comunitario(models.Model):
 class Agenda(models.Model):
     id_paciente = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)
     id_tipo_agenda = models.ForeignKey(Tipo_Agenda, null=True, on_delete=models.SET_NULL)
-    id_persona = models.ForeignKey(Tipo_Agenda, null=True, on_delete=models.SET_NULL) #OJO: O bien Paciente o bien persona
+    id_persona = models.ForeignKey(Persona, null=True, on_delete=models.SET_NULL) #OJO: O bien Paciente o bien persona
     fecha_registro = models.DateField(null=False, default=now)
     fecha_prevista = models.DateField(null=False)
     fecha_resolucion = models.DateField()
@@ -217,7 +218,7 @@ class Recursos_Comunitarios_En_Alarma(models.Model):
         return self.id_alarma+" "+self.id_persona_contacto+" "+self.fecha_registro
 
 class Tipo_Situacion(models.Model):
-    nombre = models.CharField()
+    nombre = models.CharField(max_length=200)
     def __str__(self):
         return self.nombre
 
