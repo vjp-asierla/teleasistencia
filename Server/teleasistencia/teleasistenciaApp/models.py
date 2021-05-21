@@ -32,7 +32,7 @@ class Subtipo_Alarma(models.Model):
     codigo = models.CharField(max_length=200)
     es_dispositivo = models.BooleanField(null=False)
     def __str__(self):
-        return self.nombre+" "+self.codigo+" "+self.es_dispositivo
+        return self.nombre+" "+self.codigo
 
 class Tipo_Alarma(models.Model):
     nombre = models.CharField(max_length=200, null=False)
