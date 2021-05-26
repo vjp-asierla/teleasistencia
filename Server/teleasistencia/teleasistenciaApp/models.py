@@ -15,7 +15,7 @@ class Tipo_Agenda(models.Model):
     IMPORTANCIA_ENUM = Choices("Urgente","Importante")
     importancia = models.CharField(choices=IMPORTANCIA_ENUM, default=IMPORTANCIA_ENUM.Importante, max_length=20)
     def __str__(self):
-        return self.nombre+" "+str(self.codigo)+" "+self.importancia
+        return self.nombre+" "+self.codigo+" "+self.importancia
 
 
 class Direccion(models.Model):
@@ -26,17 +26,18 @@ class Direccion(models.Model):
     def __str__(self):
         return self.localidad+" "+self.provincia+" "+self.direccion+" "+self.codigo_postal
 
-class Tipo_Alarma(models.Model):
-    nombre = models.CharField(max_length=200, null=False)
-    codigo = models.CharField(max_length=200)
-    def __str__(self):
-        return self.nombre+" "+self.codigo
 
 class Subtipo_Alarma(models.Model):
     nombre = models.CharField(max_length=200, null=False)
     codigo = models.CharField(max_length=200)
-    id_tipo_alarma = models.ForeignKey(Tipo_Alarma, null=True, on_delete=models.SET_NULL)
     es_dispositivo = models.BooleanField(null=False)
+    def __str__(self):
+        return self.nombre+" "+self.codigo
+
+class Tipo_Alarma(models.Model):
+    nombre = models.CharField(max_length=200, null=False)
+    codigo = models.CharField(max_length=200)
+    id_subtipo_alarma = models.ForeignKey(Subtipo_Alarma, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.nombre+" "+self.codigo
 
@@ -65,7 +66,7 @@ class Persona(models.Model):
     telefono_movil = models.CharField(max_length=20)
     id_direccion = models.ForeignKey(Direccion, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return self.nombre+" "+self.apellidos+" "+self.dni
+        return self.localidad+" "+self.provincia+" "+self.direccion+" "+self.codigo_postal
 
 
 class Tipo_Centro_Sanitario(models.Model):
@@ -110,7 +111,7 @@ class Relacion_Paciente_Persona(models.Model):
     observaciones = models.CharField(max_length=4000)
     prioridad = models.IntegerField()
     def __str__(self):
-        return self.id_paciente+"-->"+self.id_persona.nombre
+        return self.id_paciente+"-->"+self.id_persona
 
 class Relacion_Paciente_Centro(models.Model):
     id_paciente = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)
@@ -156,7 +157,7 @@ class Agenda(models.Model):
     fecha_resolucion = models.DateField()
     observaciones = models.CharField(max_length=4000)
     def __str__(self):
-        return self.id_paciente.nombre+" "+self.id_tipo_agenda.nombre
+        return self.id_paciente+" "+self.id_tipo_agenda+self.fecha_registro
 
 
 
