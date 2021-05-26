@@ -38,7 +38,7 @@ class Subtipo_Alarma(models.Model):
     id_tipo_alarma = models.ForeignKey(Tipo_Alarma, null=True, on_delete=models.SET_NULL)
     es_dispositivo = models.BooleanField(null=False)
     def __str__(self):
-        return self.nombre+" "+self.codigo
+        return self.nombre+" - "+self.codigo
 
 class Tipo_Recurso_Comunitario(models.Model):
     nombre = models.CharField(max_length=200, null=False)
@@ -78,7 +78,7 @@ class Centro_Sanitario(models.Model):
     id_direccion = models.ForeignKey(Direccion, null=True, on_delete=models.SET_NULL)
     telefono = models.CharField(max_length=20)
     def __str__(self):
-        return self.id_tipos_centro_sanitario+"--"+self.id_direccion
+        return self.id_tipos_centro_sanitario.nombre+" - "+self.id_direccion.localidad
 
 
 class Tipo_Modalidad_Paciente(models.Model):
@@ -118,11 +118,11 @@ class Relacion_Paciente_Centro(models.Model):
     id_paciente = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)
     id_centro_sanitario = models.ForeignKey(Centro_Sanitario, null=True, on_delete=models.SET_NULL)
     persona_contacto = models.CharField(max_length=200, null=False)
-    distancia_km = models.IntegerField()
-    tiempo_minutos = models.IntegerField()
-    observaciones = models.CharField(max_length=4000)
+    distancia_km = models.IntegerField(blank=True)
+    tiempo_minutos = models.IntegerField(blank=True)
+    observaciones = models.CharField(max_length=4000, blank=True)
     def __str__(self):
-        return self.id_paciente+"-->"+self.id_centro_sanitario
+        return self.id_paciente.id_persona.nombre+" "+self.id_paciente.id_persona.apellidos+" "+self.id_paciente.id_persona.dni+" - "+self.id_centro_sanitario.id_tipos_centro_sanitario.nombre+" - "+self.id_centro_sanitario.id_direccion.localidad
 
 class Tipo_Vivienda(models.Model):
     nombre = models.CharField(max_length=200, null=False)
@@ -137,7 +137,7 @@ class Terminal(models.Model):
     barreras_arquitectonicas = models.CharField(max_length=5000, blank=True)
     def __str__(self):
         if self.id_titular:
-            return self.numero_terminal+" "+self.id_titular.id_persona.nombre
+            return self.numero_terminal+" - "+self.id_titular.id_persona.nombre
         else:
             return self.numero_terminal
 
@@ -168,30 +168,30 @@ class Historico_Agenda_Llamadas(models.Model):
     id_agenda = models.ForeignKey(Agenda, null=True, on_delete=models.SET_NULL)
     id_teleoperador = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) #OJO: User de los modelos de admin.
     fecha_llamada = models.DateField(null=False, default=now)
-    observaciones = models.CharField(max_length=4000)
+    observaciones = models.CharField(max_length=4000, blank=True)
     def __str__(self):
-        return self.id_agenda+"-->"+self.id_tipo_agenda+self.fecha_registro
+        return self.id_agenda.id_paciente.id_persona.nombre+" - "+self.id_teleoperador.username+" - "+str(self.fecha_llamada)
 
 
 class Historico_Terminal_Subtipo_Alarma(models.Model):
     id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL)
     id_subtipo_alarma = models.ForeignKey(Subtipo_Alarma, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return self.id_terminal+"--"+self.id_subtipo_alarma
+        return self.id_terminal.numero_terminal+" - "+self.id_terminal.id_titular.id_persona.nombre+" - "+self.id_subtipo_alarma.nombre+" - "+self.id_subtipo_alarma. codigo
 
 
 class Alarma(models.Model):
     id_tipo_alarma = models.ForeignKey(Tipo_Alarma, null=True, on_delete=models.SET_NULL)
     ESTADO_ENUM = Choices("Abierta", "Cerrada")
     estado_alarma = models.CharField(choices=ESTADO_ENUM, default=ESTADO_ENUM.Abierta, max_length=20)
-    fecha_registro = models.DateField(null=False, default=now)
-    id_teleoperador = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) # OJO: User de los modelos de admin.
-    id_paciente_ucr = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)  # OJO: Puede ser null si no lo avisó un paciente
-    id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL)  # OJO: Puede ser null si no lo avisó un terminal
-    observaciones = models.CharField(max_length=10000)
-    resumen = models.CharField(max_length=10000)
+    fecha_registro = models.DateTimeField(null=False, default=now)
+    id_teleoperador = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, blank=True) # OJO: User de los modelos de admin.
+    id_paciente_ucr = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL, blank=True)  # OJO: Puede ser null si no lo avisó un paciente
+    id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL, blank=True)  # OJO: Puede ser null si no lo avisó un terminal
+    observaciones = models.CharField(max_length=10000, blank=True)
+    resumen = models.CharField(max_length=10000, blank=True)
     def __str__(self):
-        return self.id_tipo_alarma+" "+self.estado_alarma+" "+self.fecha_registro
+        return self.id_tipo_alarma.nombre+" - "+self.estado_alarma+" - "+str(self.fecha_registro)
 
 
 class Centro_Sanitario_En_Alarma(models.Model):
@@ -201,24 +201,25 @@ class Centro_Sanitario_En_Alarma(models.Model):
     persona = models.CharField(max_length=1000)
     acuerdo_alcanzado = models.CharField(max_length=5000)
     def __str__(self):
-        return self.id_alarma+" "+self.id_centro_sanitario+" "+self.fecha_registro
+        return self.id_alarma.id_tipo_alarma.nombre+" - "+self.id_centro_sanitario.id_tipos_centro_sanitario.nombre+" - "+str(self.fecha_registro)
 
 class Persona_Contacto_En_Alarma(models.Model):
     id_alarma = models.ForeignKey(Alarma, null=True, on_delete=models.SET_NULL)
     id_persona_contacto = models.ForeignKey(Persona, null=True, on_delete=models.SET_NULL)
     fecha_registro = models.DateField(null=False, default=now)
-    acuerdo_alcanzado = models.CharField(max_length=5000)
+    acuerdo_alcanzado = models.CharField(max_length=5000, blank=True)
     def __str__(self):
-        return self.id_alarma+" "+self.id_persona_contacto+" "+self.fecha_registro
+        return self.id_alarma.id_tipo_alarma.nombre+" - "+self.id_alarma.estado_alarma+" - "+str(self.id_alarma.fecha_registro)+" "+self.id_persona_contacto.nombre+" - "+str(self.fecha_registro)
 
 class Recursos_Comunitarios_En_Alarma(models.Model):
     id_alarma = models.ForeignKey(Alarma, null=True, on_delete=models.SET_NULL)
     id_recurso_comunitario = models.ForeignKey(Recurso_Comunitario, null=True, on_delete=models.SET_NULL)
     fecha_registro = models.DateField(null=False, default=now)
-    persona = models.CharField(max_length=1000)
+    persona = models.CharField(max_length=1000, blank=True)
     acuerdo_alcanzado = models.CharField(max_length=5000)
     def __str__(self):
-        return self.id_alarma+" "+self.id_persona_contacto+" "+self.fecha_registro
+        return self.id_alarma.id_tipo_alarma.nombre+" - "+self.id_alarma.estado_alarma+" - "+str(self.id_alarma.fecha_registro)+" - "+self.persona+" - "+str(self.fecha_registro)
+
 
 class Tipo_Situacion(models.Model):
     nombre = models.CharField(max_length=200)
@@ -229,6 +230,6 @@ class Historico_Tipo_Situacion(models.Model):
     id_tipo_situacion = models.ForeignKey(Tipo_Situacion, null=True, on_delete=models.SET_NULL)
     id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return self.id_tipo_situacion.nombre+"-->"+self.id_terminal.numero_terminal
+        return self.id_tipo_situacion.nombre+" - "+self.id_terminal.numero_terminal+" - "+self.id_terminal.id_titular.id_persona.nombre
 
 
