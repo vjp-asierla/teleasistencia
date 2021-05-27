@@ -16,10 +16,27 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.urls import path
+
+
+#Django-Rest:
+from rest_framework import routers
+from teleasistenciaApp.rest_django import views_rest
+
+#Router para la API REST
+router = routers.DefaultRouter()
+router.register(r'users', views_rest.UserViewSet)
+router.register(r'groups', views_rest.GroupViewSet)
+router.register(r'tipo_recurso_comunitario', views_rest.Tipo_Recurso_Comunitario_ViewSet)
+router.register(r'recurso_comunitario', views_rest.Recurso_Comunitario_ViewSet)
+
+
 
 urlpatterns = [
 #path('admin/', admin.site.urls),
     url(r'^teleasistencia/', include('teleasistenciaApp.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
-
+    #Django Api Rest Framework
+    path('api-rest/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
