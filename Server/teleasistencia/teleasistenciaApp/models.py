@@ -47,13 +47,15 @@ class Tipo_Recurso_Comunitario(models.Model):
 
 
 class Recurso_Comunitario(models.Model):
+    nombre = models.CharField(max_length=500, blank=True)
     id_tipos_recurso_comunitario = models.ForeignKey(Tipo_Recurso_Comunitario, null=True, on_delete=models.SET_NULL)
     id_direccion = models.ForeignKey(Direccion, null=True, on_delete=models.SET_NULL)
     telefono = models.CharField(max_length=20)
-    nombre = models.CharField(max_length=500, blank=True)
     def __str__(self):
-        return self.id_tipos_recurso_comunitario.nombre+" - "+self.id_direccion.localidad
-
+        if self.nombre:
+            return self.nombre + " - "+self.id_tipos_recurso_comunitario.nombre+" - "+self.id_direccion.localidad
+        else:
+            return self.id_tipos_recurso_comunitario.nombre+" - "+self.id_direccion.localidad
 
 class Persona(models.Model):
     nombre = models.CharField(max_length=200, null=False)
@@ -75,13 +77,15 @@ class Tipo_Centro_Sanitario(models.Model):
         return self.nombre
 
 class Centro_Sanitario(models.Model):
+    nombre = models.CharField(max_length=500, blank=True)
     id_tipos_centro_sanitario = models.ForeignKey(Tipo_Centro_Sanitario, null=True, on_delete=models.SET_NULL)
     id_direccion = models.ForeignKey(Direccion, null=True, on_delete=models.SET_NULL)
     telefono = models.CharField(max_length=20)
-    nombre = models.CharField(max_length=500, blank=True)
     def __str__(self):
-        return self.id_tipos_centro_sanitario.nombre+" - "+self.id_direccion.localidad
-
+        if self.nombre:
+            return self.nombre +" - "+self.id_tipos_centro_sanitario.nombre+" - "+self.id_direccion.localidad
+        else:
+           return self.id_tipos_centro_sanitario.nombre+" - "+self.id_direccion.localidad
 
 class Tipo_Modalidad_Paciente(models.Model):
     nombre = models.CharField(max_length=200, null=False)
