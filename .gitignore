@@ -119,3 +119,7 @@ GitHub.sublime-settings
 !.vscode/launch.json
 !.vscode/extensions.json
 .history
+.idea/misc.xml
+.idea/teleasistencia_navalmoral.iml
+.idea/workspace.xml
+.idea/
