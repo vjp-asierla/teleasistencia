@@ -179,7 +179,7 @@ class Historico_Agenda_Llamadas(models.Model):
         return self.id_agenda.id_paciente.id_persona.nombre+" - "+self.id_teleoperador.username+" - "+str(self.fecha_llamada)
 
 
-class Historico_Terminal_Tipo_Alarma(models.Model):
+class Dispositivos_Auxiliares_En_Terminal (models.Model):
     id_terminal = models.ForeignKey(Terminal, null=True, on_delete=models.SET_NULL)
     id_tipo_alarma = models.ForeignKey(Tipo_Alarma, null=True, on_delete=models.SET_NULL)
     def __str__(self):

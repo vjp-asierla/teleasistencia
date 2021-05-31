@@ -29,6 +29,10 @@ router.register(r'users', views_rest.UserViewSet)
 router.register(r'groups', views_rest.GroupViewSet)
 router.register(r'tipo_recurso_comunitario', views_rest.Tipo_Recurso_Comunitario_ViewSet)
 router.register(r'recurso_comunitario', views_rest.Recurso_Comunitario_ViewSet)
+router.register(r'centro_sanitario', views_rest.Centro_Sanitario_ViewSet)
+router.register(r'tipo_centro_sanitario', views_rest.Tipo_Centro_Sanitario_ViewSet)
+router.register(r'tipo_alarma', views_rest.Tipo_Alarma_ViewSet)
+router.register(r'clasificacion_alarma', views_rest.Clasificacion_Alarma_ViewSet)
 
 
 
