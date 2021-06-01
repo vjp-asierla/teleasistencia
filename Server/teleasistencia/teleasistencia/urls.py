@@ -24,7 +24,7 @@ from rest_framework import routers
 from teleasistenciaApp.rest_django import views_rest
 
 #Router para la API REST
-router = routers.DefaultRouter()
+router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', views_rest.UserViewSet)
 router.register(r'groups', views_rest.GroupViewSet)
 router.register(r'tipo_recurso_comunitario', views_rest.Tipo_Recurso_Comunitario_ViewSet)
