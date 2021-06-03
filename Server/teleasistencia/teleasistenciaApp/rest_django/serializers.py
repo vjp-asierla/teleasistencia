@@ -48,3 +48,8 @@ class Clasificacion_Alarma_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Clasificacion_Alarma
         fields = '__all__' #Indica todos los campos
+
+class Direccion_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Direccion
+        fields = '__all__' #Indica todos los campos
