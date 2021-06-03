@@ -2,8 +2,11 @@
 
 ## Dependencias:
 
-Django==3.2.3
-django-model-utils==4.1.1
+1. ```pip install Django==3.2.3```
+2. ```pip install django-model-utils==4.1.1```
+3. ```pip install djangorestframework```
+4. ```pip install django-rest-framework-social-oauth2```
+
 
 
 

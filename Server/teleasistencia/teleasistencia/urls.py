@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
-
+from django.contrib.auth import views
 
 #Django-Rest:
 from rest_framework import routers
@@ -40,7 +40,13 @@ urlpatterns = [
 #path('admin/', admin.site.urls),
     url(r'^teleasistencia/', include('teleasistenciaApp.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
+    #URLS de login y logout de django.contrib.auth:
+    url(r'^login/$', views.LoginView.as_view(), name='login'),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+
     #Django Api Rest Framework
     path('api-rest/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #Django Rest social Auth:
+    url(r'^auth/', include('rest_framework_social_oauth2.urls')),
 ]

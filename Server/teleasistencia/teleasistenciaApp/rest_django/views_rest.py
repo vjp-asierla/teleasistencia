@@ -33,7 +33,7 @@ class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Recurso_Comunitario.objects.all()
     serializer_class = Tipo_Recurso_Comunitario_Serializer
-    #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
 class Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     """

@@ -9,7 +9,7 @@ urlpatterns = [
 
 
 
-    url(r'^$',views.index, name='indice') ,
+    url(r'^$',views.index, name='teleasistenciaHome') ,
 
 
 

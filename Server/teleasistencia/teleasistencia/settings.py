@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Django rest:
     'rest_framework',
+    #Django rest framework social auth:
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +62,10 @@ ROOT_URLCONF = 'teleasistencia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            #AÑADIR LA CARPETA DE TEMPLATES DE TELEASISTENCIA:
+            os.path.join(BASE_DIR, 'teleasistenciaApp','templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,10 +73,57 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # OAuth
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+############# DJANGO REST SOCIAL AUTH WITH GOOGLE:
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # OAuth
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
+        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+    )
+}
+
+
+AUTHENTICATION_BACKENDS = (
+    # Others auth providers (e.g. Facebook, OpenId, etc)
+    # Google OAuth2
+    'social_core.backends.google.GoogleOAuth2',
+    # django-rest-framework-social-oauth2
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+#Redirección tras login OK
+LOGIN_REDIRECT_URL = 'teleasistenciaHome'
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '698393318262-fqpnqn74fo9j3hub66gm9aep6bqthbq3.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'boarYVI5hoAhYLVGMlhfzxHp'
+
+# Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
+
+##################FIN
+
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+
+
+
+
+
 
 WSGI_APPLICATION = 'teleasistencia.wsgi.application'
 
