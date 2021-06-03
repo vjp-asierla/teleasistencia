@@ -4,7 +4,7 @@
     {% if user.is_authenticated %}
         <h1>El usuario está auntentificado</h1>
         <p>Bienvenido, {{ user.first_name }}</p>
-        <a href="{% url 'logout' %}">Log out</a>
+        <a href="/admin/logout/">Log out</a>
 
         <br>
         <p>Tu token es {{ token }}</p>
