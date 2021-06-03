@@ -24,6 +24,7 @@ from rest_framework import routers
 from teleasistenciaApp.rest_django import views_rest
 
 #Router para la API REST
+# Con trailing_slash=False hacemos que no intermprete la / final de la url, con esto podemos hacer GET, POST y DELETE
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', views_rest.UserViewSet)
 router.register(r'groups', views_rest.GroupViewSet)
@@ -33,6 +34,7 @@ router.register(r'centro_sanitario', views_rest.Centro_Sanitario_ViewSet)
 router.register(r'tipo_centro_sanitario', views_rest.Tipo_Centro_Sanitario_ViewSet)
 router.register(r'tipo_alarma', views_rest.Tipo_Alarma_ViewSet)
 router.register(r'clasificacion_alarma', views_rest.Clasificacion_Alarma_ViewSet)
+router.register(r'direccion', views_rest.Direccion_ViewSet)
 
 
 
