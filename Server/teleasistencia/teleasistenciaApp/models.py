@@ -63,7 +63,7 @@ class Persona(models.Model):
     dni = models.CharField(max_length=20, null=False)
     fecha_nacimiento = models.DateField(blank=True)
     SEXO_ENUM = Choices("Hombre", "Mujer")
-    importancia = models.CharField(choices=SEXO_ENUM, default=SEXO_ENUM.Hombre, max_length=20)
+    sexo = models.CharField(choices=SEXO_ENUM, default=SEXO_ENUM.Hombre, max_length=20)
     telefono_fijo = models.CharField(max_length=20, blank=True)
     telefono_movil = models.CharField(max_length=20, blank=True)
     id_direccion = models.ForeignKey(Direccion, null=True, on_delete=models.SET_NULL)

@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 #Serializadores generales
 from rest_framework.response import Response
+from rest_framework.templatetags.rest_framework import data
 
 from ..rest_django.serializers import UserSerializer, GroupSerializer
 
@@ -162,6 +163,23 @@ class Direccion_ViewSet(viewsets.ModelViewSet):
     serializer_class = Direccion_Serializer
     #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
+
+def Assignar_Persona_Direccion(data, direccion):
+    persona = Persona(
+        nombre=data.get("nombre"),
+        apellidos=data.get("apellidos"),
+        dni=data.get("dni"),
+        fecha_nacimiento=data.get("fecha_nacimiento"),
+        sexo=data.get("sexo"),
+        telefono_fijo=data.get("telefono_fijo"),
+        telefono_movil=data.get("telefono_movil"),
+        id_direccion=direccion
+    )
+    persona.save()
+    persona_serializer = Persona_Serializer(persona)
+
+    return persona_serializer
+
 class Persona_ViewSet(viewsets.ModelViewSet):
     """
     API endpoint para las empresas
@@ -170,14 +188,14 @@ class Persona_ViewSet(viewsets.ModelViewSet):
     serializer_class = Persona_Serializer
     #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
+
     def create(self, request, *args, **kwargs):
 
-        # Comprobamos que el tipo de centro sanitario existe
-        pk=request.data.get("id_direccion")
-
         # Comprobamos si los datos se introducen para una dirección ya existente,
+        id_direccion=request.data.get("id_direccion")
+
         # En el caso de ser una dirección nueva
-        if pk is None:
+        if id_direccion is None:
             # Obtenemos los datos de dirección y los almacenamos
             direccion_serializer = Direccion_Serializer(data=request.data.get("direccion"))
             if direccion_serializer.is_valid():
@@ -185,35 +203,8 @@ class Persona_ViewSet(viewsets.ModelViewSet):
             else:
                 return Response("Error: direccion")
 
-            persona_class = Persona_Serializer(request.data)
-            persona_class.data.id_direccion = direccion
-            return Response(persona_class.data)
-            # Creamos el tipo_alarma
-            persona = Persona(
-                nombre=request.data.get("nombre"),
-                codigo=request.data.get("codigo"),
-                es_dispositivo=request.data.get("es_dispositivo"),
-                id_clasificacion_alarma=clasificacion_alarma
-            )
-            persona.save()
-            return Response(persona)
-
         # en el caso de ser una dirección existente
         else:
-            direccion = Direccion.objects.get(pk=request.data.get("id_direccion"))
-            # Creamos la persona
-            persona = Persona(
-                nombre=request.data.get("nombre"),
-                apellidos=request.data.get("apellidos"),
-                dni=request.data.get("dni"),
-                fecha_nacimiento=request.data.get("fecha_nacimiento"),
-                SEXO_ENUM=1,
-                telefono_fijo=request.data.get("telefono_fijo"),
-                telefono_movil=request.data.get("telefono_movil"),
-                id_direccion=direccion
-            )
-            persona.save()
-
-            # Devolvemos el tipo de alarma creado
-            persona_serializer = Persona_Serializer(persona)
-            return Response(persona_serializer.data)
+            direccion = Direccion.objects.get(pk=id_direccion)
+            # Creamos la persona con la dirección y la devolvemos
+        return Response(Assignar_Persona_Direccion(request.data, direccion).data)
