@@ -35,6 +35,7 @@ router.register(r'tipo_centro_sanitario', views_rest.Tipo_Centro_Sanitario_ViewS
 router.register(r'tipo_alarma', views_rest.Tipo_Alarma_ViewSet)
 router.register(r'clasificacion_alarma', views_rest.Clasificacion_Alarma_ViewSet)
 router.register(r'direccion', views_rest.Direccion_ViewSet)
+router.register(r'persona', views_rest.Persona_ViewSet)
 
 
 

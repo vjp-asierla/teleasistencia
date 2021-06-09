@@ -53,3 +53,9 @@ class Direccion_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Direccion
         fields = '__all__' #Indica todos los campos
+
+class Persona_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Persona
+        fields = '__all__' #Indica todos los campos
+        depth = 1
