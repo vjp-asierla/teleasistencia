@@ -18,6 +18,7 @@ Las contribuciones al proyecto se realizarán a través de [forks](https://docs.
 ![image](https://user-images.githubusercontent.com/3669279/122238595-8c6e1780-cec0-11eb-8388-561c7ad3d250.png)
 
 2. Clonar el proyecto en local para su instalación y modificación. 
+
 ![image](https://user-images.githubusercontent.com/3669279/122239016-e242bf80-cec0-11eb-854c-936d8433b8ea.png)
 
 Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas con Git-Github se recomienda instalar [Github Desktop](https://desktop.github.com/) y trabajar desde su propia interfaz gráfica.
@@ -25,6 +26,7 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 3. Realiza la instalación del proyecto siguiendo los [**Pasos para la instalación** ](##Pasos para la instalación).
 4. Realiza las modificaciones/mejoras que consideres oportunas. Revisa los [Issues del proyecto original](https://github.com/IES-Valle-Jerte/teleasistencia_navalmoral/issues) para encontrar necesidades donde puedes contribuir.     
 5. Una vez has desarrollado tus contribuciones y las has probado, puedes solicitar que los cambios se añadan al repositorio principal mediante un Pull Request:
+
 ![image](https://user-images.githubusercontent.com/3669279/122243564-824e1800-cec4-11eb-9cd6-e93938341098.png)
 
 
