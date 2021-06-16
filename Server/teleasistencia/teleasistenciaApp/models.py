@@ -118,7 +118,7 @@ class Relacion_Paciente_Persona(models.Model):
     observaciones = models.CharField(max_length=4000, blank=True)
     prioridad = models.IntegerField( blank=True)
     def __str__(self):
-        return "Paciente:"+self.id_paciente.id_persona.nombre+" Contacto:"+self.id_persona.nombre
+        return "Paciente:"+self.id_paciente.id_persona.nombre+" - Contacto:"+self.id_persona.nombre
 
 class Relacion_Paciente_Centro(models.Model):
     id_paciente = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)
