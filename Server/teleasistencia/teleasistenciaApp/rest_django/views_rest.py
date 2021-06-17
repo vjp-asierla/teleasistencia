@@ -5,6 +5,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.templatetags.rest_framework import data
 
+from .utils import getQueryAnd
 from ..rest_django.serializers import UserSerializer, GroupSerializer
 
 #Serializadores propios
@@ -188,16 +189,17 @@ class Persona_ViewSet(viewsets.ModelViewSet):
     serializer_class = Persona_Serializer
     #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
-    # Obtenemos el listado de usuarios total o por dirección si viene indicada en el parametro id_direccion
+    # Obtenemos el listado de usuarios filtrado por los parametros GET
     def list(self, request, *args, **kwargs):
-        dir=request.GET.get('id_direccion')
-        if dir:
-            queryset = Persona.objects.filter(id_direccion=dir)
-        else:
-            queryset = self.filter_queryset(self.get_queryset())
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Persona.objects.filter(query)
+
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-
 
     def create(self, request, *args, **kwargs):
 
