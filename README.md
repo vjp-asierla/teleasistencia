@@ -1,4 +1,4 @@
-# teleasistencia_navalmoral
+# teleasistencia
 Este proyecto consiste en un desarrollo Web de un servicio de Teleasistencia para que los alumnos del FP de Atención Sociosanitaria puedan realizar prácticas en el aula como si de un entorno real se tratase.
 
 Para probar el proyecto, y antes de realizar la instalación, se recomienda que se sigan los pasos que aparecen en **Pasos para contribuir al proyecto**.
@@ -37,9 +37,10 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 1. Instalación de python - https://www.python.org/ . Seleccionar la opción que nos permite añadir python al PATH. 
    Comprobamos la instalación desde cmd: ```python --version```
 2. Descargamos e instalamos el Entorno de desarrollo PyCharm - https://www.jetbrains.com/pycharm/
-3. Creamos el entorno virutal en la ruta teleasistencia_navalmoral/Server ```virtualenv venviorment```
+3. Creamos el entorno virutal en la ruta Server ```virtualenv venviorment```
 
-    ![image](https://user-images.githubusercontent.com/57873286/122094653-af3ef400-ce0c-11eb-8556-620286524cc6.png)
+    <img src="https://user-images.githubusercontent.com/3669279/122421218-847ba980-cf8c-11eb-829c-2dccf74a3e6d.png" width="400">
+
 
 5. Ejecutamos el siguiente archivo para seleccionar el entorno virtual ```Server/venviorment/Scripts/activate```
 6. Hacemos permanente el entorno virtual. Vamos a ```File -> Settings... -> Project --> Python Interpreter``` y seleccinoamos el Interprete ```Server\venviorment\Scripts\python.exe```
