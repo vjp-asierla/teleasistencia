@@ -1,4 +1,4 @@
-# teleasistencia_navalmoral
+# teleasistencia
 Este proyecto consiste en un desarrollo Web de un servicio de Teleasistencia para que los alumnos del FP de Atención Sociosanitaria puedan realizar prácticas en el aula como si de un entorno real se tratase.
 
 Para probar el proyecto, y antes de realizar la instalación, se recomienda que se sigan los pasos que aparecen en **Pasos para contribuir al proyecto**.
