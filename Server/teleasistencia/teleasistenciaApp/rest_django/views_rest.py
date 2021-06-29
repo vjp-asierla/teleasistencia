@@ -189,20 +189,21 @@ class Persona_ViewSet(viewsets.ModelViewSet):
     serializer_class = Persona_Serializer
     #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
-    # Obtenemos el listado de usuarios filtrado por los parametros GET
+    # Obtenemos el listado de personas filtrado por los parametros GET
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
         # Hacemos una búsqueda por los valores introducidos por parámetros
         query = getQueryAnd(request.GET)
         if query:
             queryset = Persona.objects.filter(query)
+        # En el caso de que no hay parámetros y queramos devolver todos los valores
+        else:
+            queryset = self.get_queryset()
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    # Creamos una persona con por POST
     def create(self, request, *args, **kwargs):
-
         # Comprobamos si los datos se introducen para una dirección ya existente,
         id_direccion=request.data.get("id_direccion")
 
