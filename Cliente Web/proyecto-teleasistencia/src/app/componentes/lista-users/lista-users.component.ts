@@ -1,0 +1,21 @@
+import { Component, OnInit } from '@angular/core';
+import {IUsers} from "../../interfaces/i-users";
+import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
+
+@Component({
+  selector: 'app-lista-users',
+  templateUrl: './lista-users.component.html',
+  styleUrls: ['./lista-users.component.scss']
+})
+export class ListaUsersComponent implements OnInit {
+  users!: IUsers[];
+
+  constructor(private route: ActivatedRoute, private titleServide: Title) { }
+
+  ngOnInit(): void {
+    this.titleServide.setTitle('Usuarios del sistema');
+    this.users = this.route.snapshot.data['users'];
+  }
+
+}

@@ -1,0 +1,17 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Url</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Grupos</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users"
+      app-item-user [user]="user">
+  </tr>
+  </tbody>
+</table>
