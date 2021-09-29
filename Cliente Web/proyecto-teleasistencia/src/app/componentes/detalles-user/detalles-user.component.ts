@@ -19,13 +19,13 @@ export class DetallesUserComponent implements OnInit {
   ngOnInit(): void {
     this.idUser = this.route.snapshot.params['id'];
     this.user = this.route.snapshot.data['user'];
-    this.titleServide.setTitle('Modificar ' + this.user.username);
+    this.titleServide.setTitle('Modificar usuario ' + this.idUser);
   }
 
   modificarUser(): void {
     this.cargaUsers.modificarUser(this.user).subscribe(u => {
       console.log('User modificado');
-      this.router.navigate(['/users']);
+      this.router.navigate(['/usuarios']);
     });
   }
 

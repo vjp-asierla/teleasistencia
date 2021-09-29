@@ -7,11 +7,15 @@ body {
   padding: 0px;
 }
 
+.container-fluid {
+  margin: 0px;
+  padding: 0px;
+}
+
 .cabecera {
   nav {
     background: linear-gradient(0deg, rgba(248, 228, 221, 0.5) 0%, rgba(117, 89, 125, 0.5) 100%);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
 
     .titulo-cabecera {
       margin-left: 15px;

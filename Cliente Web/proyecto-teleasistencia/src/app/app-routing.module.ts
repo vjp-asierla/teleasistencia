@@ -13,20 +13,20 @@ const routes: Routes = [];
   imports: [RouterModule.forRoot([
     {path: 'inicio', component: HomeComponent},
     {
-      path: 'users',
+      path: 'usuarios',
       component: ListaUsersComponent,
       resolve: {
         users: ListaUsersResolveService
       }
     },
     {
-      path: 'users/modificar/:id',
+      path: 'usuarios/modificar/:id',
       component: DetallesUserComponent,
       resolve: {
         user: DetallesUserResolveService
       }
     },
-    {path: 'users/nuevo', component: NuevoUserComponent},
+    {path: 'usuarios/nuevo', component: NuevoUserComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],

@@ -26,8 +26,8 @@ export class NuevoUserComponent implements OnInit {
 
   nuevoUser(): void {
     this.cargaUsers.nuevoUser(this.user).subscribe(u => {
-      console.log('User creado');
-      this.router.navigate(['/users']);
+      console.log('Usuario creado');
+      this.router.navigate(['/usuarios']);
     });
   }
 }

@@ -14,7 +14,6 @@ export class ListaUsersResolveService implements Resolve<IUsers> {
   constructor(private cargaUsers: CargaServidorService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUsers> {
-    // @ts-ignore
     return this.cargaUsers.getUsers().pipe(
       catchError(error => {
         this.router.navigate(['/inicio']);
