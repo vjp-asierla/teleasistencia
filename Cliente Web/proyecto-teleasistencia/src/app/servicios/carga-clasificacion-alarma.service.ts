@@ -19,7 +19,7 @@ export class CargaClasificacionAlarmaService {
     return this.http.get<IClasificacionAlarma>(this.URL_SERVER_CLASIFICACIONES_ALARMAS + '/' + idClasificacionAlarma);
   }
 
-  modificaClasificacionAlarma(clasificacionAlarma: IClasificacionAlarma): Observable<IClasificacionAlarma> {
+  modificarClasificacionAlarma(clasificacionAlarma: IClasificacionAlarma): Observable<IClasificacionAlarma> {
     return this.http.put<IClasificacionAlarma>(this.URL_SERVER_CLASIFICACIONES_ALARMAS + '/' + clasificacionAlarma.id, clasificacionAlarma);
   }
 

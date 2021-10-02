@@ -11,10 +11,10 @@ import {CargaClasificacionAlarmaService} from "../../servicios/carga-clasificaci
   styleUrls: ['./nueva-clasificacion-alarma.component.scss']
 })
 export class NuevaClasificacionAlarmaComponent implements OnInit {
-  public clasificacionAlarma: IClasificacionAlarma;
+  public clasificacion_alarma: IClasificacionAlarma;
 
   constructor(private route: ActivatedRoute, private titleServide: Title, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
-    this.clasificacionAlarma = new ClasificacionAlarma();
+    this.clasificacion_alarma = new ClasificacionAlarma();
   }
 
   ngOnInit(): void {
@@ -22,8 +22,8 @@ export class NuevaClasificacionAlarmaComponent implements OnInit {
   }
 
   nuevaClasificacionAlarma(): void {
-    console.log(this.clasificacionAlarma);
-    this.cargaClasificacionesAlarmas.nuevaClasificacionAlarma(this.clasificacionAlarma).subscribe(u => {
+    console.log(this.clasificacion_alarma);
+    this.cargaClasificacionesAlarmas.nuevaClasificacionAlarma(this.clasificacion_alarma).subscribe(u => {
       console.log('Clasificación alarma creada');
       this.router.navigate(['/clasificaciones_alarmas']);
     });

@@ -10,7 +10,7 @@ import {CargaClasificacionAlarmaService} from "../../servicios/carga-clasificaci
   styleUrls: ['./detalles-clasificacion-alarma.component.scss']
 })
 export class DetallesClasificacionAlarmaComponent implements OnInit {
-  public clasificacionAlarma: IClasificacionAlarma;
+  public clasificacion_alarma: IClasificacionAlarma;
   public idClasificacionAlarma: number;
 
   constructor(private route: ActivatedRoute, private titleServide: Title, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
@@ -18,13 +18,13 @@ export class DetallesClasificacionAlarmaComponent implements OnInit {
 
   ngOnInit(): void {
     this.idClasificacionAlarma = this.route.snapshot.params['id'];
-    this.clasificacionAlarma = this.route.snapshot.data['clasificacion_alarma'];
+    this.clasificacion_alarma = this.route.snapshot.data['clasificacion_alarma'];
     this.titleServide.setTitle('Modificar clasificación alarma ' + this.idClasificacionAlarma);
   }
 
   modificarClasificacionAlarma(): void {
-    console.log(this.clasificacionAlarma);
-    this.cargaClasificacionesAlarmas.modificaClasificacionAlarma(this.clasificacionAlarma).subscribe(u => {
+    console.log(this.clasificacion_alarma);
+    this.cargaClasificacionesAlarmas.modificarClasificacionAlarma(this.clasificacion_alarma).subscribe(u => {
       console.log('Clasificación alarma modificada');
       this.router.navigate(['/clasificaciones_alarmas']);
     });

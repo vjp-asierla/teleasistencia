@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" id="nombre" class="form-control"
-             required minlength="4" [(ngModel)]="clasificacionAlarma.nombre" #nombre="ngModel">
+             required minlength="4" [(ngModel)]="clasificacion_alarma.nombre" #nombre="ngModel">
       <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
            class="alert">
         <div *ngIf="nombre.errors?.required">
@@ -19,7 +19,7 @@
     <div class="form-group">
       <label for="codigo">Código</label>
       <input type="codigo" name="codigo" id="codigo" class="form-control" required
-             pattern="[A-Z]+$" [(ngModel)]="clasificacionAlarma.codigo" #codigo="ngModel">
+             pattern="[A-Z]+$" [(ngModel)]="clasificacion_alarma.codigo" #codigo="ngModel">
     </div>
     <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
          class="alert">

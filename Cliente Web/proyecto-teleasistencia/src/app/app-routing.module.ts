@@ -11,6 +11,11 @@ import {DetallesClasificacionAlarmaComponent} from "./componentes/detalles-clasi
 import {ListaClasificacionesAlarmasResolveService} from "./servicios/lista-clasificaciones-alarmas-resolve.service";
 import {DetallesClasificacionAlarmaResolveService} from "./servicios/detalles-clasificacion-alarma-resolve.service";
 import {NuevaClasificacionAlarmaComponent} from "./componentes/nueva-clasificacion-alarma/nueva-clasificacion-alarma.component";
+import {ListaTiposCentrosSanitariosComponent} from "./componentes/lista-tipos-centros-sanitarios/lista-tipos-centros-sanitarios.component";
+import {ListaTiposCentrosSanitariosResolveService} from "./servicios/lista-tipos-centros-sanitarios-resolve.service";
+import {DetallesTipoCentroSanitarioComponent} from "./componentes/detalles-tipo-centro-sanitario/detalles-tipo-centro-sanitario.component";
+import {DetallesTipoCentroSanitarioResolveService} from "./servicios/detalles-tipo-centro-sanitario-resolve.service";
+import {NuevoTipoCentroSanitarioComponent} from "./componentes/nuevo-tipo-centro-sanitario/nuevo-tipo-centro-sanitario.component";
 
 const routes: Routes = [];
 
@@ -47,6 +52,21 @@ const routes: Routes = [];
       }
     },
     {path: 'clasificaciones_alarmas/nueva', component: NuevaClasificacionAlarmaComponent},
+    {
+      path: 'tipos_centros_sanitarios',
+      component: ListaTiposCentrosSanitariosComponent,
+      resolve: {
+        tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
+      }
+    },
+    {
+      path: 'tipos_centros_sanitarios/modificar/:id',
+      component: DetallesTipoCentroSanitarioComponent,
+      resolve: {
+        tipo_centro_sanitario: DetallesTipoCentroSanitarioResolveService
+      }
+    },
+    {path: 'tipos_centros_sanitarios/nuevo', component: NuevoTipoCentroSanitarioComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],

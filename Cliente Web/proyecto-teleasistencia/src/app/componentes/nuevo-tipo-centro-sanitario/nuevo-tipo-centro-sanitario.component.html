@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Crear nuevo tipo centro sanitario</h1>
+  <form #nuevoTipoCentroSanitarioForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required minlength="4" [(ngModel)]="tipo_centro_sanitario.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+           class="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio.
+        </div>
+        <div *ngIf="nombre.errors?.minlength">
+          El nombre debe tener al menos 4 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn" [routerLink]="['/tipos_centros_sanitarios']">Volver</button>
+    <button type="submit" class="btn" (click)="nuevoTipoCentroSanitario()"
+            [disabled]="!nuevoTipoCentroSanitarioForm.form.valid">Crear
+    </button>
+  </form>
+</div>
