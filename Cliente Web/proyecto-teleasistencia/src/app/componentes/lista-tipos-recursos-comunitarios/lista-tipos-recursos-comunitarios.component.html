@@ -1,0 +1,14 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tipo_recurso_comunitario of tipos_recursos_comunitarios"
+      app-item-tipo-recurso-comunitario [tipo_recurso_comunitario]="tipo_recurso_comunitario">
+  </tr>
+  </tbody>
+</table>

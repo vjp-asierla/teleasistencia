@@ -9,7 +9,8 @@ import {ITipoCentroSanitario} from "../../interfaces/i-tipo-centro-sanitario";
 export class ItemTipoCentroSanitarioComponent implements OnInit {
   @Input() public tipo_centro_sanitario: ITipoCentroSanitario;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

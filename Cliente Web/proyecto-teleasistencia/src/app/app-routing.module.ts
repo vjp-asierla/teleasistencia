@@ -16,6 +16,11 @@ import {ListaTiposCentrosSanitariosResolveService} from "./servicios/lista-tipos
 import {DetallesTipoCentroSanitarioComponent} from "./componentes/detalles-tipo-centro-sanitario/detalles-tipo-centro-sanitario.component";
 import {DetallesTipoCentroSanitarioResolveService} from "./servicios/detalles-tipo-centro-sanitario-resolve.service";
 import {NuevoTipoCentroSanitarioComponent} from "./componentes/nuevo-tipo-centro-sanitario/nuevo-tipo-centro-sanitario.component";
+import {ListaTiposRecursosComunitariosComponent} from "./componentes/lista-tipos-recursos-comunitarios/lista-tipos-recursos-comunitarios.component";
+import {ListaTiposRecursosComunitariosResolveService} from "./servicios/lista-tipos-recursos-comunitarios-resolve.service";
+import {DetallesTipoRecursoComunitarioComponent} from "./componentes/detalles-tipo-recurso-comunitario/detalles-tipo-recurso-comunitario.component";
+import {DetallesTipoRecursoComunitarioResolveService} from "./servicios/detalles-tipo-recurso-comunitario-resolve.service";
+import {NuevoTipoRecursoComunitarioComponent} from "./componentes/nuevo-tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario.component";
 
 const routes: Routes = [];
 
@@ -67,6 +72,21 @@ const routes: Routes = [];
       }
     },
     {path: 'tipos_centros_sanitarios/nuevo', component: NuevoTipoCentroSanitarioComponent},
+    {
+      path: 'tipos_recursos_comunitarios',
+      component: ListaTiposRecursosComunitariosComponent,
+      resolve: {
+        tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
+      }
+    },
+    {
+      path: 'tipos_recursos_comunitarios/modificar/:id',
+      component: DetallesTipoRecursoComunitarioComponent,
+      resolve: {
+        tipo_recurso_comunitario: DetallesTipoRecursoComunitarioResolveService
+      }
+    },
+    {path: 'tipos_recursos_comunitarios/nuevo', component: NuevoTipoRecursoComunitarioComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],
