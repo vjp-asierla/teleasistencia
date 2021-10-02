@@ -1,0 +1,15 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
+      app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
+  </tr>
+  </tbody>
+</table>

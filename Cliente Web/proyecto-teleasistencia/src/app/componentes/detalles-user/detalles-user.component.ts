@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IUsers} from "../../interfaces/i-users";
-import {CargaServidorService} from "../../servicios/carga-servidor.service";
+import {CargaUserService} from "../../servicios/carga-user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 
@@ -10,10 +10,10 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./detalles-user.component.scss']
 })
 export class DetallesUserComponent implements OnInit {
-  user!: IUsers;
-  idUser!: number;
+  public user: IUsers;
+  public idUser: number;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaUsers: CargaServidorService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaUsers: CargaUserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +23,7 @@ export class DetallesUserComponent implements OnInit {
   }
 
   modificarUser(): void {
+    console.log(this.user);
     this.cargaUsers.modificarUser(this.user).subscribe(u => {
       console.log('User modificado');
       this.router.navigate(['/usuarios']);

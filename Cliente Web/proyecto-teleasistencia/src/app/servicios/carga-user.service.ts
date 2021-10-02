@@ -6,18 +6,18 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class CargaServidorService {
+export class CargaUserService {
 
-  private URL_SERVER = 'http://localhost:8000/api-rest/';
+  private URL_SERVER_USERS = 'http://localhost:8000/api-rest/users';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUsers[]> {
-    return this.http.get<IUsers[]>(this.URL_SERVER + 'users');
+    return this.http.get<IUsers[]>(this.URL_SERVER_USERS);
   }
 
   getUser(idUser: number): Observable<IUsers> {
-    return this.http.get<IUsers>(this.URL_SERVER + 'users/' + idUser);
+    return this.http.get<IUsers>(this.URL_SERVER_USERS + '/' + idUser);
   }
 
   modificarUser(user: IUsers): Observable<IUsers> {
@@ -25,7 +25,7 @@ export class CargaServidorService {
   }
 
   nuevoUser(user: IUsers): Observable<IUsers> {
-    return this.http.post<IUsers>(this.URL_SERVER + 'users', user);
+    return this.http.post<IUsers>(this.URL_SERVER_USERS, user);
   }
 
 }

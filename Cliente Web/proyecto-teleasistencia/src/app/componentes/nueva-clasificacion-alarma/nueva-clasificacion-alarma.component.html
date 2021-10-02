@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Crear nueva clasificación alarma</h1>
+  <form #nuevaClasificacionAlarmaForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required minlength="4" [(ngModel)]="clasificacionAlarma.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+           class="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio.
+        </div>
+        <div *ngIf="nombre.errors?.minlength">
+          El nombre debe tener al menos 4 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="codigo">Código</label>
+      <input type="codigo" name="codigo" id="codigo" class="form-control" required
+             pattern="[A-Z]+$" [(ngModel)]="clasificacionAlarma.codigo" #codigo="ngModel">
+    </div>
+    <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
+         class="alert">
+      <div *ngIf="codigo.errors?.required; else elseBlock">
+        El codigo es obligatorio.
+      </div>
+      <ng-template #elseBlock>
+        Introduzca un codigo válido.
+      </ng-template>
+    </div>
+
+    <button type="submit" class="btn" [routerLink]="['/clasificaciones_alarmas']">Volver</button>
+    <button type="submit" class="btn" (click)="nuevaClasificacionAlarma()"
+            [disabled]="!nuevaClasificacionAlarmaForm.form.valid">Crear
+    </button>
+  </form>
+</div>
+

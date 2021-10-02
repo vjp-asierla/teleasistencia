@@ -10,7 +10,11 @@ import { NuevoUserComponent } from './componentes/nuevo-user/nuevo-user.componen
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { HomeComponent } from './componentes/home/home.component';
-import {CargaServidorService} from "./servicios/carga-servidor.service";
+import {CargaUserService} from "./servicios/carga-user.service";
+import { ItemClasificacionAlarmaComponent } from './componentes/item-clasificacion-alarma/item-clasificacion-alarma.component';
+import { DetallesClasificacionAlarmaComponent } from './componentes/detalles-clasificacion-alarma/detalles-clasificacion-alarma.component';
+import { NuevaClasificacionAlarmaComponent } from './componentes/nueva-clasificacion-alarma/nueva-clasificacion-alarma.component';
+import { ListaClasificacionesAlarmasComponent } from './componentes/lista-clasificaciones-alarmas/lista-clasificaciones-alarmas.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import {CargaServidorService} from "./servicios/carga-servidor.service";
     ItemUserComponent,
     DetallesUserComponent,
     NuevoUserComponent,
-    HomeComponent
+    HomeComponent,
+    ItemClasificacionAlarmaComponent,
+    DetallesClasificacionAlarmaComponent,
+    NuevaClasificacionAlarmaComponent,
+    ListaClasificacionesAlarmasComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,7 @@ import {CargaServidorService} from "./servicios/carga-servidor.service";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [CargaServidorService,
+  providers: [CargaUserService,
   Title],
   bootstrap: [AppComponent]
 })

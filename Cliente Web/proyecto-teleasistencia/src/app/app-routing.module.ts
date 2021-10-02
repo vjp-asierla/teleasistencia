@@ -6,6 +6,11 @@ import {DetallesUserComponent} from "./componentes/detalles-user/detalles-user.c
 import {DetallesUserResolveService} from "./servicios/detalles-user-resolve.service";
 import {HomeComponent} from "./componentes/home/home.component";
 import {NuevoUserComponent} from "./componentes/nuevo-user/nuevo-user.component";
+import {ListaClasificacionesAlarmasComponent} from "./componentes/lista-clasificaciones-alarmas/lista-clasificaciones-alarmas.component";
+import {DetallesClasificacionAlarmaComponent} from "./componentes/detalles-clasificacion-alarma/detalles-clasificacion-alarma.component";
+import {ListaClasificacionesAlarmasResolveService} from "./servicios/lista-clasificaciones-alarmas-resolve.service";
+import {DetallesClasificacionAlarmaResolveService} from "./servicios/detalles-clasificacion-alarma-resolve.service";
+import {NuevaClasificacionAlarmaComponent} from "./componentes/nueva-clasificacion-alarma/nueva-clasificacion-alarma.component";
 
 const routes: Routes = [];
 
@@ -27,6 +32,21 @@ const routes: Routes = [];
       }
     },
     {path: 'usuarios/nuevo', component: NuevoUserComponent},
+    {
+      path: 'clasificaciones_alarmas',
+      component: ListaClasificacionesAlarmasComponent,
+      resolve: {
+        clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
+      }
+    },
+    {
+      path: 'clasificaciones_alarmas/modificar/:id',
+      component: DetallesClasificacionAlarmaComponent,
+      resolve: {
+        clasificacion_alarma: DetallesClasificacionAlarmaResolveService
+      }
+    },
+    {path: 'clasificaciones_alarmas/nueva', component: NuevaClasificacionAlarmaComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],

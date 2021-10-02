@@ -9,7 +9,7 @@ import {Title} from "@angular/platform-browser";
   styleUrls: ['./lista-users.component.scss']
 })
 export class ListaUsersComponent implements OnInit {
-  users!: IUsers[];
+  public users: IUsers[];
 
   constructor(private route: ActivatedRoute, private titleServide: Title) { }
 

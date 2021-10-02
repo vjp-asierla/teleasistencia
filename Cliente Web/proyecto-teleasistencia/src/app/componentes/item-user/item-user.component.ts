@@ -7,12 +7,11 @@ import {IUsers} from "../../interfaces/i-users";
   styleUrls: ['./item-user.component.scss']
 })
 export class ItemUserComponent implements OnInit {
-  @Input() user!: IUsers;
+  @Input() public user: IUsers;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.user.id = Number(this.user.url.charAt(this.user.url.length-1));
+    this.user.id = Number(this.user.url.substr(37));
   }
-
 }

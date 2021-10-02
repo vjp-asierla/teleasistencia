@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-import {CargaServidorService} from "../../servicios/carga-servidor.service";
+import {CargaUserService} from "../../servicios/carga-user.service";
 import {IUsers} from "../../interfaces/i-users";
+import {User} from "../../clases/user";
 
 @Component({
   selector: 'app-nuevo-user',
@@ -10,21 +11,18 @@ import {IUsers} from "../../interfaces/i-users";
   styleUrls: ['./nuevo-user.component.scss']
 })
 export class NuevoUserComponent implements OnInit {
-  user: IUsers = new class implements IUsers {
-    email!: string;
-    groups!: [];
-    id!: number;
-    url!: string;
-    username!: string;
-  }
+  public user: IUsers;
 
-  constructor(private titleServide: Title, private cargaUsers: CargaServidorService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaUsers: CargaUserService, private router: Router) {
+    this.user = new User();
+  }
 
   ngOnInit(): void {
     this.titleServide.setTitle('Crear nuevo usuario del sistema');
   }
 
   nuevoUser(): void {
+    console.log(this.user);
     this.cargaUsers.nuevoUser(this.user).subscribe(u => {
       console.log('Usuario creado');
       this.router.navigate(['/usuarios']);
