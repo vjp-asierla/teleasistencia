@@ -1,0 +1,14 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tipo_modalidad_paciente of tipos_modalidades_pacientes"
+      app-item-tipo-modalidad-paciente [tipo_modalidad_paciente]="tipo_modalidad_paciente">
+  </tr>
+  </tbody>
+</table>

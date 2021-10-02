@@ -21,6 +21,11 @@ import {ListaTiposRecursosComunitariosResolveService} from "./servicios/lista-ti
 import {DetallesTipoRecursoComunitarioComponent} from "./componentes/detalles-tipo-recurso-comunitario/detalles-tipo-recurso-comunitario.component";
 import {DetallesTipoRecursoComunitarioResolveService} from "./servicios/detalles-tipo-recurso-comunitario-resolve.service";
 import {NuevoTipoRecursoComunitarioComponent} from "./componentes/nuevo-tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario.component";
+import {ListaTiposModalidadesPacientesComponent} from "./componentes/lista-tipos-modalidades-pacientes/lista-tipos-modalidades-pacientes.component";
+import {ListaTiposModalidadesPacientesResolveService} from "./servicios/lista-tipos-modalidades-pacientes-resolve.service";
+import {DetallesTipoModalidadPacienteComponent} from "./componentes/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component";
+import {DetallesTipoModalidadPacienteResolveService} from "./servicios/detalles-tipo-modalidad-paciente-resolve.service";
+import {NuevoTipoModalidadPacienteComponent} from "./componentes/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component";
 
 const routes: Routes = [];
 
@@ -87,6 +92,21 @@ const routes: Routes = [];
       }
     },
     {path: 'tipos_recursos_comunitarios/nuevo', component: NuevoTipoRecursoComunitarioComponent},
+    {
+      path: 'tipos_modalidades_pacientes',
+      component: ListaTiposModalidadesPacientesComponent,
+      resolve: {
+        tipos_modalidades_pacientes: ListaTiposModalidadesPacientesResolveService
+      }
+    },
+    {
+      path: 'tipos_modalidades_pacientes/modificar/:id',
+      component: DetallesTipoModalidadPacienteComponent,
+      resolve: {
+        tipo_modalidad_paciente: DetallesTipoModalidadPacienteResolveService
+      }
+    },
+    {path: 'tipos_modalidades_pacientes/nuevo', component: NuevoTipoModalidadPacienteComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],

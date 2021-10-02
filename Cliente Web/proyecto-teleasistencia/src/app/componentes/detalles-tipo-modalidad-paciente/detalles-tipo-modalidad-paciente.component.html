@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Modificar datos tipo modalidad paciente {{idTipoModalidadPaciente}}</h1>
+  <form #modificarTipoModalidadPacienteForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required minlength="4" [(ngModel)]="tipo_modalidad_paciente.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+           class="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio.
+        </div>
+        <div *ngIf="nombre.errors?.minlength">
+          El nombre debe tener al menos 4 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn" [routerLink]="['/tipos_modalidades_pacientes']">Volver</button>
+    <button type="submit" class="btn" (click)="modificarTipoModalidadPaciente()"
+            [disabled]="!modificarTipoModalidadPacienteForm.form.valid">Guardar
+    </button>
+  </form>
+</div>

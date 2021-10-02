@@ -26,6 +26,11 @@ import {ItemTipoRecursoComunitarioComponent} from './componentes/item-tipo-recur
 import {DetallesTipoRecursoComunitarioComponent} from './componentes/detalles-tipo-recurso-comunitario/detalles-tipo-recurso-comunitario.component';
 import {NuevoTipoRecursoComunitarioComponent} from './componentes/nuevo-tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario.component';
 import {CargaTipoRecursoComunitarioService} from "./servicios/carga-tipo-recurso-comunitario.service";
+import { ListaTiposModalidadesPacientesComponent } from './componentes/lista-tipos-modalidades-pacientes/lista-tipos-modalidades-pacientes.component';
+import { ItemTipoModalidadPacienteComponent } from './componentes/item-tipo-modalidad-paciente/item-tipo-modalidad-paciente.component';
+import { DetallesTipoModalidadPacienteComponent } from './componentes/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component';
+import { NuevoTipoModalidadPacienteComponent } from './componentes/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component';
+import {CargaTipoModalidadPacienteService} from "./servicios/carga-tipo-modalidad-paciente.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +51,11 @@ import {CargaTipoRecursoComunitarioService} from "./servicios/carga-tipo-recurso
     ListaTiposRecursosComunitariosComponent,
     ItemTipoRecursoComunitarioComponent,
     DetallesTipoRecursoComunitarioComponent,
-    NuevoTipoRecursoComunitarioComponent
+    NuevoTipoRecursoComunitarioComponent,
+    ListaTiposModalidadesPacientesComponent,
+    ItemTipoModalidadPacienteComponent,
+    DetallesTipoModalidadPacienteComponent,
+    NuevoTipoModalidadPacienteComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +67,7 @@ import {CargaTipoRecursoComunitarioService} from "./servicios/carga-tipo-recurso
     CargaClasificacionAlarmaService,
     CargaTipoCentroSanitarioService,
     CargaTipoRecursoComunitarioService,
+    CargaTipoModalidadPacienteService,
     Title],
   bootstrap: [AppComponent]
 })
