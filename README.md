@@ -37,7 +37,7 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 1. Instalación de python - https://www.python.org/ . Seleccionar la opción que nos permite añadir python al PATH. 
    Comprobamos la instalación desde cmd: ```python --version```
 2. Descargamos e instalamos el Entorno de desarrollo PyCharm - https://www.jetbrains.com/pycharm/
-3. Creamos el entorno virutal en la ruta Server ```virtualenv venviorment```
+3. Creamos el [entorno virutal](https://docs.python.org/3/library/venv.html) en la ruta Server ```virtualenv venviorment```
 
     <img src="https://user-images.githubusercontent.com/3669279/122421218-847ba980-cf8c-11eb-829c-2dccf74a3e6d.png" width="400">
 
