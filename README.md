@@ -42,7 +42,7 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
     <img src="https://user-images.githubusercontent.com/3669279/122421218-847ba980-cf8c-11eb-829c-2dccf74a3e6d.png" width="400">
 
 
-5. Ejecutamos el siguiente archivo para seleccionar el entorno virtual ```Server/venviorment/Scripts/activate```
+5. Ejecutamos el siguiente archivo para seleccionar el entorno virtual ```Server/venviorment/Scripts/activate```. Si tuviésemos problemas de permisos para ejecutar dicho comando, revisar [este enlace](https://tecadmin.net/powershell-running-scripts-is-disabled-system/) y correr el comando que aparece como superadministrador en PowerShell.
 6. Hacemos permanente el entorno virtual. Vamos a ```File -> Settings... -> Project --> Python Interpreter``` y seleccinoamos el Interprete ```Server\venviorment\Scripts\python.exe```
 
     ![image](https://user-images.githubusercontent.com/57873286/122095294-794e3f80-ce0d-11eb-9577-985b2d170102.png)
