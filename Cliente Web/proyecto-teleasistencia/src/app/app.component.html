@@ -33,13 +33,15 @@
                 Alarmas
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Consultar tipos de alarma</a></li>
-                <li><a class="dropdown-item" href="#">Crear nuevo tipo de alarma</a></li>
+                <li><a class="dropdown-item" href="/tipos_alarmas">Consultar tipos de alarma</a></li>
+                <li><a class="dropdown-item" href="/tipos_alarmas/nuevo">Crear nuevo tipo de alarma</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="/clasificaciones_alarmas">Consultar clasificaciones de alarma</a></li>
-                <li><a class="dropdown-item" href="/clasificaciones_alarmas/nueva">Crear nueva clasificación de alarma</a></li>
+                <li><a class="dropdown-item" href="/clasificaciones_alarmas">Consultar clasificaciones de alarma</a>
+                </li>
+                <li><a class="dropdown-item" href="/clasificaciones_alarmas/nueva">Crear nueva clasificación de
+                  alarma</a></li>
               </ul>
             </li>
 
@@ -49,13 +51,15 @@
                 Centros sanitarios
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Consultar centros sanitarios</a></li>
-                <li><a class="dropdown-item" href="#">Crear nuevo centro sanitario</a></li>
+                <li><a class="dropdown-item" href="/centros-sanitarios">Consultar centros sanitarios</a></li>
+                <li><a class="dropdown-item" href="/centros-sanitarios/nuevo">Crear nuevo centro sanitario</a></li>
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="/tipos_centros_sanitarios">Consultar tipos de centros sanitarios</a></li>
-                <li><a class="dropdown-item" href="/tipos_centros_sanitarios/nuevo">Crear nuevo tipo de centro sanitario</a></li>
+                <li><a class="dropdown-item" href="/tipos_centros_sanitarios">Consultar tipos de centros sanitarios</a>
+                </li>
+                <li><a class="dropdown-item" href="/tipos_centros_sanitarios/nuevo">Crear nuevo tipo de centro
+                  sanitario</a></li>
               </ul>
             </li>
 
@@ -65,8 +69,10 @@
                 Modalidad paciente
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/tipos_modalidades_pacientes">Consultar tipos de modalidades de pacientes</a></li>
-                <li><a class="dropdown-item" href="/tipos_modalidades_pacientes/nuevo">Crear nuevo tipo de modalidad de paciente</a></li>
+                <li><a class="dropdown-item" href="/tipos_modalidades_pacientes">Consultar tipos de modalidades de
+                  pacientes</a></li>
+                <li><a class="dropdown-item" href="/tipos_modalidades_pacientes/nuevo">Crear nuevo tipo de modalidad de
+                  paciente</a></li>
               </ul>
             </li>
 
@@ -81,8 +87,10 @@
                 <li>
                   <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="/tipos_recursos_comunitarios">Consultar tipos de recursos comunitarios</a></li>
-                <li><a class="dropdown-item" href="/tipos_recursos_comunitarios/nuevo">Crear nuevo tipo de recurso comunitario</a></li>
+                <li><a class="dropdown-item" href="/tipos_recursos_comunitarios">Consultar tipos de recursos
+                  comunitarios</a></li>
+                <li><a class="dropdown-item" href="/tipos_recursos_comunitarios/nuevo">Crear nuevo tipo de recurso
+                  comunitario</a></li>
               </ul>
             </li>
 
@@ -92,8 +100,19 @@
                 Personas
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Consultar personas</a></li>
-                <li><a class="dropdown-item" href="#">Crear nueva persona</a></li>
+                <li><a class="dropdown-item" href="/personas">Consultar personas</a></li>
+                <li><a class="dropdown-item" href="/personas/nueva">Crear nueva persona</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDirecciones" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                Direcciones
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/direcciones">Consultar direcciones</a></li>
+                <li><a class="dropdown-item" href="/direcciones/nueva">Crear nueva dirección</a></li>
               </ul>
             </li>
           </ul>
@@ -105,24 +124,24 @@
 <main class="text-center row p-0 m-0 justify-content-center">
   <router-outlet></router-outlet>
 </main>
+<!--
 <div class="container fixed-bottom">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-8 d-flex align-items-center">
       <a href="/inicio" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <img src="../assets/cabecera-logo.png" height="42" width="60"/></a>
-      <span class="text-muted">&copy; Lucía González Martín - Proyecto Fin de Ciclo Desarrollo de Aplicaciones Web</span>
+      <span
+        class="text-muted">&copy; Lucía González Martín - Proyecto Fin de Ciclo Desarrollo de Aplicaciones Web</span>
     </div>
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-muted" href="mailto:lgonzalezm59@informatica.iesvalledeljerteplasencia.es?Subject=Proyecto%20de%20teleasistencia"><i class="fab fa-google-plus"></i></a></li>
-      <li class="ms-3"><a class="text-muted" href="https://github.com/lgonzalezm59" target="_blank"><i class="fab fa-github"></i></a></li>
+      <li class="ms-3"><a class="text-muted"
+                          href="mailto:lgonzalezm59@informatica.iesvalledeljerteplasencia.es?Subject=Proyecto%20de%20teleasistencia"><i
+        class="fab fa-google-plus"></i></a></li>
+      <li class="ms-3"><a class="text-muted" href="https://github.com/lgonzalezm59" target="_blank"><i
+        class="fab fa-github"></i></a></li>
     </ul>
   </footer>
 </div>
-
-
-
-
-
-
+-->
 
 

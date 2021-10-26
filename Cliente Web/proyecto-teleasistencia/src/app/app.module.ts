@@ -31,6 +31,31 @@ import { ItemTipoModalidadPacienteComponent } from './componentes/item-tipo-moda
 import { DetallesTipoModalidadPacienteComponent } from './componentes/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component';
 import { NuevoTipoModalidadPacienteComponent } from './componentes/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component';
 import {CargaTipoModalidadPacienteService} from "./servicios/carga-tipo-modalidad-paciente.service";
+import { ListaTiposAlarmasComponent } from './componentes/lista-tipos-alarmas/lista-tipos-alarmas.component';
+import { ItemTipoAlarmaComponent } from './componentes/item-tipo-alarma/item-tipo-alarma.component';
+import { DetallesTipoAlarmaComponent } from './componentes/detalles-tipo-alarma/detalles-tipo-alarma.component';
+import { NuevoTipoAlarmaComponent } from './componentes/nuevo-tipo-alarma/nuevo-tipo-alarma.component';
+import {CargaTipoAlarmaService} from "./servicios/carga-tipo-alarma.service";
+import { ListaCentrosSanitariosComponent } from './componentes/lista-centros-sanitarios/lista-centros-sanitarios.component';
+import { ItemCentroSanitarioComponent } from './componentes/item-centro-sanitario/item-centro-sanitario.component';
+import { DetallesCentroSanitarioComponent } from './componentes/detalles-centro-sanitario/detalles-centro-sanitario.component';
+import { NuevoCentroSanitarioComponent } from './componentes/nuevo-centro-sanitario/nuevo-centro-sanitario.component';
+import { ListaRecursosComunitariosComponent } from './componentes/lista-recursos-comunitarios/lista-recursos-comunitarios.component';
+import { ItemResursoComunitarioComponent } from './componentes/item-resurso-comunitario/item-resurso-comunitario.component';
+import { DetallesRecursoComunitarioComponent } from './componentes/detalles-recurso-comunitario/detalles-recurso-comunitario.component';
+import { NuevoRecursoComunitarioComponent } from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
+import { ListaPersonasComponent } from './componentes/lista-personas/lista-personas.component';
+import { ItemPersonaComponent } from './componentes/item-persona/item-persona.component';
+import { DetallesPersonaComponent } from './componentes/detalles-persona/detalles-persona.component';
+import { NuevaPersonaComponent } from './componentes/nueva-persona/nueva-persona.component';
+import { ListaDireccionesComponent } from './componentes/lista-direcciones/lista-direcciones.component';
+import { ItemDireccionComponent } from './componentes/item-direccion/item-direccion.component';
+import { DetallesDireccionComponent } from './componentes/detalles-direccion/detalles-direccion.component';
+import { NuevaDireccionComponent } from './componentes/nueva-direccion/nueva-direccion.component';
+import {CargaDireccionService} from "./servicios/carga-direccion.service";
+import {CargaCentroSanitarioService} from "./servicios/carga-centro-sanitario.service";
+import {CargaPersonaService} from "./servicios/carga-persona.service";
+import {CargaRecursoComunitarioService} from "./servicios/carga-recurso-comunitario.service";
 
 @NgModule({
   declarations: [
@@ -55,7 +80,27 @@ import {CargaTipoModalidadPacienteService} from "./servicios/carga-tipo-modalida
     ListaTiposModalidadesPacientesComponent,
     ItemTipoModalidadPacienteComponent,
     DetallesTipoModalidadPacienteComponent,
-    NuevoTipoModalidadPacienteComponent
+    NuevoTipoModalidadPacienteComponent,
+    ListaTiposAlarmasComponent,
+    ItemTipoAlarmaComponent,
+    DetallesTipoAlarmaComponent,
+    NuevoTipoAlarmaComponent,
+    ListaCentrosSanitariosComponent,
+    ItemCentroSanitarioComponent,
+    DetallesCentroSanitarioComponent,
+    NuevoCentroSanitarioComponent,
+    ListaRecursosComunitariosComponent,
+    ItemResursoComunitarioComponent,
+    DetallesRecursoComunitarioComponent,
+    NuevoRecursoComunitarioComponent,
+    ListaPersonasComponent,
+    ItemPersonaComponent,
+    DetallesPersonaComponent,
+    NuevaPersonaComponent,
+    ListaDireccionesComponent,
+    ItemDireccionComponent,
+    DetallesDireccionComponent,
+    NuevaDireccionComponent
   ],
   imports: [
     BrowserModule,
@@ -63,12 +108,19 @@ import {CargaTipoModalidadPacienteService} from "./servicios/carga-tipo-modalida
     AppRoutingModule,
     FormsModule
   ],
-  providers: [CargaUserService,
+  providers: [
+    CargaUserService,
     CargaClasificacionAlarmaService,
     CargaTipoCentroSanitarioService,
     CargaTipoRecursoComunitarioService,
     CargaTipoModalidadPacienteService,
-    Title],
+    CargaTipoAlarmaService,
+    CargaDireccionService,
+    CargaCentroSanitarioService,
+    CargaRecursoComunitarioService,
+    CargaPersonaService,
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

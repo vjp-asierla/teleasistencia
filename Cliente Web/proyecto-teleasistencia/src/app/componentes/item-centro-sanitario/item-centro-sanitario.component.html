@@ -1,0 +1,7 @@
+<td>{{centro_sanitario.id}}</td>
+<td>{{ centro_sanitario.nombre }}</td>
+<td>{{ centro_sanitario.telefono }}</td>
+<td>{{ centro_sanitario.id_tipos_centro_sanitario.nombre }}</td>
+<td>{{ centro_sanitario.id_direccion.direccion }} {{ centro_sanitario.id_direccion.localidad }} ({{ centro_sanitario.id_direccion.provincia }}) - {{ centro_sanitario.id_direccion.codigo_postal }}</td>
+<td><button type="submit" class="btn" [routerLink]="['/centros-sanitarios/modificar', centro_sanitario.id]">Modificar datos</button></td>
+

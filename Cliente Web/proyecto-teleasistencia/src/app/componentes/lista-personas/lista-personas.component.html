@@ -1,0 +1,21 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Dni</th>
+    <th>Fecha de nacimiento</th>
+    <th>Sexo</th>
+    <th>Teléfono fijo</th>
+    <th>Teléfono móvil</th>
+    <th>Id dirección</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let persona of personas"
+      app-item-persona [persona]="persona">
+  </tr>
+  </tbody>
+</table>

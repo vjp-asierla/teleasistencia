@@ -1,0 +1,17 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th>Dispositivo</th>
+    <th>Id clasificación alarma</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tipo_alarma of tipos_alarmas"
+      app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
+  </tr>
+  </tbody>
+</table>

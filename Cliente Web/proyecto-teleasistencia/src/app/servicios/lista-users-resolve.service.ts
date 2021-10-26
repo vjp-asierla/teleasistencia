@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {IUsers} from "../interfaces/i-users";
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import {CargaUserService} from "./carga-user.service";
@@ -11,7 +11,8 @@ import {catchError} from "rxjs/operators";
 })
 export class ListaUsersResolveService implements Resolve<IUsers> {
 
-  constructor(private cargaUsers: CargaUserService, private router: Router) { }
+  constructor(private cargaUsers: CargaUserService, private router: Router) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUsers> {
     return this.cargaUsers.getUsers().pipe(

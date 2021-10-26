@@ -9,7 +9,8 @@ import {IUsers} from "../../interfaces/i-users";
 export class ItemUserComponent implements OnInit {
   @Input() public user: IUsers;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.user.id = Number(this.user.url.substr(37));

@@ -6,6 +6,7 @@ import {ITipoRecursoComunitario} from "../../interfaces/i-tipo-recurso-comunitar
   templateUrl: './item-tipo-recurso-comunitario.component.html',
   styleUrls: ['./item-tipo-recurso-comunitario.component.scss']
 })
+
 export class ItemTipoRecursoComunitarioComponent implements OnInit {
   @Input() public tipo_recurso_comunitario: ITipoRecursoComunitario;
 
@@ -14,5 +15,4 @@ export class ItemTipoRecursoComunitarioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

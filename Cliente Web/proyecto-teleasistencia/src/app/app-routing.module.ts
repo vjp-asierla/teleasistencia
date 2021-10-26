@@ -26,6 +26,25 @@ import {ListaTiposModalidadesPacientesResolveService} from "./servicios/lista-ti
 import {DetallesTipoModalidadPacienteComponent} from "./componentes/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component";
 import {DetallesTipoModalidadPacienteResolveService} from "./servicios/detalles-tipo-modalidad-paciente-resolve.service";
 import {NuevoTipoModalidadPacienteComponent} from "./componentes/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component";
+import {ListaTiposAlarmasComponent} from "./componentes/lista-tipos-alarmas/lista-tipos-alarmas.component";
+import {ListaTiposAlarmasResolveService} from "./servicios/lista-tipos-alarmas-resolve.service";
+import {DetallesTipoAlarmaComponent} from "./componentes/detalles-tipo-alarma/detalles-tipo-alarma.component";
+import {DetallesTipoAlarmaResolveService} from "./servicios/detalles-tipo-alarma-resolve.service";
+import {NuevoTipoAlarmaComponent} from "./componentes/nuevo-tipo-alarma/nuevo-tipo-alarma.component";
+import {ListaDireccionesComponent} from "./componentes/lista-direcciones/lista-direcciones.component";
+import {ListaDireccionesResolveService} from "./servicios/lista-direcciones-resolve.service";
+import {DetallesDireccionComponent} from "./componentes/detalles-direccion/detalles-direccion.component";
+import {DetallesDireccionResolveService} from "./servicios/detalles-direccion-resolve.service";
+import {NuevaDireccionComponent} from "./componentes/nueva-direccion/nueva-direccion.component";
+import {ListaCentrosSanitariosComponent} from "./componentes/lista-centros-sanitarios/lista-centros-sanitarios.component";
+import {ListaCentrosSanitariosResolveService} from "./servicios/lista-centros-sanitarios-resolve.service";
+import {DetallesCentroSanitarioComponent} from "./componentes/detalles-centro-sanitario/detalles-centro-sanitario.component";
+import {NuevoCentroSanitarioComponent} from "./componentes/nuevo-centro-sanitario/nuevo-centro-sanitario.component";
+import {ListaPersonasComponent} from "./componentes/lista-personas/lista-personas.component";
+import {ListaPersonasResolveService} from "./servicios/lista-personas-resolve.service";
+import {DetallesPersonaComponent} from "./componentes/detalles-persona/detalles-persona.component";
+import {DetallesPersonaResolveService} from "./servicios/detalles-persona-resolve.service";
+import {NuevaPersonaComponent} from "./componentes/nueva-persona/nueva-persona.component";
 
 const routes: Routes = [];
 
@@ -107,6 +126,89 @@ const routes: Routes = [];
       }
     },
     {path: 'tipos_modalidades_pacientes/nuevo', component: NuevoTipoModalidadPacienteComponent},
+    {
+      path: 'tipos_alarmas',
+      component: ListaTiposAlarmasComponent,
+      resolve: {
+        tipos_alarmas: ListaTiposAlarmasResolveService
+      }
+    },
+    {
+      path: 'tipos_alarmas/modificar/:id',
+      component: DetallesTipoAlarmaComponent,
+      resolve: {
+        tipo_alarma: DetallesTipoAlarmaResolveService,
+        clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
+      }
+    },
+    {
+      path: 'tipos_alarmas/nuevo',
+      component: NuevoTipoAlarmaComponent,
+      resolve: {
+        clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
+      }
+    },
+    {
+      path: 'direcciones',
+      component: ListaDireccionesComponent,
+      resolve: {
+        direcciones: ListaDireccionesResolveService
+      }
+    },
+    {
+      path: 'direcciones/modificar/:id',
+      component: DetallesDireccionComponent,
+      resolve: {
+        direccion: DetallesDireccionResolveService
+      }
+    },
+    {path: 'direcciones/nueva', component: NuevaDireccionComponent},
+    {
+      path: 'centros-sanitarios',
+      component: ListaCentrosSanitariosComponent,
+      resolve: {
+        centros_sanitarios: ListaCentrosSanitariosResolveService
+      }
+    },
+    {
+      path: 'centros-sanitarios/modificar/:id',
+      component: DetallesCentroSanitarioComponent,
+      resolve: {
+        centros_sanitario: DetallesTipoCentroSanitarioResolveService,
+        tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService,
+        direcciones: ListaDireccionesResolveService
+      }
+    },
+    {
+      path: 'centros-sanitarios/nuevo',
+      component: NuevoCentroSanitarioComponent,
+      resolve: {
+        tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService,
+        direcciones: ListaDireccionesResolveService
+      }
+    },
+    {
+      path: 'personas',
+      component: ListaPersonasComponent,
+      resolve: {
+        personas: ListaPersonasResolveService
+      }
+    },
+    {
+      path: 'personas/modificar/:id',
+      component: DetallesPersonaComponent,
+      resolve: {
+        persona: DetallesPersonaResolveService,
+        direcciones: ListaDireccionesResolveService
+      }
+    },
+    {
+      path: 'personas/nueva',
+      component: NuevaPersonaComponent,
+      resolve: {
+        direcciones: ListaDireccionesResolveService
+      }
+    },
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', redirectTo: '/inicio', pathMatch: 'full'}
   ])],

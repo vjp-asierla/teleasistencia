@@ -1,0 +1,17 @@
+<table class="table table-striped text-center">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Localidad</th>
+    <th>Provincia</th>
+    <th>Dirección</th>
+    <th>Código postal</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let direccion of direcciones"
+      app-item-direccion [direccion]="direccion">
+  </tr>
+  </tbody>
+</table>

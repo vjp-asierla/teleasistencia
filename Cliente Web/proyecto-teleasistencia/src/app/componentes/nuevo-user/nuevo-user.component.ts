@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {CargaUserService} from "../../servicios/carga-user.service";
@@ -28,4 +28,5 @@ export class NuevoUserComponent implements OnInit {
       this.router.navigate(['/usuarios']);
     });
   }
+
 }

@@ -6,12 +6,13 @@ import {IClasificacionAlarma} from "../../interfaces/i-clasificacion-alarma";
   templateUrl: './item-clasificacion-alarma.component.html',
   styleUrls: ['./item-clasificacion-alarma.component.scss']
 })
+
 export class ItemClasificacionAlarmaComponent implements OnInit {
   @Input() public clasificacion_alarma: IClasificacionAlarma;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

@@ -8,6 +8,7 @@ import {catchError} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
+
 export class DetallesClasificacionAlarmaResolveService implements Resolve<IClasificacionAlarma> {
 
   constructor(private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {

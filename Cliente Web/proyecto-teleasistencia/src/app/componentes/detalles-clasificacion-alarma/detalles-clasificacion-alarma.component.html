@@ -1,40 +1,35 @@
 <div class="container">
   <h1>Modificar datos clasificación alarma {{idClasificacionAlarma}}</h1>
   <form #modificarClasificacionAlarmaForm="ngForm">
+
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" name="nombre" id="nombre" class="form-control"
-             required minlength="4" [(ngModel)]="clasificacion_alarma.nombre" #nombre="ngModel">
-      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
-           class="alert">
+             required maxlength="200" [(ngModel)]="clasificacion_alarma.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
         <div *ngIf="nombre.errors?.required">
-          El nombre es obligatorio.
-        </div>
-        <div *ngIf="nombre.errors?.minlength">
-          El nombre debe tener al menos 4 caracteres.
+          El nombre es obligatorio
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <label for="codigo">Código</label>
-      <input type="codigo" name="codigo" id="codigo" class="form-control" required
+      <input type="text" name="codigo" id="codigo" class="form-control" maxlength="200"
              pattern="[A-Z]+$" [(ngModel)]="clasificacion_alarma.codigo" #codigo="ngModel">
-    </div>
-    <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
-         class="alert">
-      <div *ngIf="codigo.errors?.required; else elseBlock">
-        El codigo es obligatorio.
+      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert">
+        <div *ngIf="codigo.errors">
+          Introduzca un código válido
+        </div>
       </div>
-      <ng-template #elseBlock>
-        Introduzca un codigo válido.
-      </ng-template>
     </div>
 
-    <button type="button" class="btn" [routerLink]="['/clasificaciones_alarmas']">Volver</button>
     <button type="submit" class="btn" (click)="modificarClasificacionAlarma()"
-            [disabled]="!modificarClasificacionAlarmaForm.form.valid">Guardar
+            [disabled]="!modificarClasificacionAlarmaForm.form.valid">
+      Guardar
     </button>
+    <button type="button" class="btn" [routerLink]="['/clasificaciones_alarmas']">Volver</button>
+
   </form>
 </div>
 

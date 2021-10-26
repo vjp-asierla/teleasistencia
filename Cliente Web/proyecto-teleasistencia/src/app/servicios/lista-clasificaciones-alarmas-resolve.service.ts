@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
 import {CargaClasificacionAlarmaService} from "./carga-clasificacion-alarma.service";
@@ -8,6 +8,7 @@ import {catchError} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
+
 export class ListaClasificacionesAlarmasResolveService implements Resolve<IClasificacionAlarma> {
 
   constructor(private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {

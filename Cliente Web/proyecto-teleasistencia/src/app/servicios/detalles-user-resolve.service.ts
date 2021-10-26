@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 import {IUsers} from "../interfaces/i-users";
 import {CargaUserService} from "./carga-user.service";
@@ -8,11 +8,12 @@ import {catchError} from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class DetallesUserResolveService implements Resolve<IUsers>{
+export class DetallesUserResolveService implements Resolve<IUsers> {
 
-  constructor(private cargaUsers: CargaUserService, private router: Router) { }
+  constructor(private cargaUsers: CargaUserService, private router: Router) {
+  }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUsers>  {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUsers> {
     return this.cargaUsers.getUser(route.params['id']).pipe(
       catchError(error => {
         this.router.navigate(['/inicio']);

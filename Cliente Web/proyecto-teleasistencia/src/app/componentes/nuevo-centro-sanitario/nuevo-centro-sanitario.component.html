@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Crear nuevo centro sanitario</h1>
+  <form #nuevoCentroSanitarioForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required minlength="4" [(ngModel)]="centro_sanitario.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+           class="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio.
+        </div>
+        <div *ngIf="nombre.errors?.minlength">
+          El nombre debe tener al menos 4 caracteres.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="tel" name="telefono" id="telefono" class="form-control" required
+             pattern="^(0034|\+34)?(\d\d\d)-? ?(\d\d)-? ?(\d)-? ?(\d)-? ?(\d\d)$" [(ngModel)]="centro_sanitario.telefono" #telefono="ngModel">
+    </div>
+    <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+         class="alert">
+      <div *ngIf="telefono.errors?.required; else elseBlock">
+        El teléfono es obligatorio.
+      </div>
+      <ng-template #elseBlock>
+        Introduzca un teléfono válido.
+      </ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo_centro_sanitario" class="form-label">Id tipos centro sanitario</label>
+      <select class="form-select" id="tipo_centro_sanitario" name="tipo_centro_sanitario"
+              [(ngModel)]="centro_sanitario.id_tipos_centro_sanitario" required>
+        <option *ngFor="let tipo_centro_sanitario of tipos_centros_sanitarios"
+                [value]="tipo_centro_sanitario.id">{{ tipo_centro_sanitario.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion" class="form-label">Id dirección</label>
+      <select class="form-select" id="direccion" name="direccion"
+              [(ngModel)]="centro_sanitario.id_direccion" required>
+        <option *ngFor="let direccion of direcciones"
+                [value]="direccion.id">{{ direccion.direccion }} {{ direccion.localidad }} ({{ direccion.provincia }}) - {{ direccion.codigo_postal }}</option>
+      </select>
+    </div>
+
+    <button type="button" class="btn" [routerLink]="['/centros_sanitarios']">Volver</button>
+    <button type="submit" class="btn" (click)="nuevoCentroSanitario()"
+            [disabled]="!nuevoCentroSanitarioForm.form.valid">Guardar
+    </button>
+  </form>
+</div>
+

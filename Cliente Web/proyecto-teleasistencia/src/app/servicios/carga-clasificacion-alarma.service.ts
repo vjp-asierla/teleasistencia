@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
@@ -6,10 +6,12 @@ import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
 @Injectable({
   providedIn: 'root'
 })
+
 export class CargaClasificacionAlarmaService {
   private URL_SERVER_CLASIFICACIONES_ALARMAS = 'http://localhost:8000/api-rest/clasificacion_alarma';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getClasificacionesAlarmas(): Observable<IClasificacionAlarma[]> {
     return this.http.get<IClasificacionAlarma[]>(this.URL_SERVER_CLASIFICACIONES_ALARMAS);
