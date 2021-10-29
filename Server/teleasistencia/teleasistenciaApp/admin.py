@@ -31,3 +31,4 @@ admin.site.register(Tipo_Situacion)
 admin.site.register(Historico_Tipo_Situacion)
 
 
+
