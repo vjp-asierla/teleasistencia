@@ -54,17 +54,46 @@ body {
   }
 }
 
+.component-title {
+  font-weight: normal;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+table {
+  thead > .table-purple {
+    background-color: #75597D;
+    color: white;
+  }
+  td > .btn-modify {
+    margin-left: 50%;
+  }
+}
+
 .navbar-light .navbar-toggler {
   color: rgb(126 89 126 / 55%);
 }
 
 .form-group {
+
+  width: 500px;
+  margin: auto;
+
   .ng-valid[required], .ng-valid.required, .ng-valid {
-    border-left: 5px solid #42A948;
+    border-left: 5px solid #198754;
   }
 
   .ng-invalid:not(form) {
     border-left: 5px solid #a94442;
+  }
+
+  .form-label {
+    float: left;
+  }
+
+  .alert {
+    padding: 5px;
+    margin-top: 20px;
   }
 }
 

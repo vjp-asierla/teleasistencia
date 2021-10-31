@@ -1,38 +1,88 @@
 <div class="container">
-  <h1>Crear nuevo usuario</h1>
+  <h1 class="component-title">Crear nuevo usuario</h1>
   <form #nuevoUserForm="ngForm">
-    <div class="form-group">
-      <label for="username">Username</label>
+
+    <div class="form-group mb-3">
+      <label for="username" class="form-label">Nombre de usuario</label>
       <input type="text" name="username" id="username" class="form-control"
-             required minlength="4" maxlength="10" [(ngModel)]="user.username" #username="ngModel">
+             required minlength="4" maxlength="20" [(ngModel)]="user.username" #username="ngModel">
       <div *ngIf="username.invalid && (username.dirty || username.touched)"
-           class="alert">
+           class="alert alert-secondary" role="alert">
         <div *ngIf="username.errors?.required">
-          El username es obligatorio.
+          El username es obligatorio
         </div>
         <div *ngIf="username.errors?.minlength">
-          El username debe tener al menos 4 caracteres.
+          El username debe tener al menos 4 caracteres
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" name="email" id="email" class="form-control" required
-             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel">
+    <div class="form-group mb-3">
+      <label for="contrasenia" class="form-label">Contraseña</label>
+      <input type="password" name="contrasenia" id="contrasenia" class="form-control"
+             required minlength="8" maxlength="16" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$"
+             [(ngModel)]="user.contrasenia" #contrasenia="ngModel">
+      <div *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)"
+           class="alert alert-secondary" role="alert">
+        La contraseña debe tener al menos un dígito, al menos una minúscula y al menos una mayúscula
+        <div *ngIf="contrasenia.errors?.required">
+          La contraseña es obligatoria
+        </div>
+        <div *ngIf="contrasenia.errors?.minlength">
+          La contraseña debe tener entre 8 y 16 caracteres
+        </div>
+      </div>
     </div>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)"
-         class="alert">
-      <div *ngIf="email.errors?.required; else elseBlock">
-        El email es obligatorio.
+
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required maxlength="200" pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+             [(ngModel)]="user.nombre"
+             #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="nombre.errors?.required; else elseBlock">
+          El nombre es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          Introduzca un nombre válido
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input type="text" name="apellidos" id="apellidos" class="form-control"
+             required maxlength="200" pattern="^[\w'\-,.][^0-9_!¡?÷?¿(\)\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+             [(ngModel)]="user.apellidos" #apellidos="ngModel">
+      <div *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)" class="alert alert-secondary"
+           role="alert">
+        <div *ngIf="apellidos.errors?.required; else elseBlock">
+          Los apellidos son obligatorios
+        </div>
       </div>
       <ng-template #elseBlock>
-        Introduzca un email válido.
+        Introduzca unos apellidos válidos
       </ng-template>
     </div>
 
-    <div class="form-group">
-      <label for="groups">Groups</label>
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control" required
+             maxlength="20" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-secondary" role="alert">
+        <div *ngIf="email.errors?.required; else elseBlock">
+          El email es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          Introduzca un email válido
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="groups" class="form-label">Grupo</label>
       <select class="form-control" id="groups"
               [(ngModel)]="user.groups" name="groups"
               #groups="ngModel">
@@ -40,10 +90,14 @@
       </select>
     </div>
 
-    <button type="submit" class="btn" [routerLink]="['/usuarios']">Volver</button>
-    <button type="submit" class="btn" (click)="nuevoUser()"
-            [disabled]="!nuevoUserForm.form.valid">Crear
+    <button type="submit" class="btn btn-outline-success m-1" (click)="nuevoUser()"
+            [disabled]="!nuevoUserForm.form.valid">
+      Guardar
     </button>
+    <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/usuarios']">
+      Volver
+    </button>
+
   </form>
 </div>
 

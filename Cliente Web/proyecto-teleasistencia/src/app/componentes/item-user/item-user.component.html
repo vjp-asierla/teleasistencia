@@ -1,6 +1,10 @@
-<td>{{user.id}}</td>
-<td>{{ user.url }}</td>
 <td>{{ user.username }}</td>
+<td>{{ user.nombre }}</td>
+<td>{{ user.apellidos }}</td>
 <td>{{ user.email }}</td>
 <td>{{ user.groups }}</td>
-<td><button type="submit" class="btn" [routerLink]="['/usuarios/modificar', user.id]">Modificar datos</button></td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/usuarios/modificar', user.id]">
+    Modificar datos
+  </button>
+</td>

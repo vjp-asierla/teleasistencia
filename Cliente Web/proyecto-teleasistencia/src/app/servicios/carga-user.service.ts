@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IUsers} from "../interfaces/i-users";
 import {Observable} from "rxjs";
+import {IUsers} from '../interfaces/i-users';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CargaUserService {
 
   private URL_SERVER_USERS = 'http://localhost:8000/api-rest/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getUsers(): Observable<IUsers[]> {
     return this.http.get<IUsers[]>(this.URL_SERVER_USERS);
@@ -27,5 +29,4 @@ export class CargaUserService {
   nuevoUser(user: IUsers): Observable<IUsers> {
     return this.http.post<IUsers>(this.URL_SERVER_USERS, user);
   }
-
 }

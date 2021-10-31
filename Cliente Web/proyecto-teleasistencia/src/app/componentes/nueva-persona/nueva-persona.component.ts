@@ -28,6 +28,8 @@ export class NuevaPersonaComponent implements OnInit {
     this.persona = new Persona();
     this.direcciones = this.route.snapshot.data['direcciones'];
     this.persona.sexo = 'Hombre';
+    this.persona.telefono_fijo = '';
+    this.persona.telefono_movil = '';
   }
 
   nuevaPersona(): void {
