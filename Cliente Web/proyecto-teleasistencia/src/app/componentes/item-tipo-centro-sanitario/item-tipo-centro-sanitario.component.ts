@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ITipoCentroSanitario} from "../../interfaces/i-tipo-centro-sanitario";
+import {ITipoCentroSanitario} from '../../interfaces/i-tipo-centro-sanitario';
 
 @Component({
   selector: 'app-item-tipo-centro-sanitario, [app-item-tipo-centro-sanitario]',

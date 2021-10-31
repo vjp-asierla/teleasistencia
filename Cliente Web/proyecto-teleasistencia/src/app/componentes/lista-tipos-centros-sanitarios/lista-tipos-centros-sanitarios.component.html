@@ -1,14 +1,16 @@
-<table class="table table-striped text-center">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Nombre</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let tipo_centro_sanitario of tipos_centros_sanitarios"
-      app-item-tipo-centro-sanitario [tipo_centro_sanitario]="tipo_centro_sanitario">
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <h1 class="component-title">Tipos de centros sanitarios</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Nombre</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tipo_centro_sanitario of tipos_centros_sanitarios"
+        app-item-tipo-centro-sanitario [tipo_centro_sanitario]="tipo_centro_sanitario">
+    </tr>
+    </tbody>
+  </table>
+</div>

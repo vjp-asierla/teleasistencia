@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ITipoCentroSanitario} from "../interfaces/i-tipo-centro-sanitario";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ITipoCentroSanitario} from '../interfaces/i-tipo-centro-sanitario';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CargaTipoCentroSanitarioService {
   private URL_SERVER_TIPOS_CENTROS_SANITARIOS = 'http://localhost:8000/api-rest/tipo_centro_sanitario';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getTiposCentrosSanitarios(): Observable<ITipoCentroSanitario[]> {
     return this.http.get<ITipoCentroSanitario[]>(this.URL_SERVER_TIPOS_CENTROS_SANITARIOS);

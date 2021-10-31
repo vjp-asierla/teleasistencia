@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoCentroSanitario} from "../../interfaces/i-tipo-centro-sanitario";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaTipoCentroSanitarioService} from "../../servicios/carga-tipo-centro-sanitario.service";
-import {TipoCentroSanitario} from "../../clases/tipo-centro-sanitario";
+import {ITipoCentroSanitario} from '../../interfaces/i-tipo-centro-sanitario';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaTipoCentroSanitarioService} from '../../servicios/carga-tipo-centro-sanitario.service';
+import {TipoCentroSanitario} from '../../clases/tipo-centro-sanitario';
 
 @Component({
   selector: 'app-nuevo-tipo-centro-sanitario',
@@ -18,7 +18,7 @@ export class NuevoTipoCentroSanitarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Crear nuevo tipo centro sanitario');
+    this.titleServide.setTitle('Nuevo tipo centro sanitario');
     this.tipo_centro_sanitario = new TipoCentroSanitario();
   }
 
@@ -26,6 +26,7 @@ export class NuevoTipoCentroSanitarioComponent implements OnInit {
     this.cargaTiposCentrosSanitarios.nuevoTipoCentroSanitario(this.tipo_centro_sanitario).subscribe(
       e => {
         console.log('Tipo centro sanitario creado');
+        console.log(this.tipo_centro_sanitario);
         this.router.navigate(['/tipos_centros_sanitarios']);
       },
       error => {

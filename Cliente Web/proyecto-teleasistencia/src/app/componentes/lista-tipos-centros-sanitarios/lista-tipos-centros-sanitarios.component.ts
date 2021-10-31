@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoCentroSanitario} from "../../interfaces/i-tipo-centro-sanitario";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
+import {ITipoCentroSanitario} from '../../interfaces/i-tipo-centro-sanitario';
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-tipos-centros-sanitarios',
@@ -12,11 +12,11 @@ import {ActivatedRoute} from "@angular/router";
 export class ListaTiposCentrosSanitariosComponent implements OnInit {
   public tipos_centros_sanitarios: ITipoCentroSanitario[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleServide: Title) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Tipos centros sanitarios');
     this.tipos_centros_sanitarios = this.route.snapshot.data['tipos_centros_sanitarios'];
+    this.titleServide.setTitle('Tipos centros sanitarios');
   }
 }
