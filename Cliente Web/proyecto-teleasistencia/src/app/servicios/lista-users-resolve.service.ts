@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {IUsers} from '../interfaces/i-users';
 import {CargaUserService} from './carga-user.service';
 import {Observable, of} from 'rxjs';
-import {IUsers} from '../interfaces/i-users';
 import {catchError} from 'rxjs/operators';
 
 @Injectable({

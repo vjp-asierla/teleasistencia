@@ -26,11 +26,15 @@ export class DetallesTipoAlarmaComponent implements OnInit {
     this.clasificaciones_alarmas = this.route.snapshot.data['clasificaciones_alarmas'];
   }
 
+  optionSelected(i: number): void {
+    document.getElementsByClassName('clasificacion_alarma_option')[i].setAttribute('selected', '');
+  }
+
   modificarTipoAlarma(): void {
-    console.log(this.tipo_alarma);
     this.cargaTiposAlarmas.modificarTipoAlarma(this.tipo_alarma).subscribe(
       e => {
         console.log('Tipo alarma ' + e.id + ' modificado');
+        console.log(this.tipo_alarma);
         this.router.navigate(['/tipos_alarmas']);
       },
       error => {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IUsers} from '../../interfaces/i-users';
-import {Title} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-users',
@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ListaUsersComponent implements OnInit {
   public users: IUsers[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleServide: Title) {
   }
 
   ngOnInit(): void {

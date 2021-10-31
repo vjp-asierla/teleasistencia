@@ -15,11 +15,11 @@ export class NuevoUserComponent implements OnInit {
   public user: IUsers;
 
   constructor(private titleServide: Title, private route: ActivatedRoute, private cargaUsers: CargaUserService, private router: Router) {
-    this.user = new User();
   }
 
   ngOnInit(): void {
     this.titleServide.setTitle('Nuevo usuario del sistema');
+    this.user = new User();
   }
 
   nuevoUser(): void {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoAlarma} from "../../interfaces/i-tipo-alarma";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
+import {ITipoAlarma} from '../../interfaces/i-tipo-alarma';
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-tipos-alarmas',
@@ -12,11 +12,11 @@ import {ActivatedRoute} from "@angular/router";
 export class ListaTiposAlarmasComponent implements OnInit {
   public tipos_alarmas: ITipoAlarma[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleServide: Title) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Tipos alarmas');
     this.tipos_alarmas = this.route.snapshot.data['tipos_alarmas'];
+    this.titleServide.setTitle('Tipos alarmas');
   }
 }

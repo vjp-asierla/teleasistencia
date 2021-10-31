@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
-import {ITipoAlarma} from "../interfaces/i-tipo-alarma";
-import {CargaTipoAlarmaService} from "./carga-tipo-alarma.service";
-import {Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {ITipoAlarma} from '../interfaces/i-tipo-alarma';
+import {CargaTipoAlarmaService} from './carga-tipo-alarma.service';
+import {Observable, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ListaTiposAlarmasResolveService implements Resolve<ITipoAlarma> {
 
   constructor(private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {

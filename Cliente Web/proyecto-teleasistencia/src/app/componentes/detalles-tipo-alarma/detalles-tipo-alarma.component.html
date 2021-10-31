@@ -1,30 +1,33 @@
 <div class="container">
-  <h1>Modificar datos tipo alarma {{idTipoAlarma}}</h1>
+  <h1 class="component-title">Modificar datos tipo alarma {{idTipoAlarma}}</h1>
   <form #modificarTipoAlarmaForm="ngForm">
 
-    <div class="form-group">
-      <label for="nombre">Nombre</label>
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
       <input type="text" name="nombre" id="nombre" class="form-control"
              required maxlength="200" [(ngModel)]="tipo_alarma.nombre" #nombre="ngModel">
-      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-secondary" role="alert">
         <div *ngIf="nombre.errors?.required">
           El nombre es obligatorio
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="codigo">Código</label>
-      <input type="text" name="codigo" id="codigo" class="form-control" maxlength="200"
+    <div class="form-group mb-3">
+      <label for="codigo" class="form-label">Código</label>
+      <input type="text" name="codigo" id="codigo" class="form-control" maxlength="200" required
              pattern="[A-Z & 0-9]+$" [(ngModel)]="tipo_alarma.codigo" #codigo="ngModel">
-    </div>
-    <div *ngIf="codigo.dirty || codigo.touched" class="alert">
-      <div *ngIf="codigo.invalid">
-        Introduzca un código válido
+      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="nombre.errors?.required; else elseBlock">
+          El código es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          Introduzca un código válido
+        </ng-template>
       </div>
     </div>
 
-    <div>
+    <div class="form-group-check mb-3">
       <span>Es dispositivo &nbsp;</span>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" id="es_dispositivo_true"
@@ -38,21 +41,23 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="clasificacion_alarma" class="form-label">Id clasificación alarma</label>
+    <div class="form-group mb-3">
+      <label for="clasificacion_alarma" class="form-label">Clasificación alarma</label>
       <select class="form-select" id="clasificacion_alarma" name="clasificacion_alarma"
-              [(ngModel)]="tipo_alarma.id_clasificacion_alarma">
+             required [(ngModel)]="tipo_alarma.id_clasificacion_alarma">
         <option class="clasificacion_alarma_option"
-                *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
-                [value]="clasificacion_alarma.id">{{ clasificacion_alarma.nombre }} {{ clasificacion_alarma.codigo }}</option>
+                *ngFor="let clasificacion_alarma of clasificaciones_alarmas; let i = index"
+                [value]="clasificacion_alarma.id">{{ tipo_alarma.id_clasificacion_alarma.id === clasificacion_alarma.id? optionSelected(i):"" }} {{ clasificacion_alarma.nombre }} {{ clasificacion_alarma.codigo }}</option>
       </select>
     </div>
 
-    <button type="submit" class="btn" (click)="modificarTipoAlarma()"
+    <button type="submit" class="btn btn-outline-success m-1" (click)="modificarTipoAlarma()"
             [disabled]="!modificarTipoAlarmaForm.form.valid">
       Guardar
     </button>
-    <button type="button" class="btn" [routerLink]="['/tipos_alarmas']">Volver</button>
+    <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/tipos_alarmas']">
+      Volver
+    </button>
 
   </form>
 </div>

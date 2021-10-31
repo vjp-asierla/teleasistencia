@@ -1,10 +1,9 @@
-<td>{{tipo_alarma.id}}</td>
 <td>{{ tipo_alarma.nombre }}</td>
 <td>{{ tipo_alarma.codigo }}</td>
-<td>{{ tipo_alarma.es_dispositivo }}</td>
+<td>{{ tipo_alarma.es_dispositivo? "Sí": "No" }}</td>
 <td>{{ tipo_alarma.id_clasificacion_alarma.nombre }} {{ tipo_alarma.id_clasificacion_alarma.codigo }}</td>
 <td>
-  <button type="submit" class="btn" [routerLink]="['/tipos_alarmas/modificar', tipo_alarma.id]">
+  <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/tipos_alarmas/modificar', tipo_alarma.id]">
     Modificar datos
   </button>
 </td>

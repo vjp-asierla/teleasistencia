@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ITipoAlarma} from "../../interfaces/i-tipo-alarma";
+import {ITipoAlarma} from '../../interfaces/i-tipo-alarma';
 
 @Component({
   selector: 'app-item-tipo-alarma, [app-item-tipo-alarma]',
