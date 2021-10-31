@@ -1,15 +1,17 @@
-<table class="table table-striped text-center">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Nombre</th>
-    <th>Código</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
-      app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <h1 class="component-title">Clasificaciones de alarmas</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Nombre</th>
+      <th scope="col">Código</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
+        app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
+    </tr>
+    </tbody>
+  </table>
+</div>

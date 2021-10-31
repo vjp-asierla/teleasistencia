@@ -1,34 +1,39 @@
 <div class="container">
-  <h1>Crear nueva clasificación alarma</h1>
+  <h1 class="component-title">Crear nueva clasificación alarma</h1>
   <form #nuevaClasificacionAlarmaForm="ngForm">
 
-    <div class="form-group">
-      <label for="nombre">Nombre</label>
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
       <input type="text" name="nombre" id="nombre" class="form-control"
              required maxlength="200" [(ngModel)]="clasificacion_alarma.nombre" #nombre="ngModel">
-      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-secondary" role="alert">
         <div *ngIf="nombre.errors?.required">
           El nombre es obligatorio
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="codigo">Código</label>
+    <div class="form-group mb-3">
+      <label for="codigo" class="form-label">Código</label>
       <input type="text" name="codigo" id="codigo" class="form-control" maxlength="200"
-             pattern="[A-Z]+$" [(ngModel)]="clasificacion_alarma.codigo" #codigo="ngModel">
-      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert">
-        <div *ngIf="codigo.errors">
-          Introduzca un código válido
+             required pattern="[A-Z]+$" [(ngModel)]="clasificacion_alarma.codigo" #codigo="ngModel">
+      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="codigo.errors?.required; else elseBlock">
+          El código es obligatorio
         </div>
+        <ng-template #elseBlock>
+          Introduzca un código válido
+        </ng-template>
       </div>
     </div>
 
-    <button type="submit" class="btn" (click)="nuevaClasificacionAlarma()"
+    <button type="submit" class="btn btn-outline-success m-1" (click)="nuevaClasificacionAlarma()"
             [disabled]="!nuevaClasificacionAlarmaForm.form.valid">
-      Crear
+      Guardar
     </button>
-    <button type="submit" class="btn" [routerLink]="['/clasificaciones_alarmas']">Volver</button>
+    <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/clasificaciones_alarmas']">
+      Volver
+    </button>
 
   </form>
 </div>

@@ -1,4 +1,4 @@
-import {IUsers} from "../interfaces/i-users";
+import {IUsers} from '../interfaces/i-users';
 
 export class User implements IUsers {
   id: number;

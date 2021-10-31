@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {IClasificacionAlarma} from '../interfaces/i-clasificacion-alarma';
 
 @Injectable({
   providedIn: 'root'

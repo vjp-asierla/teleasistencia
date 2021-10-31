@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {IClasificacionAlarma} from "../../interfaces/i-clasificacion-alarma";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaClasificacionAlarmaService} from "../../servicios/carga-clasificacion-alarma.service";
+import {IClasificacionAlarma} from '../../interfaces/i-clasificacion-alarma';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {CargaClasificacionAlarmaService} from '../../servicios/carga-clasificacion-alarma.service';
 
 @Component({
   selector: 'app-detalles-clasificacion-alarma',
@@ -14,19 +14,20 @@ export class DetallesClasificacionAlarmaComponent implements OnInit {
   public clasificacion_alarma: IClasificacionAlarma;
   public idClasificacionAlarma: number;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Modificar clasificación alarma ' + this.idClasificacionAlarma);
     this.clasificacion_alarma = this.route.snapshot.data['clasificacion_alarma'];
     this.idClasificacionAlarma = this.route.snapshot.params['id'];
+    this.titleServide.setTitle('Modificar clasificación alarma ' + this.idClasificacionAlarma);
   }
 
   modificarClasificacionAlarma(): void {
     this.cargaClasificacionesAlarmas.modificarClasificacionAlarma(this.clasificacion_alarma).subscribe(
       e => {
         console.log('Clasificación alarma ' + e.id + ' modificada');
+        console.log(this.clasificacion_alarma);
         this.router.navigate(['/clasificaciones_alarmas']);
       },
       error => {

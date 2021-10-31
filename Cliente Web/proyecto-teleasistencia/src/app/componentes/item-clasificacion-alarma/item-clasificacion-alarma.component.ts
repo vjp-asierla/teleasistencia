@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IClasificacionAlarma} from "../../interfaces/i-clasificacion-alarma";
+import {IClasificacionAlarma} from '../../interfaces/i-clasificacion-alarma';
 
 @Component({
   selector: 'app-item-clasificacion-alarma , [app-item-clasificacion-alarma]',

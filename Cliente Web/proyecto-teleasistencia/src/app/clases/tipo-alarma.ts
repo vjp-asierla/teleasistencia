@@ -1,5 +1,5 @@
-import {ITipoAlarma} from "../interfaces/i-tipo-alarma";
-import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
+import {ITipoAlarma} from '../interfaces/i-tipo-alarma';
+import {IClasificacionAlarma} from '../interfaces/i-clasificacion-alarma';
 
 export class TipoAlarma implements ITipoAlarma {
   id: number;

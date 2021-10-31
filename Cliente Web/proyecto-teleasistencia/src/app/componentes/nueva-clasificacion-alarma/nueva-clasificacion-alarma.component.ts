@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {IClasificacionAlarma} from "../../interfaces/i-clasificacion-alarma";
-import {Title} from "@angular/platform-browser";
-import {ClasificacionAlarma} from "../../clases/clasificacion-alarma";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaClasificacionAlarmaService} from "../../servicios/carga-clasificacion-alarma.service";
+import {IClasificacionAlarma} from '../../interfaces/i-clasificacion-alarma';
+import {Title} from '@angular/platform-browser';
+import {ClasificacionAlarma} from '../../clases/clasificacion-alarma';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaClasificacionAlarmaService} from '../../servicios/carga-clasificacion-alarma.service';
 
 @Component({
   selector: 'app-nueva-clasificacion-alarma',
   templateUrl: './nueva-clasificacion-alarma.component.html',
   styleUrls: ['./nueva-clasificacion-alarma.component.scss']
 })
+
 export class NuevaClasificacionAlarmaComponent implements OnInit {
   public clasificacion_alarma: IClasificacionAlarma;
 
@@ -17,7 +18,7 @@ export class NuevaClasificacionAlarmaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Crear nueva clasificación alarma');
+    this.titleServide.setTitle('Nueva clasificación alarma');
     this.clasificacion_alarma = new ClasificacionAlarma();
   }
 
@@ -25,6 +26,7 @@ export class NuevaClasificacionAlarmaComponent implements OnInit {
     this.cargaClasificacionesAlarmas.nuevaClasificacionAlarma(this.clasificacion_alarma).subscribe(
       e => {
         console.log('Clasificación alarma creada');
+        console.log(this.clasificacion_alarma);
         this.router.navigate(['/clasificaciones_alarmas']);
       },
       error => {

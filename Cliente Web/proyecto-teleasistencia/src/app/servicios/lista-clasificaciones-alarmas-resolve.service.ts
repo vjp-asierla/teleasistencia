@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
-import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
-import {CargaClasificacionAlarmaService} from "./carga-clasificacion-alarma.service";
-import {Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {IClasificacionAlarma} from '../interfaces/i-clasificacion-alarma';
+import {CargaClasificacionAlarmaService} from './carga-clasificacion-alarma.service';
+import {Observable, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
