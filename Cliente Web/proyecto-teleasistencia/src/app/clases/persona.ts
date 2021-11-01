@@ -1,5 +1,5 @@
-import {IPersona} from "../interfaces/i-persona";
-import {IDireccion} from "../interfaces/i-direccion";
+import {IPersona} from '../interfaces/i-persona';
+import {IDireccion} from '../interfaces/i-direccion';
 
 export class Persona implements IPersona {
   id: number;

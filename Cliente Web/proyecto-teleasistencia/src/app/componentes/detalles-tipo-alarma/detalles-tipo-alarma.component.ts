@@ -20,10 +20,10 @@ export class DetallesTipoAlarmaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Modificar tipo alarma ' + this.idTipoAlarma);
     this.tipo_alarma = this.route.snapshot.data['tipo_alarma'];
     this.idTipoAlarma = this.route.snapshot.params['id'];
     this.clasificaciones_alarmas = this.route.snapshot.data['clasificaciones_alarmas'];
+    this.titleServide.setTitle('Modificar tipo alarma ' + this.idTipoAlarma);
   }
 
   optionSelected(i: number): void {

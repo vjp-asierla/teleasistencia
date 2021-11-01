@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {IDireccion} from "../interfaces/i-direccion";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {IDireccion} from '../interfaces/i-direccion';
 
 @Injectable({
   providedIn: 'root'

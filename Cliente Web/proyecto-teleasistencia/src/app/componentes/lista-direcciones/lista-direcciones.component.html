@@ -1,17 +1,19 @@
-<table class="table table-striped text-center">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Localidad</th>
-    <th>Provincia</th>
-    <th>Dirección</th>
-    <th>Código postal</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let direccion of direcciones"
-      app-item-direccion [direccion]="direccion">
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <h1 class="component-title">Direcciones</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Localidad</th>
+      <th scope="col">Provincia</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Código postal</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let direccion of direcciones"
+        app-item-direccion [direccion]="direccion">
+    </tr>
+    </tbody>
+  </table>
+</div>

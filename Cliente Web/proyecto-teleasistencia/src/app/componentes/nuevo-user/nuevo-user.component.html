@@ -24,10 +24,12 @@
              [(ngModel)]="user.contrasenia" #contrasenia="ngModel">
       <div *ngIf="contrasenia.invalid && (contrasenia.dirty || contrasenia.touched)"
            class="alert alert-secondary" role="alert">
-        La contraseña debe tener al menos un dígito, al menos una minúscula y al menos una mayúscula
-        <div *ngIf="contrasenia.errors?.required">
+        <div *ngIf="contrasenia.errors?.required; else elseBlock">
           La contraseña es obligatoria
         </div>
+        <ng-template #elseBlock>
+          La contraseña debe tener al menos un dígito, al menos una minúscula y al menos una mayúscula
+        </ng-template>
         <div *ngIf="contrasenia.errors?.minlength">
           La contraseña debe tener entre 8 y 16 caracteres
         </div>

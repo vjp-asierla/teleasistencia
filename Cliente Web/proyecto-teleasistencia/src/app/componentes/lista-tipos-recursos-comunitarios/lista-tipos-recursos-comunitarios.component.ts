@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoRecursoComunitario} from "../../interfaces/i-tipo-recurso-comunitario";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
+import {ITipoRecursoComunitario} from '../../interfaces/i-tipo-recurso-comunitario';
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-tipos-recursos-comunitarios',
@@ -12,11 +12,11 @@ import {ActivatedRoute} from "@angular/router";
 export class ListaTiposRecursosComunitariosComponent implements OnInit {
   public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleServide: Title) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Tipos recursos comunitarios');
     this.tipos_recursos_comunitarios = this.route.snapshot.data['tipos_recursos_comunitarios'];
+    this.titleServide.setTitle('Tipos recursos comunitarios');
   }
 }

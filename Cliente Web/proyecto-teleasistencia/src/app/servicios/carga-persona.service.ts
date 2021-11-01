@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {IPersona} from "../interfaces/i-persona";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {IPersona} from '../interfaces/i-persona';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CargaPersonaService {
   private URL_SERVER_PERSONAS = 'http://localhost:8000/api-rest/persona';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getPersonas(): Observable<IPersona[]> {
     return this.http.get<IPersona[]>(this.URL_SERVER_PERSONAS);

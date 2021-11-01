@@ -45,6 +45,12 @@ import {ListaPersonasResolveService} from './servicios/lista-personas-resolve.se
 import {DetallesPersonaComponent} from './componentes/detalles-persona/detalles-persona.component';
 import {DetallesPersonaResolveService} from './servicios/detalles-persona-resolve.service';
 import {NuevaPersonaComponent} from './componentes/nueva-persona/nueva-persona.component';
+import {DetallesCentroSanitarioResolveService} from './servicios/detalles-centro-sanitario-resolve.service';
+import {ListaRecursosComunitariosComponent} from './componentes/lista-recursos-comunitarios/lista-recursos-comunitarios.component';
+import {ListaRecursosComunitariosResolveService} from './servicios/lista-recursos-comunitarios-resolve.service';
+import {DetallesRecursoComunitarioComponent} from './componentes/detalles-recurso-comunitario/detalles-recurso-comunitario.component';
+import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
+import {NuevoRecursoComunitarioComponent} from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
 
 const routes: Routes = [
   {path: 'inicio', component: HomeComponent},
@@ -161,26 +167,47 @@ const routes: Routes = [
   },
   {path: 'direcciones/nueva', component: NuevaDireccionComponent},
   {
-    path: 'centros-sanitarios',
+    path: 'centros_sanitarios',
     component: ListaCentrosSanitariosComponent,
     resolve: {
       centros_sanitarios: ListaCentrosSanitariosResolveService
     }
   },
   {
-    path: 'centros-sanitarios/modificar/:id',
+    path: 'centros_sanitarios/modificar/:id',
     component: DetallesCentroSanitarioComponent,
     resolve: {
-      centros_sanitario: DetallesTipoCentroSanitarioResolveService,
-      tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService,
-      direcciones: ListaDireccionesResolveService
+      centro_sanitario: DetallesCentroSanitarioResolveService,
+      tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
     }
   },
   {
-    path: 'centros-sanitarios/nuevo',
+    path: 'centros_sanitarios/nuevo',
     component: NuevoCentroSanitarioComponent,
     resolve: {
       tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
+    }
+  },
+  {
+    path: 'recursos_comunitarios',
+    component: ListaRecursosComunitariosComponent,
+    resolve: {
+      recursos_comunitarios: ListaRecursosComunitariosResolveService
+    }
+  },
+  {
+    path: 'recursos_comunitarios/modificar/:id',
+    component: DetallesRecursoComunitarioComponent,
+    resolve: {
+      recurso_comunitario: DetallesRecursoComunitarioResolveService,
+      tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
+    }
+  },
+  {
+    path: 'recursos_comunitarios/nuevo',
+    component: NuevoRecursoComunitarioComponent,
+    resolve: {
+      tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
     }
   },
   {

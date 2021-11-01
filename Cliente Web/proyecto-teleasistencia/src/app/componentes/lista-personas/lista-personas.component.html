@@ -1,21 +1,23 @@
-<table class="table table-striped text-center">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Nombre</th>
-    <th>Apellidos</th>
-    <th>Dni</th>
-    <th>Fecha de nacimiento</th>
-    <th>Sexo</th>
-    <th>Teléfono fijo</th>
-    <th>Teléfono móvil</th>
-    <th>Id dirección</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let persona of personas"
-      app-item-persona [persona]="persona">
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <h1 class="component-title">Personas</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Dni</th>
+      <th scope="col">Fecha de nacimiento</th>
+      <th scope="col">Sexo</th>
+      <th scope="col">Teléfono fijo</th>
+      <th scope="col">Teléfono móvil</th>
+      <th scope="col">Dirección</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let persona of personas"
+        app-item-persona [persona]="persona">
+    </tr>
+    </tbody>
+  </table>
+</div>

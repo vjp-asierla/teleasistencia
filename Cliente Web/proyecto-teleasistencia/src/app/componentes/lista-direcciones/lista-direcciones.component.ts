@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {IDireccion} from "../../interfaces/i-direccion";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute} from "@angular/router";
+import {IDireccion} from '../../interfaces/i-direccion';
+import {ActivatedRoute} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-direcciones',
@@ -12,11 +12,11 @@ import {ActivatedRoute} from "@angular/router";
 export class ListaDireccionesComponent implements OnInit {
   public direcciones: IDireccion[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private titleServide: Title) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Direcciones');
     this.direcciones = this.route.snapshot.data['direcciones'];
+    this.titleServide.setTitle('Direcciones');
   }
 }

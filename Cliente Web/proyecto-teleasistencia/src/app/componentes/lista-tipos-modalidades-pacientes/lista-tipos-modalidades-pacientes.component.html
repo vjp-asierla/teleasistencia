@@ -1,14 +1,16 @@
-<table class="table table-striped text-center">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Nombre</th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let tipo_modalidad_paciente of tipos_modalidades_pacientes"
-      app-item-tipo-modalidad-paciente [tipo_modalidad_paciente]="tipo_modalidad_paciente">
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <h1 class="component-title">Tipos de modalidades de pacientes</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Nombre</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tipo_modalidad_paciente of tipos_modalidades_pacientes"
+        app-item-tipo-modalidad-paciente [tipo_modalidad_paciente]="tipo_modalidad_paciente">
+    </tr>
+    </tbody>
+  </table>
+</div>

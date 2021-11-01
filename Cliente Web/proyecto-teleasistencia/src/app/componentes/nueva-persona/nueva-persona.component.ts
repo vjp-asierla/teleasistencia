@@ -36,6 +36,7 @@ export class NuevaPersonaComponent implements OnInit {
     this.cargaPersonas.nuevaPersona(this.persona).subscribe(
       e => {
         console.log('Persona creada');
+        console.log(this.persona);
         this.router.navigate(['/personas']);
       },
       error => {

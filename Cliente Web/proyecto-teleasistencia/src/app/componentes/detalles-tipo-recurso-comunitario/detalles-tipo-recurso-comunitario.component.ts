@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoRecursoComunitario} from "../../interfaces/i-tipo-recurso-comunitario";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaTipoRecursoComunitarioService} from "../../servicios/carga-tipo-recurso-comunitario.service";
+import {ITipoRecursoComunitario} from '../../interfaces/i-tipo-recurso-comunitario';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {CargaTipoRecursoComunitarioService} from '../../servicios/carga-tipo-recurso-comunitario.service';
 
 @Component({
   selector: 'app-detalles-tipo-recurso-comunitario',
@@ -14,20 +14,20 @@ export class DetallesTipoRecursoComunitarioComponent implements OnInit {
   public tipo_recurso_comunitario: ITipoRecursoComunitario;
   public idTipoRecursoComunitario: number;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaTiposRecursosComunitarios: CargaTipoRecursoComunitarioService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaTiposRecursosComunitarios: CargaTipoRecursoComunitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Modificar tipo recurso comunitario ' + this.idTipoRecursoComunitario);
     this.tipo_recurso_comunitario = this.route.snapshot.data['tipo_recurso_comunitario'];
     this.idTipoRecursoComunitario = this.route.snapshot.params['id'];
+    this.titleServide.setTitle('Modificar tipo recurso comunitario ' + this.idTipoRecursoComunitario);
   }
 
   modificarTipoRecursoComunitario(): void {
-    console.log(this.tipo_recurso_comunitario);
     this.cargaTiposRecursosComunitarios.modificarTipoRecursoComunitario(this.tipo_recurso_comunitario).subscribe(
       e => {
         console.log('Tipo recurso comunitario ' + e.id + ' modificado');
+        console.log(this.tipo_recurso_comunitario);
         this.router.navigate(['/tipos_recursos_comunitarios']);
       },
       error => {

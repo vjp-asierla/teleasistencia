@@ -1,5 +1,5 @@
-import {IDireccion} from "./i-direccion";
-import {ITipoRecursoComunitario} from "./i-tipo-recurso-comunitario";
+import {IDireccion} from './i-direccion';
+import {ITipoRecursoComunitario} from './i-tipo-recurso-comunitario';
 
 export interface IRecursoComunitario {
   id: number;

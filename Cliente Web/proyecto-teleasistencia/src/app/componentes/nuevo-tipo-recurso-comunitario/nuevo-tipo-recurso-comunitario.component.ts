@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ITipoRecursoComunitario} from "../../interfaces/i-tipo-recurso-comunitario";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaTipoRecursoComunitarioService} from "../../servicios/carga-tipo-recurso-comunitario.service";
-import {TipoRecursoComunitario} from "../../clases/tipo-recurso-comunitario";
+import {ITipoRecursoComunitario} from '../../interfaces/i-tipo-recurso-comunitario';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaTipoRecursoComunitarioService} from '../../servicios/carga-tipo-recurso-comunitario.service';
+import {TipoRecursoComunitario} from '../../clases/tipo-recurso-comunitario';
 
 @Component({
   selector: 'app-nuevo-tipo-recurso-comunitario',
@@ -23,10 +23,10 @@ export class NuevoTipoRecursoComunitarioComponent implements OnInit {
   }
 
   nuevoTipoRecursoComunitario(): void {
-    console.log(this.tipo_recurso_comunitario);
     this.cargaTiposRecursosComunitarios.nuevoTipoRecursoComunitario(this.tipo_recurso_comunitario).subscribe(
       e => {
         console.log('Tipo recurso comunitario creado');
+        console.log(this.tipo_recurso_comunitario);
         this.router.navigate(['/tipos_recursos_comunitarios']);
       },
       error => {

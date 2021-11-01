@@ -22,7 +22,7 @@
           El código es obligatorio
         </div>
         <ng-template #elseBlock>
-          Introduzca un código válido
+          El código debe tener solo letras mayúsculas o números
         </ng-template>
       </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="form-group mb-3">
       <label for="clasificacion_alarma" class="form-label">Clasificación alarma</label>
       <select class="form-select" id="clasificacion_alarma" name="clasificacion_alarma"
-             required [(ngModel)]="tipo_alarma.id_clasificacion_alarma">
+              required [(ngModel)]="tipo_alarma.id_clasificacion_alarma">
         <option class="clasificacion_alarma_option"
                 *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
                 [value]="clasificacion_alarma.id">{{ clasificacion_alarma.nombre }} {{ clasificacion_alarma.codigo }}</option>

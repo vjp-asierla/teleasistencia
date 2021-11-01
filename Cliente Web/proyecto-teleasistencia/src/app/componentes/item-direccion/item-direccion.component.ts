@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IDireccion} from "../../interfaces/i-direccion";
+import {IDireccion} from '../../interfaces/i-direccion';
 
 @Component({
   selector: 'app-item-direccion, [app-item-direccion]',

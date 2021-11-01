@@ -1,5 +1,5 @@
-import {IDireccion} from "./i-direccion";
-import {ITipoCentroSanitario} from "./i-tipo-centro-sanitario";
+import {IDireccion} from './i-direccion';
+import {ITipoCentroSanitario} from './i-tipo-centro-sanitario';
 
 export interface ICentroSanitario {
   id: number;

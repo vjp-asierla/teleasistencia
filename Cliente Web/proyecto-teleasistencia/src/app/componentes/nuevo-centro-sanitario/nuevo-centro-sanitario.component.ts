@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ICentroSanitario} from "../../interfaces/i-centro-sanitario";
-import {ITipoCentroSanitario} from "../../interfaces/i-tipo-centro-sanitario";
-import {IDireccion} from "../../interfaces/i-direccion";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaCentroSanitarioService} from "../../servicios/carga-centro-sanitario.service";
-import {CentroSanitario} from "../../clases/centro-sanitario";
-import {Direccion} from "../../clases/direccion";
-import {CargaDireccionService} from "../../servicios/carga-direccion.service";
+import {ICentroSanitario} from '../../interfaces/i-centro-sanitario';
+import {ITipoCentroSanitario} from '../../interfaces/i-tipo-centro-sanitario';
+import {IDireccion} from '../../interfaces/i-direccion';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaCentroSanitarioService} from '../../servicios/carga-centro-sanitario.service';
+import {CentroSanitario} from '../../clases/centro-sanitario';
+import {Direccion} from '../../clases/direccion';
+import {CargaDireccionService} from '../../servicios/carga-direccion.service';
 
 @Component({
   selector: 'app-nuevo-centro-sanitario',
@@ -25,7 +25,7 @@ export class NuevoCentroSanitarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Crear nuevo centro sanitario');
+    this.titleServide.setTitle('Nuevo centro sanitario');
     this.centro_sanitario = new CentroSanitario();
     this.tipos_centros_sanitarios = this.route.snapshot.data['tipos_centros_sanitarios'];
     this.dire = new Direccion();
@@ -44,12 +44,12 @@ export class NuevoCentroSanitarioComponent implements OnInit {
 
   nuevoCentroSanitario(): void {
     this.centro_sanitario.id_direccion = this.dire;
-    console.log(this.centro_sanitario);
     this.cargaCentrosSanitarios.nuevoCentroSanitario(this.centro_sanitario).subscribe(
       e => {
         this.nuevaDireccion();
         console.log('Centro sanitario creado');
-        this.router.navigate(['/centros-sanitarios']);
+        console.log(this.centro_sanitario);
+        this.router.navigate(['/centros_sanitarios']);
       },
       error => {
         console.log(error);

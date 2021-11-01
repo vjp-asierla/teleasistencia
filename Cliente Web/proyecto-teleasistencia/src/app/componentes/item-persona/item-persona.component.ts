@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IPersona} from "../../interfaces/i-persona";
+import {IPersona} from '../../interfaces/i-persona';
 
 @Component({
   selector: 'app-item-persona, [app-item-persona]',
   templateUrl: './item-persona.component.html',
   styleUrls: ['./item-persona.component.scss']
 })
+
 export class ItemPersonaComponent implements OnInit {
   @Input() public persona: IPersona;
 
@@ -14,5 +15,4 @@ export class ItemPersonaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ITipoRecursoComunitario} from "../../interfaces/i-tipo-recurso-comunitario";
+import {ITipoRecursoComunitario} from '../../interfaces/i-tipo-recurso-comunitario';
 
 @Component({
   selector: 'app-item-tipo-recurso-comunitario, [app-item-tipo-recurso-comunitario]',

@@ -1,1 +1,19 @@
-<p>lista-recursos-comunitarios works!</p>
+<div class="container-fluid">
+  <h1 class="component-title">Recursos comunitarios</h1>
+  <table class="table table-hover text-center">
+    <thead>
+    <tr class="table-purple">
+      <th scope="col">Nombre</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Tipo de recurso comunitario</th>
+      <th scope="col">Dirección</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let recurso_comunitario of recursos_comunitarios"
+        app-item-resurso-comunitario [recurso_comunitario]="recurso_comunitario">
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,4 @@
-import {IDireccion} from "./i-direccion";
+import {IDireccion} from './i-direccion';
 
 export interface IPersona {
   id: number;
