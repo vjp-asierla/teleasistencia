@@ -4,11 +4,15 @@ Este proyecto consiste en un desarrollo Web de un servicio de Teleasistencia par
 Para probar el proyecto, y antes de realizar la instalación, se recomienda que se sigan los pasos que aparecen en **Pasos para contribuir al proyecto**. 
 
 ## Dependencias:
+Se gestionan en la instalación, a través del fichero *requerimentos.txt*. Las dejamos aquí apuntadas por si fuese necesario revisarlas:
 
 1. ```pip install Django==3.2.3```
 2. ```pip install django-model-utils==4.1.1```
-3. ```pip install djangorestframework```
-4. ```pip install django-rest-framework-social-oauth2```
+3. ```pip install djangorestframework==3.12.4```
+4. ```pip install django-rest-framework-social-oauth2==1.1.0```
+5. ```pip install django-extensions==3.1.3```
+6. ```pip install Werkzeug==2.0.2```
+7. ```pip install pyOpenSSL==21.0.0```
 
 ## Pasos para contribuir en el proyecto
 
@@ -53,7 +57,7 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 
 ## Arrancar el proyecto
 
-Desde Server\teleasistencia ejecutamos ```python manage.py runserver```
+Desde Server\teleasistencia ejecutamos ```python manage.py runserver_plus --cert-file cert.pem --key-file key.pem```
 
 ## Copyright
 
