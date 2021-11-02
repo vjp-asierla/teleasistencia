@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
+    #Para certificado https:
+    "django_extensions"
 ]
 
 MIDDLEWARE = [
@@ -106,8 +108,8 @@ AUTHENTICATION_BACKENDS = (
 #Redirección tras login OK
 LOGIN_REDIRECT_URL = 'teleasistenciaHome'
 # Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '698393318262-fqpnqn74fo9j3hub66gm9aep6bqthbq3.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'boarYVI5hoAhYLVGMlhfzxHp'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '221206471010-ngm6bsac6a0bjrggalm10noo8e0kae51.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
