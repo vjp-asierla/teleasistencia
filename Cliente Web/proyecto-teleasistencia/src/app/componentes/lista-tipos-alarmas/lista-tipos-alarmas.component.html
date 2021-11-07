@@ -1,21 +1,29 @@
 <main class="text-center row p-0 m-0 justify-content-center">
-<div class="container-fluid">
-  <h1 class="component-title">Tipos de alarmas</h1>
-  <table class="table table-hover text-center">
-    <thead>
-    <tr class="table-purple">
-      <th scope="col">Nombre</th>
-      <th scope="col">Código</th>
-      <th scope="col">Dispositivo</th>
-      <th scope="col">Clasificación alarma</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let tipo_alarma of tipos_alarmas"
-        app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tipos de alarmas</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Tipos de alarmas</h1>
+    <div class="table-responsive m-2">
+      <table class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th scope="col">Nombre</th>
+          <th scope="col">Código</th>
+          <th scope="col">Dispositivo</th>
+          <th scope="col">Clasificación alarma</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tipo_alarma of tipos_alarmas"
+            app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>

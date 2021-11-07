@@ -1,5 +1,12 @@
 <main class="text-center row p-0 m-0 justify-content-center">
 <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/tipos_recursos_comunitarios']">Tipos de recursos comunitarios</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Crear tipo de recurso comunitario</li>
+    </ol>
+  </nav>
   <h1 class="component-title">Crear nuevo tipo recurso comunitario</h1>
   <form #nuevoTipoRecursoComunitarioForm="ngForm">
 

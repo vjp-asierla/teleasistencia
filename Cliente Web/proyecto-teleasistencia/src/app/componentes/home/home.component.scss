@@ -37,10 +37,13 @@
   margin: 5rem 0;
 }
 
+.featurette-divider:last-child {
+  margin-bottom: 0px;
+}
+
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
-  /* rtl:remove */
   letter-spacing: -.05rem;
 }
 

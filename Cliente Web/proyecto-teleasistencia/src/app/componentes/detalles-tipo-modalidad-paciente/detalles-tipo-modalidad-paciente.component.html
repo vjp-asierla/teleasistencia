@@ -1,5 +1,12 @@
 <main class="text-center row p-0 m-0 justify-content-center">
 <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/tipos_modalidades_pacientes']">Tipos de modalidades de pacientes</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Modificar tipo de modalidad paciente {{idTipoModalidadPaciente}}</li>
+    </ol>
+  </nav>
   <h1 class="component-title">Modificar datos tipo modalidad paciente {{idTipoModalidadPaciente}}</h1>
   <form #modificarTipoModalidadPacienteForm="ngForm">
 

@@ -1,19 +1,27 @@
 <main class="text-center row p-0 m-0 justify-content-center">
-<div class="container-fluid">
-  <h1 class="component-title">Clasificaciones de alarmas</h1>
-  <table class="table table-hover text-center">
-    <thead>
-    <tr class="table-purple">
-      <th scope="col">Nombre</th>
-      <th scope="col">Código</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
-        app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Clasificaciones de alarmas</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Clasificaciones de alarmas</h1>
+    <div class="table-responsive m-2">
+      <table class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th scope="col">Nombre</th>
+          <th scope="col">Código</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
+            app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>

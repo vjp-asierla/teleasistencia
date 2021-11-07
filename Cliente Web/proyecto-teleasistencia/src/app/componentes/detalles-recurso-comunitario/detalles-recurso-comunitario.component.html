@@ -1,6 +1,13 @@
 <main class="text-center row p-0 m-0 justify-content-center">
 <div class="container">
-  <h1 class="component-title">Modificar recurso comunitario {{idRecursoComunitario}}</h1>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/recursos_comunitarios']">Recursos comunitarios</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Modificar recurso comunitario {{idRecursoComunitario}}</li>
+    </ol>
+  </nav>
+  <h1 class="component-title">Modificar datos recurso comunitario {{idRecursoComunitario}}</h1>
   <form #modificarRecursoComunitarioForm="ngForm">
 
     <div class="form-group mb-3">

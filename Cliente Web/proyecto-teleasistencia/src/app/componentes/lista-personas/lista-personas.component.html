@@ -1,25 +1,33 @@
 <main class="text-center row p-0 m-0 justify-content-center">
-<div class="container-fluid">
-  <h1 class="component-title">Personas</h1>
-  <table class="table table-hover text-center">
-    <thead>
-    <tr class="table-purple">
-      <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Dni</th>
-      <th scope="col">Fecha de nacimiento</th>
-      <th scope="col">Sexo</th>
-      <th scope="col">Teléfono fijo</th>
-      <th scope="col">Teléfono móvil</th>
-      <th scope="col">Dirección</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let persona of personas"
-        app-item-persona [persona]="persona">
-    </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Personas</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Personas</h1>
+    <div class="table-responsive m-2">
+      <table class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Dni</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Teléfono fijo</th>
+          <th scope="col">Teléfono móvil</th>
+          <th scope="col">Dirección</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let persona of personas"
+            app-item-persona [persona]="persona">
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>

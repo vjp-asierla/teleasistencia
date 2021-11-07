@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css";
 
 body {
@@ -13,45 +11,45 @@ body {
 }
 
 .cabecera {
-  nav {
-    background: linear-gradient(0deg, rgba(248, 228, 221, 0.5) 0%, rgba(117, 89, 125, 0.5) 100%);
-    padding: 1rem;
+  background: linear-gradient(0deg, rgba(248, 228, 221, 0.5) 0%, rgba(117, 89, 125, 0.5) 100%);
+  padding: 1rem;
 
-    .titulo-cabecera {
-      margin-left: 15px;
-      font-size: 40px;
-      font-weight: bold;
-      color: #75597D;
-      vertical-align: middle;
+  .titulo-cabecera {
+    margin-left: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #75597D;
+    vertical-align: middle;
 
-      .nombre-servicio {
-        font-size: 25px;
-        font-weight: normal;
-      }
-    }
-
-    .navbar-light .navbar-toggler {
-      color: rgb(126 89 126 / 55%);
-    }
-
-    .offcanvas-header {
-      .btn-close:focus {
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgb(126 89 126 / 25%);
-        opacity: 1;
-      }
-    }
-
-    .dropdown-item:focus, .dropdown-item:hover {
-      color: #1e2125;
-      background-color: rgb(126 89 126 / 55%);
-    }
-
-    .dropdown-item.active, .dropdown-item:active {
-      color: white;
-      background-color: #75597D;
+    .nombre-servicio {
+      font-size: 25px;
+      font-weight: normal;
     }
   }
+
+  .login {
+    float: right;
+    margin-top: 15px;
+  }
+}
+
+.navbar-light {
+  background: linear-gradient(180deg, rgba(227, 227, 227, 0.5) 0%, rgba(102, 99, 102, 0.4) 100%);
+
+  .dropdown-toggle {
+    color: #6C757D !important;
+  }
+}
+
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #1e2125;
+  background-color: rgb(126 89 126 / 55%);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: white;
+  background-color: #75597D;
 }
 
 .component-title {
@@ -60,11 +58,22 @@ body {
   margin-bottom: 15px;
 }
 
+.breadcrumb {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 8px;
+
+  a {
+    color: #f8c6e6;
+  }
+}
+
 table {
   thead > .table-purple {
     background-color: #75597D;
     color: white;
   }
+
   td > .btn-modify {
     float: right;
   }
@@ -75,7 +84,6 @@ table {
 }
 
 .form-group {
-
   width: 500px;
   margin: auto;
 
@@ -114,6 +122,7 @@ table {
 }
 
 footer {
+
   img {
     filter: grayscale(100%) brightness(85%);
   }
@@ -123,5 +132,290 @@ footer {
   }
 }
 
+@media (min-width: 200px) {
+  .cabecera {
+    height: 148px;
 
+    .d-inline-block {
+      transform: scale(0.5);
+      position: initial;
+    }
+
+    .titulo-cabecera {
+      margin-left: -15px;
+      font-size: 25px;
+      position: initial;
+
+      .nombre-servicio {
+        font-size: 15px;
+      }
+    }
+
+    .login {
+      float: right;
+      margin-top: 15px;
+      position: absolute;
+      top: 10%;
+      left: 40%;
+    }
+  }
+
+  .navbar {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .dropdown-menu {
+      font-size: 13px;
+      left: -42px;
+    }
+  }
+
+  .form-group {
+    width: 250px;
+  }
+
+  footer > div {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .text-muted {
+    text-align: center;
+  }
+
+  .list-unstyled {
+    margin: auto;
+    padding-top: 12px;
+  }
+}
+
+@media (min-width: 576px) {
+  .cabecera {
+    height: initial;
+
+    .d-inline-block {
+      transform: scale(0.7);
+      position: initial;
+    }
+
+    .titulo-cabecera {
+      margin-left: -10px;
+      font-size: 30px;
+      position: initial;
+
+      .nombre-servicio {
+        font-size: 18px;
+      }
+    }
+
+    .login {
+      float: right;
+      margin-top: 15px;
+      position: initial;
+    }
+  }
+
+  .navbar {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .dropdown-menu {
+      font-size: initial;
+      left: initial;
+    }
+  }
+
+  .form-group {
+    width: 350px;
+  }
+
+  footer > div {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .text-muted {
+    text-align: center;
+  }
+
+  .list-unstyled {
+    margin: auto;
+    padding-top: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cabecera {
+    height: initial;
+
+    .d-inline-block {
+      transform: scale(0.9);
+      position: initial;
+    }
+
+    .titulo-cabecera {
+      margin-left: 5px;
+      font-size: 40px;
+      position: initial;
+
+      .nombre-servicio {
+        font-size: 25px;
+      }
+    }
+
+    .login {
+      float: right;
+      margin-top: 15px;
+      position: initial;
+    }
+  }
+
+  .navbar {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .dropdown-menu {
+      font-size: initial;
+      left: initial;
+    }
+  }
+
+  .form-group {
+    width: 400px;
+  }
+
+  footer > div {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: initial !important;
+  }
+
+  .text-muted {
+    text-align: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  .cabecera {
+    height: initial;
+
+    .d-inline-block {
+      transform: none;
+      position: initial;
+    }
+
+    .titulo-cabecera {
+      margin-left: 15px;
+      font-size: 40px;
+      position: initial;
+
+      .nombre-servicio {
+        font-size: 25px;
+      }
+    }
+
+    .login {
+      float: right;
+      margin-top: 15px;
+      position: initial;
+    }
+  }
+
+  .navbar {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin: auto;
+    }
+
+    .dropdown-menu {
+      font-size: initial;
+      left: initial;
+    }
+  }
+
+  .form-group {
+    width: 500px;
+  }
+
+  footer > div {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: initial !important;
+  }
+
+  .text-muted {
+    text-align: initial;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cabecera {
+    height: initial;
+
+    .d-inline-block {
+      transform: none;
+      position: initial;
+    }
+
+    .titulo-cabecera {
+      margin-left: 15px;
+      font-size: 40px;
+      position: initial;
+
+      .nombre-servicio {
+        font-size: 25px;
+      }
+    }
+
+    .login {
+      float: right;
+      margin-top: 15px;
+      position: initial;
+    }
+  }
+
+  .navbar {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin: auto;
+    }
+
+    .dropdown-menu {
+      font-size: initial;
+      left: initial;
+    }
+  }
+
+  .form-group {
+    width: 500px;
+  }
+
+  footer > div {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: initial !important;
+  }
+
+  .text-muted {
+    text-align: initial;
+  }
+}
 
