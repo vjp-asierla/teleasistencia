@@ -12,11 +12,11 @@ import {Title} from '@angular/platform-browser';
 export class ListaTiposAlarmasComponent implements OnInit {
   public tipos_alarmas: ITipoAlarma[];
 
-  constructor(private route: ActivatedRoute, private titleServide: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.tipos_alarmas = this.route.snapshot.data['tipos_alarmas'];
-    this.titleServide.setTitle('Tipos alarmas');
+    this.titleService.setTitle('Tipos alarmas');
   }
 }

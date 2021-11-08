@@ -14,11 +14,11 @@ import {TipoModalidadPaciente} from '../../clases/tipo-modalidad-paciente';
 export class NuevoTipoModalidadPacienteComponent implements OnInit {
   public tipo_modalidad_paciente: ITipoModalidadPaciente;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaTiposModalidadesPacientes: CargaTipoModalidadPacienteService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposModalidadesPacientes: CargaTipoModalidadPacienteService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo tipo modalidad paciente');
+    this.titleService.setTitle('Nuevo tipo modalidad paciente');
     this.tipo_modalidad_paciente = new TipoModalidadPaciente();
   }
 

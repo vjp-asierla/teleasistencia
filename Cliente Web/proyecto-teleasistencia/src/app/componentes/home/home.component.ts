@@ -9,10 +9,10 @@ import {Title} from "@angular/platform-browser";
 
 export class HomeComponent implements OnInit {
 
-  constructor(private titleServide: Title) {
+  constructor(private titleService: Title) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Inicio');
+    this.titleService.setTitle('Inicio');
   }
 }

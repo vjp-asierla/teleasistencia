@@ -14,11 +14,11 @@ import {CargaClasificacionAlarmaService} from '../../servicios/carga-clasificaci
 export class NuevaClasificacionAlarmaComponent implements OnInit {
   public clasificacion_alarma: IClasificacionAlarma;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nueva clasificación alarma');
+    this.titleService.setTitle('Nueva clasificación alarma');
     this.clasificacion_alarma = new ClasificacionAlarma();
   }
 

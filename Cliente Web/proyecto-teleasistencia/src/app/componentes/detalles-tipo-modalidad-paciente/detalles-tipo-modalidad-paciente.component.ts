@@ -14,13 +14,13 @@ export class DetallesTipoModalidadPacienteComponent implements OnInit {
   public tipo_modalidad_paciente: ITipoModalidadPaciente;
   public idTipoModalidadPaciente: number;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaTiposModalidadesPacientes: CargaTipoModalidadPacienteService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaTiposModalidadesPacientes: CargaTipoModalidadPacienteService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.tipo_modalidad_paciente = this.route.snapshot.data['tipo_modalidad_paciente'];
     this.idTipoModalidadPaciente = this.route.snapshot.params['id'];
-    this.titleServide.setTitle('Modificar tipo modalidad paciente ' + this.idTipoModalidadPaciente);
+    this.titleService.setTitle('Modificar tipo modalidad paciente ' + this.idTipoModalidadPaciente);
   }
 
   modificarTipoModalidadPaciente(): void {

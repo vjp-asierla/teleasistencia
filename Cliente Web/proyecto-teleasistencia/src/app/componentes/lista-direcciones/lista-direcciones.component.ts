@@ -12,11 +12,11 @@ import {Title} from '@angular/platform-browser';
 export class ListaDireccionesComponent implements OnInit {
   public direcciones: IDireccion[];
 
-  constructor(private route: ActivatedRoute, private titleServide: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.direcciones = this.route.snapshot.data['direcciones'];
-    this.titleServide.setTitle('Direcciones');
+    this.titleService.setTitle('Direcciones');
   }
 }

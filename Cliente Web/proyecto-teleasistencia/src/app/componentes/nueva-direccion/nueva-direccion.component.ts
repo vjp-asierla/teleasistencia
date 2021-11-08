@@ -14,11 +14,11 @@ import {Direccion} from '../../clases/direccion';
 export class NuevaDireccionComponent implements OnInit {
   public dire: IDireccion;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nueva dirección');
+    this.titleService.setTitle('Nueva dirección');
     this.dire = new Direccion();
   }
 

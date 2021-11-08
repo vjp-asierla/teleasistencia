@@ -17,10 +17,10 @@
       <div *ngIf="username.invalid && (username.dirty || username.touched)"
            class="alert alert-secondary" role="alert">
         <div *ngIf="username.errors?.required">
-          El username es obligatorio
+          El nombre de usuario es obligatorio
         </div>
         <div *ngIf="username.errors?.minlength">
-          El username debe tener al menos 4 caracteres
+          El nombre de usuario debe tener al menos 4 caracteres
         </div>
       </div>
     </div>

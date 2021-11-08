@@ -20,14 +20,14 @@ export class DetallesPersonaComponent implements OnInit {
   public mes_actual = this.fecha_actual.getMonth() + 1;
   public dia_actual = this.fecha_actual.getDate();
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaPersonas: CargaPersonaService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaPersonas: CargaPersonaService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.persona = this.route.snapshot.data['persona'];
     this.idPersona = this.route.snapshot.params['id'];
     this.direcciones = this.route.snapshot.data['direcciones'];
-    this.titleServide.setTitle('Modificar persona ' + this.idPersona);
+    this.titleService.setTitle('Modificar persona ' + this.idPersona);
   }
 
   optionSelected(i: number): void {

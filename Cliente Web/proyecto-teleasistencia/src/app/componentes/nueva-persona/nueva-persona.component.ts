@@ -20,11 +20,11 @@ export class NuevaPersonaComponent implements OnInit {
   public mes_actual = this.fecha_actual.getMonth() + 1;
   public dia_actual = this.fecha_actual.getDate();
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaPersonas: CargaPersonaService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaPersonas: CargaPersonaService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Crear nueva persona');
+    this.titleService.setTitle('Crear nueva persona');
     this.persona = new Persona();
     this.direcciones = this.route.snapshot.data['direcciones'];
     this.persona.sexo = 'Hombre';

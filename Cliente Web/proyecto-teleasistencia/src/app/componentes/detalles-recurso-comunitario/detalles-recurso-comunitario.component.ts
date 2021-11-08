@@ -19,7 +19,7 @@ export class DetallesRecursoComunitarioComponent implements OnInit {
   public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
   public dire: IDireccion;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaDirecciones: CargaDireccionService, private cargaRecursosComunitarios: CargaRecursoComunitarioService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private cargaRecursosComunitarios: CargaRecursoComunitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class DetallesRecursoComunitarioComponent implements OnInit {
     this.idRecursoComunitario = this.route.snapshot.params['id'];
     this.tipos_recursos_comunitarios = this.route.snapshot.data['tipos_recursos_comunitarios'];
     this.dire = this.recurso_comunitario.id_direccion;
-    this.titleServide.setTitle('Modificar recurso comunitario ' + this.idRecursoComunitario);
+    this.titleService.setTitle('Modificar recurso comunitario ' + this.idRecursoComunitario);
   }
 
   optionSelected(i: number): void {

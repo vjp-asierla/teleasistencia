@@ -14,11 +14,11 @@ import {TipoCentroSanitario} from '../../clases/tipo-centro-sanitario';
 export class NuevoTipoCentroSanitarioComponent implements OnInit {
   public tipo_centro_sanitario: ITipoCentroSanitario;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaTiposCentrosSanitarios: CargaTipoCentroSanitarioService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposCentrosSanitarios: CargaTipoCentroSanitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo tipo centro sanitario');
+    this.titleService.setTitle('Nuevo tipo centro sanitario');
     this.tipo_centro_sanitario = new TipoCentroSanitario();
   }
 

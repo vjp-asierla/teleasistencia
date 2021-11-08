@@ -14,13 +14,13 @@ export class DetallesDireccionComponent implements OnInit {
   public dire: IDireccion;
   public idDireccion: number;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaDirecciones: CargaDireccionService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.idDireccion = this.route.snapshot.params['id'];
     this.dire = this.route.snapshot.data['direccion'];
-    this.titleServide.setTitle('Modificar dirección ' + this.idDireccion);
+    this.titleService.setTitle('Modificar dirección ' + this.idDireccion);
   }
 
   modificarDireccion(): void {

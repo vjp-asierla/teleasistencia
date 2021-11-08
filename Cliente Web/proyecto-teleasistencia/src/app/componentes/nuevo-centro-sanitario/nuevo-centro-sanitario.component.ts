@@ -21,11 +21,11 @@ export class NuevoCentroSanitarioComponent implements OnInit {
   public dire: IDireccion;
 
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private cargaCentrosSanitarios: CargaCentroSanitarioService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private cargaCentrosSanitarios: CargaCentroSanitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo centro sanitario');
+    this.titleService.setTitle('Nuevo centro sanitario');
     this.centro_sanitario = new CentroSanitario();
     this.tipos_centros_sanitarios = this.route.snapshot.data['tipos_centros_sanitarios'];
     this.dire = new Direccion();

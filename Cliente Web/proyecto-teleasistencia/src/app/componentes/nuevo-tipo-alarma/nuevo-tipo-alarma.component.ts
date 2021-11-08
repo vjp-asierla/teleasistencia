@@ -16,11 +16,11 @@ export class NuevoTipoAlarmaComponent implements OnInit {
   public tipo_alarma: ITipoAlarma;
   public clasificaciones_alarmas: IClasificacionAlarma[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo tipo de alarma');
+    this.titleService.setTitle('Nuevo tipo de alarma');
     this.tipo_alarma = new TipoAlarma();
     this.clasificaciones_alarmas = this.route.snapshot.data['clasificaciones_alarmas'];
     this.tipo_alarma.es_dispositivo = true;

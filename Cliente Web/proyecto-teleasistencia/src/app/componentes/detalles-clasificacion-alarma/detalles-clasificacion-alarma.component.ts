@@ -14,13 +14,13 @@ export class DetallesClasificacionAlarmaComponent implements OnInit {
   public clasificacion_alarma: IClasificacionAlarma;
   public idClasificacionAlarma: number;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaClasificacionesAlarmas: CargaClasificacionAlarmaService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.clasificacion_alarma = this.route.snapshot.data['clasificacion_alarma'];
     this.idClasificacionAlarma = this.route.snapshot.params['id'];
-    this.titleServide.setTitle('Modificar clasificación alarma ' + this.idClasificacionAlarma);
+    this.titleService.setTitle('Modificar clasificación alarma ' + this.idClasificacionAlarma);
   }
 
   modificarClasificacionAlarma(): void {

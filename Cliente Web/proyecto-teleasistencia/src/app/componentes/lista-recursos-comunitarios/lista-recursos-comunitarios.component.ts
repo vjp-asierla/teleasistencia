@@ -12,11 +12,11 @@ import {Title} from '@angular/platform-browser';
 export class ListaRecursosComunitariosComponent implements OnInit {
   public recursos_comunitarios: IRecursoComunitario[];
 
-  constructor(private route: ActivatedRoute, private titleServide: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.recursos_comunitarios = this.route.snapshot.data['recursos_comunitarios'];
-    this.titleServide.setTitle('Recursos comunitarios');
+    this.titleService.setTitle('Recursos comunitarios');
   }
 }

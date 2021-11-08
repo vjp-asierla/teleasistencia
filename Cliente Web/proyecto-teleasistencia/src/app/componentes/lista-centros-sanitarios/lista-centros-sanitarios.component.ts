@@ -12,11 +12,11 @@ import {Title} from '@angular/platform-browser';
 export class ListaCentrosSanitariosComponent implements OnInit {
   public centros_sanitarios: ICentroSanitario[];
 
-  constructor(private route: ActivatedRoute, private titleServide: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.centros_sanitarios = this.route.snapshot.data['centros_sanitarios'];
-    this.titleServide.setTitle('Centros sanitarios');
+    this.titleService.setTitle('Centros sanitarios');
   }
 }

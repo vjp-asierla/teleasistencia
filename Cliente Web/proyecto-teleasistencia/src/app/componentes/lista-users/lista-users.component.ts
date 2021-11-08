@@ -12,11 +12,11 @@ import {Title} from '@angular/platform-browser';
 export class ListaUsersComponent implements OnInit {
   public users: IUsers[];
 
-  constructor(private route: ActivatedRoute, private titleServide: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.users = this.route.snapshot.data['users'];
-    this.titleServide.setTitle('Usuarios del sistema');
+    this.titleService.setTitle('Usuarios del sistema');
   }
 }

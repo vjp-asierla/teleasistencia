@@ -16,14 +16,14 @@ export class DetallesTipoAlarmaComponent implements OnInit {
   public idTipoAlarma: number;
   public clasificaciones_alarmas: IClasificacionAlarma[];
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.tipo_alarma = this.route.snapshot.data['tipo_alarma'];
     this.idTipoAlarma = this.route.snapshot.params['id'];
     this.clasificaciones_alarmas = this.route.snapshot.data['clasificaciones_alarmas'];
-    this.titleServide.setTitle('Modificar tipo alarma ' + this.idTipoAlarma);
+    this.titleService.setTitle('Modificar tipo alarma ' + this.idTipoAlarma);
   }
 
   optionSelected(i: number): void {

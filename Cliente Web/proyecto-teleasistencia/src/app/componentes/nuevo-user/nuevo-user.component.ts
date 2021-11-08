@@ -14,11 +14,11 @@ import {User} from '../../clases/user';
 export class NuevoUserComponent implements OnInit {
   public user: IUsers;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaUsers: CargaUserService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaUsers: CargaUserService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo usuario del sistema');
+    this.titleService.setTitle('Nuevo usuario del sistema');
     this.user = new User();
   }
 

@@ -14,13 +14,13 @@ export class DetallesUserComponent implements OnInit {
   public user: IUsers;
   public idUser: number;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaUsers: CargaUserService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaUsers: CargaUserService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.user = this.route.snapshot.data['user'];
     this.idUser = this.route.snapshot.params['id'];
-    this.titleServide.setTitle('Modificar usuario ' + this.idUser);
+    this.titleService.setTitle('Modificar usuario ' + this.idUser);
   }
 
   modificarUser(): void {

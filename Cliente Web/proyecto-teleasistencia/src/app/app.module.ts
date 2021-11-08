@@ -56,6 +56,7 @@ import {CargaDireccionService} from './servicios/carga-direccion.service';
 import {CargaCentroSanitarioService} from './servicios/carga-centro-sanitario.service';
 import {CargaPersonaService} from './servicios/carga-persona.service';
 import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunitario.service';
+import { PantallaLoginComponent } from './componentes/pantalla-login/pantalla-login.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunita
     ListaDireccionesComponent,
     ItemDireccionComponent,
     DetallesDireccionComponent,
-    NuevaDireccionComponent
+    NuevaDireccionComponent,
+    PantallaLoginComponent
   ],
   imports: [
     BrowserModule,

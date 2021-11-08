@@ -51,8 +51,10 @@ import {ListaRecursosComunitariosResolveService} from './servicios/lista-recurso
 import {DetallesRecursoComunitarioComponent} from './componentes/detalles-recurso-comunitario/detalles-recurso-comunitario.component';
 import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
 import {NuevoRecursoComunitarioComponent} from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
+import {PantallaLoginComponent} from "./componentes/pantalla-login/pantalla-login.component";
 
 const routes: Routes = [
+  { path: 'login', component: PantallaLoginComponent },
   {path: 'inicio', component: HomeComponent},
   {
     path: 'usuarios',

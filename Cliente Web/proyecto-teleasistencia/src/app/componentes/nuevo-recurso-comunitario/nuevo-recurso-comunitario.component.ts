@@ -19,11 +19,11 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
   public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
   public dire: IDireccion;
 
-  constructor(private titleServide: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private cargaRecursosComunitarios: CargaRecursoComunitarioService, private router: Router) {
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaDirecciones: CargaDireccionService, private cargaRecursosComunitarios: CargaRecursoComunitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.titleServide.setTitle('Nuevo recurso comunitario');
+    this.titleService.setTitle('Nuevo recurso comunitario');
     this.recurso_comunitario = new RecursoComunitario();
     this.tipos_recursos_comunitarios = this.route.snapshot.data['tipos_recursos_comunitarios'];
     this.dire = new Direccion();

@@ -19,7 +19,7 @@ export class DetallesCentroSanitarioComponent implements OnInit {
   public tipos_centros_sanitarios: ITipoCentroSanitario[];
   public dire: IDireccion;
 
-  constructor(private route: ActivatedRoute, private titleServide: Title, private cargaDirecciones: CargaDireccionService, private cargaCentrosSanitarios: CargaCentroSanitarioService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private cargaCentrosSanitarios: CargaCentroSanitarioService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class DetallesCentroSanitarioComponent implements OnInit {
     this.idCentroSanitario = this.route.snapshot.params['id'];
     this.tipos_centros_sanitarios = this.route.snapshot.data['tipos_centros_sanitarios'];
     this.dire = this.centro_sanitario.id_direccion;
-    this.titleServide.setTitle('Modificar centro sanitario ' + this.idCentroSanitario);
+    this.titleService.setTitle('Modificar centro sanitario ' + this.idCentroSanitario);
   }
 
   optionSelected(i: number): void {
