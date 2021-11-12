@@ -1,6 +1,7 @@
 .DS_Store
 #Falta añadir el fichero de las variables de entorno
 venviorment/
+venviorments/
 
 
 # Django #
