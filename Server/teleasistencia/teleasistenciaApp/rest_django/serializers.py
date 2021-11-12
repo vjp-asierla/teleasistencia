@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, Permission
 from rest_framework import serializers
 
 #Modelos propios:
@@ -7,13 +7,18 @@ from ..models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups']
+        fields = '__all__'
+        depth = 1
 
+class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Permission
+        fields = '__all__'
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ['url', 'name']
+        fields = '__all__'
 
 
 class Tipo_Recurso_Comunitario_Serializer(serializers.ModelSerializer):

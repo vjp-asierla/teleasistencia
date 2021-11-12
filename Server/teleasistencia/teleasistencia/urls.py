@@ -38,6 +38,7 @@ from django.urls import re_path
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', views_rest.UserViewSet)
 router.register(r'groups', views_rest.GroupViewSet)
+router.register(r'permission', views_rest.PermissionViewSet)
 router.register(r'tipo_recurso_comunitario', views_rest.Tipo_Recurso_Comunitario_ViewSet)
 router.register(r'recurso_comunitario', views_rest.Recurso_Comunitario_ViewSet)
 router.register(r'centro_sanitario', views_rest.Centro_Sanitario_ViewSet)
