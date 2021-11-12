@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'rest_framework',
     #Django rest framework social auth:
     'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
-    #Para certificado https:
+        #'social_django',
+        #'rest_framework_social_oauth2',
+    # Para certificado https:
     "django_extensions"
+
 ]
 
 MIDDLEWARE = [
@@ -89,8 +90,8 @@ TEMPLATES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # OAuth
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        #'oauth2_provider.contrib.rest_framework.OAuth2Authentication',  # django-oauth-toolkit >= 1.0.0
+        #'rest_framework_social_oauth2.authentication.SocialAuthentication',
     )
 }
 
@@ -98,24 +99,24 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = (
     # Others auth providers (e.g. Facebook, OpenId, etc)
     # Google OAuth2
-    'social_core.backends.google.GoogleOAuth2',
+        #'social_core.backends.google.GoogleOAuth2',
     # django-rest-framework-social-oauth2
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+        'rest_framework_social_oauth2.backends.DjangoOAuth2',
     # Django
     'django.contrib.auth.backends.ModelBackend',
 )
 
-#Redirección tras login OK
-LOGIN_REDIRECT_URL = 'teleasistenciaHome'
+#Redirección tras login OK POR OAUTH2 (ELIMINAR CUANDO SE COMPRUEBE QUE NO PETA)
+#LOGIN_REDIRECT_URL = 'teleasistenciaHome'
 # Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '221206471010-ngm6bsac6a0bjrggalm10noo8e0kae51.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '221206471010-ngm6bsac6a0bjrggalm10noo8e0kae51.apps.googleusercontent.com'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile',
-]
+#SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+#    'https://www.googleapis.com/auth/userinfo.email',
+#    'https://www.googleapis.com/auth/userinfo.profile',
+#]
 
 ##################FIN
 

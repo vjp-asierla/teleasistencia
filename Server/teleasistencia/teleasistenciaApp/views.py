@@ -7,6 +7,7 @@ def index(request):
     context = {}
     if request.user.is_authenticated:
         uidmio = request.user.email
-        token = get_object_or_404(UserSocialAuth, uid=uidmio)
-        context['token'] = token.extra_data
+        #Borrar, ya no hay social auth
+        #token = get_object_or_404(UserSocialAuth, uid=uidmio)
+        #context['token'] = token.extra_data
     return render(request, 'teleasistenciaIndex.html', context)

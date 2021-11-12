@@ -23,6 +23,10 @@ from django.contrib.auth import views
 from rest_framework import routers
 from teleasistenciaApp.rest_django import views_rest
 
+#Para redirecciones simples con url:
+from django.views.generic.base import RedirectView
+from django.urls import re_path
+
 #Router para la API REST
 # Con trailing_slash=False hacemos que no intermprete la / final de la url, con esto podemos hacer GET, POST y DELETE
 router = routers.DefaultRouter(trailing_slash=False)
@@ -41,6 +45,7 @@ router.register(r'persona', views_rest.Persona_ViewSet)
 
 urlpatterns = [
 #path('admin/', admin.site.urls),
+    re_path(r'^$', RedirectView.as_view(url='/teleasistencia', permanent=False), name='index'),
     url(r'^teleasistencia/', include('teleasistenciaApp.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
     #URLS de login y logout de django.contrib.auth:
