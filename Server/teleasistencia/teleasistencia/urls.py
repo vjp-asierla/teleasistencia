@@ -23,6 +23,12 @@ from django.contrib.auth import views
 from rest_framework import routers
 from teleasistenciaApp.rest_django import views_rest
 
+#Autenticación rest con JWT:
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 #Para redirecciones simples con url:
 from django.views.generic.base import RedirectView
 from django.urls import re_path
@@ -57,4 +63,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #Django Rest social Auth:
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
+    #Django Rest Simple JWT:
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

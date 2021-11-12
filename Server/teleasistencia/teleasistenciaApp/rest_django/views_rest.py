@@ -29,7 +29,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    #permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     """

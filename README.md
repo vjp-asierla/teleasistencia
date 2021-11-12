@@ -13,6 +13,8 @@ Se gestionan en la instalación, a través del fichero *requerimentos.txt*. Las 
 5. ```pip install django-extensions==3.1.3```
 6. ```pip install Werkzeug==2.0.2```
 7. ```pip install pyOpenSSL==21.0.0```
+8. ```pip install djangorestframework-simplejwt==5.0.0```
+
 
 ## Pasos para contribuir en el proyecto
 
