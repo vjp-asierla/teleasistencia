@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ILogin} from "../../interfaces/i-login";
 import {Title} from "@angular/platform-browser";
 import {Login} from "../../clases/login";
+import {LoginService} from "../../servicios/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pantalla-login',
@@ -11,15 +13,17 @@ import {Login} from "../../clases/login";
 export class PantallaLoginComponent implements OnInit {
   public login: ILogin;
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Login');
     this.login = new Login();
   }
 
-  hacerLogin(): void{
-
+  hacerLogin(): void {
+    this.loginService.hacerLogin();
+    console.log(this.login);
+    this.router.navigate(['/inicio']);
   }
 
 }

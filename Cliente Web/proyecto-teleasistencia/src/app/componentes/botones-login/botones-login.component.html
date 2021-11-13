@@ -1,0 +1,2 @@
+<button *ngIf="!estaLogin" type="button" class="btn btn-outline-secondary me-2" [routerLink]="['/login']">Login</button>
+<button *ngIf="estaLogin" type="button" class="btn btn-outline-secondary me-2" (click)="hacerLogout()">Logout</button>

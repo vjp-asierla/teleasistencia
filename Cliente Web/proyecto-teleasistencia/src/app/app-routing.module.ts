@@ -51,7 +51,8 @@ import {ListaRecursosComunitariosResolveService} from './servicios/lista-recurso
 import {DetallesRecursoComunitarioComponent} from './componentes/detalles-recurso-comunitario/detalles-recurso-comunitario.component';
 import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
 import {NuevoRecursoComunitarioComponent} from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
-import {PantallaLoginComponent} from "./componentes/pantalla-login/pantalla-login.component";
+import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
+import {LoginGuard} from './servicios/login.guard';
 
 const routes: Routes = [
   { path: 'login', component: PantallaLoginComponent },
@@ -59,6 +60,7 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: ListaUsersComponent,
+    canActivate: [LoginGuard],
     resolve: {
       users: ListaUsersResolveService
     }
@@ -66,14 +68,16 @@ const routes: Routes = [
   {
     path: 'usuarios/modificar/:id',
     component: DetallesUserComponent,
+    canActivate: [LoginGuard],
     resolve: {
       user: DetallesUserResolveService
     }
   },
-  {path: 'usuarios/nuevo', component: NuevoUserComponent},
+  {path: 'usuarios/nuevo', component: NuevoUserComponent, canActivate: [LoginGuard]},
   {
     path: 'clasificaciones_alarmas',
     component: ListaClasificacionesAlarmasComponent,
+    canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
     }
@@ -81,14 +85,16 @@ const routes: Routes = [
   {
     path: 'clasificaciones_alarmas/modificar/:id',
     component: DetallesClasificacionAlarmaComponent,
+    canActivate: [LoginGuard],
     resolve: {
       clasificacion_alarma: DetallesClasificacionAlarmaResolveService
     }
   },
-  {path: 'clasificaciones_alarmas/nueva', component: NuevaClasificacionAlarmaComponent},
+  {path: 'clasificaciones_alarmas/nueva', component: NuevaClasificacionAlarmaComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_centros_sanitarios',
     component: ListaTiposCentrosSanitariosComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
     }
@@ -96,14 +102,16 @@ const routes: Routes = [
   {
     path: 'tipos_centros_sanitarios/modificar/:id',
     component: DetallesTipoCentroSanitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipo_centro_sanitario: DetallesTipoCentroSanitarioResolveService
     }
   },
-  {path: 'tipos_centros_sanitarios/nuevo', component: NuevoTipoCentroSanitarioComponent},
+  {path: 'tipos_centros_sanitarios/nuevo', component: NuevoTipoCentroSanitarioComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_recursos_comunitarios',
     component: ListaTiposRecursosComunitariosComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
     }
@@ -111,14 +119,16 @@ const routes: Routes = [
   {
     path: 'tipos_recursos_comunitarios/modificar/:id',
     component: DetallesTipoRecursoComunitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipo_recurso_comunitario: DetallesTipoRecursoComunitarioResolveService
     }
   },
-  {path: 'tipos_recursos_comunitarios/nuevo', component: NuevoTipoRecursoComunitarioComponent},
+  {path: 'tipos_recursos_comunitarios/nuevo', component: NuevoTipoRecursoComunitarioComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_modalidades_pacientes',
     component: ListaTiposModalidadesPacientesComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_modalidades_pacientes: ListaTiposModalidadesPacientesResolveService
     }
@@ -126,14 +136,16 @@ const routes: Routes = [
   {
     path: 'tipos_modalidades_pacientes/modificar/:id',
     component: DetallesTipoModalidadPacienteComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipo_modalidad_paciente: DetallesTipoModalidadPacienteResolveService
     }
   },
-  {path: 'tipos_modalidades_pacientes/nuevo', component: NuevoTipoModalidadPacienteComponent},
+  {path: 'tipos_modalidades_pacientes/nuevo', component: NuevoTipoModalidadPacienteComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_alarmas',
     component: ListaTiposAlarmasComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_alarmas: ListaTiposAlarmasResolveService
     }
@@ -141,6 +153,7 @@ const routes: Routes = [
   {
     path: 'tipos_alarmas/modificar/:id',
     component: DetallesTipoAlarmaComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipo_alarma: DetallesTipoAlarmaResolveService,
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
@@ -149,6 +162,7 @@ const routes: Routes = [
   {
     path: 'tipos_alarmas/nuevo',
     component: NuevoTipoAlarmaComponent,
+    canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
     }
@@ -156,6 +170,7 @@ const routes: Routes = [
   {
     path: 'direcciones',
     component: ListaDireccionesComponent,
+    canActivate: [LoginGuard],
     resolve: {
       direcciones: ListaDireccionesResolveService
     }
@@ -163,14 +178,16 @@ const routes: Routes = [
   {
     path: 'direcciones/modificar/:id',
     component: DetallesDireccionComponent,
+    canActivate: [LoginGuard],
     resolve: {
       direccion: DetallesDireccionResolveService
     }
   },
-  {path: 'direcciones/nueva', component: NuevaDireccionComponent},
+  {path: 'direcciones/nueva', component: NuevaDireccionComponent, canActivate: [LoginGuard]},
   {
     path: 'centros_sanitarios',
     component: ListaCentrosSanitariosComponent,
+    canActivate: [LoginGuard],
     resolve: {
       centros_sanitarios: ListaCentrosSanitariosResolveService
     }
@@ -178,6 +195,7 @@ const routes: Routes = [
   {
     path: 'centros_sanitarios/modificar/:id',
     component: DetallesCentroSanitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       centro_sanitario: DetallesCentroSanitarioResolveService,
       tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
@@ -186,6 +204,7 @@ const routes: Routes = [
   {
     path: 'centros_sanitarios/nuevo',
     component: NuevoCentroSanitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
     }
@@ -193,6 +212,7 @@ const routes: Routes = [
   {
     path: 'recursos_comunitarios',
     component: ListaRecursosComunitariosComponent,
+    canActivate: [LoginGuard],
     resolve: {
       recursos_comunitarios: ListaRecursosComunitariosResolveService
     }
@@ -200,6 +220,7 @@ const routes: Routes = [
   {
     path: 'recursos_comunitarios/modificar/:id',
     component: DetallesRecursoComunitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       recurso_comunitario: DetallesRecursoComunitarioResolveService,
       tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
@@ -208,6 +229,7 @@ const routes: Routes = [
   {
     path: 'recursos_comunitarios/nuevo',
     component: NuevoRecursoComunitarioComponent,
+    canActivate: [LoginGuard],
     resolve: {
       tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
     }
@@ -215,6 +237,7 @@ const routes: Routes = [
   {
     path: 'personas',
     component: ListaPersonasComponent,
+    canActivate: [LoginGuard],
     resolve: {
       personas: ListaPersonasResolveService
     }
@@ -222,6 +245,7 @@ const routes: Routes = [
   {
     path: 'personas/modificar/:id',
     component: DetallesPersonaComponent,
+    canActivate: [LoginGuard],
     resolve: {
       persona: DetallesPersonaResolveService,
       direcciones: ListaDireccionesResolveService
@@ -230,6 +254,7 @@ const routes: Routes = [
   {
     path: 'personas/nueva',
     component: NuevaPersonaComponent,
+    canActivate: [LoginGuard],
     resolve: {
       direcciones: ListaDireccionesResolveService
     }

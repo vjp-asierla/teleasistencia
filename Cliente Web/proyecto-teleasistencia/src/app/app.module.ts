@@ -57,6 +57,9 @@ import {CargaCentroSanitarioService} from './servicios/carga-centro-sanitario.se
 import {CargaPersonaService} from './servicios/carga-persona.service';
 import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunitario.service';
 import { PantallaLoginComponent } from './componentes/pantalla-login/pantalla-login.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { FooterComponent } from './componentes/footer/footer.component';
+import { BotonesLoginComponent } from './componentes/botones-login/botones-login.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +105,10 @@ import { PantallaLoginComponent } from './componentes/pantalla-login/pantalla-lo
     ItemDireccionComponent,
     DetallesDireccionComponent,
     NuevaDireccionComponent,
-    PantallaLoginComponent
+    PantallaLoginComponent,
+    HeaderComponent,
+    FooterComponent,
+    BotonesLoginComponent
   ],
   imports: [
     BrowserModule,

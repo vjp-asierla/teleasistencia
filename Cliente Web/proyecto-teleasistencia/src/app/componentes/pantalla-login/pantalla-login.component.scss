@@ -6,7 +6,7 @@
 .formulario {
   font-family: 'Roboto', sans-serif !important;
   color: #494949 !important;
-  margin-top: 15vh !important;
+  margin-top: 10vh !important;
   margin-bottom: 8vh !important;
 }
 
@@ -108,30 +108,54 @@
 }
 
 @media (min-width: 200px) {
+  form {
+    margin: auto;
+    width: 332px;
+  }
+
   .form-group {
     width: 310px;
   }
 }
 
 @media (min-width: 576px) {
+  form {
+    margin: auto;
+    width: 528px;
+  }
+
   .form-group {
     width: 315px;
   }
 }
 
 @media (min-width: 768px) {
+  form {
+    margin: auto;
+    width: 720px;
+  }
+
   .form-group {
-    width: 310px;
+    width: 300px;
   }
 }
 
 @media (min-width: 992px) {
+  form {
+    margin: auto;
+    width: 950px;
+  }
+
   .form-group {
     width: 320px;
   }
 }
 
 @media (min-width: 1200px) {
+  form {
+    margin: auto;
+    width: 980px;
+  }
   .form-group {
     width: 320px;
   }

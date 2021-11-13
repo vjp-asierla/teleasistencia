@@ -33,6 +33,7 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
     this.cargaDirecciones.nuevaDireccion(this.dire).subscribe(
       e => {
         console.log('Dirección creada');
+        this.router.navigate(['/recursos_comunitarios']);
       },
       error => {
         console.log(error);
@@ -43,11 +44,10 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
   nuevoRecursoComunitario(): void {
     this.recurso_comunitario.id_direccion = this.dire;
     this.cargaRecursosComunitarios.nuevoRecursoComunitario(this.recurso_comunitario).subscribe(
-      e => {
-        this.nuevaDireccion();
+      async e => {
+        await this.nuevaDireccion();
         console.log('Recurso comunitario creado');
         console.log(this.recurso_comunitario);
-        this.router.navigate(['/recursos_comunitarios']);
       },
       error => {
         console.log(error);

@@ -1,4 +1,4 @@
 export interface ILogin {
   username: string;
-  contrasenia: string;
+  password: string;
 }

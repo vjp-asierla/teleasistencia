@@ -5,6 +5,7 @@ import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CargaPersonaService} from "../../servicios/carga-persona.service";
 import {Persona} from "../../clases/persona";
+import {CargaDireccionService} from "../../servicios/carga-direccion.service";
 
 @Component({
   selector: 'app-detalles-persona',
@@ -14,32 +15,44 @@ import {Persona} from "../../clases/persona";
 export class DetallesPersonaComponent implements OnInit {
   public persona: IPersona;
   public idPersona: number;
-  public direcciones: IDireccion[];
+  public dire: IDireccion;
   public fecha_actual = new Date();
   public anno_actual = this.fecha_actual.getFullYear();
   public mes_actual = this.fecha_actual.getMonth() + 1;
   public dia_actual = this.fecha_actual.getDate();
 
-  constructor(private route: ActivatedRoute, private titleService: Title, private cargaPersonas: CargaPersonaService, private router: Router) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private cargaPersonas: CargaPersonaService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.persona = this.route.snapshot.data['persona'];
     this.idPersona = this.route.snapshot.params['id'];
-    this.direcciones = this.route.snapshot.data['direcciones'];
+    this.dire = this.persona.id_direccion;
     this.titleService.setTitle('Modificar persona ' + this.idPersona);
   }
 
-  optionSelected(i: number): void {
-    document.getElementsByClassName('direccion_option')[i].setAttribute('selected', '');
+  modificarDireccion(): void {
+    this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
+      e => {
+        console.log('Dirección ' + e.id + ' modificada');
+        this.router.navigate(['/personas']);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
+
+
+
   modificarPersona(): void {
+    this.persona.id_direccion = this.dire;
     this.cargaPersonas.modificarPersona(this.persona).subscribe(
-      e => {
+      async e => {
+        await this.modificarDireccion();
         console.log('Persona ' + e.id + ' modificada');
         console.log(this.persona);
-        this.router.navigate(['/personas']);
       },
       error => {
         console.log(error);

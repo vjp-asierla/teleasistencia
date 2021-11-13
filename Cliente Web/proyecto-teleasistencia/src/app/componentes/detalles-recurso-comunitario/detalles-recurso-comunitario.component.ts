@@ -38,6 +38,7 @@ export class DetallesRecursoComunitarioComponent implements OnInit {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
         console.log('Dirección ' + e.id + ' modificada');
+        this.router.navigate(['/recursos_comunitarios']);
       },
       error => {
         console.log(error);
@@ -48,11 +49,10 @@ export class DetallesRecursoComunitarioComponent implements OnInit {
   modificarRecursoComunitario(): void {
     this.recurso_comunitario.id_direccion = this.dire;
     this.cargaRecursosComunitarios.modificarRecursoComunitario(this.recurso_comunitario).subscribe(
-      e => {
-        this.modificarDireccion();
+      async e => {
+        await this.modificarDireccion();
         console.log('Recurso comunitario ' + e.id + ' modificado');
         console.log(this.recurso_comunitario);
-        this.router.navigate(['/recursos_comunitarios']);
       },
       error => {
         console.log(error);

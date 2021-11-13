@@ -38,6 +38,7 @@ export class DetallesCentroSanitarioComponent implements OnInit {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
         console.log('Dirección ' + e.id + ' modificada');
+        this.router.navigate(['/centros_sanitarios']);
       },
       error => {
         console.log(error);
@@ -48,11 +49,10 @@ export class DetallesCentroSanitarioComponent implements OnInit {
   modificarCentroSanitario(): void {
     this.centro_sanitario.id_direccion = this.dire;
     this.cargaCentrosSanitarios.modificarCentroSanitario(this.centro_sanitario).subscribe(
-      e => {
-        this.modificarDireccion();
+      async e => {
+        await this.modificarDireccion();
         console.log('Centro sanitario ' + e.id + ' modificado');
         console.log(this.centro_sanitario);
-        this.router.navigate(['/centros_sanitarios']);
       },
       error => {
         console.log(error);

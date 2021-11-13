@@ -18,7 +18,7 @@ export class NuevoTipoRecursoComunitarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Crear nuevo tipo recurso comunitario');
+    this.titleService.setTitle('Nuevo tipo recurso comunitario');
     this.tipo_recurso_comunitario = new TipoRecursoComunitario();
   }
 

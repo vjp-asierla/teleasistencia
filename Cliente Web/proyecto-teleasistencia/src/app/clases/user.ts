@@ -4,9 +4,9 @@ export class User implements IUsers {
   id: number;
   url: string;
   username: string;
-  contrasenia: string;
-  nombre: string;
-  apellidos: string;
+  password: string;
+  first_name: string;
+  last_name: string;
   email: string;
   groups: [];
 }
