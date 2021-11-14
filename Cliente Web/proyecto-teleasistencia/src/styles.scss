@@ -178,6 +178,11 @@ footer {
     width: 250px;
   }
 
+  .form-group-check {
+    position: relative;
+    left: -16px;
+  }
+
   footer > div {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -236,6 +241,11 @@ footer {
 
   .form-group {
     width: 350px;
+  }
+
+  .form-group-check {
+    position: relative;
+    left: -68px;
   }
 
   footer > div {
@@ -298,6 +308,11 @@ footer {
     width: 400px;
   }
 
+  .form-group-check {
+    position: relative;
+    left: -93px;
+  }
+
   footer > div {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -353,6 +368,11 @@ footer {
     width: 500px;
   }
 
+  .form-group-check {
+    position: relative;
+    left: -142px;
+  }
+
   footer > div {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -406,6 +426,11 @@ footer {
 
   .form-group {
     width: 500px;
+  }
+
+  .form-group-check {
+    position: relative;
+    left: -142px;
   }
 
   footer > div {
