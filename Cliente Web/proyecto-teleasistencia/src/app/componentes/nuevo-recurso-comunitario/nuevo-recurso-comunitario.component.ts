@@ -14,6 +14,7 @@ import {RecursoComunitario} from '../../clases/recurso-comunitario';
   templateUrl: './nuevo-recurso-comunitario.component.html',
   styleUrls: ['./nuevo-recurso-comunitario.component.scss']
 })
+
 export class NuevoRecursoComunitarioComponent implements OnInit {
   public recurso_comunitario: IRecursoComunitario;
   public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
@@ -32,7 +33,6 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
   nuevaDireccion(): void {
     this.cargaDirecciones.nuevaDireccion(this.dire).subscribe(
       e => {
-        console.log('Dirección creada');
         this.router.navigate(['/recursos_comunitarios']);
       },
       error => {
@@ -44,8 +44,8 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
   nuevoRecursoComunitario(): void {
     this.recurso_comunitario.id_direccion = this.dire;
     this.cargaRecursosComunitarios.nuevoRecursoComunitario(this.recurso_comunitario).subscribe(
-      async e => {
-        await this.nuevaDireccion();
+      e => {
+        this.nuevaDireccion();
         console.log('Recurso comunitario creado');
         console.log(this.recurso_comunitario);
       },

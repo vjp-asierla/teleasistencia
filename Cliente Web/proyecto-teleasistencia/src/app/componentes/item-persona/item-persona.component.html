@@ -1,7 +1,7 @@
 <td>{{ persona.nombre }}</td>
 <td>{{ persona.apellidos }}</td>
 <td>{{ persona.dni }}</td>
-<td>{{ persona.fecha_nacimiento }}</td>
+<td>{{ persona.fecha_nacimiento | date: 'dd/MM/yyyy' }}</td>
 <td>{{ persona.sexo }}</td>
 <td>{{ persona.telefono_fijo }}</td>
 <td>{{ persona.telefono_movil }}</td>

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {IPersona} from "../../interfaces/i-persona";
-import {IDireccion} from "../../interfaces/i-direccion";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaPersonaService} from "../../servicios/carga-persona.service";
-import {Persona} from "../../clases/persona";
+import {IPersona} from '../../interfaces/i-persona';
+import {IDireccion} from '../../interfaces/i-direccion';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaPersonaService} from '../../servicios/carga-persona.service';
+import {Persona} from '../../clases/persona';
 
 @Component({
   selector: 'app-nueva-persona',

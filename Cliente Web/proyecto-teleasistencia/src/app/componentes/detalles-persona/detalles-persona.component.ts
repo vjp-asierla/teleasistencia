@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {IPersona} from "../../interfaces/i-persona";
-import {IDireccion} from "../../interfaces/i-direccion";
-import {Title} from "@angular/platform-browser";
-import {ActivatedRoute, Router} from "@angular/router";
-import {CargaPersonaService} from "../../servicios/carga-persona.service";
-import {Persona} from "../../clases/persona";
-import {CargaDireccionService} from "../../servicios/carga-direccion.service";
+import {IPersona} from '../../interfaces/i-persona';
+import {IDireccion} from '../../interfaces/i-direccion';
+import {Title} from '@angular/platform-browser';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CargaPersonaService} from '../../servicios/carga-persona.service';
+import {CargaDireccionService} from '../../servicios/carga-direccion.service';
 
 @Component({
   selector: 'app-detalles-persona',
   templateUrl: './detalles-persona.component.html',
   styleUrls: ['./detalles-persona.component.scss']
 })
+
 export class DetallesPersonaComponent implements OnInit {
   public persona: IPersona;
   public idPersona: number;
@@ -34,7 +34,6 @@ export class DetallesPersonaComponent implements OnInit {
   modificarDireccion(): void {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
-        console.log('Dirección ' + e.id + ' modificada');
         this.router.navigate(['/personas']);
       },
       error => {
@@ -43,14 +42,11 @@ export class DetallesPersonaComponent implements OnInit {
     );
   }
 
-
-
-
   modificarPersona(): void {
     this.persona.id_direccion = this.dire;
     this.cargaPersonas.modificarPersona(this.persona).subscribe(
-      async e => {
-        await this.modificarDireccion();
+       e => {
+         this.modificarDireccion();
         console.log('Persona ' + e.id + ' modificada');
         console.log(this.persona);
       },

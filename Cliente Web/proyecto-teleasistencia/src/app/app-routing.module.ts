@@ -55,7 +55,7 @@ import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-logi
 import {LoginGuard} from './servicios/login.guard';
 
 const routes: Routes = [
-  { path: 'login', component: PantallaLoginComponent },
+  {path: 'login', component: PantallaLoginComponent},
   {path: 'inicio', component: HomeComponent},
   {
     path: 'usuarios',
@@ -124,7 +124,11 @@ const routes: Routes = [
       tipo_recurso_comunitario: DetallesTipoRecursoComunitarioResolveService
     }
   },
-  {path: 'tipos_recursos_comunitarios/nuevo', component: NuevoTipoRecursoComunitarioComponent, canActivate: [LoginGuard]},
+  {
+    path: 'tipos_recursos_comunitarios/nuevo',
+    component: NuevoTipoRecursoComunitarioComponent,
+    canActivate: [LoginGuard]
+  },
   {
     path: 'tipos_modalidades_pacientes',
     component: ListaTiposModalidadesPacientesComponent,
@@ -141,7 +145,11 @@ const routes: Routes = [
       tipo_modalidad_paciente: DetallesTipoModalidadPacienteResolveService
     }
   },
-  {path: 'tipos_modalidades_pacientes/nuevo', component: NuevoTipoModalidadPacienteComponent, canActivate: [LoginGuard]},
+  {
+    path: 'tipos_modalidades_pacientes/nuevo',
+    component: NuevoTipoModalidadPacienteComponent,
+    canActivate: [LoginGuard]
+  },
   {
     path: 'tipos_alarmas',
     component: ListaTiposAlarmasComponent,
@@ -267,5 +275,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 }
