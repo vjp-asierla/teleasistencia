@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {ILogin} from "../../interfaces/i-login";
 import {Title} from "@angular/platform-browser";
 import {Login} from "../../clases/login";
@@ -10,8 +10,9 @@ import {Router} from "@angular/router";
   templateUrl: './pantalla-login.component.html',
   styleUrls: ['./pantalla-login.component.scss']
 })
-export class PantallaLoginComponent implements OnInit {
+export class PantallaLoginComponent implements OnInit, DoCheck {
   public login: ILogin;
+  public estaLogin: boolean;
 
   constructor(private titleService: Title, private loginService: LoginService, private router: Router) { }
 
@@ -20,10 +21,18 @@ export class PantallaLoginComponent implements OnInit {
     this.login = new Login();
   }
 
+  ngDoCheck(): void {
+    this.estaLogin = this.loginService.estaLogin();
+  }
+
   hacerLogin(): void {
     this.loginService.hacerLogin();
     console.log(this.login);
     this.router.navigate(['/inicio']);
   }
 
+  hacerLogout(): void {
+    this.loginService.hacerLogout();
+    this.router.navigate(['/login']);
+  }
 }

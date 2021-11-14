@@ -107,6 +107,30 @@
   border-color: rgba(117, 88, 125, 0.8) !important;
 }
 
+.rounded-4 { border-radius: .5rem; }
+
+.modal-dialog {
+  width: 600px;
+  transition: bottom .75s ease-in-out;
+  margin-top: 8vh !important;
+  margin-bottom: 8vh !important;
+}
+.modal-footer {
+  padding-bottom: 2rem;
+}
+
+.btn-link {
+  color: #75597D !important;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(109 13 253 / 25%) !important;
+}
+
+.border-right { border-right: 1px solid #eee; }
+
+
 @media (min-width: 200px) {
   form {
     margin: auto;
@@ -115,6 +139,11 @@
 
   .form-group {
     width: 310px;
+  }
+
+  .modal-dialog {
+    width: 350px;
+    margin: auto;
   }
 }
 
@@ -127,6 +156,10 @@
   .form-group {
     width: 315px;
   }
+
+  .modal-dialog {
+    width: 500px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -137,6 +170,10 @@
 
   .form-group {
     width: 300px;
+  }
+
+  .modal-dialog {
+    width: 550px;
   }
 }
 
@@ -149,6 +186,10 @@
   .form-group {
     width: 320px;
   }
+
+  .modal-dialog {
+    width: 600px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -156,7 +197,12 @@
     margin: auto;
     width: 980px;
   }
+
   .form-group {
     width: 320px;
+  }
+
+  .modal-dialog {
+    width: 600px;
   }
 }
