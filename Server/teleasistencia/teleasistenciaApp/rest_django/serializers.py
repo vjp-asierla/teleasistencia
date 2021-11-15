@@ -18,8 +18,7 @@ class PermissionSerializer(serializers.HyperlinkedModelSerializer):
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = '__all__'
-
+        fields = ['pk', 'name']
 
 class Tipo_Recurso_Comunitario_Serializer(serializers.ModelSerializer):
     class Meta:

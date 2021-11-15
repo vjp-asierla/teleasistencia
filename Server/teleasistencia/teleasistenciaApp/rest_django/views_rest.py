@@ -13,6 +13,12 @@ from ..rest_django.serializers import *
 #Modelos propios
 from ..models import *
 
+# Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
+class IsTeacherMember(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        if request.user.groups.filter(name="profesor").exists():
+            return True
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -30,14 +36,13 @@ class PermissionViewSet(viewsets.ModelViewSet):
     serializer_class = PermissionSerializer
     #permission_classes = [permissions.IsAdminUser]
 
-
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsTeacherMember]
 
 class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     """
