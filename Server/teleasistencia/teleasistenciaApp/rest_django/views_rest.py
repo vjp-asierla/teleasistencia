@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from django.shortcuts import _get_queryset
+from requests import request
 from rest_framework import viewsets
 from rest_framework import permissions
 # Serializadores generales
@@ -155,6 +156,28 @@ class Tipo_Alarma_ViewSet(viewsets.ModelViewSet):
         tipo_alarma_serializer = Tipo_Alarma_Serializer(tipo_alarma)
         return Response(tipo_alarma_serializer.data)
 
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que el tipo de centro sanitario existe
+        clasificacion_alarma = Clasificacion_Alarma.objects.get(pk=request.data.get("id_clasificacion_alarma"))
+        if clasificacion_alarma is None:
+            return Response("Error: id_clasificacion_alarma")
+
+        # Modificamos el tipo_alarma
+        tipo_alarma = Tipo_Alarma.objects.get(pk=kwargs["pk"])
+        if request.data.get("nombre") is not None:
+            tipo_alarma.nombre = request.data.get("nombre")
+        if request.data.get("codigo") is not None:
+            tipo_alarma.codigo = request.data.get("codigo")
+        if request.data.get("es_dispositivo") is not None:
+            tipo_alarma.es_dispositivo = request.data.get("es_dispositivo")
+        tipo_alarma.id_clasificacion_alarma = clasificacion_alarma
+
+        tipo_alarma.save()
+        # Devolvemos el tipo de alarma modificado
+        tipo_alarma_serializer = Tipo_Alarma_Serializer(tipo_alarma)
+        return Response(tipo_alarma_serializer.data)
+
+
 
 class Clasificacion_Alarma_ViewSet(viewsets.ModelViewSet):
     """
@@ -232,6 +255,43 @@ class Persona_ViewSet(viewsets.ModelViewSet):
             # Creamos la persona con la dirección y la devolvemos
         return Response(Assignar_Persona_Direccion(request.data, direccion).data)
 
+    def update(self, request, *args, **kwargs):
+        # Comprobamos si los datos se introducen para una dirección ya existente,
+        id_direccion = request.data.get("id_direccion")
+
+        # En el caso de ser una dirección nueva
+        if id_direccion is None:
+            # Obtenemos los datos de dirección y los almacenamos
+            direccion_serializer = Direccion_Serializer(data=request.data.get("direccion"))
+            if direccion_serializer.is_valid():
+                direccion = direccion_serializer.save()
+            else:
+                return Response("Error: direccion")
+                # en el caso de ser una dirección existente
+        else:
+            direccion = Direccion.objects.get(pk=id_direccion)
+
+        persona = Persona.objects.get(pk=kwargs["pk"])
+        if request.data.get("nombre") is not None:
+            persona.nombre = request.data.get("nombre")
+        if request.data.get("apellidos") is not None:
+            persona.apellidos = request.data.get("apellidos")
+        if request.data.get("dni") is not None:
+            persona.dni = request.data.get("dni")
+        if request.data.get("fecha_nacimiento") is not None:
+            persona.fecha_nacimiento = request.data.get("fecha_nacimiento")
+        if request.data.get("sexo") is not None:
+            persona.sexo = request.data.get("sexo")
+        if request.data.get("telefono_fijo") is not None:
+            persona.telefono_fijo = request.data.get("telefono_fijo")
+        if request.data.get("telefono_movil") is not None:
+            persona.telefono_movil = request.data.get("telefono_movil")
+        persona.id_direccion = direccion
+
+        persona.save()
+        persona_serializer = Persona_Serializer(persona)
+        return Response(persona_serializer.data)
+
 
 class Agenda_ViewSet(viewsets.ModelViewSet):
     """
@@ -242,16 +302,16 @@ class Agenda_ViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
     # Obtenemos el listado de la Agenda filtrado por los parametros GET
-    # def list(self, request, *args, **kwargs):
-    #    queryset = self.filter_queryset(self.get_queryset())
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
 
     # Hacemos una búsqueda por los valores introducidos por parámetros
-    #    query = getQueryAnd(request.POST)
-    #    if query:
-    #        queryset = Agenda.objects.filter(query)
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Agenda.objects.filter(query)
 
-    #    serializer = self.get_serializer(queryset, namy=True)
-    #    return Response(serializer.data)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class Tipo_Agenda_ViewSet(viewsets.ModelViewSet):
@@ -271,6 +331,27 @@ class Historico_Agenda_Llamadas_ViewSet(viewsets.ModelViewSet):
     serializer_class = Historico_Agenda_Llamadas_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
+    # Obtenemos el listado de el Hiscorico_Agenda_Llamadas filtrado por los parametros GET
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Historico_Agenda_Llamadas.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    # def create(self, request, *args, **kwargs):
+        # Comprobamos que existe la agenda
+    #    id_agenda = Agenda.objects.get(request.data.get("id_agenda"))
+    #    if id_agenda is None:
+    #        return Response("Error: id_agenda")
+
+        # Comprobamos que existe el id del operador en la tabla user
+    #    id_teleoperador = User.objects.get(request.data.get("id_teleoperador"))
+
 
 class Relacion_Terminal_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     """
@@ -279,6 +360,50 @@ class Relacion_Terminal_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     queryset = Relacion_Terminal_Recurso_Comunitario.objects.all()
     serializer_class = Relacion_Terminal_Recurso_Comunitario_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que exite el terminal
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Comprobamos que existe el recurso comunitario
+        id_recurso_comunitario = Recurso_Comunitario.objects.get(pk=request.data.get("id_recurso_comunitario"))
+        if id_recurso_comunitario is None:
+            return Response("Error: id_recurso_comunitario")
+
+        relacion_terminal_recurso_comunitario = Relacion_Terminal_Recurso_Comunitario(
+            id_terminal=id_terminal,
+            id_recurso_comunitario=id_recurso_comunitario
+        )
+
+        relacion_terminal_recurso_comunitario.save()
+
+        # Devolvemos la relacion_terminal_recurso_comunitario
+        relacion_terminal_recurso_comunitario_serializer = Relacion_Terminal_Recurso_Comunitario_Serializer(relacion_terminal_recurso_comunitario)
+        return Response(relacion_terminal_recurso_comunitario_serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que exite el terminal
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Comprobamos que existe el recurso comunitario
+        id_recurso_comunitario = Recurso_Comunitario.objects.get(pk=request.data.get("id_recurso_comunitario"))
+        if id_recurso_comunitario is None:
+            return Response("Error: id_recurso_comunitario")
+
+        relacion_terminal_recurso_comunitario = Relacion_Terminal_Recurso_Comunitario.objects.get(pk=kwargs["pk"])
+        relacion_terminal_recurso_comunitario.id_terminal = id_terminal
+        relacion_terminal_recurso_comunitario.id_recurso_comunitario = id_recurso_comunitario
+
+        relacion_terminal_recurso_comunitario.save()
+
+        relacion_terminal_recurso_comunitario_serializer = Relacion_Terminal_Recurso_Comunitario_Serializer(
+            relacion_terminal_recurso_comunitario)
+        return Response(relacion_terminal_recurso_comunitario_serializer.data)
+
 
 
 class Terminal_ViewSet(viewsets.ModelViewSet):
@@ -297,6 +422,51 @@ class Historico_Tipo_Situacion_ViewSet(viewsets.ModelViewSet):
     queryset = Historico_Tipo_Situacion.objects.all()
     serializer_class = Historico_Tipo_Situación_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que el tipo situacion existe
+        id_tipo_situacion = Tipo_Situacion.objects.get(pk=request.data.get("tipo_situacion"))
+        if id_tipo_situacion is None:
+            return Response("Error: id_tipo_situacion")
+
+        # Comprobamos que el terminal existe
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Creamos el historico_tipo_situacion
+        historico_tipo_situacion = Historico_Tipo_Situacion(
+            fecha=request.data.get("fecha"),
+            id_tipo_situacion=id_tipo_situacion,
+            id_terminal=id_terminal
+        )
+
+        historico_tipo_situacion.save()
+        # Devolvemos el historico_tipo_situación creado
+        historico_tipo_situacion_serializer = Historico_Tipo_Situación_Serializer(historico_tipo_situacion)
+        return Response(historico_tipo_situacion_serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que el tipo situacion existe
+        id_tipo_situacion = Tipo_Situacion.objects.get(pk=request.data.get("tipo_situacion"))
+        if id_tipo_situacion is None:
+            return Response("Error: id_tipo_situacion")
+
+        # Comprobamos que el terminal existe
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Modificamos el historico_tipo_situacion
+        historico_tipo_situacion = Historico_Tipo_Situacion.objects.get(pk=kwargs["pk"])
+        historico_tipo_situacion.id_tipo_situacion = id_tipo_situacion
+        historico_tipo_situacion.id_terminal = id_terminal
+
+        historico_tipo_situacion.save()
+
+        historico_tipo_situacion_serializer = Historico_Tipo_Situación_Serializer(historico_tipo_situacion)
+        return Response(historico_tipo_situacion_serializer.data)
+
 
 
 class Tipo_Situacion_ViewSet(viewsets.ModelViewSet):
@@ -324,6 +494,43 @@ class Relacion_Paciente_Persona_ViewSet(viewsets.ModelViewSet):
     queryset = Relacion_Paciente_Persona.objects.all()
     serializer_class = Relacion_Paciente_Persona_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
+
+    # Obtenemos el listado de relacion_paciente_persona filtrado por los parametros GET
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Relacion_Paciente_Persona.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que existe el paciente
+        id_paciente = Paciente.objects.get(request.data.get("id_paciente"))
+        if id_paciente is None:
+            return Response("Error: id_paciente")
+        # Comprobamos que existe la persona
+        id_persona = Persona.objects.get(request.data.get("id_persona"))
+        if id_persona is None:
+            return Response("Error: id_persona")
+        # Creamos la relacion_paciente_persona
+        relacion_paciente_persona = Relacion_Paciente_Persona(
+            id_paciente=id_paciente,
+            id_persona=id_persona,
+            tipo_relacion=request.data.get("tipo_relacion"),
+            tiene_llaves_vivienda=request.data.get("tiene_llaves_vivienda"),
+            disponibilidad=request.data.get("disponibilidad"),
+            observaciones=request.data.get("observaciones"),
+            prioridad=request.data.get("prioridad")
+        )
+        relacion_paciente_persona.save()
+
+        # Devolvemos la relacion_paciente_persona creada
+        relacion_paciente_persona_serilizer = Relacion_Paciente_Persona_Serializer(relacion_paciente_persona)
+        return Response(relacion_paciente_persona_serilizer.data)
 
 
 class Paciente_ViewSet(viewsets.ModelViewSet):
@@ -387,3 +594,63 @@ class Persona_Contacto_En_Alarma_ViewSet(viewsets.ModelViewSet):
     queryset = Persona_Contacto_En_Alarma.objects.all()
     serializer_class = Persona_Contacto_En_Alarma_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Persona_Contacto_En_Alarma.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que existe la alarma
+        id_alarma = Alarma.objects.get(pk=request.data.get("id_alarma"))
+        if id_alarma is None:
+            return Response("Error: id_alarma")
+
+        # Comprobamos que existe la persona de contacto
+        id_persona_contacto = Persona.objects.get(pk=request.data.get("id_persona_contacto"))
+        if id_persona_contacto is None:
+            return Response("Error: id_persona_contacto")
+
+        persona_contacto_en_alarma = Persona_Contacto_En_Alarma(
+            id_alarma=id_alarma,
+            id_persona_contacto=id_persona_contacto,
+            fecha_registro=request.data.get("fecha_registro"),
+            acuerdo_alcanzado=request.data.get("acuerdo_alcanzado")
+        )
+
+        persona_contacto_en_alarma.save()
+        # Devolvemos persona de contacto en alarma creado
+        persona_contacto_en_alarma_serializer = Persona_Contacto_En_Alarma_Serializer(persona_contacto_en_alarma)
+        return Response(persona_contacto_en_alarma_serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que existe la alarma
+        id_alarma = Alarma.objects.get(pk=request.data.get("id_alarma"))
+        if id_alarma is None:
+            return Response("Error: id_alarma")
+
+        # Comprobamos que existe la persona de contacto
+        id_persona_contacto = Persona.objects.get(pk=request.data.get("id_persona_contacto"))
+        if id_persona_contacto is None:
+            return Response("Error: id_persona_contacto")
+
+        persona_contacto_en_alarma = Persona_Contacto_En_Alarma.objects.get(pk = kwargs["pk"])
+        persona_contacto_en_alarma.id_alarma = id_alarma
+        persona_contacto_en_alarma.id_persona_contacto = id_persona_contacto
+        if request.data.get("fecha_registro") is not None:
+            persona_contacto_en_alarma.fecha_registro = request.data.get("fecha_registro")
+        if request.data.get("acuerdo_alcanzado") is not None:
+            persona_contacto_en_alarma.acuerdo_alcanzado = request.data.get("acuerdo_alcanzado")
+
+        persona_contacto_en_alarma.save()
+
+        persona_contacto_en_alarma
+        # Devolvemos persona de contacto en alarma creado
+        persona_contacto_en_alarma_serializer = Persona_Contacto_En_Alarma_Serializer(persona_contacto_en_alarma)
+        return Response(persona_contacto_en_alarma_serializer.data)
