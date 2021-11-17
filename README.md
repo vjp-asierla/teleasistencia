@@ -57,6 +57,7 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 9. Instalamos los requerimientos ```pip install -r requerimientos.txt```. Es posible que haya errores durante la instalación de los requisitos, si ocurriesen errores del tipo ```  ```, sería necesario instalar algunos componentes para ejecutar C++ como aparece en la respuesta de [esta pregunta de Stackoverflow](https://stackoverflow.com/questions/64261546/python-cant-install-packages) (Descargar vs_buildtools y ejecutar el comando que aparece al final de la respuesta marcada como solución).
 
 
+
 ## Arrancar el proyecto
 
 Desde Server\teleasistencia ejecutamos ```python manage.py runserver_plus --cert-file cert.pem --key-file key.pem```
