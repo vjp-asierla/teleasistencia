@@ -23,11 +23,22 @@ from django.contrib.auth import views
 from rest_framework import routers
 from teleasistenciaApp.rest_django import views_rest
 
+#Autenticación rest con JWT:
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+#Para redirecciones simples con url:
+from django.views.generic.base import RedirectView
+from django.urls import re_path
+
 #Router para la API REST
 # Con trailing_slash=False hacemos que no intermprete la / final de la url, con esto podemos hacer GET, POST y DELETE
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'users', views_rest.UserViewSet)
 router.register(r'groups', views_rest.GroupViewSet)
+router.register(r'permission', views_rest.PermissionViewSet)
 router.register(r'tipo_recurso_comunitario', views_rest.Tipo_Recurso_Comunitario_ViewSet)
 router.register(r'recurso_comunitario', views_rest.Recurso_Comunitario_ViewSet)
 router.register(r'centro_sanitario', views_rest.Centro_Sanitario_ViewSet)
@@ -57,6 +68,7 @@ router.register(r'persona_contacto_en_alarma', views_rest.Persona_Contacto_En_Al
 
 urlpatterns = [
 #path('admin/', admin.site.urls),
+    re_path(r'^$', RedirectView.as_view(url='/teleasistencia', permanent=False), name='index'),
     url(r'^teleasistencia/', include('teleasistenciaApp.urls')),
     url(r'^admin/', admin.site.urls, name='admin'),
     #URLS de login y logout de django.contrib.auth:
@@ -68,4 +80,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #Django Rest social Auth:
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
+    #Django Rest Simple JWT:
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

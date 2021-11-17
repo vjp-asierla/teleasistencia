@@ -1,6 +1,10 @@
-from django.contrib.auth.models import User, Group
+
+
 from django.shortcuts import _get_queryset
 from requests import request
+
+from django.contrib.auth.models import User, Group, Permission
+
 from rest_framework import viewsets
 from rest_framework import permissions
 # Serializadores generales
@@ -15,6 +19,12 @@ from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
 
+# Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
+class IsTeacherMember(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        if request.user.groups.filter(name="profesor").exists():
+            return True
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -24,6 +34,13 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     # permission_classes = [permissions.IsAdminUser]
 
+class PermissionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    #permission_classes = [permissions.IsAdminUser]
 
 class GroupViewSet(viewsets.ModelViewSet):
     """
@@ -31,7 +48,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
     # permission_classes = [permissions.IsAdminUser]
+
+
+    permission_classes = [IsTeacherMember]
 
 
 class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
@@ -223,20 +244,21 @@ class Persona_ViewSet(viewsets.ModelViewSet):
 
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
-    # Obtenemos el listado de usuarios filtrado por los parametros GET
+    # Obtenemos el listado de personas filtrado por los parametros GET
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-
         # Hacemos una búsqueda por los valores introducidos por parámetros
         query = getQueryAnd(request.GET)
         if query:
             queryset = Persona.objects.filter(query)
+        # En el caso de que no hay parámetros y queramos devolver todos los valores
+        else:
+            queryset = self.get_queryset()
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    # Creamos una persona con por POST
     def create(self, request, *args, **kwargs):
-
         # Comprobamos si los datos se introducen para una dirección ya existente,
         id_direccion = request.data.get("id_direccion")
 

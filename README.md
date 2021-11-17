@@ -4,11 +4,17 @@ Este proyecto consiste en un desarrollo Web de un servicio de Teleasistencia par
 Para probar el proyecto, y antes de realizar la instalación, se recomienda que se sigan los pasos que aparecen en **Pasos para contribuir al proyecto**. 
 
 ## Dependencias:
+Se gestionan en la instalación, a través del fichero *requerimentos.txt*. Las dejamos aquí apuntadas por si fuese necesario revisarlas:
 
 1. ```pip install Django==3.2.3```
 2. ```pip install django-model-utils==4.1.1```
-3. ```pip install djangorestframework```
-4. ```pip install django-rest-framework-social-oauth2```
+3. ```pip install djangorestframework==3.12.4```
+4. ```pip install django-rest-framework-social-oauth2==1.1.0```
+5. ```pip install django-extensions==3.1.3```
+6. ```pip install Werkzeug==2.0.2```
+7. ```pip install pyOpenSSL==21.0.0```
+8. ```pip install djangorestframework-simplejwt==5.0.0```
+
 
 ## Pasos para contribuir en el proyecto
 
@@ -37,23 +43,24 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 1. Instalación de python - https://www.python.org/ . Seleccionar la opción que nos permite añadir python al PATH. 
    Comprobamos la instalación desde cmd: ```python --version```
 2. Descargamos e instalamos el Entorno de desarrollo PyCharm - https://www.jetbrains.com/pycharm/
-3. Creamos el entorno virutal en la ruta Server ```virtualenv venviorment```
+3. Creamos el [entorno virutal](https://docs.python.org/3/library/venv.html) en la ruta Server ```virtualenv venviorment```
 
     <img src="https://user-images.githubusercontent.com/3669279/122421218-847ba980-cf8c-11eb-829c-2dccf74a3e6d.png" width="400">
 
 
-5. Ejecutamos el siguiente archivo para seleccionar el entorno virtual ```Server/venviorment/Scripts/activate```
-6. Hacemos permanente el entorno virtual. Vamos a ```File -> Settings... -> Project --> Python Interpreter``` y seleccinoamos el Interprete ```Server\venviorment\Scripts\python.exe```
+5. Ejecutamos el siguiente archivo para seleccionar el entorno virtual ```Server/venviorment/Scripts/activate```. Si tuviésemos problemas de permisos para ejecutar dicho comando, revisar [este enlace](https://tecadmin.net/powershell-running-scripts-is-disabled-system/) y correr el comando que aparece como superadministrador en PowerShell.
+6. Hacemos permanente el entorno virtual. Vamos a ```File -> Settings... -> Project --> Python Interpreter``` y seleccionamos el Interprete **ya creado**  ```Server\venviorment\Scripts\python.exe```
 
     ![image](https://user-images.githubusercontent.com/57873286/122095294-794e3f80-ce0d-11eb-9577-985b2d170102.png)
 
 8. Actualizamos pip ```pip install --upgrade pip```
-9. Instalamos los requerimientos ```pip install -r requerimientos.txt```
+9. Instalamos los requerimientos ```pip install -r requerimientos.txt```. Es posible que haya errores durante la instalación de los requisitos, si ocurriesen errores del tipo ```  ```, sería necesario instalar algunos componentes para ejecutar C++ como aparece en la respuesta de [esta pregunta de Stackoverflow](https://stackoverflow.com/questions/64261546/python-cant-install-packages) (Descargar vs_buildtools y ejecutar el comando que aparece al final de la respuesta marcada como solución).
+
 
 
 ## Arrancar el proyecto
 
-Desde Server\teleasistencia ejecutamos ```python manage.py runserver```
+Desde Server\teleasistencia ejecutamos ```python manage.py runserver_plus --cert-file cert.pem --key-file key.pem```
 
 ## Copyright
 
