@@ -54,7 +54,6 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
     ![image](https://user-images.githubusercontent.com/57873286/122095294-794e3f80-ce0d-11eb-9577-985b2d170102.png)
 
 8. Actualizamos pip ```pip install --upgrade pip```
-9. Instalamos los requerimientos ```pip install -r requerimientos.txt```. Es posible que haya errores durante la instalación de los requisitos, si ocurriesen errores del tipo ```  ```, sería necesario instalar algunos componentes para ejecutar C++ como aparece en la respuesta de [esta pregunta de Stackoverflow](https://stackoverflow.com/questions/64261546/python-cant-install-packages) (Descargar vs_buildtools y ejecutar el comando que aparece al final de la respuesta marcada como solución) .
 
 
 ## Arrancar el proyecto
