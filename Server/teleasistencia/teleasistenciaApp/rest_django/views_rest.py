@@ -34,6 +34,42 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     # permission_classes = [permissions.IsAdminUser]
 
+    # Obtenemos el listado de personas filtrado por los parametros GET
+    def list(self, request, *args, **kwargs):
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = User.objects.filter(query)
+        # En el caso de que no hay parámetros y queramos devolver todos los valores
+        else:
+            queryset = self.get_queryset()
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que existe el groups
+        id_groups = Group.objects.get(pk=request.data.get("groups"))
+        print(id_groups)
+        if id_groups is None:
+            return Response("Error: Groups")
+
+        user = User(
+            password=request.data.get("password"),
+            username=request.data.get("username"),
+            first_name=request.data.get("first_name"),
+            last_name=request.data.get("last_name"),
+            email=request.data.get("email"),
+        )
+
+        user.save()
+        user.groups.set(id_groups)
+        user.save()
+
+        # Devolvemos el user creado
+        user_serializer = UserSerializer(user)
+        return Response(user_serializer.data)
+
 class PermissionViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -52,7 +88,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAdminUser]
 
 
-    permission_classes = [IsTeacherMember]
+    # permission_classes = [IsTeacherMember]
 
 
 class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
@@ -801,7 +837,46 @@ class Paciente_ViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     # Creamos el paciente
-    #def create(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
+        # Comprobamos que existe el id_terminal
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Comprobamos que existe id_tipo_modalidad_paciente
+        id_modalidad_paciente = Tipo_Modalidad_Paciente.objects.get(pk=request.data.get("id_tipo_modalidad_paciente"))
+        if id_modalidad_paciente is None:
+            return Response("Error: id_modalidad_paciente")
+
+        # Comprobamos si los datos que recibimos de persona existen
+        id_persona = request.data.get("id_persona")
+        if id_persona is None:
+            persona_serializer = Persona_Serializer(data=request.data.get("persona"))
+                #Assignar_Persona_Direccion(data=request.data.get("persona"), direccion=Direccion.objects.get(pk=request.data.get("persona")["id_direccion"]))
+            if persona_serializer.is_valid():
+                persona = persona_serializer.save()
+            else:
+                return Response("Error: persona")
+        else:
+            persona = Persona.objects.get(pk=id_persona)
+
+        paciente = Paciente(
+            id_persona=persona,
+            id_tipo_modalidad_paciente=id_modalidad_paciente,
+            id_terminal=id_terminal,
+            tiene_ucr=request.data.get("tiene_ucr"),
+            numero_expediente=request.data.get("numero_expediente"),
+            numero_seguridad_social=request.data.get("numero_seguridad_social"),
+            prestacion_otros_servicios_sociales=request.data.get("prestacion_otros_servicios_sociales"),
+            observaciones_medicas=request.data.get("observaciones_medicas"),
+            intereses_y_actividades=request.data.get("intereses_y_actividades")
+        )
+        paciente.save()
+
+        # Devolvemos el paciente creado
+        paciente_serializer = Persona_Serializer(paciente)
+        return Response(paciente_serializer.data)
+
 
 
 

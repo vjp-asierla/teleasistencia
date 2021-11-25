@@ -9,7 +9,7 @@ from ..models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
         depth = 1
 
 class PermissionSerializer(serializers.HyperlinkedModelSerializer):
