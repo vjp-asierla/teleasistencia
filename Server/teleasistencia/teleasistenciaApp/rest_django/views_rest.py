@@ -19,6 +19,8 @@ from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
 
+import hashlib
+
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
 
@@ -50,24 +52,53 @@ class UserViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         # Comprobamos que existe el groups
         id_groups = Group.objects.get(pk=request.data.get("groups"))
-        print(id_groups)
         if id_groups is None:
             return Response("Error: Groups")
 
+        if User.objects.get(username=request.data.get("username")) is not None:
+            return Response("El usuario ya existe")
+
+        # Encriptamos la contraseña con la libreria hashlib
+        passwordSinCrip = request.data.get("password")
+        passwordCrip = hashlib.sha512(passwordSinCrip.encode())
+
         user = User(
-            password=request.data.get("password"),
+            password=passwordCrip.hexdigest(),
             username=request.data.get("username"),
             first_name=request.data.get("first_name"),
             last_name=request.data.get("last_name"),
             email=request.data.get("email"),
         )
-
         user.save()
-        user.groups.set(id_groups)
+        user.groups.add(id_groups)
+
+        # Devolvemos el user creado
+        user_serializer = self.get_serializer(user, many=False)
+        return Response(user_serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que existe el groups
+        id_groups = Group.objects.get(pk=request.data.get("groups"))
+        if id_groups is None:
+            return Response("Error: Groups")
+
+        user = User.objects.get(pk=kwargs["pk"])
+        user.groups.clear()
+        user.groups.add(id_groups)
+        if request.data.get("username") is not None:
+            user.username = request.data.get("username")
+        if request.data.get("email") is not None:
+            user.email = request.data.get("email")
+        if request.data.get("password") is not None:
+            # Encriptamos la contraseña con la libreria hashlib
+            passwordSinCrip = request.data.get("password")
+            passwordCrip = hashlib.sha512(passwordSinCrip.encode())
+            user.password = passwordCrip.hexdigest()
+
         user.save()
 
         # Devolvemos el user creado
-        user_serializer = UserSerializer(user)
+        user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
 
 class PermissionViewSet(viewsets.ModelViewSet):
@@ -305,7 +336,9 @@ class Direccion_ViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
 
-def Assignar_Persona_Direccion(data, direccion):
+
+
+def Asignar_Persona_Direccion(data, direccion):
     persona = Persona(
         nombre=data.get("nombre"),
         apellidos=data.get("apellidos"),
@@ -317,9 +350,8 @@ def Assignar_Persona_Direccion(data, direccion):
         id_direccion=direccion
     )
     persona.save()
-    persona_serializer = Persona_Serializer(persona)
 
-    return persona_serializer
+    return persona
 
 # TODO echar un vistazo a los metodos detallamente  y a la tabla postman (puede que no esten bien definidos)
 class Persona_ViewSet(viewsets.ModelViewSet):
@@ -362,7 +394,8 @@ class Persona_ViewSet(viewsets.ModelViewSet):
         else:
             direccion = Direccion.objects.get(pk=id_direccion)
             # Creamos la persona con la dirección y la devolvemos
-        return Response(Assignar_Persona_Direccion(request.data, direccion).data)
+        persona_serializer = Persona_Serializer(Asignar_Persona_Direccion(request.data, direccion))
+        return Response(persona_serializer.data)
 
     def update(self, request, *args, **kwargs):
         # Comprobamos si los datos se introducen para una dirección ya existente,
@@ -851,10 +884,8 @@ class Paciente_ViewSet(viewsets.ModelViewSet):
         # Comprobamos si los datos que recibimos de persona existen
         id_persona = request.data.get("id_persona")
         if id_persona is None:
-            persona_serializer = Persona_Serializer(data=request.data.get("persona"))
-                #Assignar_Persona_Direccion(data=request.data.get("persona"), direccion=Direccion.objects.get(pk=request.data.get("persona")["id_direccion"]))
-            if persona_serializer.is_valid():
-                persona = persona_serializer.save()
+            if request.data.get("persona") is not None:
+                persona = Asignar_Persona_Direccion(data=request.data.get("persona"), direccion=Direccion.objects.get(pk=request.data.get("persona")["id_direccion"]))
             else:
                 return Response("Error: persona")
         else:
@@ -874,9 +905,48 @@ class Paciente_ViewSet(viewsets.ModelViewSet):
         paciente.save()
 
         # Devolvemos el paciente creado
-        paciente_serializer = Persona_Serializer(paciente)
+        paciente_serializer = Paciente_Serializer(paciente)
         return Response(paciente_serializer.data)
 
+    def update(self, request, *args, **kwargs):
+        # Comprobamos que existe el id_terminal
+        id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
+        if id_terminal is None:
+            return Response("Error: id_terminal")
+
+        # Comprobamos que existe id_tipo_modalidad_paciente
+        id_modalidad_paciente = Tipo_Modalidad_Paciente.objects.get(pk=request.data.get("id_tipo_modalidad_paciente"))
+        if id_modalidad_paciente is None:
+            return Response("Error: id_modalidad_paciente")
+
+        # Comprobamos si los datos que recibimos de persona existen
+        # Doy por supuesto que en el paciente no se modifica la persona, aún así añado la funcionalidad de modificarse recibiendo el id
+        id_persona = Persona.objects.get(pk=request.data.get("id_persona"))
+        if id_persona is None:
+            return Response("Error: id_persona")
+
+        paciente = Paciente.objects.get(pk=kwargs["pk"])
+        paciente.id_persona = id_persona
+        paciente.id_terminal = id_terminal
+        paciente.id_tipo_modalidad_paciente = id_modalidad_paciente
+        if request.data.get("tiene_ucr") is not None:
+            paciente.tiene_ucr = request.data.get("tiene_ucr")
+        if request.data.get("numero_expediente") is not None:
+            paciente.numero_expediente = request.data.get("numero_expediente")
+        if request.data.get("numero_seguridad_social") is not None:
+            paciente.numero_seguridad_social = request.data.get("numero_seguridad_social")
+        if request.data.get("prestacion_otros_servicios_sociales") is not None:
+            paciente.prestacion_otros_servicios_sociales = request.data.get("prestacion_otros_servicios_sociales")
+        if request.data.get("observaciones_medicas") is not None:
+            paciente.observaciones_medicas = request.data.get("observaciones_medicas")
+        if request.data.get("intereses_y_actividades") is not None:
+            paciente.intereses_y_actividades = request.data.get("intereses_y_actividades")
+
+        paciente.save()
+
+        # Devolvemos el paciente modificado
+        paciente_serializer = Paciente_Serializer(paciente)
+        return Response(paciente_serializer.data)
 
 
 

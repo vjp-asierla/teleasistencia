@@ -6,18 +6,18 @@ from rest_framework.utils.representation import serializer_repr
 
 from ..models import *
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
+        fields = ['pk', 'url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
         depth = 1
 
-class PermissionSerializer(serializers.HyperlinkedModelSerializer):
+class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
         fields = '__all__'
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ['pk', 'name']
@@ -139,7 +139,7 @@ class Paciente_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Paciente
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 
 class Tipo_Modalidad_Paciente_Serializer(serializers.ModelSerializer):
