@@ -12,7 +12,8 @@
               <div class="form-group position-relative mb-4">
                 <input type="text" class="form-control border-0 rounded-0 shadow-none" name="username"
                        id="username" placeholder="Nombre de usuario" [(ngModel)]="login.username" #username="ngModel"
-                       required minlength="4" maxlength="20" pattern="^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){2,18}[a-zA-Z0-9]$">
+                       required minlength="4" maxlength="20"
+                       pattern="^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){2,18}[a-zA-Z0-9]$">
                 <i class="fas fa-user"></i>
               </div>
               <div *ngIf="username.invalid && (username.dirty || username.touched)"
@@ -46,18 +47,16 @@
                   La contraseña debe tener entre 8 y 16 caracteres
                 </div>
               </div>
-
               <button type="button" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase"
                       [disabled]="!formLogin.form.valid" (click)="hacerLogin()">
                 Login
               </button>
-
             </div>
-
           </div>
           <div class="col-md-6 col-lg-6">
             <div
-              class="formularioRight position-relative d-flex justify-content-center flex-column align-items-center text-center p-5 text-white">
+              class="formularioRight position-relative d-flex justify-content-center flex-column align-items-center text-center
+              p-5 text-white">
               <h2 class="position-relative px-4 pb-3 mb-4">Bienvenido</h2>
               <p>Por favor, introduzca sus datos para poder acceder al sistema</p>
             </div>
@@ -69,16 +68,21 @@
   </div>
 </div>
 
-<div *ngIf="estaLogin" class="modal modal-alert position-static d-block py-5" tabindex="-1" role="dialog" id="modalChoice">
+<div *ngIf="estaLogin" class="modal modal-alert position-static d-block py-5" tabindex="-1" role="dialog"
+     id="modalChoice">
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-4 shadow">
       <div class="modal-body p-4 text-center">
         <h5 class="mb-0">Confirmar</h5>
-        <p class="mb-0 mt-3">Actualmente ha iniciado sesión como Lucía González Martín, necesita salir antes de volver a entrar con un usuario diferente.</p>
+        <p class="mb-0 mt-3">Actualmente ha iniciado sesión como Lucía González Martín, necesita salir antes de volver a
+          entrar con un usuario diferente.</p>
       </div>
       <div class="modal-footer flex-nowrap p-0">
-        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 p-1 rounded-0 border-right" (click)="hacerLogout()"><strong>Logout</strong></button>
-        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 p-1 rounded-0" data-bs-dismiss="modal" [routerLink]="['/inicio']">Cancelar</button>
+        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 p-1 rounded-0 border-right"
+                (click)="hacerLogout()"><strong>Logout</strong></button>
+        <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 p-1 rounded-0"
+                data-bs-dismiss="modal" [routerLink]="['/inicio']">Cancelar
+        </button>
       </div>
     </div>
   </div>
