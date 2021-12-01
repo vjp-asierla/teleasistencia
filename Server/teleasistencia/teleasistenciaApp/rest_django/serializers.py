@@ -9,7 +9,7 @@ from ..models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['pk', 'url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
+        fields = ['pk', 'url', 'last_login', 'username', 'password', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
         depth = 1
 
 class PermissionSerializer(serializers.ModelSerializer):

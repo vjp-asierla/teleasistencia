@@ -19,7 +19,6 @@ from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
 
-import hashlib
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
@@ -55,28 +54,27 @@ class UserViewSet(viewsets.ModelViewSet):
         if id_groups is None:
             return Response("Error: Groups")
 
-        if User.objects.get(username=request.data.get("username")) is not None:
+        if User.objects.filter(username=request.data.get("username")).exists():
             return Response("El usuario ya existe")
 
-        # Encriptamos la contraseña con la libreria hashlib
-        passwordSinCrip = request.data.get("password")
-        passwordCrip = hashlib.sha512(passwordSinCrip.encode())
-
         user = User(
-            password=passwordCrip.hexdigest(),
             username=request.data.get("username"),
             first_name=request.data.get("first_name"),
             last_name=request.data.get("last_name"),
             email=request.data.get("email"),
         )
+        # Encriptamos la contraseña
+        user.set_password(request.data.get("password"))
         user.save()
         user.groups.add(id_groups)
+
 
         # Devolvemos el user creado
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
 
     def update(self, request, *args, **kwargs):
+        # TODO comprobar si un usuario (no-profesor) puede modificar sus datos
         # Comprobamos que existe el groups
         id_groups = Group.objects.get(pk=request.data.get("groups"))
         if id_groups is None:
@@ -90,10 +88,8 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.data.get("email") is not None:
             user.email = request.data.get("email")
         if request.data.get("password") is not None:
-            # Encriptamos la contraseña con la libreria hashlib
-            passwordSinCrip = request.data.get("password")
-            passwordCrip = hashlib.sha512(passwordSinCrip.encode())
-            user.password = passwordCrip.hexdigest()
+            # Encriptamos la contraseña
+            user.set_password(request.data.get("password"))
 
         user.save()
 
@@ -119,7 +115,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAdminUser]
 
 
-    # permission_classes = [IsTeacherMember]
+    permission_classes = [IsTeacherMember]
 
 
 class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
@@ -139,7 +135,7 @@ class Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     queryset = Recurso_Comunitario.objects.all()
     serializer_class = Recurso_Comunitario_Serializer
 
-    # ermission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
+    # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
 
