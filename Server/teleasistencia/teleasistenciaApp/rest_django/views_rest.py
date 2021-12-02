@@ -638,7 +638,15 @@ class Terminal_ViewSet(viewsets.ModelViewSet):
         # Hacemos una búsqueda por los valores introducidos por parámetros
         query = getQueryAnd(request.GET)
         if query:
-            queryset = Terminal.objects.filter(query)
+            try:
+                queryset = Terminal.objects.filter(query)
+            except:
+                try:
+                    id_persona = Persona.objects.get(query)
+                    id_paciente = Paciente.objects.get(id_persona=id_persona)
+                    queryset = Terminal.objects.filter(id_titular=id_paciente)
+                except:
+                    return Response("No hay terminal asociado")
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
@@ -860,7 +868,14 @@ class Paciente_ViewSet(viewsets.ModelViewSet):
         # Hacemos una búsqueda por los valores introducidos por parámetros
         query = getQueryAnd(request.GET)
         if query:
-            queryset = Paciente.objects.filter(query)
+            try:
+                queryset = Paciente.objects.filter(query)
+            except:
+                try:
+                    id_persona = Persona.objects.get(query)
+                    queryset = Paciente.objects.filter(id_persona=id_persona)
+                except:
+                    return Response("No existe el paciente")
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
@@ -1370,7 +1385,7 @@ class Relacion_Usuario_Centro_ViewSet(viewsets.ModelViewSet):
         if id_centro_sanitario is None:
             return Response("Error: id_centro_sanitario")
 
-        relacion_usuario_centro = Relacion_Paciente_Centro.objects.get(pk=kwargs["pk"])
+        relacion_usuario_centro = Relacion_Usuario_Centro.objects.get(pk=kwargs["pk"])
         if request.data.get("persona_contacto") is not None:
             relacion_usuario_centro.persona_contacto = request.data.get("persona_contacto")
         if request.data.get("distancia") is not None:
