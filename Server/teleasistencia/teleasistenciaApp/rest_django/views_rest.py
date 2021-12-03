@@ -33,6 +33,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    permission_classes = [IsTeacherMember]
     # permission_classes = [permissions.IsAdminUser]
 
     # Obtenemos el listado de personas filtrado por los parametros GET
@@ -103,6 +104,7 @@ class PermissionViewSet(viewsets.ModelViewSet):
     """
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
+    permission_classes = [IsTeacherMember]
     #permission_classes = [permissions.IsAdminUser]
 
 class GroupViewSet(viewsets.ModelViewSet):
@@ -113,8 +115,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
     # permission_classes = [permissions.IsAdminUser]
-
-
     permission_classes = [IsTeacherMember]
 
 
@@ -126,6 +126,7 @@ class Tipo_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     serializer_class = Tipo_Recurso_Comunitario_Serializer
     # Habría que descomentar la siguiente línea para permitir las acciones sólo a los usuarios autenticados (Authorization en la petición POST)
     # permission_classes = [permissions.IsAuthenticated] # Si quieriéramos para todos los registrados: IsAuthenticated]
+    permission_classes = [IsTeacherMember]
 
 
 class Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
@@ -261,6 +262,7 @@ class Tipo_Centro_Sanitario_ViewSet(viewsets.ModelViewSet):
     queryset = Tipo_Centro_Sanitario.objects.all()
     serializer_class = Tipo_Centro_Sanitario_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
+    permission_classes = [IsTeacherMember]
 
 
 class Tipo_Alarma_ViewSet(viewsets.ModelViewSet):
@@ -269,6 +271,7 @@ class Tipo_Alarma_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Alarma.objects.all()
     serializer_class = Tipo_Alarma_Serializer
+    permission_classes = [IsTeacherMember]
 
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
@@ -320,7 +323,8 @@ class Clasificacion_Alarma_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Clasificacion_Alarma.objects.all()
     serializer_class = Clasificacion_Alarma_Serializer
-    # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
+    permission_classes = [IsTeacherMember]
+    #permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
 
 class Direccion_ViewSet(viewsets.ModelViewSet):
@@ -524,6 +528,7 @@ class Tipo_Agenda_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Agenda.objects.all()
     serializer_class = Tipo_Agenda_Serializer
+    permission_classes = [IsTeacherMember]
     # permission_classes = [permissions.IsAdminUser] # Si quieriéramos para todos los registrados: IsAuthenticated]
 
 
@@ -763,6 +768,7 @@ class Tipo_Situacion_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Situacion.objects.all()
     serializer_class = Tipo_Situacion_Serializer
+    permission_classes = [IsTeacherMember]
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
 
@@ -772,6 +778,7 @@ class Tipo_Vivienda_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Vivienda.objects.all()
     serializer_class = Tipo_Vivienda_Serializer
+    permission_classes = [IsTeacherMember]
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
 
@@ -968,6 +975,7 @@ class Tipo_Modalidad_Paciente_ViewSet(viewsets.ModelViewSet):
     """
     queryset = Tipo_Modalidad_Paciente.objects.all()
     serializer_class = Tipo_Modalidad_Paciente_Serializer
+    permission_classes = [IsTeacherMember]
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
 
