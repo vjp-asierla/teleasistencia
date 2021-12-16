@@ -29,5 +29,6 @@ admin.site.register(Persona_Contacto_En_Alarma)
 admin.site.register(Recursos_Comunitarios_En_Alarma)
 admin.site.register(Tipo_Situacion)
 admin.site.register(Historico_Tipo_Situacion)
+admin.site.register(Relacion_Usuario_Centro)
 
 

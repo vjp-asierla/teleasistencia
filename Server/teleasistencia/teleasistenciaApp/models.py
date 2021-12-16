@@ -239,4 +239,13 @@ class Historico_Tipo_Situacion(models.Model):
     def __str__(self):
         return self.id_tipo_situacion.nombre+" - "+self.id_terminal.numero_terminal+" - "+self.id_terminal.id_titular.id_persona.nombre
 
+class Relacion_Usuario_Centro(models.Model):
+    id_paciente = models.ForeignKey(Paciente, null=True, on_delete=models.SET_NULL)
+    id_centro_sanitario = models.ForeignKey(Centro_Sanitario, null=True, on_delete=models.SET_NULL)
+    persona_contacto = models.CharField(max_length=1000, blank=True)
+    distancia = models.IntegerField(blank=True)
+    tiempo = models.IntegerField(blank=True)
+    observaciones = models.CharField(max_length=1000, blank=True)
+    def __str__(self):
+        return self.id_paciente.id_persona.nombre+" - "+self.id_centro_sanitario.nombre+" - "+self.persona_contacto+" - "+self.distancia+" - "+self.tiempo+" - "+self.observaciones
 
