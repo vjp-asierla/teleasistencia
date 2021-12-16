@@ -1,0 +1,11 @@
+<td>{{ direccion.localidad }}</td>
+<td>{{ direccion.provincia }}</td>
+<td>{{ direccion.direccion }}</td>
+<td>{{ direccion.codigo_postal }}</td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify"
+          [routerLink]="['/direcciones/modificar', direccion.id]">
+    Modificar datos
+  </button>
+</td>
+

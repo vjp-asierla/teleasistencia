@@ -1,0 +1,26 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tipos de centros sanitarios</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Tipos de centros sanitarios</h1>
+    <div class="table-responsive m-2">
+      <table class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th scope="col">Nombre</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tipo_centro_sanitario of tipos_centros_sanitarios"
+            app-item-tipo-centro-sanitario [tipo_centro_sanitario]="tipo_centro_sanitario">
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

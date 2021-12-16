@@ -1,0 +1,115 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/centros_sanitarios']">Centros sanitarios</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Modificar centro sanitario {{idCentroSanitario}}</li>
+    </ol>
+  </nav>
+  <h1 class="component-title">Modificar datos centro sanitario {{idCentroSanitario}}</h1>
+  <form #modificarCentroSanitarioForm="ngForm">
+
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required maxlength="500" [(ngModel)]="centro_sanitario.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+           class="alert alert-secondary" role="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="telefono" class="form-label">Teléfono</label>
+      <input type="tel" name="telefono" id="telefono" class="form-control" required
+             maxlength="12" pattern="^[9|6|7]{1}[ ]*([0-9][ ]*){8}$"
+             [(ngModel)]="centro_sanitario.telefono" #telefono="ngModel">
+      <div *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+           class="alert alert-secondary" role="alert">
+        <div *ngIf="telefono.errors?.required; else elseBlock">
+          El teléfono es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          Introduzca un teléfono válido
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="tipo_centro_sanitario" class="form-label">Tipo de centro sanitario</label>
+      <select class="form-select" id="tipo_centro_sanitario" name="tipo_centro_sanitario"
+              [(ngModel)]="centro_sanitario.id_tipos_centro_sanitario" required>
+        <option class="tipo_centro_sanitario_option" *ngFor="let tipo_centro_sanitario of tipos_centros_sanitarios; let i = index"
+                [value]="tipo_centro_sanitario.id">{{ centro_sanitario.id_tipos_centro_sanitario.id === tipo_centro_sanitario.id? optionSelected(i):"" }}{{ tipo_centro_sanitario.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="localidad" class="form-label">Localidad</label>
+      <input type="text" name="localidad" id="localidad" class="form-control"
+             required maxlength="200" [(ngModel)]="dire.localidad"
+             #localidad="ngModel">
+      <div *ngIf="localidad.invalid && (localidad.dirty || localidad.touched)" class="alert alert-secondary"
+           role="alert">
+        <div *ngIf="localidad.errors?.required">
+          La localidad es obligatoria
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="provincia" class="form-label">Provincia</label>
+      <input type="text" name="provincia" id="provincia" class="form-control"
+             required maxlength="200" [(ngModel)]="dire.provincia"
+             #provincia="ngModel">
+      <div *ngIf="provincia.invalid && (provincia.dirty || provincia.touched)" class="alert alert-secondary"
+           role="alert">
+        <div *ngIf="provincia.errors?.required">
+          La provincia es obligatoria
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input type="text" name="direccion" id="direccion" class="form-control"
+             required maxlength="200" [(ngModel)]="dire.direccion"
+             #direccion="ngModel">
+      <div *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)" class="alert alert-secondary"
+           role="alert">
+        <div *ngIf="direccion.errors?.required">
+          La dirección es obligatoria
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="codigo_postal" class="form-label">Código postal</label>
+      <input type="text" name="codigo_postal" id="codigo_postal" class="form-control"
+             required minlength="5" maxlength="5" pattern="[0-9]+$" [(ngModel)]="dire.codigo_postal"
+             #codigo_postal="ngModel">
+      <div *ngIf="codigo_postal.invalid && (codigo_postal.dirty || codigo_postal.touched)" class="alert alert-secondary"
+           role="alert">
+        <div *ngIf="codigo_postal.errors?.required; else elseBlock">
+          El código postal es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          El código postal debe tener 5 caracteres numéricos
+        </ng-template>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-outline-success m-1" (click)="modificarCentroSanitario()"
+            [disabled]="!modificarCentroSanitarioForm.form.valid">
+      Guardar
+    </button>
+    <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/centros_sanitarios']">
+      Volver
+    </button>
+
+  </form>
+</div>
+</main>

@@ -1,0 +1,115 @@
+<header class="py-3 cabecera">
+  <div class="container-fluid contenedor-cabecera">
+    <a class="navbar-brand" [routerLink]="['/inicio']">
+      <img src="assets/cabecera-logo.png" alt="Logo TLA" width="100" height="71" class="d-inline-block">
+      <span class="titulo-cabecera">TLA<span class="nombre-servicio"> - Servicio de teleasistencia</span></span>
+    </a>
+    <div class="col-md-3 text-end login">
+      <app-botones-login></app-botones-login>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Tenth navbar example">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsers" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownUsers">
+            <li><a class="dropdown-item" [routerLink]="['/usuarios']">Consultar usuarios</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/usuarios/nuevo']">Crear nuevos usuarios</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAlarmas" data-bs-toggle="dropdown" aria-expanded="false">
+            Alarmas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownAlarmas">
+            <li><a class="dropdown-item" [routerLink]="['/tipos_alarmas']">Consultar tipos de alarma</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_alarmas/nuevo']">Crear nuevo tipo de alarma</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/clasificaciones_alarmas']">Consultar clasificaciones de alarma</a>
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/clasificaciones_alarmas/nueva']">Crear nueva clasificación de
+              alarma</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCentrosSanitarios" data-bs-toggle="dropdown" aria-expanded="false">
+            Centros sanitarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownCentrosSanitarios">
+            <li><a class="dropdown-item" [routerLink]="['/centros_sanitarios']">Consultar centros sanitarios</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/centros_sanitarios/nuevo']">Crear nuevo centro sanitario</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_centros_sanitarios']">Consultar tipos de centros sanitarios</a>
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_centros_sanitarios/nuevo']">Crear nuevo tipo de centro
+              sanitario</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownModalidadPaciente" data-bs-toggle="dropdown" aria-expanded="false">
+            Modalidad paciente
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownModalidadPaciente">
+            <li><a class="dropdown-item" [routerLink]="['/tipos_modalidades_pacientes']">Consultar tipos de modalidades de
+              pacientes</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_modalidades_pacientes/nuevo']">Crear nuevo tipo de modalidad de
+              paciente</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRecursosComunitarios" data-bs-toggle="dropdown" aria-expanded="false">
+            Recursos comunitarios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownRecursosComunitarios">
+            <li><a class="dropdown-item" [routerLink]="['/recursos_comunitarios']">Consultar recursos comunitarios</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/recursos_comunitarios/nuevo']">Crear nuevo recurso comunitario</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_recursos_comunitarios']">Consultar tipos de recursos
+              comunitarios</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/tipos_recursos_comunitarios/nuevo']">Crear nuevo tipo de recurso
+              comunitario</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPersonas" data-bs-toggle="dropdown" aria-expanded="false">
+            Personas
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownPersonas">
+            <li><a class="dropdown-item" [routerLink]="['/personas']">Consultar personas</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/personas/nueva']">Crear nueva persona seleccionando dirección</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownDirecciones" data-bs-toggle="dropdown" aria-expanded="false">
+            Direcciones
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownDirecciones">
+            <li><a class="dropdown-item" [routerLink]="['/direcciones']">Consultar direcciones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/direcciones/nueva']">Crear nueva dirección</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

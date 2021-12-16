@@ -1,0 +1,72 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/tipos_alarmas']">Tipos de alarmas</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Crear tipo de alarma</li>
+    </ol>
+  </nav>
+  <h1 class="component-title">Crear nuevo tipo alarma</h1>
+  <form #nuevoTipoAlarmaForm="ngForm">
+
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" name="nombre" id="nombre" class="form-control"
+             required maxlength="200" [(ngModel)]="tipo_alarma.nombre" #nombre="ngModel">
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="nombre.errors?.required">
+          El nombre es obligatorio
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="codigo" class="form-label">Código</label>
+      <input type="text" name="codigo" id="codigo" class="form-control" maxlength="200" required
+             pattern="[A-Z & 0-9]+$" [(ngModel)]="tipo_alarma.codigo" #codigo="ngModel">
+      <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-secondary" role="alert">
+        <div *ngIf="nombre.errors?.required; else elseBlock">
+          El código es obligatorio
+        </div>
+        <ng-template #elseBlock>
+          El código debe tener solo letras mayúsculas o números
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="form-group-check mb-3">
+      <span>Es dispositivo &nbsp;</span>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="es_dispositivo_true"
+               name="es_dispositivo_true" [value]="true" [(ngModel)]="tipo_alarma.es_dispositivo">
+        <label class="form-check-label" for="es_dispositivo_true">Sí</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="es_dispositivo_false"
+               name="es_dispositivo_false" [value]="false" [(ngModel)]="tipo_alarma.es_dispositivo">
+        <label class="form-check-label" for="es_dispositivo_false">No</label>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="clasificacion_alarma" class="form-label">Clasificación alarma</label>
+      <select class="form-select" id="clasificacion_alarma" name="clasificacion_alarma"
+              required [(ngModel)]="tipo_alarma.id_clasificacion_alarma">
+        <option class="clasificacion_alarma_option"
+                *ngFor="let clasificacion_alarma of clasificaciones_alarmas"
+                [value]="clasificacion_alarma.id">{{ clasificacion_alarma.nombre }} {{ clasificacion_alarma.codigo }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-outline-success m-1" (click)="nuevoTipoAlarma()"
+            [disabled]="!nuevoTipoAlarmaForm.form.valid">
+      Guardar
+    </button>
+    <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/tipos_alarmas']">
+      Volver
+    </button>
+
+  </form>
+</div>
+</main>

@@ -1,0 +1,173 @@
+.carousel {
+  margin-bottom: 4rem;
+}
+
+.carousel-caption {
+  bottom: 8rem;
+  z-index: 10;
+}
+
+.carousel-item {
+  height: 32rem;
+}
+
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+.info .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.info h2 {
+  font-weight: 400;
+}
+
+.info .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-divider:last-child {
+  margin-bottom: 0px;
+}
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+abbr {
+  text-decoration: none;
+}
+
+@media (min-width: 40em) {
+  .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 200px) {
+  .carousel-item {
+    height: 15rem;
+  }
+
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 15rem;
+  }
+
+  .carousel-caption {
+    bottom: 0rem;
+    z-index: 10;
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .carousel-item {
+    height: 20rem;
+  }
+
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 20rem;
+  }
+
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+
+  .carousel-item {
+    height: 32rem;
+  }
+
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+
+  .carousel-caption {
+    bottom: 5rem;
+    z-index: 10;
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel-item {
+    height: 32rem;
+  }
+
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+
+  .carousel-caption {
+    bottom: 5rem;
+    z-index: 10;
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel-item {
+    height: 32rem;
+  }
+
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+}
+
+
+
+
