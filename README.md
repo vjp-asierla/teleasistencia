@@ -72,6 +72,6 @@ Los alumnos que han contribuido en el desarrollo de este proyecto y la labor que
 Especial mención al departamento de Atención Sociosanitaria del IES San Martín de Talayuela. Partícipes e impulsores de la plataforma de prácticas de Teleasistencia. 
 
 
-
+ 
 
 [Sobre el Gitignore](https://djangowaves.com/tips-tricks/gitignore-for-a-django-project/)
