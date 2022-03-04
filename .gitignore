@@ -9,7 +9,7 @@ venviorments/
 *.pot
 *.pyc
 __pycache__
-#db.sqlite3
+db.sqlite3
 media
 
 # Backup files #
