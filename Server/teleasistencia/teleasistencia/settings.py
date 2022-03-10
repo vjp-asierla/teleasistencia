@@ -71,6 +71,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8000',
     'https://localhost:8000',
+
 ]
 
 ROOT_URLCONF = 'teleasistencia.urls'
