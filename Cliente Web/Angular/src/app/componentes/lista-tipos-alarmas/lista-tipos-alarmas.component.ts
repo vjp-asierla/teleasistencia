@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {ITipoAlarma} from '../../interfaces/i-tipo-alarma';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
@@ -11,6 +11,7 @@ import {Title} from '@angular/platform-browser';
 
 export class ListaTiposAlarmasComponent implements OnInit {
   public tipos_alarmas: ITipoAlarma[];
+  @Output() p: number = 1;
 
   constructor(private route: ActivatedRoute, private titleService: Title) {
   }

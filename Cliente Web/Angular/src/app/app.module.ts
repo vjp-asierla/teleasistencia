@@ -60,6 +60,7 @@ import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-logi
 import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import {BotonesLoginComponent} from './componentes/botones-login/botones-login.c
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     CargaUserService,
