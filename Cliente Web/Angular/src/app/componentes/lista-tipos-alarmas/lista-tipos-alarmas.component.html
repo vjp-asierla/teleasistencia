@@ -9,13 +9,13 @@
     <h1 class="component-title">Tipos de alarmas</h1>
     <p>Prueba de paginacion!!!!</p>
     <div class="table-responsive m-2">
-      <table class="table table-hover text-center">
+      <table id="tableList" class="table table-hover text-center sortable">
         <thead>
         <tr class="table-purple">
-          <th scope="col">Nombre</th>
-          <th scope="col">Código</th>
-          <th scope="col">Dispositivo</th>
-          <th scope="col">Clasificación alarma</th>
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre</th>
+          <th (click)="filtroTabla(1, 'number')" scope="col">Código</th>
+          <th (click)="filtroTabla(2, 'string')" scope="col">Dispositivo</th>
+          <th (click)="filtroTabla(3, 'string')" scope="col">Clasificación alarma</th>
           <th scope="col"></th>
         </tr>
         </thead>

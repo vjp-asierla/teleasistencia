@@ -61,6 +61,7 @@ import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {FiltroTablasService} from "./servicios/filtro-tablas.service";
 
 @NgModule({
   declarations: [
@@ -129,7 +130,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CargaCentroSanitarioService,
     CargaRecursoComunitarioService,
     CargaPersonaService,
-    Title
+    Title,
+    FiltroTablasService
   ],
   bootstrap: [AppComponent]
 })
