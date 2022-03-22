@@ -8,20 +8,21 @@
     </nav>
     <h1 class="component-title">Centros sanitarios</h1>
     <div class="table-responsive m-2">
-      <table class="table table-hover text-center">
+      <table id="tableList" class="table table-hover text-center">
         <thead>
         <tr class="table-purple">
-          <th scope="col">Nombre</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Tipo de centro sanitario</th>
-          <th scope="col">Dirección</th>
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre</th>
+          <th (click)="filtroTabla(1, 'number')" scope="col">Teléfono</th>
+          <th (click)="filtroTabla(2, 'string')" scope="col">Tipo de centro sanitario</th>
+          <th (click)="filtroTabla(3, 'string')" scope="col">Dirección</th>
           <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let centro_sanitario of centros_sanitarios"
+        <tr *ngFor="let centro_sanitario of centros_sanitarios | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-centro-sanitario [centro_sanitario]="centro_sanitario">
         </tr>
+        <pagination-controls (pageChange)="numPaginacion = $event"></pagination-controls>
         </tbody>
       </table>
     </div>

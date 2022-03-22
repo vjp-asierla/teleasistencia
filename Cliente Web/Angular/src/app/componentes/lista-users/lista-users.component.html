@@ -8,21 +8,22 @@
     </nav>
     <h1 class="component-title">Usuarios del sistema</h1>
     <div class="table-responsive m-2">
-      <table class="table table-hover text-center">
+      <table id="tableList" class="table table-hover text-center">
         <thead>
         <tr class="table-purple">
-          <th scope="col">Nombre de usuario</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Email</th>
-          <th scope="col">Grupo</th>
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre de usuario</th>
+          <th (click)="filtroTabla(1, 'string')" scope="col">Nombre</th>
+          <th (click)="filtroTabla(2, 'string')" scope="col">Apellidos</th>
+          <th (click)="filtroTabla(3, 'string')" scope="col">Email</th>
+          <th (click)="filtroTabla(4, 'string')" scope="col">Grupo</th>
           <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users"
+        <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-user [user]="user">
         </tr>
+        <pagination-controls (pageChange)="numPaginacion = $event"></pagination-controls>
         </tbody>
       </table>
     </div>

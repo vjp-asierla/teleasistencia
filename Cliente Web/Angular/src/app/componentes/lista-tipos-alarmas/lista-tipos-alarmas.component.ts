@@ -12,7 +12,7 @@ import {FiltroTablasService} from "../../servicios/filtro-tablas.service";
 
 export class ListaTiposAlarmasComponent implements OnInit {
   public tipos_alarmas: ITipoAlarma[];
-  @Output() p: number = 1;
+  numPaginacion: number = 1;
 
   constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
   }
