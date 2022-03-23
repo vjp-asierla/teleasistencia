@@ -1,0 +1,209 @@
+* {
+  padding: 0;
+  outline: none;
+}
+
+.formulario {
+  font-family: 'Roboto', sans-serif !important;
+  color: #494949 !important;
+  margin-top: 10vh !important;
+  margin-bottom: 8vh !important;
+}
+
+.formulario .formularioLeft h1 {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.formularioLeft img {
+  margin: 22px;
+}
+
+.formulario .formularioLeft input:focus {
+  border-color: #ced4da;
+}
+
+.formulario .formularioLeft input::placeholder {
+  font-size: 15px;
+}
+
+.formularioLeft label {
+  float: left;
+  font-size: 15px;
+  color: grey;
+}
+
+.formulario .formularioLeft input {
+  border-bottom: 1px solid black !important;
+}
+
+.formulario .formularioLeft i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #494949;
+}
+
+.formulario .formularioLeft button {
+  background: linear-gradient(45deg,#75587D,#F8E6DF);
+  border-radius: 30px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.formulario .formularioRight {
+  background-image: url('../../../../assets/login-imagen.jpg');
+  height: 640px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 12px !important;
+  margin-right: 12px !important;
+}
+
+.formulario .formularioRight:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,#75587D,#F8E6DF);
+  opacity: 0.4;
+}
+
+.formulario .formularioRight h2 {
+  z-index: 1;
+}
+
+.formulario .formularioRight h2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  bottom: 0;
+  left:50%;
+  transform: translateX(-50%);
+}
+
+.formulario .formularioRight p {
+  z-index: 1;
+}
+
+.formulario .formularioLeft .alert {
+  margin-bottom: 20px;
+  width: 310px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.formulario .formularioLeft .alert {
+  width: 320px;
+  padding: 5px;
+}
+
+.alert-secondary {
+  color: #494949 !important;
+  background-color: rgba(248, 230, 223, 0.6) !important;
+  border-color: rgba(117, 88, 125, 0.8) !important;
+}
+
+.rounded-4 { border-radius: .5rem; }
+
+.modal-dialog {
+  width: 600px;
+  transition: bottom .75s ease-in-out;
+  margin-top: 8vh !important;
+  margin-bottom: 8vh !important;
+}
+.modal-footer {
+  padding-bottom: 2rem;
+}
+
+.btn-link {
+  color: #75597D !important;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(109 13 253 / 25%) !important;
+}
+
+.border-right { border-right: 1px solid #eee; }
+
+
+@media (min-width: 200px) {
+  form {
+    margin: auto;
+    width: 332px;
+  }
+
+  .form-group {
+    width: 310px;
+  }
+
+  .modal-dialog {
+    width: 350px;
+    margin: auto;
+  }
+}
+
+@media (min-width: 576px) {
+  form {
+    margin: auto;
+    width: 528px;
+  }
+
+  .form-group {
+    width: 315px;
+  }
+
+  .modal-dialog {
+    width: 500px;
+  }
+}
+
+@media (min-width: 768px) {
+  form {
+    margin: auto;
+    width: 720px;
+  }
+
+  .form-group {
+    width: 300px;
+  }
+
+  .modal-dialog {
+    width: 550px;
+  }
+}
+
+@media (min-width: 992px) {
+  form {
+    margin: auto;
+    width: 950px;
+  }
+
+  .form-group {
+    width: 320px;
+  }
+
+  .modal-dialog {
+    width: 600px;
+  }
+}
+
+@media (min-width: 1200px) {
+  form {
+    margin: auto;
+    width: 980px;
+  }
+
+  .form-group {
+    width: 320px;
+  }
+
+  .modal-dialog {
+    width: 600px;
+  }
+}
