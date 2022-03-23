@@ -22,7 +22,11 @@
         <tr *ngFor="let centro_sanitario of centros_sanitarios | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-centro-sanitario [centro_sanitario]="centro_sanitario">
         </tr>
-        <pagination-controls (pageChange)="numPaginacion = $event"></pagination-controls>
+        <pagination-controls
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          responsive="true"
+          (pageChange)="numPaginacion = $event"></pagination-controls>
         </tbody>
       </table>
     </div>

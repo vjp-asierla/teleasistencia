@@ -22,7 +22,11 @@
         <tr *ngFor="let tipo_alarma of tipos_alarmas | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
         </tr>
-        <pagination-controls (pageChange)="numPaginacion = $event"></pagination-controls>
+        <pagination-controls
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          responsive="true"
+          (pageChange)="numPaginacion = $event"></pagination-controls>
         </tbody>
       </table>
     </div>

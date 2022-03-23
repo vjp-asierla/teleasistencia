@@ -81,6 +81,9 @@ table {
   td > .btn-modify {
     float: right;
   }
+  th{
+    cursor: pointer;
+  }
 }
 
 .form-group {

@@ -3,6 +3,7 @@ import {Injectable, Output} from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FiltroTablasService {
 
   filtroService(indice:number, tipoContenido: string){
