@@ -191,6 +191,19 @@ const routes: Routes = [
       direccion: DetallesDireccionResolveService
     }
   },
+
+ /* {
+    path: 'direcciones/eliminar/:id',
+    component:  ,
+    canActivate: [LoginGuard],
+    resolve:{
+      direccion:
+    }
+
+  },
+
+  */
+
   {path: 'direcciones/nueva', component: NuevaDireccionComponent, canActivate: [LoginGuard]},
   {
     path: 'centros_sanitarios',
