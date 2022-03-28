@@ -62,6 +62,7 @@ import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FiltroTablasService} from "./servicios/filtro-tablas.service";
+import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import {FiltroTablasService} from "./servicios/filtro-tablas.service";
     PantallaLoginComponent,
     HeaderComponent,
     FooterComponent,
-    BotonesLoginComponent
+    BotonesLoginComponent,
+    FiltroBusquedaPipe
   ],
   imports: [
     BrowserModule,

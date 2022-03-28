@@ -13,6 +13,7 @@ import {FiltroTablasService} from "../../servicios/filtro-tablas.service";
 export class ListaTiposAlarmasComponent implements OnInit {
   public tipos_alarmas: ITipoAlarma[];
   numPaginacion: number = 1;
+  inputBusqueda: any = '';
 
   constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
   }
@@ -25,4 +26,5 @@ export class ListaTiposAlarmasComponent implements OnInit {
   filtroTabla(indice: number, tipo: string){
     this.filtradoTabla.filtroService(indice, tipo);
   }
+
 }

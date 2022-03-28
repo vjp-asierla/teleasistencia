@@ -7,6 +7,9 @@
       </ol>
     </nav>
     <h1 class="component-title">Tipos de alarmas</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
     <div class="table-responsive m-2">
       <table id="tableList" class="table table-hover text-center sortable">
         <thead>
@@ -19,7 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let tipo_alarma of tipos_alarmas | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
+        <tr *ngFor="let tipo_alarma of tipos_alarmas | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
         </tr>
         <pagination-controls
