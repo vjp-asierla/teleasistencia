@@ -63,6 +63,8 @@ import {BotonesLoginComponent} from './componentes/botones-login/botones-login.c
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FiltroTablasService} from "./servicios/filtro-tablas.service";
 import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
+import { ListaTiposViviendaComponent } from './componentes/lista-tipos-vivienda/lista-tipos-vivienda.component';
+import { ListaTiposSituacionComponent } from './componentes/lista-tipos-situacion/lista-tipos-situacion.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,9 @@ import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
     HeaderComponent,
     FooterComponent,
     BotonesLoginComponent,
-    FiltroBusquedaPipe
+    FiltroBusquedaPipe,
+    ListaTiposViviendaComponent,
+    ListaTiposSituacionComponent
   ],
   imports: [
     BrowserModule,
