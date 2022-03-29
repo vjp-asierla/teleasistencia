@@ -53,6 +53,10 @@ import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-rec
 import {NuevoRecursoComunitarioComponent} from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
 import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {LoginGuard} from './servicios/login.guard';
+import {ListaTiposViviendaComponent} from "./componentes/lista-tipos-vivienda/lista-tipos-vivienda.component";
+import {ListaViviendasResolveService} from "./servicios/lista-viviendas-resolve.service";
+import {NuevaViviendaComponent} from "./componentes/nueva-vivienda/nueva-vivienda.component";
+import {DetallesTipoViviendaComponent} from "./componentes/detalles-tipo-vivienda/detalles-tipo-vivienda.component";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -265,6 +269,39 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     resolve: {
       direcciones: ListaDireccionesResolveService
+    }
+  },
+  {
+    path: 'viviendas',
+    component: ListaTiposViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      users: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/nueva',
+    component: NuevaViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      direcciones: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/modificar/:id',
+    component: DetallesTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      vivienda: DetallesPersonaResolveService, // ***** Crear el servicio para Viviendas.
+      direcciones: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'usuarios/modificar/:id',
+    component: DetallesUserComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      user: DetallesUserResolveService
     }
   },
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},

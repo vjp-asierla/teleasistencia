@@ -65,6 +65,9 @@ import {FiltroTablasService} from "./servicios/filtro-tablas.service";
 import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
 import { ListaTiposViviendaComponent } from './componentes/lista-tipos-vivienda/lista-tipos-vivienda.component';
 import { ListaTiposSituacionComponent } from './componentes/lista-tipos-situacion/lista-tipos-situacion.component';
+import { ItemTipoViviendaComponent } from './componentes/item-tipo-vivienda/item-tipo-vivienda.component';
+import { NuevaViviendaComponent } from './componentes/nueva-vivienda/nueva-vivienda.component';
+import { DetallesTipoViviendaComponent } from './componentes/detalles-tipo-vivienda/detalles-tipo-vivienda.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +119,10 @@ import { ListaTiposSituacionComponent } from './componentes/lista-tipos-situacio
     BotonesLoginComponent,
     FiltroBusquedaPipe,
     ListaTiposViviendaComponent,
-    ListaTiposSituacionComponent
+    ListaTiposSituacionComponent,
+    ItemTipoViviendaComponent,
+    NuevaViviendaComponent,
+    DetallesTipoViviendaComponent
   ],
   imports: [
     BrowserModule,
