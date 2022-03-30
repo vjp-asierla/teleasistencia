@@ -276,7 +276,7 @@ const routes: Routes = [
     component: ListaTiposViviendaComponent,
     canActivate: [LoginGuard],
     resolve: {
-      users: ListaViviendasResolveService
+      tipos_viviendas: ListaViviendasResolveService
     }
   },
   {
@@ -284,7 +284,7 @@ const routes: Routes = [
     component: NuevaViviendaComponent,
     canActivate: [LoginGuard],
     resolve: {
-      direcciones: ListaViviendasResolveService
+      clasificaciones_alarmas: ListaViviendasResolveService
     }
   },
   {
@@ -292,8 +292,8 @@ const routes: Routes = [
     component: DetallesTipoViviendaComponent,
     canActivate: [LoginGuard],
     resolve: {
-      vivienda: DetallesPersonaResolveService, // ***** Crear el servicio para Viviendas.
-      direcciones: ListaViviendasResolveService
+      tipo_vivienda: DetallesTipoViviendaComponent,
+      clasificaciones_viviendas: ListaViviendasResolveService
     }
   },
   {

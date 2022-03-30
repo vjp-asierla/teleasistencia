@@ -68,6 +68,7 @@ import { ListaTiposSituacionComponent } from './componentes/lista-tipos-situacio
 import { ItemTipoViviendaComponent } from './componentes/item-tipo-vivienda/item-tipo-vivienda.component';
 import { NuevaViviendaComponent } from './componentes/nueva-vivienda/nueva-vivienda.component';
 import { DetallesTipoViviendaComponent } from './componentes/detalles-tipo-vivienda/detalles-tipo-vivienda.component';
+import {CargaViviendaService} from "./servicios/carga-vivienda.service";
 
 @NgModule({
   declarations: [
@@ -129,7 +130,7 @@ import { DetallesTipoViviendaComponent } from './componentes/detalles-tipo-vivie
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     CargaUserService,
@@ -142,8 +143,9 @@ import { DetallesTipoViviendaComponent } from './componentes/detalles-tipo-vivie
     CargaCentroSanitarioService,
     CargaRecursoComunitarioService,
     CargaPersonaService,
+    CargaViviendaService,
     Title,
-    FiltroTablasService
+    FiltroTablasService,
   ],
   bootstrap: [AppComponent]
 })

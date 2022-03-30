@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {ITipoVivienda} from "../interfaces/i-tipo-vivienda";
 
 @Injectable({
@@ -19,8 +19,9 @@ export class CargaViviendaService {
     return this.http.get<ITipoVivienda>(this.URL_SERVER_VIVIENDAS + '/' + idVivienda);
   }
 
-  modificarVivienda(vivienda: ITipoVivienda): Observable<ITipoVivienda> {
-    return this.http.put<ITipoVivienda>(vivienda.nombre, vivienda);
+
+  modificarTipoVivienda(tipoVivienda: ITipoVivienda): Observable<ITipoVivienda> {
+    return this.http.put<ITipoVivienda>(this.URL_SERVER_VIVIENDAS + '/' + tipoVivienda.id, tipoVivienda);
   }
 
   nuevaVivienda(vivienda: ITipoVivienda): Observable<ITipoVivienda> {

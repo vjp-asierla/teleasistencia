@@ -20,8 +20,6 @@ export class ListaTiposViviendaComponent implements OnInit {
   ngOnInit(): void {
     this.tipos_viviendas = this.route.snapshot.data['tipos_viviendas'];
     this.titleService.setTitle('Tipos viviendas');
-    console.log(this.tipos_viviendas);
-
   }
 
   filtroTabla(indice: number, tipo: string){
