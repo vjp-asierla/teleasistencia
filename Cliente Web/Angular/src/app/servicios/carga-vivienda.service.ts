@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITipoVivienda} from "../interfaces/i-tipo-vivienda";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaViviendaService {
-  private URL_SERVER_VIVIENDAS = 'http://localhost:8000/api-rest/tipo_vivienda';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_VIVIENDAS = this.urlBase + 'tipo_vivienda';
 
   constructor(private http: HttpClient) { }
 
