@@ -6,6 +6,7 @@ import {ITipoVivienda} from "../interfaces/i-tipo-vivienda";
 @Injectable({
   providedIn: 'root'
 })
+
 export class CargaViviendaService {
   private URL_SERVER_VIVIENDAS = 'http://localhost:8000/api-rest/tipo_vivienda';
 

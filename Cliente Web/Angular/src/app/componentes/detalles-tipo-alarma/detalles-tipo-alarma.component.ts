@@ -16,8 +16,7 @@ export class DetallesTipoAlarmaComponent implements OnInit {
   public idTipoAlarma: number;
   public clasificaciones_alarmas: IClasificacionAlarma[];
 
-  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
-  }
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {}
 
   ngOnInit(): void {
     this.tipo_alarma = this.route.snapshot.data['tipo_alarma'];

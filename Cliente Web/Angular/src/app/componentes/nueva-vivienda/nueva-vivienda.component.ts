@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ITipoVivienda} from "../../interfaces/i-tipo-vivienda";
-import {Persona} from "../../clases/persona";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CargaViviendaService} from "../../servicios/carga-vivienda.service";
+import {TipoVivienda} from "../../clases/tipo-vivienda";
 
 @Component({
   selector: 'app-nueva-vivienda',
@@ -18,7 +18,7 @@ export class NuevaViviendaComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Crear nueva vivienda');
-    this.vivienda = new Persona();
+    this.vivienda = new TipoVivienda();
     this.nombreVivienda = '';
   }
 
@@ -27,7 +27,7 @@ export class NuevaViviendaComponent implements OnInit {
       e => {
         console.log('Vivienda creada');
         console.log(this.vivienda);
-        this.router.navigate(['/vivienda']);
+        this.router.navigate(['/viviendas']);
       },
       error => {
         console.log(error);
