@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITipoAlarma} from '../interfaces/i-tipo-alarma';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaTipoAlarmaService {
-  private URL_SERVER_TIPOS_ALARMAS = 'http://localhost:8000/api-rest/tipo_alarma';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_TIPOS_ALARMAS = this.urlBase + 'tipo_alarma';
 
   constructor(private http: HttpClient) {
   }
