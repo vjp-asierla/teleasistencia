@@ -1,9 +1,15 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {ILogin} from "../../interfaces/i-login";
 import {Title} from "@angular/platform-browser";
 import {Login} from "../../clases/login";
 import {LoginService} from "../../servicios/login.service";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {token} from "../../interfaces/i-token";
+import {NgForm} from "@angular/forms";
+
+
+
 
 @Component({
   selector: 'app-pantalla-login',
@@ -14,11 +20,16 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
   public login: ILogin;
   public estaLogin: boolean;
 
-  constructor(private titleService: Title, private loginService: LoginService, private router: Router) { }
+  @ViewChild('formLogin') formLogin!: NgForm
+
+
+
+  constructor(private titleService: Title, private loginService: LoginService,private http:HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Login');
     this.login = new Login();
+
   }
 
   ngDoCheck(): void {
@@ -26,8 +37,21 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
   }
 
   hacerLogin(): void {
+   this.http.post<token>('http://localhost:8000/api/token/',
+     this.formLogin.value
+
+     //{
+     //"username": "admin",
+     //"password": "admin"
+   //}
+   ).subscribe(
+      resp=>{
+        console.log(resp)
+        localStorage.setItem('token',resp.access)
+      }
+    )
     this.loginService.hacerLogin();
-    console.log(this.login);
+    console.log(this.formLogin.value)
     this.router.navigate(['/inicio']);
   }
 
@@ -35,4 +59,9 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
     this.loginService.hacerLogout();
     this.router.navigate(['/login']);
   }
+
+
+
+
+
 }

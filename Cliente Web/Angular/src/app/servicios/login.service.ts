@@ -10,7 +10,9 @@ export class LoginService {
   }
 
   hacerLogin(): void {
-    localStorage.setItem('token', 'usuario');
+
+    localStorage.setItem('token', 'usuario' );
+    //JSON.stringify(data.token)
   }
 
   estaLogin(): boolean {
