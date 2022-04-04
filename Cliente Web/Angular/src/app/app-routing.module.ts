@@ -59,6 +59,7 @@ import {NuevaViviendaComponent} from "./componentes/nueva-vivienda/nueva-viviend
 import {DetallesTipoViviendaComponent} from "./componentes/detalles-tipo-vivienda/detalles-tipo-vivienda.component";
 import {ListaTiposSituacionComponent} from "./componentes/lista-tipos-situacion/lista-tipos-situacion.component";
 import {DetallesViviendaResolveService} from "./servicios/detalles-vivienda-resolve.service";
+import {ListaSituacionesService} from "./servicios/lista-situaciones.service";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -311,7 +312,7 @@ const routes: Routes = [
     component: ListaTiposSituacionComponent,
     canActivate: [LoginGuard],
     resolve: {
-      tipos_situaciones: ListaTiposSituacionComponent
+      tipos_situaciones: ListaSituacionesService
     }
   },
   {
