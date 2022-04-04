@@ -17,6 +17,6 @@ export class ListaTiposModalidadesPacientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipos_modalidades_pacientes = this.route.snapshot.data['tipos_modalidades_pacientes'];
-    this.titleService.setTitle('Tipos modalidades pacientes');
+    this.titleService.setTitle('Tipos situaciones pacientes');
   }
 }

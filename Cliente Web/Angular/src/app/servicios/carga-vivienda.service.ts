@@ -12,7 +12,8 @@ export class CargaViviendaService {
   private urlBase = environment.urlBase;
   private URL_SERVER_VIVIENDAS = this.urlBase + 'tipo_vivienda';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getViviendas(): Observable<ITipoVivienda[]> {
     return this.http.get<ITipoVivienda[]>(this.URL_SERVER_VIVIENDAS);

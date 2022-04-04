@@ -22,13 +22,13 @@
         <tr *ngFor="let tipo_vivienda of tipos_viviendas | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-tipo-vivienda [tipo_vivenda]="tipo_vivienda">
         </tr>
-        <pagination-controls
-          previousLabel="Anterior"
-          nextLabel="Siguiente"
-          responsive="true"
-          (pageChange)="numPaginacion = $event"></pagination-controls>
         </tbody>
       </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
     </div>
   </div>
 </main>

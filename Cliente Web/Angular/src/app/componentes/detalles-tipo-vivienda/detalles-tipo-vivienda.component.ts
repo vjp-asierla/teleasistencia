@@ -13,19 +13,18 @@ export class DetallesTipoViviendaComponent implements OnInit {
   public tipo_vivienda: ITipoVivienda;
   public idTipoVivienda: number;
 
-  constructor(private titleService: Title, private route: ActivatedRoute, private router: Router, private cargarTiposVivienda: CargaViviendaService) { }
-
+  constructor(private route: ActivatedRoute, private titleService: Title, private cargaViviendas: CargaViviendaService, private router: Router) {
+  }
   ngOnInit(): void {
-    this.tipo_vivienda = this.route.snapshot.data['tipo_vivienda'];
     this.idTipoVivienda = this.route.snapshot.params['id'];
+    this.tipo_vivienda = this.route.snapshot.data['tipo_vivienda'];
     this.titleService.setTitle('Modificar tipo vivienda ' + this.idTipoVivienda);
-    console.log(this.tipo_vivienda+'---'+this.titleService);
   }
 
   modificarTipoVivienda(): void {
-    this.cargarTiposVivienda.modificarTipoVivienda(this.tipo_vivienda).subscribe(
+    this.cargaViviendas.modificarTipoVivienda(this.tipo_vivienda).subscribe(
       e => {
-        console.log('Tipo vivienda ' + e.id + ' modificada');
+        console.log('Vivienda ' + e.id + ' modificada');
         console.log(this.tipo_vivienda);
         this.router.navigate(['/viviendas']);
       },

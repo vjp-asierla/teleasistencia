@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ITipoSituacion} from "../../interfaces/i-tipo-situacion";
+import {ActivatedRoute} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-lista-tipos-situacion',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-tipos-situacion.component.scss']
 })
 export class ListaTiposSituacionComponent implements OnInit {
+  public tipos_situaciones: ITipoSituacion[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private titleService: Title) { }
 
   ngOnInit(): void {
+    this.tipos_situaciones = this.route.snapshot.data['situaciones'];
+    this.titleService.setTitle('Tipos modalidades pacientes');
   }
 
 }

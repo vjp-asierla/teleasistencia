@@ -21,6 +21,7 @@ export class DetallesDireccionComponent implements OnInit {
     this.idDireccion = this.route.snapshot.params['id'];
     this.dire = this.route.snapshot.data['direccion'];
     this.titleService.setTitle('Modificar dirección ' + this.idDireccion);
+    console.log(this.titleService);
   }
 
   modificarDireccion(): void {
