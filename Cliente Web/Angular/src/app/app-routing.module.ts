@@ -60,6 +60,9 @@ import {DetallesTipoViviendaComponent} from "./componentes/detalles-tipo-viviend
 import {ListaTiposSituacionComponent} from "./componentes/lista-tipos-situacion/lista-tipos-situacion.component";
 import {DetallesViviendaResolveService} from "./servicios/detalles-vivienda-resolve.service";
 import {ListaSituacionesService} from "./servicios/lista-situaciones.service";
+import {NuevoTipoSituacionComponent} from "./componentes/nuevo-tipo-situacion/nuevo-tipo-situacion.component";
+import {DetallesTipoSituacionComponent} from "./componentes/detalles-tipo-situacion/detalles-tipo-situacion.component";
+import {DetallesTipoSituacionService} from "./servicios/detalles-tipo-situacion.service";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -317,19 +320,19 @@ const routes: Routes = [
   },
   {
     path: 'situaciones/nueva',
-    component: NuevaViviendaComponent,
+    component: NuevoTipoSituacionComponent,
     canActivate: [LoginGuard],
     resolve: {
-      clasificaciones_alarmas: ListaTiposSituacionComponent
+      clasificaciones_situaciones: ListaSituacionesService
     }
   },
   {
     path: 'situaciones/modificar/:id',
-    component: DetallesTipoViviendaComponent,
+    component: DetallesTipoSituacionComponent,
     canActivate: [LoginGuard],
     resolve: {
-      tipo_vivienda: DetallesTipoViviendaComponent,
-      clasificaciones_viviendas: ListaTiposSituacionComponent
+      tipos_situaciones: DetallesTipoSituacionService,
+      clasificaciones_situaciones: ListaTiposSituacionComponent
     }
   },
   {

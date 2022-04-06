@@ -70,6 +70,8 @@ import { NuevaViviendaComponent } from './componentes/nueva-vivienda/nueva-vivie
 import { DetallesTipoViviendaComponent } from './componentes/detalles-tipo-vivienda/detalles-tipo-vivienda.component';
 import {CargaViviendaService} from "./servicios/carga-vivienda.service";
 import { ItemTipoSituacionComponent } from './componentes/item-tipo-situacion/item-tipo-situacion.component';
+import { NuevoTipoSituacionComponent } from './componentes/nuevo-tipo-situacion/nuevo-tipo-situacion.component';
+import { DetallesTipoSituacionComponent } from './componentes/detalles-tipo-situacion/detalles-tipo-situacion.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,8 @@ import { ItemTipoSituacionComponent } from './componentes/item-tipo-situacion/it
     NuevaViviendaComponent,
     DetallesTipoViviendaComponent,
     ItemTipoSituacionComponent,
+    NuevoTipoSituacionComponent,
+    DetallesTipoSituacionComponent,
   ],
   imports: [
     BrowserModule,
