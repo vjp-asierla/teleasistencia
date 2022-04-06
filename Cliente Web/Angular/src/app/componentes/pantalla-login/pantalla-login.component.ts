@@ -39,14 +39,9 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
   hacerLogin(): void {
    this.http.post<token>('http://localhost:8000/api/token/',
      this.formLogin.value
-
-     //{
-     //"username": "admin",
-     //"password": "admin"
-   //}
    ).subscribe(
       resp=>{
-        console.log(resp)
+        // console.log(resp)
         localStorage.setItem('token',resp.access)
       }
     )

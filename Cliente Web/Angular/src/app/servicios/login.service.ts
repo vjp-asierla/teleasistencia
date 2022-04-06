@@ -16,7 +16,7 @@ export class LoginService {
   }
 
   estaLogin(): boolean {
-    if (localStorage.getItem('token') === 'usuario') {
+    if (localStorage.getItem('token') != null) {
       return true;
     } else {
       return false;
