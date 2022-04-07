@@ -332,7 +332,7 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     resolve: {
       tipos_situaciones: DetallesTipoSituacionService,
-      clasificaciones_situaciones: ListaTiposSituacionComponent
+      clasificaciones_situaciones: ListaSituacionesService
     }
   },
   {
