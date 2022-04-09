@@ -7,7 +7,7 @@ import {ListaUsersComponent} from './componentes/lista-users/lista-users.compone
 import {ItemUserComponent} from './componentes/item-user/item-user.component';
 import {DetallesUserComponent} from './componentes/detalles-user/detalles-user.component';
 import {NuevoUserComponent} from './componentes/nuevo-user/nuevo-user.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
 import {CargaUserService} from './servicios/carga-user.service';
@@ -60,6 +60,7 @@ import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-logi
 import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
+import {InterceptorService} from "./interceptors/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -127,7 +128,12 @@ import {BotonesLoginComponent} from './componentes/botones-login/botones-login.c
     CargaCentroSanitarioService,
     CargaRecursoComunitarioService,
     CargaPersonaService,
-    Title
+    Title,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

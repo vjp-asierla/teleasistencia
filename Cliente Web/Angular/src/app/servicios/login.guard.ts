@@ -14,11 +14,20 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    if (!this.loginService.estaLogin()) {
+    const token= localStorage.getItem('token')
+
+    if(!token){
+      console.log('no hay token')
       this.router.navigate(['/login']);
-      return false;
+    } else{
+      console.log('hay token')
+      return true
     }
-    return true;
+    // if (!this.loginService.estaLogin()) {
+    //   this.router.navigate(['/login']);
+    //   return false;
+    // }
+    // return true;
   }
 }
 
