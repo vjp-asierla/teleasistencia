@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'teleasistenciaApp.apps.TeleasistenciaappConfig' ,
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,10 +51,28 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     # Para certificado https:
-    "django_extensions"
+    "django_extensions",
 
-
+    #App para la notificación de alarmas
+    'alarmas'
 ]
+
+ASGI_APPLICATION = 'teleasistencia.asgi.application'
+
+#CHANNEL_LAYERS = {
+#    'default':{
+#        'BACKEND':'channels.layers.InMemoryChannelLayer'
+#    }
+#}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

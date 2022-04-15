@@ -19,6 +19,9 @@ from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
 
+# Alarmas
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
@@ -1056,7 +1059,7 @@ class Recursos_Comunitarios_En_Alarma_ViewSet(viewsets.ModelViewSet):
 
 class Alarma_ViewSet(viewsets.ModelViewSet):
     """
-    API endpoint para las empresas
+    API endpoint para las alarmas
     """
     queryset = Alarma.objects.all()
     serializer_class = Alarma_Serializer
@@ -1084,6 +1087,13 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
 
             alarma.save()
 
+            # Enviamos notificación a los teleoperadores a través de la app alarmas
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                'teleoperadores',
+                {"type": "notificar.alarma", "message": "nueva alarma"},
+            )
+
             # Devolvemos la alarma creada
             alarma_serializer = Alarma_Serializer(alarma)
             return Response(alarma_serializer.data)
@@ -1100,6 +1110,13 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
             )
 
             alarma.save()
+
+            # Enviamos notificación a los teleoperadores a través de la app alarmas
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                    'teleoperadores',
+                    {"type": "notificar.alarma", "message": "nueva alarma"},
+                )
 
             # Devolvemos la alarma creada
             alarma_serializer = Alarma_Serializer(alarma)

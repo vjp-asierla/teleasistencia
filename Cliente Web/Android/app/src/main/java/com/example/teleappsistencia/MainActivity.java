@@ -1,25 +1,30 @@
 package com.example.teleappsistencia;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
-
-import com.google.android.material.snackbar.Snackbar;
+import com.andremion.counterfab.CounterFab;
+import com.example.teleappsistencia.utilidad.AlarmaWebSocketListener;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.teleappsistencia.databinding.ActivityMainBinding;
+import com.google.android.material.snackbar.Snackbar;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.WebSocket;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private CounterFab counterFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +33,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        this.counterFab = (CounterFab) findViewById(R.id.fab);
+
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -47,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        iniciarEscuchaAlarmas();
+
+
     }
 
     @Override
@@ -62,4 +72,23 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    private void iniciarEscuchaAlarmas() {
+        Request request = new Request.Builder().url("ws://10.0.2.2:8000/ws/socket-server/").build();
+        AlarmaWebSocketListener aWSListener = new AlarmaWebSocketListener(this);
+        OkHttpClient client = new OkHttpClient();
+        WebSocket ws = client.newWebSocket(request, aWSListener);
+
+        client.dispatcher().executorService().shutdown();
+    }
+
+    public void incrementarBadge(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                counterFab.increase();
+            }
+        });
+    }
+
 }
