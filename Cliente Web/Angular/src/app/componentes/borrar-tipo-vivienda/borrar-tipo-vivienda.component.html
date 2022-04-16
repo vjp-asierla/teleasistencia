@@ -1,0 +1,15 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Vivienda</h5>
+      </div>
+      <div class="modal-body">
+        <p>¿Desea eliminar la vivienda seleccionada?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalNegativo" type="button" class="btn btn-secondary" [routerLink]="['/viviendas']">No</button>
+        <button id="modalPositivo" type="button" class="btn btn-primary" (click)="borrarTipoVivienda()">Si</button>
+      </div>
+    </div>
+</div>
+

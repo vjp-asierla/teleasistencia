@@ -18,7 +18,6 @@ export class DetallesTipoViviendaComponent implements OnInit {
   ngOnInit(): void {
     this.idTipoVivienda = this.route.snapshot.params['id'];
     this.tipo_vivienda = this.route.snapshot.data['tipo_vivienda'];
-    console.log(this.tipo_vivienda.id);
     this.titleService.setTitle('Modificar tipo vivienda ' + this.tipo_vivienda);
   }
 

@@ -72,6 +72,8 @@ import {CargaViviendaService} from "./servicios/carga-vivienda.service";
 import { ItemTipoSituacionComponent } from './componentes/item-tipo-situacion/item-tipo-situacion.component';
 import { NuevoTipoSituacionComponent } from './componentes/nuevo-tipo-situacion/nuevo-tipo-situacion.component';
 import { DetallesTipoSituacionComponent } from './componentes/detalles-tipo-situacion/detalles-tipo-situacion.component';
+import { BorrarTipoViviendaComponent } from './componentes/borrar-tipo-vivienda/borrar-tipo-vivienda.component';
+import { BorrarTipoSituacionComponent } from './componentes/borrar-tipo-situacion/borrar-tipo-situacion.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +132,8 @@ import { DetallesTipoSituacionComponent } from './componentes/detalles-tipo-situ
     ItemTipoSituacionComponent,
     NuevoTipoSituacionComponent,
     DetallesTipoSituacionComponent,
+    BorrarTipoViviendaComponent,
+    BorrarTipoSituacionComponent,
   ],
   imports: [
     BrowserModule,

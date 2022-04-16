@@ -63,6 +63,8 @@ import {ListaSituacionesService} from "./servicios/lista-situaciones.service";
 import {NuevoTipoSituacionComponent} from "./componentes/nuevo-tipo-situacion/nuevo-tipo-situacion.component";
 import {DetallesTipoSituacionComponent} from "./componentes/detalles-tipo-situacion/detalles-tipo-situacion.component";
 import {DetallesTipoSituacionService} from "./servicios/detalles-tipo-situacion.service";
+import {BorrarTipoViviendaComponent} from "./componentes/borrar-tipo-vivienda/borrar-tipo-vivienda.component";
+import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -299,6 +301,15 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     resolve: {
       tipo_vivienda: DetallesViviendaResolveService,
+      clasificaciones_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/borrado/:id',
+    component: BorrarTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipo_vivienda: BorrarTipoViviendaService,
       clasificaciones_viviendas: ListaViviendasResolveService
     }
   },
