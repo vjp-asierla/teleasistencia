@@ -13,6 +13,7 @@ import {FiltroTablasService} from "../../servicios/filtro-tablas.service";
 export class ListaCentrosSanitariosComponent implements OnInit {
   public centros_sanitarios: ICentroSanitario[];
   numPaginacion: number = 1;
+  inputBusqueda: any = '';
 
   constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
   }

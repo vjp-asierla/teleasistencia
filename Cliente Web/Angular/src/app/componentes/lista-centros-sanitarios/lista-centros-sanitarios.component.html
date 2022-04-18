@@ -7,19 +7,22 @@
       </ol>
     </nav>
     <h1 class="component-title">Centros sanitarios</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
     <div class="table-responsive m-2">
       <table id="tableList" class="table table-hover text-center">
         <thead>
         <tr class="table-purple">
-          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre</th>
-          <th (click)="filtroTabla(1, 'number')" scope="col">Teléfono</th>
-          <th (click)="filtroTabla(2, 'string')" scope="col">Tipo de centro sanitario</th>
-          <th (click)="filtroTabla(3, 'string')" scope="col">Dirección</th>
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(1, 'number')" scope="col">Teléfono <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(2, 'string')" scope="col">Tipo de centro sanitario <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(3, 'string')" scope="col">Dirección <i class="fas fa-sort"></i></th>
           <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let centro_sanitario of centros_sanitarios | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
+        <tr *ngFor="let centro_sanitario of centros_sanitarios | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-centro-sanitario [centro_sanitario]="centro_sanitario">
         </tr>
         <pagination-controls

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoRecursoComunitario} from '../../interfaces/i-tipo-recurso-comunitario';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {FiltroTablasService} from "../../servicios/filtro-tablas.service";
 
 @Component({
   selector: 'app-lista-tipos-recursos-comunitarios',
@@ -11,12 +12,18 @@ import {Title} from '@angular/platform-browser';
 
 export class ListaTiposRecursosComunitariosComponent implements OnInit {
   public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
+  numPaginacion: number = 1;
+  inputBusqueda: any = '';
 
-  constructor(private route: ActivatedRoute, private titleService: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
   }
 
   ngOnInit(): void {
     this.tipos_recursos_comunitarios = this.route.snapshot.data['tipos_recursos_comunitarios'];
     this.titleService.setTitle('Tipos recursos comunitarios');
+  }
+
+  filtroTabla(indice: number, tipo: string){
+    this.filtradoTabla.filtroService(indice, tipo);
   }
 }

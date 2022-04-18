@@ -7,23 +7,31 @@
       </ol>
     </nav>
     <h1 class="component-title">Recursos comunitarios</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
     <div class="table-responsive m-2">
-      <table class="table table-hover text-center">
+      <table id="tableList" class="table table-hover text-center">
         <thead>
         <tr class="table-purple">
-          <th scope="col">Nombre</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Tipo de recurso comunitario</th>
-          <th scope="col">Dirección</th>
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(1, 'number')" scope="col">Teléfono <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(2, 'string')" scope="col">Tipo de recurso comunitario <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(3, 'string')" scope="col">Dirección <i class="fas fa-sort"></i></th>
           <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let recurso_comunitario of recursos_comunitarios"
+        <tr *ngFor="let recurso_comunitario of recursos_comunitarios | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
             app-item-resurso-comunitario [recurso_comunitario]="recurso_comunitario">
         </tr>
         </tbody>
       </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
     </div>
   </div>
 </main>
