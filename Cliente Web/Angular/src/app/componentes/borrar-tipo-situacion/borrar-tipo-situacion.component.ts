@@ -9,18 +9,18 @@ import {ITipoSituacion} from "../../interfaces/i-tipo-situacion";
   styleUrls: ['./borrar-tipo-situacion.component.scss']
 })
 export class BorrarTipoSituacionComponent implements OnInit {
-  public tipo_situacion: ITipoSituacion;
+  public tipos_situaciones: ITipoSituacion;
 
   constructor(private route: ActivatedRoute, private cargaSituaciones: CargaTipoSituacionService, private router: Router) { }
 
   ngOnInit(): void {
-    this.tipo_situacion = this.route.snapshot.data['tipo_situacion'];
+    this.tipos_situaciones = this.route.snapshot.data['tipos_situaciones'];
   }
 
   borrarTipoSituacion(): void {
-    this.cargaSituaciones.borrarSituacion(this.tipo_situacion).subscribe(
+    this.cargaSituaciones.borrarSituacion(this.tipos_situaciones).subscribe(
       e => {
-        console.log(this.tipo_situacion);
+        console.log(this.tipos_situaciones);
         this.router.navigate(['/situaciones']);
       },
       error => {

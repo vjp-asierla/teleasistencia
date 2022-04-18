@@ -65,6 +65,8 @@ import {DetallesTipoSituacionComponent} from "./componentes/detalles-tipo-situac
 import {DetallesTipoSituacionService} from "./servicios/detalles-tipo-situacion.service";
 import {BorrarTipoViviendaComponent} from "./componentes/borrar-tipo-vivienda/borrar-tipo-vivienda.component";
 import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
+import {BorrarTipoSituacionComponent} from "./componentes/borrar-tipo-situacion/borrar-tipo-situacion.component";
+import {BorrarTipoSituacionService} from "./servicios/borrar-tipo-situacion.service";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -343,6 +345,15 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     resolve: {
       tipos_situaciones: DetallesTipoSituacionService,
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/borrado/:id',
+    component: BorrarTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: BorrarTipoSituacionService,
       clasificaciones_situaciones: ListaSituacionesService
     }
   },
