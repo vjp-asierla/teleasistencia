@@ -56,7 +56,7 @@ import {LoginGuard} from './servicios/login.guard';
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
-  {path: 'inicio', component: HomeComponent},
+  {path: 'inicio', canActivate: [LoginGuard], component: HomeComponent},
   {
     path: 'usuarios',
     component: ListaUsersComponent,
