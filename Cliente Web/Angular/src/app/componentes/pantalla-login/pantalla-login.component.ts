@@ -46,13 +46,20 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
       }
     )
     this.loginService.hacerLogin();
+   const { username }=this.formLogin.value
     console.log(this.formLogin.value)
+    localStorage.setItem('username',username)
     this.router.navigate(['/inicio']);
+
+
   }
 
   hacerLogout(): void {
     this.loginService.hacerLogout();
     this.router.navigate(['/login']);
+
+
+
   }
 
 

@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 
 export class BotonesLoginComponent implements OnInit, DoCheck {
   public estaLogin: boolean;
+  public username:string= localStorage.getItem('username');
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -20,9 +21,8 @@ export class BotonesLoginComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.estaLogin = this.loginService.estaLogin();
   }
-
   hacerLogout(): void {
     this.loginService.hacerLogout();
-    this.router.navigate(['/inicio']);
+    this.router.navigate(['/login']);
   }
 }
