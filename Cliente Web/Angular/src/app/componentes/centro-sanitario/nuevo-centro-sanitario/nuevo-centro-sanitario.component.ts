@@ -4,10 +4,10 @@ import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario'
 import {IDireccion} from '../../../interfaces/i-direccion';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaCentroSanitarioService} from '../../../servicios/carga-centro-sanitario.service';
+import {CargaCentroSanitarioService} from '../../../servicios/centro-sanitario/carga-centro-sanitario.service';
 import {CentroSanitario} from '../../../clases/centro-sanitario';
 import {Direccion} from '../../../clases/direccion';
-import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
+import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
 
 @Component({
   selector: 'app-nuevo-centro-sanitario',

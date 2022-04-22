@@ -5,12 +5,12 @@
 <td>
   <button type="submit" class="btn btn-outline-secondary btn-modify"
           [routerLink]="['/direcciones/modificar', direccion.id]">
-    Modificar datos
+    <i class="fa fa-pen"></i>
   </button>
 
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-delete" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Eliminar
+  <button type="button" class="btn btn-delete" data-bs-toggle="modal" (click)="estaPulsado(direccion)" data-bs-target="#exampleModal" >
+    <i class="fa fa-trash"></i>
   </button>
 
   <!-- Modal -->
@@ -22,14 +22,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ¿Está seguro de que desea elminar esta dirección?
+          <p>¿Está seguro de que desea eliminar la direccion?</p>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-outline-success "
-
-          >
-            Aceptar</button>
+          <button type="button" class="btn btn-delete" (click)="eliminarDireccion()"  >Aceptar</button>
         </div>
       </div>
     </div>

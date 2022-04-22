@@ -19,4 +19,11 @@ export class ListaDireccionesComponent implements OnInit {
     this.direcciones = this.route.snapshot.data['direcciones'];
     this.titleService.setTitle('Direcciones');
   }
+
+  deleteDireccion(): void {
+  }
+
 }
+
+
+

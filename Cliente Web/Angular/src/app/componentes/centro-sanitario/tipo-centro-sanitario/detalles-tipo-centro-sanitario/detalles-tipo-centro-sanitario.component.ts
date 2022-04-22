@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoCentroSanitario} from '../../../../interfaces/i-tipo-centro-sanitario';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {CargaTipoCentroSanitarioService} from '../../../../servicios/carga-tipo-centro-sanitario.service';
+import {CargaTipoCentroSanitarioService} from '../../../../servicios/centro-sanitario/tipo-centro-sanitario/carga-tipo-centro-sanitario.service';
 
 @Component({
   selector: 'app-detalles-tipo-centro-sanitario',

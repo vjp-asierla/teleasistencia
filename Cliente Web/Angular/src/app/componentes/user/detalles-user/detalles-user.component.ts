@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IUsers} from '../../../interfaces/i-users';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {CargaUserService} from '../../../servicios/carga-user.service';
+import {CargaUserService} from '../../../servicios/user/carga-user.service';
 
 @Component({
   selector: 'app-detalles-user',

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IDireccion} from '../../../interfaces/i-direccion';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
+import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
 import {Direccion} from '../../../clases/direccion';
 
 @Component({

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IClasificacionAlarma} from '../../../../interfaces/i-clasificacion-alarma';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {CargaClasificacionAlarmaService} from '../../../../servicios/carga-clasificacion-alarma.service';
+import {CargaClasificacionAlarmaService} from '../../../../servicios/alarma/carga-clasificacion-alarma.service';
 
 @Component({
   selector: 'app-detalles-clasificacion-alarma',

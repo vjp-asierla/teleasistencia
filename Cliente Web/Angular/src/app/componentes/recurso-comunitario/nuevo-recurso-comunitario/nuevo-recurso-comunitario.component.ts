@@ -4,8 +4,8 @@ import {IRecursoComunitario} from '../../../interfaces/i-recurso-comunitario';
 import {ITipoRecursoComunitario} from '../../../interfaces/i-tipo-recurso-comunitario';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
-import {CargaRecursoComunitarioService} from '../../../servicios/carga-recurso-comunitario.service';
+import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
+import {CargaRecursoComunitarioService} from '../../../servicios/recurso-comunitario/carga-recurso-comunitario.service';
 import {Direccion} from '../../../clases/direccion';
 import {RecursoComunitario} from '../../../clases/recurso-comunitario';
 

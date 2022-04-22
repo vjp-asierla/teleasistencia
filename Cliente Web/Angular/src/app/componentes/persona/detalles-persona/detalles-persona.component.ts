@@ -3,8 +3,8 @@ import {IPersona} from '../../../interfaces/i-persona';
 import {IDireccion} from '../../../interfaces/i-direccion';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaPersonaService} from '../../../servicios/carga-persona.service';
-import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
+import {CargaPersonaService} from '../../../servicios/persona/carga-persona.service';
+import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
 
 @Component({
   selector: 'app-detalles-persona',

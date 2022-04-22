@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoModalidadPaciente} from '../../../interfaces/i-tipo-modalidad-paciente';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {CargaTipoModalidadPacienteService} from '../../../servicios/carga-tipo-modalidad-paciente.service';
+import {CargaTipoModalidadPacienteService} from '../../../servicios/modalidad-paciente/carga-tipo-modalidad-paciente.service';
 
 @Component({
   selector: 'app-detalles-tipo-modalidad-paciente',

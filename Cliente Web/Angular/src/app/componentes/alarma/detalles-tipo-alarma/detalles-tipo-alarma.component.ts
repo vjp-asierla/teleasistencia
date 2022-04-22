@@ -3,7 +3,7 @@ import {ITipoAlarma} from "../../../interfaces/i-tipo-alarma";
 import {IClasificacionAlarma} from "../../../interfaces/i-clasificacion-alarma";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
+import {CargaTipoAlarmaService} from "../../../servicios/alarma/tipo-alarma/carga-tipo-alarma.service";
 
 @Component({
   selector: 'app-detalles-tipo-alarma',

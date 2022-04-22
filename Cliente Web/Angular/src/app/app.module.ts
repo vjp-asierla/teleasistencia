@@ -10,7 +10,7 @@ import {NuevoUserComponent} from './componentes/user/nuevo-user/nuevo-user.compo
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
-import {CargaUserService} from './servicios/carga-user.service';
+import {CargaUserService} from './servicios/user/carga-user.service';
 import {ItemClasificacionAlarmaComponent} from './componentes/alarma/clasificacion-alarma/item-clasificacion-alarma/item-clasificacion-alarma.component';
 import {DetallesClasificacionAlarmaComponent} from './componentes/alarma/clasificacion-alarma/detalles-clasificacion-alarma/detalles-clasificacion-alarma.component';
 import {NuevaClasificacionAlarmaComponent} from './componentes/alarma/clasificacion-alarma/nueva-clasificacion-alarma/nueva-clasificacion-alarma.component';
@@ -19,23 +19,23 @@ import {ListaTiposCentrosSanitariosComponent} from './componentes/centro-sanitar
 import {ItemTipoCentroSanitarioComponent} from './componentes/centro-sanitario/tipo-centro-sanitario/item-tipo-centro-sanitario/item-tipo-centro-sanitario.component';
 import {DetallesTipoCentroSanitarioComponent} from './componentes/centro-sanitario/tipo-centro-sanitario/detalles-tipo-centro-sanitario/detalles-tipo-centro-sanitario.component';
 import {NuevoTipoCentroSanitarioComponent} from './componentes/centro-sanitario/tipo-centro-sanitario/nuevo-tipo-centro-sanitario/nuevo-tipo-centro-sanitario.component';
-import {CargaClasificacionAlarmaService} from './servicios/carga-clasificacion-alarma.service';
-import {CargaTipoCentroSanitarioService} from './servicios/carga-tipo-centro-sanitario.service';
+import {CargaClasificacionAlarmaService} from './servicios/alarma/carga-clasificacion-alarma.service';
+import {CargaTipoCentroSanitarioService} from './servicios/centro-sanitario/tipo-centro-sanitario/carga-tipo-centro-sanitario.service';
 import {ListaTiposRecursosComunitariosComponent} from './componentes/recurso-comunitario/tipo-recurso-comunitario/lista-tipos-recursos-comunitarios/lista-tipos-recursos-comunitarios.component';
 import {ItemTipoRecursoComunitarioComponent} from './componentes/recurso-comunitario/tipo-recurso-comunitario/item-tipo-recurso-comunitario/item-tipo-recurso-comunitario.component';
 import {DetallesTipoRecursoComunitarioComponent} from './componentes/recurso-comunitario/tipo-recurso-comunitario/detalles-tipo-recurso-comunitario/detalles-tipo-recurso-comunitario.component';
 import {NuevoTipoRecursoComunitarioComponent} from './componentes/recurso-comunitario/tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario.component';
-import {CargaTipoRecursoComunitarioService} from './servicios/carga-tipo-recurso-comunitario.service';
+import {CargaTipoRecursoComunitarioService} from './servicios/recurso-comunitario/tipo-recurso-comunitario/carga-tipo-recurso-comunitario.service';
 import {ListaTiposModalidadesPacientesComponent} from './componentes/modalidad-paciente/lista-tipos-modalidades-pacientes/lista-tipos-modalidades-pacientes.component';
 import {ItemTipoModalidadPacienteComponent} from './componentes/modalidad-paciente/item-tipo-modalidad-paciente/item-tipo-modalidad-paciente.component';
 import {DetallesTipoModalidadPacienteComponent} from './componentes/modalidad-paciente/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component';
 import {NuevoTipoModalidadPacienteComponent} from './componentes/modalidad-paciente/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component';
-import {CargaTipoModalidadPacienteService} from './servicios/carga-tipo-modalidad-paciente.service';
+import {CargaTipoModalidadPacienteService} from './servicios/modalidad-paciente/carga-tipo-modalidad-paciente.service';
 import {ListaTiposAlarmasComponent} from './componentes/alarma/lista-tipos-alarmas/lista-tipos-alarmas.component';
 import {ItemTipoAlarmaComponent} from './componentes/alarma/item-tipo-alarma/item-tipo-alarma.component';
 import {DetallesTipoAlarmaComponent} from './componentes/alarma/detalles-tipo-alarma/detalles-tipo-alarma.component';
 import {NuevoTipoAlarmaComponent} from './componentes/alarma/nuevo-tipo-alarma/nuevo-tipo-alarma.component';
-import {CargaTipoAlarmaService} from './servicios/carga-tipo-alarma.service';
+import {CargaTipoAlarmaService} from './servicios/alarma/tipo-alarma/carga-tipo-alarma.service';
 import {ListaCentrosSanitariosComponent} from './componentes/centro-sanitario/lista-centros-sanitarios/lista-centros-sanitarios.component';
 import {ItemCentroSanitarioComponent} from './componentes/centro-sanitario/item-centro-sanitario/item-centro-sanitario.component';
 import {DetallesCentroSanitarioComponent} from './componentes/centro-sanitario/detalles-centro-sanitario/detalles-centro-sanitario.component';
@@ -52,10 +52,10 @@ import {ListaDireccionesComponent} from './componentes/direccion/lista-direccion
 import {ItemDireccionComponent} from './componentes/direccion/item-direccion/item-direccion.component';
 import {DetallesDireccionComponent} from './componentes/direccion/detalles-direccion/detalles-direccion.component';
 import {NuevaDireccionComponent} from './componentes/direccion/nueva-direccion/nueva-direccion.component';
-import {CargaDireccionService} from './servicios/carga-direccion.service';
-import {CargaCentroSanitarioService} from './servicios/carga-centro-sanitario.service';
-import {CargaPersonaService} from './servicios/carga-persona.service';
-import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunitario.service';
+import {CargaDireccionService} from './servicios/direccion/carga-direccion.service';
+import {CargaCentroSanitarioService} from './servicios/centro-sanitario/carga-centro-sanitario.service';
+import {CargaPersonaService} from './servicios/persona/carga-persona.service';
+import {CargaRecursoComunitarioService} from './servicios/recurso-comunitario/carga-recurso-comunitario.service';
 import {PantallaLoginComponent} from './componentes/login/pantalla-login/pantalla-login.component';
 import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
@@ -110,7 +110,7 @@ import { BorrarDireccionComponent } from './componentes/direccion/borrar-direcci
     HeaderComponent,
     FooterComponent,
     BotonesLoginComponent,
-    BorrarDireccionComponent
+    BorrarDireccionComponent,
   ],
   imports: [
     BrowserModule,

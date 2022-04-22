@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoRecursoComunitario} from '../../../../interfaces/i-tipo-recurso-comunitario';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaTipoRecursoComunitarioService} from '../../../../servicios/carga-tipo-recurso-comunitario.service';
+import {CargaTipoRecursoComunitarioService} from '../../../../servicios/recurso-comunitario/tipo-recurso-comunitario/carga-tipo-recurso-comunitario.service';
 import {TipoRecursoComunitario} from '../../../../clases/tipo-recurso-comunitario';
 
 @Component({

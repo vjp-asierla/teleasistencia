@@ -3,7 +3,7 @@ import {IClasificacionAlarma} from '../../../../interfaces/i-clasificacion-alarm
 import {Title} from '@angular/platform-browser';
 import {ClasificacionAlarma} from '../../../../clases/clasificacion-alarma';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CargaClasificacionAlarmaService} from '../../../../servicios/carga-clasificacion-alarma.service';
+import {CargaClasificacionAlarmaService} from '../../../../servicios/alarma/carga-clasificacion-alarma.service';
 
 @Component({
   selector: 'app-nueva-clasificacion-alarma',

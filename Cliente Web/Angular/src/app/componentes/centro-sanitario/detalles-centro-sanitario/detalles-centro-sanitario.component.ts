@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
-import {CargaCentroSanitarioService} from '../../../servicios/carga-centro-sanitario.service';
+import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
+import {CargaCentroSanitarioService} from '../../../servicios/centro-sanitario/carga-centro-sanitario.service';
 import {ICentroSanitario} from '../../../interfaces/i-centro-sanitario';
 import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario';
 import {IDireccion} from '../../../interfaces/i-direccion';
