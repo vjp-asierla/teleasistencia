@@ -1,0 +1,35 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Clasificaciones de alarmas</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Clasificaciones de alarmas</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
+    <div class="table-responsive m-2">
+      <table id="tableList" class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th (click)="filtroTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th (click)="filtroTabla(1, 'string')" scope="col">Código <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let clasificacion_alarma of clasificaciones_alarmas | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
+            app-item-clasificacion-alarma [clasificacion_alarma]="clasificacion_alarma">
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
+    </div>
+  </div>
+</main>

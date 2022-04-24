@@ -13,7 +13,7 @@ export class FiltroTablasService {
     let boolEntrada = true;
     //String donde guardaremos la direccion del filtrado.
     let dirFiltrado = "asc";
-    //Seleccionamos y guardamos la tabla.
+    //Seleccionamos y guardamos la tabla. *IMPORTANTE: Las tablas deben tener el id tableList para que pueden ser seleccionadas.
     tabla = document.getElementById("tableList");
 
     // Bucle de filtrado, los boolean deciden su recorrido.
