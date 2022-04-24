@@ -6,7 +6,7 @@ import {Injectable, Output} from '@angular/core';
 
 export class OrdenacionTablasService {
 
-  filtroService(indice:number, tipoContenido: string){
+  ordenacionService(indice:number, tipoContenido: string){
     //Declaraciones iniciales a 0, luego pondran cambiar tanto valor como tipo.
     let tabla, rows, iAux, elemento1, elemento2, boolContinuar, cont = 0;
     // Booleano para saber si debo o no entrar en el bucle.

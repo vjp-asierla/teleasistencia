@@ -14,7 +14,7 @@ export class ListaTiposSituacionComponent implements OnInit {
   numPaginacion: number = 1;
   inputBusqueda: any = '';
 
-  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: OrdenacionTablasService) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private ordTabla: OrdenacionTablasService) {
   }
 
   ngOnInit(): void {
@@ -22,8 +22,8 @@ export class ListaTiposSituacionComponent implements OnInit {
     this.titleService.setTitle('Tipos situaciones de pacientes');
   }
 
-  filtroTabla(indice: number, tipo: string){
-    this.filtradoTabla.filtroService(indice, tipo);
+  ordenacionTabla(indice: number, tipo: string){
+    this.ordTabla.ordenacionService(indice, tipo);
   }
 
 }
