@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoModalidadPaciente} from '../../../interfaces/i-tipo-modalidad-paciente';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {FiltroTablasService} from "../../../servicios/filtro-tablas.service";
+import {OrdenacionTablasService} from "../../../servicios/ordenacion-tablas.service";
 
 @Component({
   selector: 'app-lista-tipos-modalidades-pacientes',
@@ -15,7 +15,7 @@ export class ListaTiposModalidadesPacientesComponent implements OnInit {
   numPaginacion: number = 1;
   inputBusqueda: any = '';
 
-  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: OrdenacionTablasService) {
   }
 
   ngOnInit(): void {

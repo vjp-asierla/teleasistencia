@@ -61,7 +61,7 @@ import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import {FiltroTablasService} from "./servicios/filtro-tablas.service";
+import {OrdenacionTablasService} from "./servicios/ordenacion-tablas.service";
 import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
 import { ListaTiposViviendaComponent } from './componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component';
 import { ListaTiposSituacionComponent } from './componentes/tipo-situacion/lista-tipos-situacion/lista-tipos-situacion.component';
@@ -155,7 +155,7 @@ import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borra
     CargaPersonaService,
     CargaViviendaService,
     Title,
-    FiltroTablasService,
+    OrdenacionTablasService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FiltroTablasService } from './filtro-tablas.service';
+import { OrdenacionTablasService } from './ordenacion-tablas.service';
 
 describe('FiltroTablasService', () => {
-  let service: FiltroTablasService;
+  let service: OrdenacionTablasService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FiltroTablasService);
+    service = TestBed.inject(OrdenacionTablasService);
   });
 
   it('should be created', () => {

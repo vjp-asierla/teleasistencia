@@ -4,7 +4,7 @@ import {Injectable, Output} from '@angular/core';
   providedIn: 'root'
 })
 
-export class FiltroTablasService {
+export class OrdenacionTablasService {
 
   filtroService(indice:number, tipoContenido: string){
     //Declaraciones iniciales a 0, luego pondran cambiar tanto valor como tipo.

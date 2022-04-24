@@ -2,7 +2,7 @@ import {Component, OnInit, Output} from '@angular/core';
 import {ITipoAlarma} from '../../../interfaces/i-tipo-alarma';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
-import {FiltroTablasService} from "../../../servicios/filtro-tablas.service";
+import {OrdenacionTablasService} from "../../../servicios/ordenacion-tablas.service";
 
 @Component({
   selector: 'app-lista-tipos-alarmas',
@@ -15,7 +15,7 @@ export class ListaTiposAlarmasComponent implements OnInit {
   numPaginacion: number = 1;
   inputBusqueda: any = '';
 
-  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: FiltroTablasService) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private filtradoTabla: OrdenacionTablasService) {
   }
 
   ngOnInit(): void {
