@@ -3,11 +3,12 @@ import {BrowserModule, Title} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+
 import {ListaUsersComponent} from './componentes/user/lista-users/lista-users.component';
 import {ItemUserComponent} from './componentes/user/item-user/item-user.component';
 import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
 import {CrearUserComponent} from './componentes/user/crear-user/crear-user.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
 import {CargaUserService} from './servicios/carga-user.service';
@@ -74,6 +75,7 @@ import { CrearTipoSituacionComponent } from './componentes/tipo-situacion/crear-
 import { ModificarTipoSituacionComponent } from './componentes/tipo-situacion/modificar-tipo-situacion/modificar-tipo-situacion.component';
 import { BorrarTipoViviendaComponent } from './componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component';
 import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component';
+import {InterceptorService} from "./interceptors/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -156,6 +158,11 @@ import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borra
     CargaViviendaService,
     Title,
     OrdenacionTablasService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
