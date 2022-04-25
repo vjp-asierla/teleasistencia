@@ -74,6 +74,7 @@ import { CrearTipoSituacionComponent } from './componentes/tipo-situacion/crear-
 import { ModificarTipoSituacionComponent } from './componentes/tipo-situacion/modificar-tipo-situacion/modificar-tipo-situacion.component';
 import { BorrarTipoViviendaComponent } from './componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component';
 import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component';
+import {InterceptorService} from "./interceptors/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -156,6 +157,12 @@ import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borra
     CargaViviendaService,
     Title,
     OrdenacionTablasService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    }
+
   ],
   bootstrap: [AppComponent]
 })
