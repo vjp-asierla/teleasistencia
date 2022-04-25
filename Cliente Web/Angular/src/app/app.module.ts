@@ -3,7 +3,6 @@ import {BrowserModule, Title} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-
 import {ListaUsersComponent} from './componentes/user/lista-users/lista-users.component';
 import {ItemUserComponent} from './componentes/user/item-user/item-user.component';
 import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
@@ -157,7 +156,6 @@ import {InterceptorService} from "./interceptors/interceptor.service";
     CargaPersonaService,
     CargaViviendaService,
     Title,
-    OrdenacionTablasService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:InterceptorService,
