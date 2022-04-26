@@ -3,7 +3,7 @@ import {IDireccion} from '../../../interfaces/i-direccion';
 import {CargaDireccionService} from "../../../servicios/direccion/carga-direccion.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-item-direccion, [app-item-direccion]',
   templateUrl: './item-direccion.component.html',
@@ -20,17 +20,23 @@ export class ItemDireccionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  estaPulsado(direccion: IDireccion) : void{
-    console.log(direccion.id);
-    this.pulsedDirection = direccion;
+  modalConfirmacion(): void {
+    Swal.fire({
+      title: '¿Está seguro que desea eliminar esta dirección?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.eliminarDireccion()
+      }
+    })
   }
-
   eliminarDireccion() : void{
-    console.log(this.pulsedDirection);
-    this.cargaDirecciones.eliminarDireccion(this.pulsedDirection).subscribe(
+    this.cargaDirecciones.eliminarDireccion(this.direccion).subscribe(
       e=>{
-        console.log(this.pulsedDirection);
-        console.log('Dirección ' + this.pulsedDirection.id + ' eliminada');
+        console.log(this.direccion);
+        console.log('Dirección ' + this.direccion.id + ' eliminada');
         this.router.navigate(['/direcciones']);
       },
       error => {

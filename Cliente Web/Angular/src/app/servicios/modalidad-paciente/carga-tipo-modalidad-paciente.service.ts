@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITipoModalidadPaciente} from '../../interfaces/i-tipo-modalidad-paciente';
+import {CargaTipoCentroSanitarioService} from "../centro-sanitario/tipo-centro-sanitario/carga-tipo-centro-sanitario.service";
+import {ICentroSanitario} from "../../interfaces/i-centro-sanitario";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +29,8 @@ export class CargaTipoModalidadPacienteService {
 
   nuevoTipoModalidadPaciente(tipoModalidadPaciente: ITipoModalidadPaciente): Observable<ITipoModalidadPaciente> {
     return this.http.post<ITipoModalidadPaciente>(this.URL_SERVER_TIPOS_MODALIDADES_PACIENTE, tipoModalidadPaciente);
+  }
+  eliminarTipoModalidadPaciente(tipoModalidadPaciente: ITipoModalidadPaciente): Observable<ITipoModalidadPaciente> {
+    return this.http.delete<ITipoModalidadPaciente>(this.URL_SERVER_TIPOS_MODALIDADES_PACIENTE + '/' + tipoModalidadPaciente.id);
   }
 }

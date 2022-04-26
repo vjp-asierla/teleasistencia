@@ -27,4 +27,7 @@ export class CargaTipoRecursoComunitarioService {
   nuevoTipoRecursoComunitario(tipoRecursoComunitario: ITipoRecursoComunitario): Observable<ITipoRecursoComunitario> {
     return this.http.post<ITipoRecursoComunitario>(this.URL_SERVER_TIPOS_RECURSOS_COMUNITARIOS, tipoRecursoComunitario);
   }
+  eliminarTipoRecursoComunitario(tipoRecursoComunitario: ITipoRecursoComunitario): Observable<ITipoRecursoComunitario>{
+    return this.http.delete<ITipoRecursoComunitario>(this.URL_SERVER_TIPOS_RECURSOS_COMUNITARIOS + '/'+ tipoRecursoComunitario.id);
+  }
 }

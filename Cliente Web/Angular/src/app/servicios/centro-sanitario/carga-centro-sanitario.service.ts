@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICentroSanitario} from '../../interfaces/i-centro-sanitario';
+import {IClasificacionAlarma} from "../../interfaces/i-clasificacion-alarma";
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,11 @@ export class CargaCentroSanitarioService {
 
   nuevoCentroSanitario(centroSanitario: ICentroSanitario): Observable<ICentroSanitario> {
     return this.http.post<ICentroSanitario>(this.URL_SERVER_CENTROS_SANITARIOS, centroSanitario);
+  }
+
+  eliminarCentroSanitario(centroSanitario:ICentroSanitario): Observable<ICentroSanitario> {
+    console.log(centroSanitario);
+    console.log(centroSanitario.id);
+    return this.http.delete<ICentroSanitario>(this.URL_SERVER_CENTROS_SANITARIOS + '/' + centroSanitario.id);
   }
 }
