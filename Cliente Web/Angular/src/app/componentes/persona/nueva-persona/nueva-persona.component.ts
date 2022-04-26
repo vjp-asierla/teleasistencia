@@ -5,6 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaPersonaService} from '../../../servicios/persona/carga-persona.service';
 import {Persona} from '../../../clases/persona';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-nueva-persona',
@@ -43,5 +44,24 @@ export class NuevaPersonaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Persona Creada Correctamente'
+    })
+
   }
 }

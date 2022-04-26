@@ -8,6 +8,7 @@ import {CargaDireccionService} from '../../../servicios/direccion/carga-direccio
 import {CargaRecursoComunitarioService} from '../../../servicios/recurso-comunitario/carga-recurso-comunitario.service';
 import {Direccion} from '../../../clases/direccion';
 import {RecursoComunitario} from '../../../clases/recurso-comunitario';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-nuevo-recurso-comunitario',
@@ -53,5 +54,24 @@ export class NuevoRecursoComunitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Nuevo Recurso Comunitario Creado Correctamente'
+    })
+
   }
 }

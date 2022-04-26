@@ -6,6 +6,7 @@ import {CargaCentroSanitarioService} from '../../../servicios/centro-sanitario/c
 import {ICentroSanitario} from '../../../interfaces/i-centro-sanitario';
 import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario';
 import {IDireccion} from '../../../interfaces/i-direccion';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-detalles-centro-sanitario',
@@ -57,5 +58,24 @@ export class DetallesCentroSanitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Centro Sanitario Modificado Correctamente'
+    })
+
   }
 }

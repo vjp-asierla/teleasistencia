@@ -14,7 +14,7 @@ export class ItemDireccionComponent implements OnInit {
   @Input() public direccion: IDireccion;
   private pulsedDirection: IDireccion = null;
 
-  constructor(private cargaDirecciones: CargaDireccionService,private router: Router,private route: ActivatedRoute, private titleService: Title) {
+  constructor(private cargaDirecciones: CargaDireccionService, private router: Router, private route: ActivatedRoute, private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -32,9 +32,10 @@ export class ItemDireccionComponent implements OnInit {
       }
     })
   }
-  eliminarDireccion() : void{
+
+  eliminarDireccion(): void {
     this.cargaDirecciones.eliminarDireccion(this.direccion).subscribe(
-      e=>{
+      e => {
         console.log(this.direccion);
         console.log('Dirección ' + this.direccion.id + ' eliminada');
         this.router.navigate(['/direcciones']);
@@ -44,8 +45,9 @@ export class ItemDireccionComponent implements OnInit {
       }
     )
   }
-
-
-
-
 }
+
+
+
+
+

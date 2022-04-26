@@ -3,6 +3,7 @@ import {ITipoRecursoComunitario} from '../../../../interfaces/i-tipo-recurso-com
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaTipoRecursoComunitarioService} from '../../../../servicios/recurso-comunitario/tipo-recurso-comunitario/carga-tipo-recurso-comunitario.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-detalles-tipo-recurso-comunitario',
@@ -34,5 +35,24 @@ export class DetallesTipoRecursoComunitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Tipo de Recurso Comunitario Modificado Correctamente'
+    })
+
   }
 }

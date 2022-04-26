@@ -5,6 +5,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaTipoAlarmaService} from '../../../servicios/alarma/tipo-alarma/carga-tipo-alarma.service';
 import {TipoAlarma} from '../../../clases/tipo-alarma';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-nuevo-tipo-alarma',
@@ -37,5 +38,24 @@ export class NuevoTipoAlarmaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Tipo de Alarma Creada Correctamente'
+    })
+
   }
 }

@@ -161,7 +161,8 @@
     </div>
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarPersona()"
-            [disabled]="!modificarPersonaForm.form.valid">
+            [disabled]="!modificarPersonaForm.form.valid"
+    (click="ejecutarAlerta()">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/personas']">

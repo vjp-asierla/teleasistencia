@@ -3,6 +3,7 @@ import {IClasificacionAlarma} from '../../../../interfaces/i-clasificacion-alarm
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaClasificacionAlarmaService} from '../../../../servicios/alarma/carga-clasificacion-alarma.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-detalles-clasificacion-alarma',
@@ -34,5 +35,24 @@ export class DetallesClasificacionAlarmaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Clasificación Alarma Modificada Correctamente'
+    })
+
   }
 }

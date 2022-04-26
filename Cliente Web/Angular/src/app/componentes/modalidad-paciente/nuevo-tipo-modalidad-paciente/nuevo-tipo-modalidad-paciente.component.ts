@@ -4,6 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaTipoModalidadPacienteService} from '../../../servicios/modalidad-paciente/carga-tipo-modalidad-paciente.service';
 import {TipoModalidadPaciente} from '../../../clases/tipo-modalidad-paciente';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-nuevo-tipo-modalidad-paciente',
@@ -33,5 +34,24 @@ export class NuevoTipoModalidadPacienteComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Tipo de Modalidad de Paciente Creado Correctamente'
+    })
+
   }
 }

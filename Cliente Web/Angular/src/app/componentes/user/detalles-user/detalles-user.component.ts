@@ -3,6 +3,7 @@ import {IUsers} from '../../../interfaces/i-users';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaUserService} from '../../../servicios/user/carga-user.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-detalles-user',
@@ -34,5 +35,24 @@ export class DetallesUserComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  executeExample() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Usuario Modificada Correctamente'
+    })
+
   }
 }

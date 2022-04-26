@@ -4,6 +4,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaUserService} from '../../../servicios/user/carga-user.service';
 import {User} from '../../../clases/user';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-nuevo-user',
@@ -34,5 +35,24 @@ export class NuevoUserComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Usuario Creado Correctamente'
+    })
+
   }
 }

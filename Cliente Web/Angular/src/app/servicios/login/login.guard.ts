@@ -14,6 +14,8 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
+    const alert = localStorage.getItem('alert')
+
     if (!this.loginService.estaLogin()) {
       this.router.navigate(['/login']);
       return false;
