@@ -64,6 +64,7 @@ class UserViewSet(viewsets.ModelViewSet):
             first_name=request.data.get("first_name"),
             last_name=request.data.get("last_name"),
             email=request.data.get("email"),
+            #imagen=request.data.get("imagen")
         )
         # Encriptamos la contraseña
         user.set_password(request.data.get("password"))
@@ -92,6 +93,8 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.data.get("password") is not None:
             # Encriptamos la contraseña
             user.set_password(request.data.get("password"))
+        #if request.data.get("imagen") is not None:
+            #user.email = request.data.get("imagen")
 
         user.save()
 

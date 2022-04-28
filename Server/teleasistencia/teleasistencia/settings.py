@@ -79,6 +79,15 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = 'teleasistencia.urls'
 
+#AUTH_USER_MODEL = 'teleasistenciaApp.User'
+
+ALLOWED_IMAGE_TYPES = (
+    "jpeg",
+    "jpg",
+    "png",
+    "gif"
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -118,7 +127,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
 
@@ -151,7 +160,6 @@ AUTHENTICATION_BACKENDS = (
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-
 
 
 

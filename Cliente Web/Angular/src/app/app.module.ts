@@ -61,6 +61,7 @@ import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
 import {InterceptorService} from "./interceptors/interceptor.service";
+import { RecursosComunitariosPersonalesComponent } from './componentes/recursos-comunitarios-personales/recursos-comunitarios-personales.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import {InterceptorService} from "./interceptors/interceptor.service";
     PantallaLoginComponent,
     HeaderComponent,
     FooterComponent,
-    BotonesLoginComponent
+    BotonesLoginComponent,
+    RecursosComunitariosPersonalesComponent
   ],
   imports: [
     BrowserModule,
