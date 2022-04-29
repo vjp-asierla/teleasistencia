@@ -176,6 +176,14 @@ const routes: Routes = [
     }
   },
   {
+    path: 'direcciones/borrado/:id',
+    component: ListaDireccionesComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      direcciones: ListaDireccionesResolveService
+    }
+  },
+  {
     path: 'direcciones',
     component: ListaDireccionesComponent,
     canActivate: [LoginGuard],
@@ -191,6 +199,7 @@ const routes: Routes = [
       direccion: DetallesDireccionResolveService
     }
   },
+
 
 
  /* {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import {IDireccion} from '../../../interfaces/i-direccion';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
@@ -19,9 +19,10 @@ export class ListaDireccionesComponent implements OnInit {
     this.direcciones = this.route.snapshot.data['direcciones'];
     this.titleService.setTitle('Direcciones');
   }
+  ngOnChanges(changes: SimpleChanges): void{
 
-  deleteDireccion(): void {
   }
+
 
 }
 

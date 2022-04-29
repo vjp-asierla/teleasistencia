@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaDireccionService} from '../../../servicios/direccion/carga-direccion.service';
 import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-detalles-direccion',
@@ -14,6 +15,7 @@ import Swal from "sweetalert2";
 export class DetallesDireccionComponent implements OnInit {
   public dire: IDireccion;
   public idDireccion: number;
+
 
   constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private router: Router) {
   }
@@ -41,7 +43,7 @@ export class DetallesDireccionComponent implements OnInit {
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -51,7 +53,7 @@ export class DetallesDireccionComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Direccion Modificada Correctamente'
+      title: environment.fraseModificar,
     })
 
   }
