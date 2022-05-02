@@ -22,12 +22,13 @@ from ..models import *
 # Alarmas
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+import json
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        return True
+        #return True
         if request.user.groups.filter(name="profesor").exists():
             return True
 
@@ -1061,6 +1062,10 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
     """
     API endpoint para las alarmas
     """
+    #Constantes de notificación
+    ACTION_NEW_ALARM = 'new_alarm'
+    ACTION_ALARM_ASSIGNMENT = 'alarm_assignment'
+
     queryset = Alarma.objects.all()
     serializer_class = Alarma_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
@@ -1088,11 +1093,7 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
             alarma.save()
 
             # Enviamos notificación a los teleoperadores a través de la app alarmas
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                'teleoperadores',
-                {"type": "notificar.alarma", "message": "nueva alarma"},
-            )
+            self.notify(alarma, self.ACTION_NEW_ALARM)
 
             # Devolvemos la alarma creada
             alarma_serializer = Alarma_Serializer(alarma)
@@ -1112,19 +1113,19 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
             alarma.save()
 
             # Enviamos notificación a los teleoperadores a través de la app alarmas
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                    'teleoperadores',
-                    {"type": "notificar.alarma", "message": "nueva alarma"},
-                )
+            self.notify(alarma, self.ACTION_NEW_ALARM)
 
-            # Devolvemos la alarma creada
+            # Devolvemos la alarma creada y notificamos a los clientes
             alarma_serializer = Alarma_Serializer(alarma)
             return Response(alarma_serializer.data)
+
     # TODO id_teleoperador se añade por JSON
     def update(self, request, *args, **kwargs):
         # Obtenemos la alarma a modificar
         alarma = Alarma.objects.get(pk=kwargs["pk"])
+
+        # Guardamos teleoperador antiguo
+        old_id = alarma.id_teleoperador
 
         # Obtenemos el id_teleoperador que ateiende la alarma
         # Este id sera el del usuario
@@ -1142,11 +1143,22 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
 
         alarma.save()
 
+        # Notificamos si es una asignación (el id_teleoperador era null y ahora no)
+        if old_id is None and id_teleoperador is not None:
+            self.notify(alarma, self.ACTION_ALARM_ASSIGNMENT)
+
         # Devolvemos la alarma modificada
         alarma_serializer = Alarma_Serializer(alarma)
         return Response(alarma_serializer.data)
 
 
+    def notify(self, alarma, accion):
+        alarma_serializer = Alarma_Serializer(alarma)
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'teleoperadores',
+            {"type": "notify.consumers", "action": accion, "alarma": alarma_serializer.data},
+        )
 
 
 class Dispositivos_Auxiliares_en_Terminal_ViewSet(viewsets.ModelViewSet):

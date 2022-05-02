@@ -159,7 +159,7 @@ class Alarma_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Alarma
         fields = '__all__'
-        depth = 1
+        depth = 3
 
 
 class Dispositivos_Auxiliares_en_Terminal_Serializer(serializers.ModelSerializer):

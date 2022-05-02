@@ -5,16 +5,28 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_tipo_alarma"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_tipo_alarma" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_clasificacion_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_clasificacion_alarma" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_alarma" />
+        <item
+            android:id="@+id/nav_centro_sanitario_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_centro_sanitario_en_alarma" />
+        <item
+            android:id="@+id/nav_recursos_comunitarios_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_recursos_comunitarios_en_alarma" />
+        <item
+            android:id="@+id/nav_persona_de_contacto_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_persona_de_contacto_en_alarma" />
     </group>
 </menu>

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6f@aenc^c_ba5@tqk@um!!areq#0f7ml#*2usa1t91ha(m3*_3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -54,11 +54,12 @@ INSTALLED_APPS = [
     "django_extensions",
 
     #App para la notificación de alarmas
-    'alarmas'
+    'alarmasApp'
 ]
 
 ASGI_APPLICATION = 'teleasistencia.asgi.application'
 
+# Para probar las alarmas sin necesidad del servidor Redis (sólo pruebas)
 #CHANNEL_LAYERS = {
 #    'default':{
 #        'BACKEND':'channels.layers.InMemoryChannelLayer'
@@ -128,9 +129,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication'
     ),
 
-    # 'DEFAULT_PERMISSION_CLASSES': [
-     #    'rest_framework.permissions.IsAuthenticated',
-    # ]
+     'DEFAULT_PERMISSION_CLASSES': [
+         'rest_framework.permissions.IsAuthenticated',
+     ]
 }
 
 

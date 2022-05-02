@@ -1,62 +1,133 @@
 package com.example.teleappsistencia;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ExpandableListView;
 import com.andremion.counterfab.CounterFab;
-import com.example.teleappsistencia.utilidad.AlarmaWebSocketListener;
+import com.example.teleappsistencia.api.clases.Alarma;
+import com.example.teleappsistencia.api.clases.Token;
+import com.example.teleappsistencia.fragments.alarma.InsertarAlarmaFragment;
+import com.example.teleappsistencia.fragments.alarma.ListarAlarmasFragment;
+import com.example.teleappsistencia.fragments.centroSanitarioEnAlarma.InsertarCentroSanitarioEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.centroSanitarioEnAlarma.ListarCentrosSanitariosEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.clasificacionAlarma.InsertarClasificacionAlarmaFragment;
+import com.example.teleappsistencia.fragments.clasificacionAlarma.ListarClasificacionAlarmaFragment;
+import com.example.teleappsistencia.fragments.otrosFragments.AlarmAlertFragment;
+import com.example.teleappsistencia.fragments.personaContactoEnAlarma.InsertarPersonaContactoEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.personaContactoEnAlarma.ListarPersonasContactoEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.recursosComunitariosEnAlarma.InsertarRecursosComunitariosEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.recursosComunitariosEnAlarma.ListarRecursosComunitariosEnAlarmaFragment;
+import com.example.teleappsistencia.fragments.tipoAlarma.InsertarTipoAlarmaFragment;
+import com.example.teleappsistencia.fragments.tipoAlarma.ListarTipoAlarmaFragment;
+import com.example.teleappsistencia.utilidad.Utilidad;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.teleappsistencia.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.WebSocket;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityMainBinding binding;
+    private ExpandableListAdapter expandableListAdapter;
+    private ExpandableListView expandableListView;
+    private List<MenuModel> headerList = new ArrayList<>();
+    private HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     private CounterFab counterFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         this.counterFab = (CounterFab) findViewById(R.id.fab);
 
-        setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+
+        this.counterFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setOpenableLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
-        iniciarEscuchaAlarmas();
 
 
+        //Iniciamos el servicio de notificación de Alarmas
+        Utilidad.iniciarEscuchaAlarmas(this);
+
+        //Iniciamos el token
+        Token.cargarToken("admin", "admin");
+
+        // Realizo una petición a la API para cargar la cabecera del menu con los datos del usuario logueado.
+        //loadMenuHeader();
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        expandableListView = findViewById(R.id.expandableListView);
+        prepareMenuData();
+        populateExpandableList();
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    /*private void loadMenuHeader(){
+        String username = getIntent().getExtras().getString("usuario");
+        Call<List<Usuario>> call = apiService.getUserByUsername(username, "Bearer " + token.getAccess());
+        call.enqueue(new Callback<List<Usuario>>() {
+            @Override
+            public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
+                if(response.isSuccessful()) {
+                    List<Usuario> usuariosList = response.body();
+                    Usuario usuario = usuariosList.get(0);
+                    TextView nombreUsuario = (TextView) findViewById(R.id.textView_nombre_usuario);
+                    TextView emailUsuario = (TextView) findViewById(R.id.textView_email_usuario);
+
+                    nombreUsuario.setText(usuario.getFirstName() + " " + usuario.getLastName());
+                    emailUsuario.setText(usuario.getEmail());
+                } else{
+                    System.out.println(response.raw());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Usuario>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -67,19 +138,176 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        return super.onOptionsItemSelected(item);
     }
 
-    private void iniciarEscuchaAlarmas() {
-        Request request = new Request.Builder().url("ws://10.0.2.2:8000/ws/socket-server/").build();
-        AlarmaWebSocketListener aWSListener = new AlarmaWebSocketListener(this);
-        OkHttpClient client = new OkHttpClient();
-        WebSocket ws = client.newWebSocket(request, aWSListener);
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        /* Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-        client.dispatcher().executorService().shutdown();
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } /*else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }*/
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void prepareMenuData() {
+        String[] childNames = {getResources().getString(R.string.insertar), getResources().getString(R.string.listar)};
+        List<MenuModel> childModelsList;
+        MenuModel menuModel;
+
+        // Menu Tipo Alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_tipo_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarTipoAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarTipoAlarmaFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Clasificacion Alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_clasificacion_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarClasificacionAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarClasificacionAlarmaFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarAlarmasFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Centro Sanitario en Alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_centro_sanitario_en_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarCentroSanitarioEnAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarCentrosSanitariosEnAlarmaFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Recursos Comunitarios en Alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_recursos_comunitarios_en_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarRecursosComunitariosEnAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarRecursosComunitariosEnAlarmaFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Persona de contacto en alarma.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_persona_de_contacto_en_alarma), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new InsertarPersonaContactoEnAlarmaFragment()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new ListarPersonasContactoEnAlarmaFragment()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else{
+            childList.put(menuModel, null);
+        }
+
+    }
+
+    private void populateExpandableList() {
+
+        expandableListAdapter = new ExpandableListAdapter(this, headerList, childList);
+        expandableListView.setAdapter(expandableListAdapter);
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+
+                if (headerList.get(groupPosition).isGroup()) {
+                    if (!headerList.get(groupPosition).hasChildren()) {
+                        /*
+                        MenuModel model = headerList.get(groupPosition);
+                        Fragment fragment = new Fragment(model.getLayout());
+
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.main_fragment, fragment)
+                                .addToBackStack(null)
+                                .commit();
+                         */
+                    }
+                }
+
+                return false;
+            }
+        });
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                if (childList.get(headerList.get(groupPosition)) != null) {
+                    MenuModel model = childList.get(headerList.get(groupPosition)).get(childPosition);
+
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_fragment, model.getFragment())
+                            .addToBackStack(null)
+                            .commit();
+                }
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+                return false;
+            }
+        });
     }
 
     public void incrementarBadge(){
@@ -90,5 +318,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void decrementarBadge(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                counterFab.decrease();
+            }
+        });
+    }
+
+    public void crearAlertDialog(Alarma alarmaNotificada){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AlarmAlertFragment aAF = AlarmAlertFragment.newInstance(alarmaNotificada);
+                aAF.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.AppTheme_Dialog_MyDialogTheme);
+                aAF.show(getSupportFragmentManager(), null);
+            }
+        });
+    }
+
 
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.otrosFragments.InfoGestionAlarmaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="90">
+
+        <TextView
+            android:id="@+id/textViewIdAlarma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="ID Alarma: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewTipoAlarma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Tipo: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewClasificacionAlarma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Clasificación: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewNumTerminal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Terminal"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewNombreyApellidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Nombre: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewNumeroTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Teléfono: "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewContactos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Contactos: "
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/listViewContactos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.widget.Button
+        android:id="@+id/btnGestion"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_shape"
+        android:backgroundTint="@color/azul"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_weight="10"
+        android:text="GESTIÓN" />
+
+</LinearLayout>
