@@ -7,11 +7,6 @@ export const environment = {
 
   //Tiempo que tarda en irse el mensaje de exito
   timerToast : 4000,
-  //Color del Boton Aceptar del Modal
-  colorAceptarModal: '#198754',
-  //Color del Boton Cancelar del Modal
-  colorCancelarModal: '#d33',
-
   //Frase del Toast al Eliminar Con Exito
   fraseEliminar: 'Elemento Eliminado Correctamente',
   //Frase del Toast al Modificar Con Exito
@@ -24,6 +19,15 @@ export const environment = {
   fraseErrorModificar: 'Error al Modificar el Elemento',
   //Frase de error al Crear del Toast
   fraseErrorCrear: 'Error al Crear el Elemento',
+
+
+  //Modal
+  //Color del Boton Aceptar del Modal
+  colorAceptarModal: '#198754',
+  //Color del Boton Cancelar del Modal
+  colorCancelarModal: '#d33',
+  //Frase de Confirmación para Eliminar
+  fraseEliminarModal: '¿Desea Eliminar este Elemento?',
 };
 
 /*

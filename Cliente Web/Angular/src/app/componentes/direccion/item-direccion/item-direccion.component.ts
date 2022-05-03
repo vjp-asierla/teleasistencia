@@ -13,19 +13,20 @@ import {environment} from "../../../../environments/environment";
 
 export class ItemDireccionComponent implements OnInit {
   @Input() public direccion: IDireccion;
-  private pulsedDirection: IDireccion = null;
 
-  constructor(private cargaDirecciones: CargaDireccionService, private router: Router, private route: ActivatedRoute, private titleService: Title) {
+  constructor(private cargaDirecciones: CargaDireccionService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
-  mensajeExito() :void {
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
       timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
@@ -39,7 +40,8 @@ export class ItemDireccionComponent implements OnInit {
       title: environment.fraseEliminar,
     })
   }
-  mensajeError() :void {
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -58,33 +60,35 @@ export class ItemDireccionComponent implements OnInit {
     })
   }
 
+  //Modal para confirmar la eliminación de un elemento
   modalConfirmacion(): void {
     Swal.fire({
-      title: '¿Está seguro que desea eliminar esta dirección?',
+      title: environment.fraseEliminarModal,
       showCancelButton: true,
       confirmButtonColor: environment.colorAceptarModal,
       cancelButtonColor: environment.colorCancelarModal,
       confirmButtonText: 'Aceptar',
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.eliminarDireccion('direcciones')
    }
     })
   }
 
-
+  //Metodo que llama al servicio delete, que elimina el elemento
   eliminarDireccion(ruta: string): void {
     this.cargaDirecciones.eliminarDireccion(this.direccion).subscribe(
       e => {
         this.router.navigateByUrl(ruta, {skipLocationChange: true}).then(() => {
           this.router.navigate([ruta+'/borrado/'+this.direccion.id]);
         });
-        this.mensajeExito()
+        //Si el elemento se ha borrado con exito, llama al método que muestra el alert de Exito
+        this.alertExito()
 
       },
       error => {
-        this.mensajeError()
+        //Si ha habido algún error al eliminar el elemento, llama al método que muestra el alert de Error
+        this.alertError()
       }
     )
   }

@@ -29,12 +29,10 @@ export class DetallesDireccionComponent implements OnInit {
   modificarDireccion(): void {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
-        console.log('Dirección ' + e.id + ' modificada');
-        console.log(this.dire);
         this.router.navigate(['/direcciones']);
       },
       error => {
-        console.log(error);
+
       }
     );
   }

@@ -30,12 +30,7 @@ export class CargaDireccionService {
     return this.http.post<IDireccion>(this.URL_SERVER_DIRECCIONES, direccion);
   }
 
-
-
   eliminarDireccion(direccion:IDireccion): Observable<IDireccion> {
-    console.log("servicio");
-    console.log(direccion);
-    console.log(direccion.id);
     return this.http.delete<IDireccion>(this.URL_SERVER_DIRECCIONES + '/' + direccion.id);
   }
 
