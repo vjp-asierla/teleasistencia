@@ -17,14 +17,14 @@ export class BotonesLoginComponent implements OnInit, DoCheck {
 
   public img:string
   ngOnInit(): void {
-    this.userService.getUser(14).subscribe(
+   /* this.userService.getUser(14).subscribe(
       (resp:any)=>{
         //console.log(resp.imagen)
         const {imagen}=resp.imagen
         //console.log(imagen)
         this.img=imagen
       }
-    )
+    )*/
 
   }
 

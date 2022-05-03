@@ -1,4 +1,4 @@
-
+import os
 
 from django.shortcuts import _get_queryset
 from requests import request
@@ -28,6 +28,36 @@ class IsTeacherMember(permissions.BasePermission):
         if request.user.groups.filter(name="profesor").exists():
             return True
 
+class Profile(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    def list(self, request, *args, **kwargs):
+        queryset = User.objects.filter(username=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        # TODO comprobar si un usuario (no-profesor) puede modificar sus datos
+        # Comprobamos que existe el groups
+        user = User.objects.get(pk=kwargs["pk"])
+        if request.data.get("email") is not None:
+            user.email = request.data.get("email")
+        if request.data.get("password") is not None:
+            # Encriptamos la contraseña
+            user.set_password(request.data.get("password"))
+        user.save()
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image=Imagen_User.objects.get(user=user)
+            if (image.imagen) is not None:
+                os.remove(image.imagen.path)
+            image.imagen=img
+            image.save()
+
+        # Devolvemos el user creado
+        user_serializer = self.get_serializer(user, many=False)
+        return Response(user_serializer.data)
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -53,25 +83,34 @@ class UserViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         # Comprobamos que existe el groups
         id_groups = Group.objects.get(pk=request.data.get("groups"))
+
         if id_groups is None:
             return Response("Error: Groups")
 
         if User.objects.filter(username=request.data.get("username")).exists():
             return Response("El usuario ya existe")
 
+
         user = User(
             username=request.data.get("username"),
             first_name=request.data.get("first_name"),
             last_name=request.data.get("last_name"),
             email=request.data.get("email"),
-            #imagen=request.data.get("imagen")
         )
+
+
         # Encriptamos la contraseña
         user.set_password(request.data.get("password"))
         user.save()
         user.groups.add(id_groups)
 
-
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image = Imagen_User(
+                user=user,
+                imagen=img
+            )
+            image.save()
         # Devolvemos el user creado
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
@@ -93,14 +132,27 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.data.get("password") is not None:
             # Encriptamos la contraseña
             user.set_password(request.data.get("password"))
-        #if request.data.get("imagen") is not None:
-            #user.email = request.data.get("imagen")
-
         user.save()
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image=Imagen_User.objects.get(user=user)
+            if (image.imagen) is not None:
+                os.remove(image.imagen.path)
+            image.imagen=img
+            image.save()
 
         # Devolvemos el user creado
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        user = User.objects.get(pk=kwargs["pk"])
+        image = Imagen_User.objects.get(user=user)
+        if image.imagen is not None:
+            os.remove(image.imagen.path)
+        user.delete()
+        return Response('borrado')
+
 
 class PermissionViewSet(viewsets.ModelViewSet):
     """

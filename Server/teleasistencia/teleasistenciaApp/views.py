@@ -22,10 +22,3 @@ def index(request):
         #token = get_object_or_404(UserSocialAuth, uid=uidmio)
         #context['token'] = token.extra_data
     return render(request, 'teleasistenciaIndex.html', context)
-
-@parser_classes((MultiPartParser, ))
-class UploadFileAndJson(APIView):
-
-    def post(self, request, format=None):
-        imagen = request.FILES["file"]
-        return HttpResponse()

@@ -42,12 +42,8 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
    ).subscribe(
       resp=>{
         localStorage.setItem('token',resp.access)
-        this.loginService.hacerLogin();
-
         const { username }=this.formLogin.value
-        console.log(this.formLogin.value)
         localStorage.setItem('username',username)
-
         this.router.navigate(['/inicio']);
       }, err=>{
         alert('Error login incorrecto')

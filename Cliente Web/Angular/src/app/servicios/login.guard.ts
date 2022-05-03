@@ -15,11 +15,17 @@ export class LoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     const token= localStorage.getItem('token')
+    //console.log(this.router.url)
+    if(this.router.url=='/'){
+      return true
+    }
 
-    if(!token){
+      if(!token){
       this.router.navigate(['/login']);
       return false
-    } else{
+    }
+
+      else{
       return true
     }
 
