@@ -2,12 +2,14 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITipoRecursoComunitario} from '../interfaces/i-tipo-recurso-comunitario';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CargaTipoRecursoComunitarioService {
-  private URL_SERVER_TIPOS_RECURSOS_COMUNITARIOS = 'http://localhost:8000/api-rest/tipo_recurso_comunitario';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_TIPOS_RECURSOS_COMUNITARIOS = this.urlBase + 'tipo_recurso_comunitario';
 
   constructor(private http: HttpClient) {
   }

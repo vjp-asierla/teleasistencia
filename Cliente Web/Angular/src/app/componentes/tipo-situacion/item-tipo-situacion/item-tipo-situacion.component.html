@@ -1,0 +1,12 @@
+<td>{{ tipo_situacion.nombre }}</td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify"
+          [routerLink]="['/situaciones/modificar', tipo_situacion.id]">
+    Modificar datos
+  </button>
+
+  <button type="submit" class="btn btn-outline-danger btn-modify" [routerLink]="['/situaciones/borrado', tipo_situacion.id]">
+    Eliminar
+  </button>
+</td>
+
