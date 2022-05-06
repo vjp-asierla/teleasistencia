@@ -2,7 +2,7 @@ import {Component, DoCheck, OnInit} from '@angular/core';
 import {ILogin} from "../../../interfaces/i-login";
 import {Title} from "@angular/platform-browser";
 import {Login} from "../../../clases/login";
-import {LoginService} from "../../../servicios/login/login.service";
+import {LoginService} from "../../../servicios/login.service";
 import {Router} from "@angular/router";
 
 @Component({

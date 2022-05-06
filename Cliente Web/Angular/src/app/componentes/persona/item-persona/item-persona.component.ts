@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IPersona} from '../../../interfaces/i-persona';
 import Swal from "sweetalert2";
-import {CargaPersonaService} from "../../../servicios/persona/carga-persona.service";
+import {CargaPersonaService} from "../../../servicios/carga-persona.service";
 
 @Component({
   selector: 'app-item-persona, [app-item-persona]',

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ICentroSanitario} from '../../../interfaces/i-centro-sanitario';
 import Swal from "sweetalert2";
-import {CargaTipoAlarmaService} from "../../../servicios/alarma/tipo-alarma/carga-tipo-alarma.service";
-import {CargaCentroSanitarioService} from "../../../servicios/centro-sanitario/carga-centro-sanitario.service";
+import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
+import {CargaCentroSanitarioService} from "../../../servicios/carga-centro-sanitario.service";
 
 @Component({
   selector: 'app-item-centro-sanitario, [app-item-centro-sanitario]',

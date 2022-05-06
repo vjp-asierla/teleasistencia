@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IUsers} from '../../../interfaces/i-users';
 import Swal from 'sweetalert2';
-import {CargaDireccionService} from "../../../servicios/direccion/carga-direccion.service";
+import {CargaDireccionService} from "../../../servicios/carga-direccion.service";
 import {Router} from "@angular/router";
-import {CargaUserService} from "../../../servicios/user/carga-user.service";
+import {CargaUserService} from "../../../servicios/carga-user.service";
 
 @Component({
   selector: 'app-item-user, [app-item-user]',

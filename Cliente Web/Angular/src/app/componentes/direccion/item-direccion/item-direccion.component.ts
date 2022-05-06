@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {IDireccion} from '../../../interfaces/i-direccion';
-import {CargaDireccionService} from "../../../servicios/direccion/carga-direccion.service";
+import {CargaDireccionService} from "../../../servicios/carga-direccion.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import Swal from 'sweetalert2';
