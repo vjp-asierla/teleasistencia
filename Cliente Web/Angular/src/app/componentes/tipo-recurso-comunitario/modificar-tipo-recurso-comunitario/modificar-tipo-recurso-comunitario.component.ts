@@ -5,8 +5,9 @@ import {Title} from '@angular/platform-browser';
 import {CargaTipoRecursoComunitarioService} from '../../../servicios/carga-tipo-recurso-comunitario.service';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-tipo-recurso-comunitario',
+  selector: 'app-modificar-tipo-recurso-comunitario',
   templateUrl: './modificar-tipo-recurso-comunitario.component.html',
   styleUrls: ['./modificar-tipo-recurso-comunitario.component.scss']
 })

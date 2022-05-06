@@ -6,8 +6,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-tipo-alarma',
+  selector: 'app-modificar-tipo-alarma',
   templateUrl: './modificar-tipo-alarma.component.html',
   styleUrls: ['./modificar-tipo-alarma.component.scss']
 })
@@ -17,8 +18,7 @@ export class ModificarTipoAlarmaComponent implements OnInit {
   public idTipoAlarma: number;
   public clasificaciones_alarmas: IClasificacionAlarma[];
 
-  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {
-  }
+  constructor(private titleService: Title, private route: ActivatedRoute, private cargaTiposAlarmas: CargaTipoAlarmaService, private router: Router) {}
 
   ngOnInit(): void {
     this.tipo_alarma = this.route.snapshot.data['tipo_alarma'];

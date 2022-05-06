@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IRecursoComunitario} from '../../../interfaces/i-recurso-comunitario';
+
 import Swal from "sweetalert2";
 import {CargaTipoRecursoComunitarioService} from "../../../servicios/carga-tipo-recurso-comunitario.service";
 import {CargaRecursoComunitarioService} from "../../../servicios/carga-recurso-comunitario.service";
+
 
 @Component({
   selector: 'app-item-resurso-comunitario, [app-item-resurso-comunitario]',

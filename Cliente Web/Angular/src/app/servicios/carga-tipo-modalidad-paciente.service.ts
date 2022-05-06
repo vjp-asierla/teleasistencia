@@ -4,13 +4,15 @@ import {Observable} from 'rxjs';
 import {ITipoModalidadPaciente} from '../interfaces/i-tipo-modalidad-paciente';
 import {CargaTipoCentroSanitarioService} from "./carga-tipo-centro-sanitario.service";
 import {ICentroSanitario} from "../interfaces/i-centro-sanitario";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaTipoModalidadPacienteService {
-  private URL_SERVER_TIPOS_MODALIDADES_PACIENTE = 'http://localhost:8000/api-rest/tipo_modalidad_paciente';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_TIPOS_MODALIDADES_PACIENTE = this.urlBase + 'tipo_modalidad_paciente';
 
   constructor(private http: HttpClient) {
   }

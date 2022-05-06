@@ -6,8 +6,9 @@ import {CargaTipoModalidadPacienteService} from '../../../servicios/carga-tipo-m
 import {TipoModalidadPaciente} from '../../../clases/tipo-modalidad-paciente';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nuevo-tipo-modalidad-paciente',
+  selector: 'app-crear-tipo-modalidad-paciente',
   templateUrl: './crear-tipo-modalidad-paciente.component.html',
   styleUrls: ['./crear-tipo-modalidad-paciente.component.scss']
 })

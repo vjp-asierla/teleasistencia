@@ -10,8 +10,9 @@ import {Direccion} from '../../../clases/direccion';
 import {RecursoComunitario} from '../../../clases/recurso-comunitario';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nuevo-recurso-comunitario',
+  selector: 'app-crear-recurso-comunitario',
   templateUrl: './crear-recurso-comunitario.component.html',
   styleUrls: ['./crear-recurso-comunitario.component.scss']
 })

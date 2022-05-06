@@ -3,13 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IClasificacionAlarma} from '../interfaces/i-clasificacion-alarma';
 import {IUsers} from "../interfaces/i-users";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaClasificacionAlarmaService {
-  private URL_SERVER_CLASIFICACIONES_ALARMAS = 'http://localhost:8000/api-rest/clasificacion_alarma';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_CLASIFICACIONES_ALARMAS = this.urlBase + 'clasificacion_alarma';
 
   constructor(private http: HttpClient) {
   }

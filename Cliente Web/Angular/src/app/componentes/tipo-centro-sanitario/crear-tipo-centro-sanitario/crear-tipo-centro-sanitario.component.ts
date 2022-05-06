@@ -6,8 +6,9 @@ import {CargaTipoCentroSanitarioService} from '../../../servicios/carga-tipo-cen
 import {TipoCentroSanitario} from '../../../clases/tipo-centro-sanitario';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nuevo-tipo-centro-sanitario',
+  selector: 'app-crear-tipo-centro-sanitario',
   templateUrl: './crear-tipo-centro-sanitario.component.html',
   styleUrls: ['./crear-tipo-centro-sanitario.component.scss']
 })

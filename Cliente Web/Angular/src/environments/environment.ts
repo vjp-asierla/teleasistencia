@@ -28,6 +28,7 @@ export const environment = {
   colorCancelarModal: '#d33',
   //Frase de Confirmación para Eliminar
   fraseEliminarModal: '¿Desea Eliminar este Elemento?',
+  urlBase: 'http://localhost:8000/api-rest/',
 };
 
 /*

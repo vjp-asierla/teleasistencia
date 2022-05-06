@@ -9,9 +9,8 @@ import {CentroSanitario} from '../../../clases/centro-sanitario';
 import {Direccion} from '../../../clases/direccion';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import Swal from "sweetalert2";
-
 @Component({
-  selector: 'app-nuevo-centro-sanitario',
+  selector: 'app-crear-centro-sanitario',
   templateUrl: './crear-centro-sanitario.component.html',
   styleUrls: ['./crear-centro-sanitario.component.scss']
 })

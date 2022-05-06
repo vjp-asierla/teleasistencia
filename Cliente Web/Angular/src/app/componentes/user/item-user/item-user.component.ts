@@ -5,6 +5,7 @@ import {CargaDireccionService} from "../../../servicios/carga-direccion.service"
 import {Router} from "@angular/router";
 import {CargaUserService} from "../../../servicios/carga-user.service";
 
+
 @Component({
   selector: 'app-item-user, [app-item-user]',
   templateUrl: './item-user.component.html',

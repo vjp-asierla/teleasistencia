@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario';
 import {ActivatedRoute} from '@angular/router';
 import {Title} from '@angular/platform-browser';
+import {OrdenacionTablasService} from "../../../servicios/ordenacion-tablas.service";
 
 @Component({
   selector: 'app-lista-tipos-centros-sanitarios',
@@ -11,12 +12,19 @@ import {Title} from '@angular/platform-browser';
 
 export class ListaTiposCentrosSanitariosComponent implements OnInit {
   public tipos_centros_sanitarios: ITipoCentroSanitario[];
+  numPaginacion: number = 1;
+  inputBusqueda: any = '';
 
-  constructor(private route: ActivatedRoute, private titleService: Title) {
+  constructor(private route: ActivatedRoute, private titleService: Title, private ordTabla: OrdenacionTablasService) {
   }
 
   ngOnInit(): void {
     this.tipos_centros_sanitarios = this.route.snapshot.data['tipos_centros_sanitarios'];
     this.titleService.setTitle('Tipos centros sanitarios');
   }
+
+  ordenacionTabla(indice: number, tipo: string){
+    this.ordTabla.ordenacionService(indice, tipo);
+  }
+
 }

@@ -7,8 +7,10 @@ import {CargaPersonaService} from '../../../servicios/carga-persona.service';
 import {Persona} from '../../../clases/persona';
 import Swal from "sweetalert2";
 
+
+
 @Component({
-  selector: 'app-nueva-persona',
+  selector: 'app-crear-persona',
   templateUrl: './crear-persona.component.html',
   styleUrls: ['./crear-persona.component.scss']
 })

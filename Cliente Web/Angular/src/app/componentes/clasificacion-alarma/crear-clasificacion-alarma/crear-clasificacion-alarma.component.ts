@@ -6,8 +6,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CargaClasificacionAlarmaService} from '../../../servicios/carga-clasificacion-alarma.service';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nueva-clasificacion-alarma',
+  selector: 'app-crear-clasificacion-alarma',
   templateUrl: './crear-clasificacion-alarma.component.html',
   styleUrls: ['./crear-clasificacion-alarma.component.scss']
 })

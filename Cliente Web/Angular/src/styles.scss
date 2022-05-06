@@ -81,7 +81,12 @@ table {
    /*td > .btn-modify {
     float: right;
   }
-    */
+  th{
+    cursor: pointer;
+  }
+  th:active{
+    color: #10022b;
+  }
 }
 .btn-delete{
   margin-left: 20px;

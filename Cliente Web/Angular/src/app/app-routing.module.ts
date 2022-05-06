@@ -51,8 +51,22 @@ import {ListaRecursosComunitariosResolveService} from './servicios/lista-recurso
 import {ModificarRecursoComunitarioComponent} from './componentes/recurso-comunitario/modificar-recurso-comunitario/modificar-recurso-comunitario.component';
 import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
 import {CrearRecursoComunitarioComponent} from './componentes/recurso-comunitario/crear-recurso-comunitario/crear-recurso-comunitario.component';
-import {PantallaLoginComponent} from './componentes/login/pantalla-login/pantalla-login.component';
+import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {LoginGuard} from './servicios/login.guard';
+import {ListaTiposViviendaComponent} from "./componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component";
+import {ListaViviendasResolveService} from "./servicios/lista-viviendas-resolve.service";
+import {CrearViviendaComponent} from "./componentes/tipo-vivienda/crear-tipo-vivienda/crear-vivienda.component";
+import {ModificarTipoViviendaComponent} from "./componentes/tipo-vivienda/modificar-tipo-vivienda/modificar-tipo-vivienda.component";
+import {ListaTiposSituacionComponent} from "./componentes/tipo-situacion/lista-tipos-situacion/lista-tipos-situacion.component";
+import {DetallesViviendaResolveService} from "./servicios/detalles-vivienda-resolve.service";
+import {ListaSituacionesService} from "./servicios/lista-situaciones.service";
+import {CrearTipoSituacionComponent} from "./componentes/tipo-situacion/crear-tipo-situacion/crear-tipo-situacion.component";
+import {ModificarTipoSituacionComponent} from "./componentes/tipo-situacion/modificar-tipo-situacion/modificar-tipo-situacion.component";
+import {DetallesTipoSituacionService} from "./servicios/detalles-tipo-situacion.service";
+import {BorrarTipoViviendaComponent} from "./componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component";
+import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
+import {BorrarTipoSituacionComponent} from "./componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component";
+import {BorrarTipoSituacionService} from "./servicios/borrar-tipo-situacion.service";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -199,7 +213,6 @@ const routes: Routes = [
       direccion: DetallesDireccionResolveService
     }
   },
-
   {path: 'direcciones/nueva', component: CrearDireccionComponent, canActivate: [LoginGuard]},
   {
     path: 'centros_sanitarios',
@@ -274,6 +287,90 @@ const routes: Routes = [
     canActivate: [LoginGuard],
     resolve: {
       direcciones: ListaDireccionesResolveService
+    }
+  },
+  {
+    path: 'viviendas',
+    component: ListaTiposViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/nueva',
+    component: CrearViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      clasificaciones_alarmas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/modificar/:id',
+    component: ModificarTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipo_vivienda: DetallesViviendaResolveService,
+      clasificaciones_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/borrado/:id',
+    component: BorrarTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipo_vivienda: BorrarTipoViviendaService,
+      clasificaciones_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'usuarios/modificar/:id',
+    component: ModificarUserComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      user: DetallesUserResolveService
+    }
+  },
+  {
+    path: 'situaciones',
+    component: ListaTiposSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/nueva',
+    component: CrearTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/modificar/:id',
+    component: ModificarTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: DetallesTipoSituacionService,
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/borrado/:id',
+    component: BorrarTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: BorrarTipoSituacionService,
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'usuarios/modificar/:id',
+    component: ModificarUserComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      user: DetallesUserResolveService
     }
   },
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},

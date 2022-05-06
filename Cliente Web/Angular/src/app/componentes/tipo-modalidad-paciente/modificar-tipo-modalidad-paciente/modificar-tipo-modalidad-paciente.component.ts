@@ -5,8 +5,9 @@ import {Title} from '@angular/platform-browser';
 import {CargaTipoModalidadPacienteService} from '../../../servicios/carga-tipo-modalidad-paciente.service';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-tipo-modalidad-paciente',
+  selector: 'app-modificar-tipo-modalidad-paciente',
   templateUrl: './modificar-tipo-modalidad-paciente.component.html',
   styleUrls: ['./modificar-tipo-modalidad-paciente.component.scss']
 })

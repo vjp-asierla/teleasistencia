@@ -6,8 +6,10 @@ import {CargaDireccionService} from '../../../servicios/carga-direccion.service'
 import {Direccion} from '../../../clases/direccion';
 import Swal from "sweetalert2";
 
+
+
 @Component({
-  selector: 'app-nueva-direccion',
+  selector: 'app-crear-direccion',
   templateUrl: './crear-direccion.component.html',
   styleUrls: ['./crear-direccion.component.scss']
 })

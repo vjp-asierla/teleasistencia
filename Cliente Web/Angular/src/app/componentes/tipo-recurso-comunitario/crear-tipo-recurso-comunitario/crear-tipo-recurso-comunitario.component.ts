@@ -6,8 +6,9 @@ import {CargaTipoRecursoComunitarioService} from '../../../servicios/carga-tipo-
 import {TipoRecursoComunitario} from '../../../clases/tipo-recurso-comunitario';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nuevo-tipo-recurso-comunitario',
+  selector: 'app-crear-tipo-recurso-comunitario',
   templateUrl: './crear-tipo-recurso-comunitario.component.html',
   styleUrls: ['./crear-tipo-recurso-comunitario.component.scss']
 })

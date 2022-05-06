@@ -7,7 +7,7 @@ import {User} from '../../../clases/user';
 import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-nuevo-user',
+  selector: 'app-crear-user',
   templateUrl: './crear-user.component.html',
   styleUrls: ['./crear-user.component.scss']
 })

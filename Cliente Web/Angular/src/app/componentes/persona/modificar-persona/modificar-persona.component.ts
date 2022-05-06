@@ -7,8 +7,10 @@ import {CargaPersonaService} from '../../../servicios/carga-persona.service';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import Swal from "sweetalert2";
 
+
+
 @Component({
-  selector: 'app-detalles-persona',
+  selector: 'app-modificar-persona',
   templateUrl: './modificar-persona.component.html',
   styleUrls: ['./modificar-persona.component.scss']
 })

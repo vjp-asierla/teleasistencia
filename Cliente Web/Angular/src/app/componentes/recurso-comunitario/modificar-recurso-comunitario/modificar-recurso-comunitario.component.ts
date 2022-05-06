@@ -8,8 +8,9 @@ import {CargaDireccionService} from '../../../servicios/carga-direccion.service'
 import {CargaRecursoComunitarioService} from '../../../servicios/carga-recurso-comunitario.service';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-recurso-comunitario',
+  selector: 'app-modificar-recurso-comunitario',
   templateUrl: './modificar-recurso-comunitario.component.html',
   styleUrls: ['./modificar-recurso-comunitario.component.scss']
 })

@@ -5,8 +5,9 @@ import {Title} from '@angular/platform-browser';
 import {CargaTipoCentroSanitarioService} from '../../../servicios/carga-tipo-centro-sanitario.service';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-tipo-centro-sanitario',
+  selector: 'app-modificar-tipo-centro-sanitario',
   templateUrl: './modificar-tipo-centro-sanitario.component.html',
   styleUrls: ['./modificar-tipo-centro-sanitario.component.scss']
 })

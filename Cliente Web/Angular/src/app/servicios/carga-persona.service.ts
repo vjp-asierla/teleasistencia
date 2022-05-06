@@ -3,13 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IPersona} from '../interfaces/i-persona';
 import {ITipoRecursoComunitario} from "../interfaces/i-tipo-recurso-comunitario";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaPersonaService {
-  private URL_SERVER_PERSONAS = 'http://localhost:8000/api-rest/persona';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_PERSONAS = this.urlBase + 'persona';
 
   constructor(private http: HttpClient) {
   }

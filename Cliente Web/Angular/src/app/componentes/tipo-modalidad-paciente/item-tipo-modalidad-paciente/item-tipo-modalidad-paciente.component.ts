@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import {CargaTipoCentroSanitarioService} from "../../../servicios/carga-tipo-centro-sanitario.service";
 import {CargaTipoModalidadPacienteService} from "../../../servicios/carga-tipo-modalidad-paciente.service";
 
+
 @Component({
   selector: 'app-item-tipo-modalidad-paciente, [app-item-tipo-modalidad-paciente]',
   templateUrl: './item-tipo-modalidad-paciente.component.html',

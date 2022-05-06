@@ -6,7 +6,7 @@ import {CargaUserService} from '../../../servicios/carga-user.service';
 import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-detalles-user',
+  selector: 'app-modificar-user',
   templateUrl: './modificar-user.component.html',
   styleUrls: ['./modificar-user.component.scss']
 })

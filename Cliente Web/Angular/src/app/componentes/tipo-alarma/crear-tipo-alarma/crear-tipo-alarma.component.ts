@@ -7,8 +7,9 @@ import {CargaTipoAlarmaService} from '../../../servicios/carga-tipo-alarma.servi
 import {TipoAlarma} from '../../../clases/tipo-alarma';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-nuevo-tipo-alarma',
+  selector: 'app-crear-tipo-alarma',
   templateUrl: './crear-tipo-alarma.component.html',
   styleUrls: ['./crear-tipo-alarma.component.scss']
 })

@@ -7,7 +7,8 @@ import {ListaUsersComponent} from './componentes/user/lista-users/lista-users.co
 import {ItemUserComponent} from './componentes/user/item-user/item-user.component';
 import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
 import {CrearUserComponent} from './componentes/user/crear-user/crear-user.component';
-import {HttpClientModule} from '@angular/common/http';
+
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
 import {CargaUserService} from './servicios/carga-user.service';
@@ -56,11 +57,26 @@ import {CargaDireccionService} from './servicios/carga-direccion.service';
 import {CargaCentroSanitarioService} from './servicios/carga-centro-sanitario.service';
 import {CargaPersonaService} from './servicios/carga-persona.service';
 import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunitario.service';
-import {PantallaLoginComponent} from './componentes/login/pantalla-login/pantalla-login.component';
+import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
-import {BotonesLoginComponent} from './componentes/login/botones-login/botones-login.component';
-import { BorrarDireccionComponent } from './componentes/direccion/borrar-direccion/borrar-direccion.component';
+
+import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {OrdenacionTablasService} from "./servicios/ordenacion-tablas.service";
+import { FiltroBusquedaPipe } from './pipes/filtro-busqueda.pipe';
+import { ListaTiposViviendaComponent } from './componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component';
+import { ListaTiposSituacionComponent } from './componentes/tipo-situacion/lista-tipos-situacion/lista-tipos-situacion.component';
+import { ItemTipoViviendaComponent } from './componentes/tipo-vivienda/item-tipo-vivienda/item-tipo-vivienda.component';
+import { CrearViviendaComponent } from './componentes/tipo-vivienda/crear-tipo-vivienda/crear-vivienda.component';
+import { ModificarTipoViviendaComponent } from './componentes/tipo-vivienda/modificar-tipo-vivienda/modificar-tipo-vivienda.component';
+import {CargaViviendaService} from "./servicios/carga-vivienda.service";
+import { ItemTipoSituacionComponent } from './componentes/tipo-situacion/item-tipo-situacion/item-tipo-situacion.component';
+import { CrearTipoSituacionComponent } from './componentes/tipo-situacion/crear-tipo-situacion/crear-tipo-situacion.component';
+import { ModificarTipoSituacionComponent } from './componentes/tipo-situacion/modificar-tipo-situacion/modificar-tipo-situacion.component';
+import { BorrarTipoViviendaComponent } from './componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component';
+import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component';
+import {InterceptorService} from "./interceptors/interceptor.service";
 
 @NgModule({
   declarations: [
@@ -110,13 +126,24 @@ import { BorrarDireccionComponent } from './componentes/direccion/borrar-direcci
     HeaderComponent,
     FooterComponent,
     BotonesLoginComponent,
-    BorrarDireccionComponent,
+    FiltroBusquedaPipe,
+    ListaTiposViviendaComponent,
+    ListaTiposSituacionComponent,
+    ItemTipoViviendaComponent,
+    CrearViviendaComponent,
+    ModificarTipoViviendaComponent,
+    ItemTipoSituacionComponent,
+    CrearTipoSituacionComponent,
+    ModificarTipoSituacionComponent,
+    BorrarTipoViviendaComponent,
+    BorrarTipoSituacionComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
   ],
   providers: [
     CargaUserService,
@@ -129,7 +156,13 @@ import { BorrarDireccionComponent } from './componentes/direccion/borrar-direcci
     CargaCentroSanitarioService,
     CargaRecursoComunitarioService,
     CargaPersonaService,
-    Title
+    CargaViviendaService,
+    Title,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })

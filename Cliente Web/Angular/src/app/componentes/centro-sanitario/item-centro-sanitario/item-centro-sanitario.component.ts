@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
 import {CargaCentroSanitarioService} from "../../../servicios/carga-centro-sanitario.service";
 
+
 @Component({
   selector: 'app-item-centro-sanitario, [app-item-centro-sanitario]',
   templateUrl: './item-centro-sanitario.component.html',
@@ -14,11 +15,11 @@ export class ItemCentroSanitarioComponent implements OnInit {
   @Input() public centro_sanitario: ICentroSanitario;
 
   constructor(private cargaCentroSanitario: CargaCentroSanitarioService) {
+
   }
 
   ngOnInit(): void {
   }
-
   modalConfirmacion(): void {
     Swal.fire({
       title: '¿Está seguro que desea eliminar este centro sanitario?',
@@ -42,4 +43,5 @@ export class ItemCentroSanitarioComponent implements OnInit {
       }
     )
   }
+
 }

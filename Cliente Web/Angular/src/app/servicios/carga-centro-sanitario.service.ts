@@ -3,13 +3,16 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICentroSanitario} from '../interfaces/i-centro-sanitario';
 import {IClasificacionAlarma} from "../interfaces/i-clasificacion-alarma";
+import {environment} from "../../environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaCentroSanitarioService {
-  private URL_SERVER_CENTROS_SANITARIOS = 'http://localhost:8000/api-rest/centro_sanitario';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_CENTROS_SANITARIOS = this.urlBase + 'centro_sanitario';
 
   constructor(private http: HttpClient) {
   }

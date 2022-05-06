@@ -5,6 +5,7 @@ import {CargaDireccionService} from "../../../servicios/carga-direccion.service"
 import {Router} from "@angular/router";
 import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
 
+
 @Component({
   selector: 'app-item-tipo-alarma, [app-item-tipo-alarma]',
   templateUrl: './item-tipo-alarma.component.html',

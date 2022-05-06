@@ -8,8 +8,9 @@ import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario'
 import {IDireccion} from '../../../interfaces/i-direccion';
 import Swal from "sweetalert2";
 
+
 @Component({
-  selector: 'app-detalles-centro-sanitario',
+  selector: 'app-modificar-centro-sanitario',
   templateUrl: './modificar-centro-sanitario.component.html',
   styleUrls: ['./modificar-centro-sanitario.component.scss']
 })
