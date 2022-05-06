@@ -3,7 +3,7 @@ import {IClasificacionAlarma} from '../../../interfaces/i-clasificacion-alarma';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaClasificacionAlarmaService} from '../../../servicios/carga-clasificacion-alarma.service';
-
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-modificar-clasificacion-alarma',
   templateUrl: './modificar-clasificacion-alarma.component.html',

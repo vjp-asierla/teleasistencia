@@ -77,8 +77,8 @@ table {
     background-color: #75597D;
     color: white;
   }
-
-   /*td > .btn-modify {
+}
+   td > .btn-modify {
     float: right;
   }
   th{
@@ -87,7 +87,7 @@ table {
   th:active{
     color: #10022b;
   }
-}
+
 .btn-delete{
   margin-left: 20px;
   color:rgb(108, 117, 125);
@@ -481,4 +481,5 @@ footer {
     text-align: initial;
   }
 }
+
 

@@ -1,13 +1,9 @@
-<<<<<<< HEAD:Cliente Web/Angular/src/app/componentes/login/pantalla-login/pantalla-login.component.ts
-import {Component, DoCheck, OnInit} from '@angular/core';
-import {ILogin} from "../../../interfaces/i-login";
-=======
+
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {ILogin} from "../../interfaces/i-login";
->>>>>>> upstream/develop:Cliente Web/Angular/src/app/componentes/pantalla-login/pantalla-login.component.ts
 import {Title} from "@angular/platform-browser";
-import {Login} from "../../../clases/login";
-import {LoginService} from "../../../servicios/login.service";
+import {Login} from "../../clases/login";
+import {LoginService} from "../../servicios/login.service";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {token} from "../../interfaces/i-token";
