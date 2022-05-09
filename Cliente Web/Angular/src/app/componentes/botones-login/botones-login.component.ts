@@ -1,7 +1,8 @@
 import {Component, DoCheck, OnInit} from '@angular/core';
 import {LoginService} from '../../servicios/login.service';
 import {Router} from '@angular/router';
-import {CargaUserService} from "../../servicios/carga-user.service";
+import {ProfileService} from "../../servicios/profile.service";
+import {IProfileUser} from "../../interfaces/i-profile-user";
 
 @Component({
   selector: 'app-botones-login',
@@ -11,25 +12,27 @@ import {CargaUserService} from "../../servicios/carga-user.service";
 
 export class BotonesLoginComponent implements OnInit, DoCheck {
   public estaLogin: boolean;
-  public username:string= localStorage.getItem('username');
-  constructor(private loginService: LoginService, private router: Router, private userService:CargaUserService) {
+  public username:string
+  public userlastname:string
+  public img:string
+  public imgNull:string
+
+  constructor(private loginService: LoginService, private router: Router) {
   }
 
-  public img:string
   ngOnInit(): void {
-   /* this.userService.getUser(14).subscribe(
-      (resp:any)=>{
-        //console.log(resp.imagen)
-        const {imagen}=resp.imagen
-        //console.log(imagen)
-        this.img=imagen
-      }
-    )*/
-
   }
 
   ngDoCheck(): void {
     this.estaLogin = this.loginService.estaLogin();
+    this.username= localStorage.getItem('username');
+    this.userlastname= localStorage.getItem('userlastname');
+    const imagen=localStorage.getItem('img')
+    if(imagen==='null'){
+      this.imgNull=imagen
+    }else{
+      this.img= localStorage.getItem('img');
+    }
   }
 
   hacerLogout(): void {

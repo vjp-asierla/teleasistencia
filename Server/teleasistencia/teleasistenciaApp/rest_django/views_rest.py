@@ -48,10 +48,17 @@ class Profile(viewsets.ModelViewSet):
         user.save()
         if request.FILES:
             img = request.FILES["imagen"]
-            image=Imagen_User.objects.get(user=user)
-            if (image.imagen) is not None:
-                os.remove(image.imagen.path)
-            image.imagen=img
+            image = Imagen_User.objects.filter(user=user).first()
+            if image:
+                if (image.imagen) is not None:
+                    os.remove(image.imagen.path)
+                image.imagen = img
+                image.save()
+            else:
+                image = Imagen_User(
+                    user=user,
+                    imagen=img
+                )
             image.save()
 
         # Devolvemos el user creado
@@ -135,10 +142,17 @@ class UserViewSet(viewsets.ModelViewSet):
         user.save()
         if request.FILES:
             img = request.FILES["imagen"]
-            image=Imagen_User.objects.get(user=user)
-            if (image.imagen) is not None:
-                os.remove(image.imagen.path)
-            image.imagen=img
+            image = Imagen_User.objects.filter(user=user).first()
+            if image:
+                if (image.imagen) is not None:
+                    os.remove(image.imagen.path)
+                image.imagen = img
+                image.save()
+            else:
+                image = Imagen_User(
+                    user=user,
+                    imagen=img
+                )
             image.save()
 
         # Devolvemos el user creado

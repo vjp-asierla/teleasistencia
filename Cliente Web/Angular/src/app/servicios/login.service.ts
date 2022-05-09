@@ -10,7 +10,7 @@ export class LoginService {
   constructor() {
   }
 
-  
+
 
   estaLogin(): boolean {
     if (localStorage.getItem('token') != null) {
@@ -22,7 +22,12 @@ export class LoginService {
 
   hacerLogout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('img');
     localStorage.removeItem('username')
+    localStorage.removeItem('userlastname')
+    localStorage.removeItem('grupo')
+
+
 
   }
 }

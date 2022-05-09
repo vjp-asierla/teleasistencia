@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   urlBase: 'http://localhost:8000/api-rest/',
+  urlToken: 'http://localhost:8000/api/token/',
 };
 
 /*

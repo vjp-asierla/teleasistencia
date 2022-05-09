@@ -124,3 +124,8 @@ GitHub.sublime-settings
 .idea/teleasistencia_navalmoral.iml
 .idea/workspace.xml
 .idea/
+
+
+#img
+./Server/teleasistencia/teleasistenciaApp/imagen_usuario
+/Server/teleasistencia/teleasistenciaApp/imagen_usuario/

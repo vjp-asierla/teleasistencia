@@ -3,10 +3,13 @@
 
 <div *ngIf="estaLogin" class="dropdown text-end">
   <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-    <p class="user">{{username}}</p>
-    <img src="../../../assets/user.png" alt="mdo" width="40" height="40" class="rounded-circle">
-    <!--<img *ngIf="img" [src]="img" alt="mdo" width="40" height="40" class="rounded-circle">-->
-
+    <p class="user">{{username }} {{userlastname}}</p>
+    <div *ngIf="img; else imgNull">
+      <img [src]="img" alt="mdo" width="40" height="40" class="rounded-circle">
+    </div>
+    <ng-template #imgNull>
+      <img src="../../../assets/user.png" alt="mdo" width="40" height="40" class="rounded-circle">
+    </ng-template>
   </a>
   <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
     <li><a class="dropdown-item" (click)="hacerLogout()">Logout</a></li>

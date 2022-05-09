@@ -7,7 +7,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Imagen_User(models.Model):
    user = models.OneToOneField(User, on_delete=models.CASCADE)
-   imagen = models.ImageField(upload_to='teleasistenciaApp/imagen_usuario', null=True, blank=True, default="")
+   imagen = models.ImageField(upload_to='imagen_usuario', null=True, blank=True, default="")
 
 
 class Tipo_Agenda(models.Model):

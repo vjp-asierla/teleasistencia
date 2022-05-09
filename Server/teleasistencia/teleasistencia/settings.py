@@ -32,6 +32,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'/teleasistenciaApp')
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -105,6 +110,7 @@ TEMPLATES = [
                 # OAuth
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'django.template.context_processors.media',
             ],
         },
     },
