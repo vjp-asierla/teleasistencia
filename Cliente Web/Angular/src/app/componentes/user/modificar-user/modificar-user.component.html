@@ -104,7 +104,8 @@
     </div>
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarUser()"
-            [disabled]="!modificarUserForm.form.valid">
+            [disabled]="!modificarUserForm.form.valid"
+            aria-label="Try me! Example: Mixin" (click)="executeExample()">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/usuarios']">

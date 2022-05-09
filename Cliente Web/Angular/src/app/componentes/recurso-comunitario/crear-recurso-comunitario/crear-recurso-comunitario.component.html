@@ -105,7 +105,8 @@
       </div>
 
       <button type="submit" class="btn btn-outline-success m-1" (click)="nuevoRecursoComunitario()"
-              [disabled]="!nuevoRecursoComunitarioForm.form.valid">
+              [disabled]="!nuevoRecursoComunitarioForm.form.valid"
+      (click)="ejecutarAlerta()">
         Guardar
       </button>
       <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/recursos_comunitarios']">

@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import {CargaRecursoComunitarioService} from '../../../servicios/carga-recurso-comunitario.service';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-modificar-recurso-comunitario',
@@ -57,5 +59,24 @@ export class ModificarRecursoComunitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Recurso Comunitario Modificado Correctamente'
+    })
+
   }
 }

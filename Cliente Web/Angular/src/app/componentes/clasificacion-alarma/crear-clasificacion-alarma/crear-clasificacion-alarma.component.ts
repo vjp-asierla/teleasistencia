@@ -4,6 +4,8 @@ import {Title} from '@angular/platform-browser';
 import {ClasificacionAlarma} from '../../../clases/clasificacion-alarma';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaClasificacionAlarmaService} from '../../../servicios/carga-clasificacion-alarma.service';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-crear-clasificacion-alarma',
@@ -33,5 +35,24 @@ export class CrearClasificacionAlarmaComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Clasificación de Alarma Creada Correctamente'
+    })
+
   }
 }

@@ -4,7 +4,12 @@
 <td>{{ tipo_alarma.id_clasificacion_alarma.nombre }} {{ tipo_alarma.id_clasificacion_alarma.codigo }}</td>
 <td>
   <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/tipos_alarmas/modificar', tipo_alarma.id]">
-    Modificar datos
+    <i class="fa fa-pen"></i>
   </button>
+
+  <!-- Button trigger modal -->
+
+  <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()"
+  ><i class="fa fa-trash"></i></button>
 </td>
 
