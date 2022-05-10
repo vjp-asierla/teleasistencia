@@ -79,8 +79,8 @@ export class ItemDireccionComponent implements OnInit {
   eliminarDireccion(ruta: string): void {
     this.cargaDirecciones.eliminarDireccion(this.direccion).subscribe(
       e => {
-        this.router.navigateByUrl(ruta, {skipLocationChange: true}).then(() => {
-          this.router.navigate([ruta+'/borrado/'+this.direccion.id]);
+        this.router.navigateByUrl(ruta+'/borrado/'+this.direccion.id, {skipLocationChange: true}).then(() => {
+          this.router.navigate([ruta]);
         });
         //Si el elemento se ha borrado con exito, llama al método que muestra el alert de Exito
         this.alertExito()
