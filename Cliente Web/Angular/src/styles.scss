@@ -79,7 +79,7 @@ table {
   }
 }
    td > .btn-modify {
-    float: right;
+    float: none;
   }
   th{
     cursor: pointer;
@@ -98,7 +98,6 @@ table {
   color:white;
   background-color: red;
 }
-
 
 .form-group {
   width: 500px;

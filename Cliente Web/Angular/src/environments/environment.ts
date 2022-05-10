@@ -8,17 +8,17 @@ export const environment = {
   //Tiempo que tarda en irse el mensaje de exito
   timerToast : 4000,
   //Frase del Toast al Eliminar Con Exito
-  fraseEliminar: 'Se Ha Eliminado Correctamente',
+  fraseEliminar: 'Se ha Eliminado Correctamente',
   //Frase del Toast al Modificar Con Exito
-  fraseModificar: 'Se Ha Modificado Correctamente',
+  fraseModificar: 'Se ha Modificado Correctamente',
   //Frase del Toast al Crear Con Exito
-  fraseCrear: 'Se Ha Eliminado Correctamente',
+  fraseCrear: 'Se ha Eliminado Correctamente',
   //Frase de error al Eliminar del Toast
-  fraseErrorEliminar: 'Se Ha Producido Un Error Inesperado',
+  fraseErrorEliminar: 'Se ha Producido Un Error Inesperado',
   //Frase de error al Modificar del Toast
-  fraseErrorModificar: 'Se Ha Producido Un Error Inesperado',
+  fraseErrorModificar: 'Se ha Producido Un Error Inesperado',
   //Frase de error al Crear del Toast
-  fraseErrorCrear: 'Se Ha Producido Un Error Inesperado',
+  fraseErrorCrear: 'Se ha Producido Un Error Inesperado',
 
 
   //Modal

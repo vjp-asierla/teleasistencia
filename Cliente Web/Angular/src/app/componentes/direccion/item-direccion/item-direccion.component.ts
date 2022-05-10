@@ -27,7 +27,7 @@ export class ItemDireccionComponent implements OnInit {
       position: 'top-end',
       showConfirmButton: false,
       //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
-      timer: environment.timerToast,
+      timer: 99999,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
