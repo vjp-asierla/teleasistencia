@@ -39,7 +39,6 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.titleService.setTitle('Login');
     this.login = new Login();
-
   }
 
   ngDoCheck(): void {
@@ -77,9 +76,8 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
      }
     )
 
-
-
   }
+
 
   hacerLogout(): void {
     this.loginService.hacerLogout();

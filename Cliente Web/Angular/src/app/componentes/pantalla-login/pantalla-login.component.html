@@ -21,9 +21,6 @@
                 <div *ngIf="username.errors?.required">
                   El nombre de usuario es obligatorio
                 </div>
-                <div *ngIf="username.errors?.minlength">
-                  El nombre de usuario debe tener al menos 4 caracteres
-                </div>
                 <div *ngIf="username.errors?.pattern">
                   Introduzca un nombre de usuario válido
                 </div>
@@ -47,8 +44,8 @@
                   La contraseña debe tener entre 8 y 16 caracteres
                 </div>
               </div>
-              <button type="button" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase"
-                      [disabled]="!formLogin.form.valid" (click)="hacerLogin()">
+              <button type="submit" class="btn btn-success btn-block shadow border-0 py-2 text-uppercase pointer"
+                      [disabled]="!formLogin.form.valid" (click)="hacerLogin()" >
                 Login
               </button>
             </div>
@@ -63,7 +60,6 @@
           </div>
         </div>
       </div>
-
     </form>
   </div>
 </div>
