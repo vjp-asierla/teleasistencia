@@ -33,6 +33,10 @@ export class CrearPersonaComponent implements OnInit {
     this.persona.sexo = 'Hombre';
     this.persona.telefono_fijo = '';
     this.persona.telefono_movil = '';
+    this.persona.localidad = '';
+    this.persona.provincia = '';
+    this.persona.direccion = '';
+    this.persona.codigo_postal= '';
   }
 
   nuevaPersona(): void {
