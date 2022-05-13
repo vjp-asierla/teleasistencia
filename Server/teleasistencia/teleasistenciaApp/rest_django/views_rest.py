@@ -379,22 +379,15 @@ class Persona_ViewSet(viewsets.ModelViewSet):
 
     # Creamos una persona con por POST
     def create(self, request, *args, **kwargs):
-        # Comprobamos si los datos se introducen para una dirección ya existente,
-        id_direccion = request.data.get("id_direccion")
 
-        # En el caso de ser una dirección nueva
-        if id_direccion is None:
-            # Obtenemos los datos de dirección y los almacenamos
-            direccion_serializer = Direccion_Serializer(data=request.data.get("direccion"))
-            if direccion_serializer.is_valid():
-                direccion = direccion_serializer.save()
-            else:
-                return Response("Error: direccion")
-
-        # en el caso de ser una dirección existente
+        # Obtenemos los datos de dirección y los almacenamos
+        direccion_serializer = Direccion_Serializer(data=request.data.get("id_direccion"))
+        if direccion_serializer.is_valid():
+            direccion = direccion_serializer.save()
         else:
-            direccion = Direccion.objects.get(pk=id_direccion)
-            # Creamos la persona con la dirección y la devolvemos
+            return Response("Error: direccion")
+
+        # Creamos la persona con la dirección y la devolvemos
         persona_serializer = Persona_Serializer(Asignar_Persona_Direccion(request.data, direccion))
         return Response(persona_serializer.data)
 
