@@ -103,7 +103,8 @@
     </div>
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarCentroSanitario()"
-            [disabled]="!modificarCentroSanitarioForm.form.valid">
+            [disabled]="!modificarCentroSanitarioForm.form.valid"
+            (click)="ejecutarAlerta()">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/centros_sanitarios']">

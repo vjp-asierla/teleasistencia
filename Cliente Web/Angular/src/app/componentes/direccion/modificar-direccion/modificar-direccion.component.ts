@@ -3,6 +3,10 @@ import {IDireccion} from '../../../interfaces/i-direccion';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
+import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
+
+
 
 @Component({
   selector: 'app-modificar-direccion',
@@ -21,19 +25,38 @@ export class ModificarDireccionComponent implements OnInit {
     this.idDireccion = this.route.snapshot.params['id'];
     this.dire = this.route.snapshot.data['direccion'];
     this.titleService.setTitle('Modificar dirección ' + this.idDireccion);
+
     console.log(this.titleService);
   }
 
   modificarDireccion(): void {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
-        console.log('Dirección ' + e.id + ' modificada');
-        console.log(this.dire);
         this.router.navigate(['/direcciones']);
       },
       error => {
-        console.log(error);
+
       }
     );
   }
+  executeExample() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: environment.fraseModificar,
+    })
+
+  }
+
 }

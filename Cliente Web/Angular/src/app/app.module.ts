@@ -7,6 +7,7 @@ import {ListaUsersComponent} from './componentes/user/lista-users/lista-users.co
 import {ItemUserComponent} from './componentes/user/item-user/item-user.component';
 import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
 import {CrearUserComponent} from './componentes/user/crear-user/crear-user.component';
+
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
@@ -59,6 +60,7 @@ import {CargaRecursoComunitarioService} from './servicios/carga-recurso-comunita
 import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {HeaderComponent} from './componentes/header/header.component';
 import {FooterComponent} from './componentes/footer/footer.component';
+
 import {BotonesLoginComponent} from './componentes/botones-login/botones-login.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {OrdenacionTablasService} from "./servicios/ordenacion-tablas.service";

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITipoAlarma} from '../interfaces/i-tipo-alarma';
+import {IUsers} from "../interfaces/i-users";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -29,5 +30,11 @@ export class CargaTipoAlarmaService {
 
   nuevoTipoAlarma(tipoAlarma: ITipoAlarma): Observable<ITipoAlarma> {
     return this.http.post<ITipoAlarma>(this.URL_SERVER_TIPOS_ALARMAS, tipoAlarma);
+  }
+  eliminarTipoAlarma(tipoAlarma:ITipoAlarma): Observable<IUsers> {
+    console.log("servicio");
+    console.log(tipoAlarma);
+    console.log(tipoAlarma.id);
+    return this.http.delete<IUsers>(this.URL_SERVER_TIPOS_ALARMAS + '/' + tipoAlarma.id);
   }
 }

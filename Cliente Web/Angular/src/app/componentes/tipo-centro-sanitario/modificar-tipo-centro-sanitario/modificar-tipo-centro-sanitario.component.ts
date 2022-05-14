@@ -3,6 +3,8 @@ import {ITipoCentroSanitario} from '../../../interfaces/i-tipo-centro-sanitario'
 import {ActivatedRoute, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {CargaTipoCentroSanitarioService} from '../../../servicios/carga-tipo-centro-sanitario.service';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-modificar-tipo-centro-sanitario',
@@ -34,5 +36,24 @@ export class ModificarTipoCentroSanitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Tipo de Centro Sanitario Modificado Correctamente'
+    })
+
   }
 }

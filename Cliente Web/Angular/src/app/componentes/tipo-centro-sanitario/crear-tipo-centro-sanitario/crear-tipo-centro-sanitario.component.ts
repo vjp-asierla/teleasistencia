@@ -4,6 +4,8 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CargaTipoCentroSanitarioService} from '../../../servicios/carga-tipo-centro-sanitario.service';
 import {TipoCentroSanitario} from '../../../clases/tipo-centro-sanitario';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-crear-tipo-centro-sanitario',
@@ -33,5 +35,24 @@ export class CrearTipoCentroSanitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Tipo de Centro Sanitario Creado Correctamente'
+    })
+
   }
 }

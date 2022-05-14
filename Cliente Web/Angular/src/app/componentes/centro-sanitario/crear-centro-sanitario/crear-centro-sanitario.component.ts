@@ -8,7 +8,7 @@ import {CargaCentroSanitarioService} from '../../../servicios/carga-centro-sanit
 import {CentroSanitario} from '../../../clases/centro-sanitario';
 import {Direccion} from '../../../clases/direccion';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
-
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-crear-centro-sanitario',
   templateUrl: './crear-centro-sanitario.component.html',
@@ -54,5 +54,24 @@ export class CrearCentroSanitarioComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  ejecutarAlerta() :void{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Centro Sanitario Creado Correctamente'
+    })
+
   }
 }

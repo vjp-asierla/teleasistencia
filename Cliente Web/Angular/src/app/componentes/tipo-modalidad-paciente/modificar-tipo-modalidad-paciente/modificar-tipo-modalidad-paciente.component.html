@@ -22,7 +22,8 @@
     </div>
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarTipoModalidadPaciente()"
-            [disabled]="!modificarTipoModalidadPacienteForm.form.valid">
+            [disabled]="!modificarTipoModalidadPacienteForm.form.valid"
+    (click)="ejecutarAlerta()">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/tipos_modalidades_pacientes']">
