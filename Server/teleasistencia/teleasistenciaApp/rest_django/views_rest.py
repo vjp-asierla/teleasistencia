@@ -18,6 +18,7 @@ from ..rest_django.serializers import UserSerializer, GroupSerializer
 from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
+from django.http import JsonResponse
 
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
@@ -28,7 +29,48 @@ class IsTeacherMember(permissions.BasePermission):
         if request.user.groups.filter(name="profesor").exists():
             return True
 
-class Profile(viewsets.ModelViewSet):
+
+class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
+    def list(self,request, *args, **kwargs):
+        data=[
+
+        ]
+        pacientes = Paciente.objects.all().order_by('-id_persona')
+        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('-nombre')
+
+        for paciente in pacientes:
+            dataPaciente={
+                "id_paciente": paciente.id_persona.id,
+                "Nombre": paciente.id_persona.nombre,
+                "Apellidos": paciente.id_persona.apellidos,
+                "Sexo":paciente.id_persona.sexo,
+                "Localidad":paciente.id_persona.id_direccion.localidad,
+                "Direccion":paciente.id_persona.id_direccion.direccion,
+                "Provincia": paciente.id_persona.id_direccion.provincia,
+
+            }
+                #recorro los tipo de centro sanitario
+            for tipo_centro_santario in tipos_centro_santario:
+                #obtengo los centros segun el id de tipos centro sanitario
+                centro_sanitario = Centro_Sanitario.objects.filter(id_tipos_centro_sanitario=tipo_centro_santario)
+                #si el array es nulo
+                if not centro_sanitario:
+                    dataPaciente[tipo_centro_santario.nombre]=""
+                    #sino
+                else:
+                    # obtengo la relacion usuario centro segun el id de centro y el id de paciente
+                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.all().filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
+                    if relaciones_usuario_centro is not None:
+                        #si no es null muestro elnombre del centro sanitario
+                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                    else:
+                            dataPaciente[tipo_centro_santario.nombre]=""
+
+
+            data.append(dataPaciente)
+        return JsonResponse(data,safe=False)
+
+class ProfileViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     def list(self, request, *args, **kwargs):
@@ -37,8 +79,6 @@ class Profile(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     def update(self, request, *args, **kwargs):
-        # TODO comprobar si un usuario (no-profesor) puede modificar sus datos
-        # Comprobamos que existe el groups
         user = User.objects.get(pk=kwargs["pk"])
         if request.data.get("email") is not None:
             user.email = request.data.get("email")
@@ -1479,3 +1519,40 @@ class Relacion_Usuario_Centro_ViewSet(viewsets.ModelViewSet):
         # Devolvemos la relacion_usuario_centro modificada
         relacion_usuario_centro_serializer = Relacion_Usuario_Centro_Serializer(relacion_usuario_centro)
         return Response(relacion_usuario_centro_serializer.data)
+
+
+'''{
+               "id": "1",
+               "nombre": "pepe",
+               "apellido": "grillo",
+               "sexo": "Hombre",
+               "telefono": "664489164",
+               "localidad": "Plasencia",
+               "provincia": "Cáceres",
+               "centro_de_salud":" centro de slaud la data",
+               "Hospital":"Hospital de Plasencia",
+               "Guardia Civil":"Guardia civil de plasencia",
+               "Policia":"Policia Local Plasencia",
+               "Bomberos":"Bomberos de Plasencia",
+               "Servicios Sociales":"Servicios Sociales de Plasencia",
+               "Cruz Roja":"Cruz Roja de Plasencia",
+
+           },
+           {
+               "id": "1",
+               "nombre": "María",
+               "apellido": "Gil",
+               "sexo": "Mujer",
+               "telefono": "664428142",
+               "localidad": "Coria",
+               "provincia": "Cáceres",
+               "centro_de_salud": " centro de salud de Coria",
+               "Hospital": "Hospital de Coria",
+               "Guardia Civil": "Guardia civil de Coria",
+               "Policia": "Policia Local Coria",
+               "Bomberos": "Bomberos de Coria",
+               "Servicios Sociales": "Servicios Sociales de Coria",
+               "Cruz Roja": "Cruz Roja de Coria",
+
+               },
+               '''

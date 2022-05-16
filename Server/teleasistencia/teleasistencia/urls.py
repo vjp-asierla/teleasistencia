@@ -66,7 +66,9 @@ router.register(r'dispositivos_auxiliares_en_terminal', views_rest.Dispositivos_
 router.register(r'centro_sanitario_en_alarma', views_rest.Centro_Sanitario_En_Alarma_ViewSet)
 router.register(r'persona_contacto_en_alarma', views_rest.Persona_Contacto_En_Alarma_ViewSet)
 router.register(r'relacion_usuario_centro', views_rest.Relacion_Usuario_Centro_ViewSet)
-router.register(r'profile', views_rest.Profile)
+router.register(r'profile', views_rest.ProfileViewSet)
+router.register(r'recurso_comunitario_personal', views_rest.Recurso_comunitario_personalViewSet, basename="recurso_comunitario_personal")
+
 
 
 

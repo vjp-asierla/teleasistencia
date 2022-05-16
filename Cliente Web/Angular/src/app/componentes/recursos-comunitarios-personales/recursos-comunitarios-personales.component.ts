@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CargaPersonaService} from "../../servicios/carga-persona.service";
-import {IPersona} from "../../interfaces/i-persona";
-import {CargaRecursoComunitarioService} from "../../servicios/carga-recurso-comunitario.service";
-import {IRecursoComunitario} from "../../interfaces/i-recurso-comunitario";
+import {RecursosComunitariosPerosnalesService} from "../../servicios/recursos-comunitarios-perosnales.service";
+import {IRecursoComunitarioPersonal} from "../../interfaces/i-recurso-comunitario-persona";
 
 @Component({
   selector: 'app-recursos-comunitarios-personales',
@@ -10,19 +8,18 @@ import {IRecursoComunitario} from "../../interfaces/i-recurso-comunitario";
   styleUrls: ['./recursos-comunitarios-personales.component.scss']
 })
 export class RecursosComunitariosPersonalesComponent implements OnInit {
+  public RCP:IRecursoComunitarioPersonal[]=[]
 
-  constructor(private cargaPersonas: CargaPersonaService, public cargarRecursos: CargaRecursoComunitarioService) { }
+  constructor(private RecursosComunitariosPersonalesService: RecursosComunitariosPerosnalesService) { }
 
-  public personas:IPersona[]
-  public recursos:IRecursoComunitario[]
+
 
   ngOnInit(): void {
-    this.cargaPersonas.getPersonas().subscribe(resp=>{
-      this.personas=resp
+    this.RecursosComunitariosPersonalesService.getRecursoComunitarioPersonal().subscribe(resp=>{
+      console.log(resp)
+      this.RCP=resp
     })
-    this.cargarRecursos.getRecursosComunitarios().subscribe(resp=>{
-      this.recursos=resp
-    })
+
   }
 
 }
