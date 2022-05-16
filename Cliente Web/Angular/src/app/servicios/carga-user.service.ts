@@ -31,7 +31,7 @@ export class CargaUserService {
   nuevoUser(user: IUsers): Observable<IUsers> {
     return this.http.post<IUsers>(this.URL_SERVER_USERS, user);
   }
-  eliminarUsuario(direccion:IUsers): Observable<IUsers> {
-    return this.http.delete<IUsers>(this.URL_SERVER_USERS);
+  eliminarUsuario(user:IUsers): Observable<IUsers> {
+    return this.http.delete<IUsers>(this.URL_SERVER_USERS+ '/' + user.pk);
   }
 }

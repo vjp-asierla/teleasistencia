@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CargaPersonaService} from '../../../servicios/carga-persona.service';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
 
 
 
@@ -50,20 +51,21 @@ export class ModificarPersonaComponent implements OnInit {
     this.cargaPersonas.modificarPersona(this.persona).subscribe(
        e => {
          this.modificarDireccion();
-        console.log('Persona ' + e.id + ' modificada');
-        console.log(this.persona);
+         this.alertExito()
       },
       error => {
-        console.log(error);
+         this.alertError()
       }
     );
   }
-  ejecutarAlerta() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -73,8 +75,27 @@ export class ModificarPersonaComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Persona Modificada Correctamente'
+      title: environment.fraseModificar,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorModificar
+    })
   }
+
 }

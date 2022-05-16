@@ -6,6 +6,7 @@ import {CargaUserService} from '../../../servicios/carga-user.service';
 import Swal from "sweetalert2";
 import {IGrupo} from "../../../interfaces/i-grupo";
 import {CargaGrupoService} from "../../../servicios/carga-grupo.service";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-modificar-user',
@@ -44,21 +45,22 @@ export class ModificarUserComponent implements OnInit {
   modificarUser(): void {
     this.cargaUsers.modificarUser(this.user).subscribe(
       e => {
-        console.log('User ' + this.idUser + ' modificado');
-        console.log(this.user);
+        this.alertExito()
         this.router.navigate(['/usuarios']);
       },
       error => {
-        console.log(error);
+        this.alertError()
       }
     );
   }
-  executeExample() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -68,8 +70,27 @@ export class ModificarUserComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Usuario Modificada Correctamente'
+      title: environment.fraseModificar,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorModificar
+    })
   }
+
 }

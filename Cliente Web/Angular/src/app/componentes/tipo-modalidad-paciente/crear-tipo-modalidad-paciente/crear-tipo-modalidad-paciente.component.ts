@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CargaTipoModalidadPacienteService} from '../../../servicios/carga-tipo-modalidad-paciente.service';
 import {TipoModalidadPaciente} from '../../../clases/tipo-modalidad-paciente';
 import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -27,21 +28,22 @@ export class CrearTipoModalidadPacienteComponent implements OnInit {
   nuevoTipoModalidadPaciente(): void {
     this.cargaTiposModalidadesPacientes.nuevoTipoModalidadPaciente(this.tipo_modalidad_paciente).subscribe(
       e => {
-        console.log('Tipo modalidad paciente creado');
-        console.log(this.tipo_modalidad_paciente);
+        this.alertExito()
         this.router.navigate(['/tipos_modalidades_pacientes']);
       },
       error => {
-        console.log(error);
+        this.alertError()
       }
     );
   }
-  ejecutarAlerta() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -51,8 +53,26 @@ export class CrearTipoModalidadPacienteComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Tipo de Modalidad de Paciente Creado Correctamente'
+      title: environment.fraseCrear,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorCrear
+    })
   }
 }
