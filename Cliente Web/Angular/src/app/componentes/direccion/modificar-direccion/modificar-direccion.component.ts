@@ -33,13 +33,35 @@ export class ModificarDireccionComponent implements OnInit {
     this.cargaDirecciones.modificarDireccion(this.dire).subscribe(
       e => {
         this.router.navigate(['/direcciones']);
+        this.alertExito()
       },
       error => {
-
+        this.alertError()
       }
     );
   }
-  executeExample() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: environment.fraseModificar,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -53,10 +75,10 @@ export class ModificarDireccionComponent implements OnInit {
     })
 
     Toast.fire({
-      icon: 'success',
-      title: environment.fraseModificar,
+      icon: 'error',
+      title: environment.fraseErrorModificar
     })
-
   }
+
 
 }

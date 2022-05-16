@@ -7,6 +7,7 @@ import {Title} from '@angular/platform-browser';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import {CargaRecursoComunitarioService} from '../../../servicios/carga-recurso-comunitario.service';
 import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
 
 
 @Component({
@@ -18,8 +19,8 @@ import Swal from "sweetalert2";
 export class ModificarRecursoComunitarioComponent implements OnInit {
   public recurso_comunitario: IRecursoComunitario;
   public idRecursoComunitario: number;
-  public tipos_recursos_comunitarios: ITipoRecursoComunitario[];
-  public dire: IDireccion;
+  public tipos_recursos_comunitarios: any;
+  public dire: any;
 
   constructor(private route: ActivatedRoute, private titleService: Title, private cargaDirecciones: CargaDireccionService, private cargaRecursosComunitarios: CargaRecursoComunitarioService, private router: Router) {
   }
@@ -30,6 +31,7 @@ export class ModificarRecursoComunitarioComponent implements OnInit {
     this.tipos_recursos_comunitarios = this.route.snapshot.data['tipos_recursos_comunitarios'];
     this.dire = this.recurso_comunitario.id_direccion;
     this.titleService.setTitle('Modificar recurso comunitario ' + this.idRecursoComunitario);
+    this.recurso_comunitario.id_tipos_recurso_comunitario = this.recurso_comunitario.id_tipos_recurso_comunitario.id;
   }
 
   optionSelected(i: number): void {
@@ -52,20 +54,21 @@ export class ModificarRecursoComunitarioComponent implements OnInit {
     this.cargaRecursosComunitarios.modificarRecursoComunitario(this.recurso_comunitario).subscribe(
       e => {
         this.modificarDireccion();
-        console.log('Recurso comunitario ' + e.id + ' modificado');
-        console.log(this.recurso_comunitario);
+        this.alertExito()
       },
       error => {
-        console.log(error);
+        this.alertError()
       }
     );
   }
-  ejecutarAlerta() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -75,8 +78,27 @@ export class ModificarRecursoComunitarioComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Recurso Comunitario Modificado Correctamente'
+      title: environment.fraseModificar,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorModificar
+    })
   }
+
 }

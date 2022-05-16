@@ -12,7 +12,7 @@ export const environment = {
   //Frase del Toast al Modificar Con Exito
   fraseModificar: 'Se ha Modificado Correctamente',
   //Frase del Toast al Crear Con Exito
-  fraseCrear: 'Se ha Eliminado Correctamente',
+  fraseCrear: 'Se ha Creado Correctamente',
   //Frase de error al Eliminar del Toast
   fraseErrorEliminar: 'Se ha Producido Un Error Inesperado',
   //Frase de error al Modificar del Toast

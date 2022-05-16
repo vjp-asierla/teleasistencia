@@ -3,6 +3,8 @@ import {IClasificacionAlarma} from '../../../interfaces/i-clasificacion-alarma';
 import Swal from 'sweetalert2';
 import {CargaTipoAlarmaService} from "../../../servicios/carga-tipo-alarma.service";
 import {CargaClasificacionAlarmaService} from "../../../servicios/carga-clasificacion-alarma.service";
+import {environment} from "../../../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-item-clasificacion-alarma , [app-item-clasificacion-alarma]',
@@ -13,11 +15,52 @@ import {CargaClasificacionAlarmaService} from "../../../servicios/carga-clasific
 export class ItemClasificacionAlarmaComponent implements OnInit {
   @Input() public clasificacion_alarma: IClasificacionAlarma;
 
-  constructor(private cargaClasificacionAlarma: CargaClasificacionAlarmaService) {
+  constructor(private cargaClasificacionAlarma: CargaClasificacionAlarmaService, private router:Router) {
   }
 
   ngOnInit(): void {
   }
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: environment.fraseEliminar,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorEliminar
+    })
+  }
+
+
   modalConfirmacion(): void {
     Swal.fire({
       title: '¿Está seguro que desea eliminar esta clasificación de alarma?',
@@ -26,18 +69,22 @@ export class ItemClasificacionAlarmaComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this.eliminarClasificacionAlarma()
+        this.eliminarClasificacionAlarma('clasificaciones_alarmas')
       }
     })
   }
-  eliminarClasificacionAlarma() : void{
+  eliminarClasificacionAlarma(ruta :string) : void{
     this.cargaClasificacionAlarma.eliminarClasificacionAlarma(this.clasificacion_alarma).subscribe(
       e=>{
-        console.log(this.clasificacion_alarma);
-        console.log('Clasificacion de Alarma ' + this.clasificacion_alarma.id + ' eliminada');
-      },
-      error => {
-        console.log(error);
+        this.router.navigateByUrl(ruta+'/borrado/'+this.clasificacion_alarma.id, {skipLocationChange: true}).then(() => {
+          this.router.navigate([ruta]);
+        });
+            //Si el elemento se ha borrado con exito, llama al método que muestra el alert de Exito
+            this.alertExito()
+          },
+          error => {
+            //Si ha habido algún error al eliminar el elemento, llama al método que muestra el alert de Error
+            this.alertError()
       }
     )
   }

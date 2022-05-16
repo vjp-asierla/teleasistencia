@@ -8,6 +8,7 @@ import {Persona} from '../../../clases/persona';
 import Swal from "sweetalert2";
 import {Direccion} from "../../../clases/direccion";
 import {CargaDireccionService} from "../../../servicios/carga-direccion.service";
+import {environment} from "../../../../environments/environment";
 
 
 
@@ -53,23 +54,23 @@ export class CrearPersonaComponent implements OnInit {
     this.persona.id_direccion = this.dire;
     this.cargaPersonas.nuevaPersona(this.persona).subscribe(
       e => {
-        console.log(this.dire)
         this.nuevaDireccion();
-        console.log('Persona creada');
-        console.log(this.persona);
+        this.alertExito()
         this.router.navigate(['/personas']);
         },
       error => {
-        console.log(error);
+        this.alertError()
       }
     );
   }
-  ejecutarAlerta() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -79,8 +80,26 @@ export class CrearPersonaComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Persona Creada Correctamente'
+      title: environment.fraseCrear,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorCrear
+    })
   }
 }

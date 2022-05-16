@@ -82,7 +82,7 @@
     <div class="form-group mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" name="email" id="email" class="form-control" required
-             maxlength="20" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel">
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="user.email" #email="ngModel">
       <div *ngIf="email.invalid && (email.dirty || email.touched)"
            class="alert alert-secondary" role="alert">
         <div *ngIf="email.errors?.required; else elseBlock">
@@ -106,7 +106,7 @@
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarUser()"
             [disabled]="!modificarUserForm.form.valid"
-            aria-label="Try me! Example: Mixin" (click)="executeExample()">
+            aria-label="Try me! Example: Mixin">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/usuarios']">

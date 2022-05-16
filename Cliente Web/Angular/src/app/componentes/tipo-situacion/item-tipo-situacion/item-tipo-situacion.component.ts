@@ -75,8 +75,8 @@ export class ItemTipoSituacionComponent implements OnInit {
   eliminarTipoSituacion(ruta: string): void {
     this.cargaTipoSituaciones.eliminarTipoSituacion(this.tipo_situacion).subscribe(
       e => {
-        this.router.navigateByUrl(ruta, {skipLocationChange: true}).then(() => {
-          this.router.navigate([ruta+'/borrado/'+this.tipo_situacion.id]);
+        this.router.navigateByUrl(ruta+'/borrado/'+this.tipo_situacion.id, {skipLocationChange: true}).then(() => {
+          this.router.navigate([ruta]);
         });
         //Si el elemento se ha borrado con exito, llama al método que muestra el alert de Exito
         this.alertExito()
