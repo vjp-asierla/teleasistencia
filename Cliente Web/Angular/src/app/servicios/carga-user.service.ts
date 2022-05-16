@@ -32,9 +32,6 @@ export class CargaUserService {
     return this.http.post<IUsers>(this.URL_SERVER_USERS, user);
   }
   eliminarUsuario(direccion:IUsers): Observable<IUsers> {
-    console.log("servicio");
-    console.log(direccion);
-    console.log(direccion.id);
     return this.http.delete<IUsers>(this.URL_SERVER_USERS);
   }
 }

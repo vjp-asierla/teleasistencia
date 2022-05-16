@@ -9,7 +9,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .cabecera {
   background: linear-gradient(0deg, rgba(248, 228, 221, 0.5) 0%, rgba(117, 89, 125, 0.5) 100%);
   padding: 1rem;
@@ -79,7 +78,7 @@ table {
   }
 }
    td > .btn-modify {
-    float: right;
+    float: none;
   }
   th{
     cursor: pointer;
@@ -98,7 +97,6 @@ table {
   color:white;
   background-color: red;
 }
-
 
 .form-group {
   width: 500px;
@@ -481,5 +479,12 @@ footer {
     text-align: initial;
   }
 }
+//Alert
+#swal2-title{
+  margin:0;
+  padding-top: 10px;
+}
+
+
 
 

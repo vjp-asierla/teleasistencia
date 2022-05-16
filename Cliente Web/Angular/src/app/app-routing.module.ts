@@ -67,6 +67,8 @@ import {BorrarTipoViviendaComponent} from "./componentes/tipo-vivienda/borrar-ti
 import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
 import {BorrarTipoSituacionComponent} from "./componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component";
 import {BorrarTipoSituacionService} from "./servicios/borrar-tipo-situacion.service";
+import {ListaGruposService} from "./servicios/lista-grupos.service";
+import {GruposComponent} from "./componentes/grupos/grupos.component";
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -87,14 +89,26 @@ const routes: Routes = [
       user: DetallesUserResolveService
     }
   },
-  {path: 'usuarios/nuevo', component: CrearUserComponent, canActivate: [LoginGuard]},
+  {
+    path: 'usuarios/nuevo',
+    component: CrearUserComponent,
+    canActivate: [LoginGuard]},
+
+  {
+    path: 'grupos',
+    component: GruposComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      grupos: ListaGruposService
+    },
+  },
   {
     path: 'clasificaciones_alarmas',
     component: ListaClasificacionesAlarmasComponent,
     canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
-    }
+    },
   },
   {
     path: 'clasificaciones_alarmas/modificar/:id',

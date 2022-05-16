@@ -19,7 +19,7 @@ export class ItemUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user.id = Number(this.user.url.substr(37));
+    this.user.pk = Number(this.user.url.substr(37));
   }
   modalConfirmacion(): void {
     Swal.fire({
@@ -37,7 +37,6 @@ export class ItemUserComponent implements OnInit {
     this.cargaUsuario.eliminarUsuario(this.user).subscribe(
       e=>{
         console.log(this.user);
-        console.log('Usuario ' + this.user.id + ' eliminado');
       },
       error => {
         console.log(error);
