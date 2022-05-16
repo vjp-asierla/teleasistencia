@@ -395,17 +395,12 @@ class Persona_ViewSet(viewsets.ModelViewSet):
         # Comprobamos si los datos se introducen para una dirección ya existente,
         id_direccion = request.data.get("id_direccion")
 
-        # En el caso de ser una dirección nueva
-        if id_direccion is None:
-            # Obtenemos los datos de dirección y los almacenamos
-            direccion_serializer = Direccion_Serializer(data=request.data.get("direccion"))
-            if direccion_serializer.is_valid():
-                direccion = direccion_serializer.save()
-            else:
-                return Response("Error: direccion")
-                # en el caso de ser una dirección existente
+        # Obtenemos los datos de dirección y los almacenamos
+        direccion_serializer = Direccion_Serializer(data=request.data.get("id_direccion"))
+        if direccion_serializer.is_valid():
+            direccion = direccion_serializer.save()
         else:
-            direccion = Direccion.objects.get(pk=id_direccion)
+            return Response("Error: direccion")
 
         persona = Persona.objects.get(pk=kwargs["pk"])
         if request.data.get("nombre") is not None:
@@ -422,7 +417,15 @@ class Persona_ViewSet(viewsets.ModelViewSet):
             persona.telefono_fijo = request.data.get("telefono_fijo")
         if request.data.get("telefono_movil") is not None:
             persona.telefono_movil = request.data.get("telefono_movil")
-        persona.id_direccion = direccion
+        #persona.id_direccion = direccion
+
+        # Obtenemos los datos de dirección y los almacenamos
+        direccion_serializer = Direccion_Serializer(data=request.data.get("id_direccion"))
+        if direccion_serializer.is_valid():
+            direccion_serializer.id = persona.id_direccion
+            direccion_serializer.save()
+        else:
+            return Response("Error: direccion")
 
         persona.save()
         persona_serializer = Persona_Serializer(persona)
