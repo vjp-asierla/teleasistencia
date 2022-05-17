@@ -1,4 +1,6 @@
 import os
+from locale import str
+from tokenize import String
 
 from django.shortcuts import _get_queryset
 from requests import request
@@ -40,14 +42,13 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
 
         for paciente in pacientes:
             dataPaciente={
-                "id_paciente": paciente.id_persona.id,
+                "id_paciente": paciente.id,
                 "Nombre": paciente.id_persona.nombre,
                 "Apellidos": paciente.id_persona.apellidos,
                 "Sexo":paciente.id_persona.sexo,
                 "Localidad":paciente.id_persona.id_direccion.localidad,
                 "Direccion":paciente.id_persona.id_direccion.direccion,
                 "Provincia": paciente.id_persona.id_direccion.provincia,
-
             }
                 #recorro los tipo de centro sanitario
             for tipo_centro_santario in tipos_centro_santario:
@@ -58,13 +59,18 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     dataPaciente[tipo_centro_santario.nombre]=""
                     #sino
                 else:
+                    print("---------------")
+                    print(paciente.id)
+                    print(tipo_centro_santario.nombre)
+                    print(centro_sanitario)
                     # obtengo la relacion usuario centro segun el id de centro y el id de paciente
-                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.all().filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
+                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
-                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                        dataPaciente[tipo_centro_santario.nombre+str(tipo_centro_santario.id)]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                        print("Coincide *************")
                     else:
-                            dataPaciente[tipo_centro_santario.nombre]=""
+                        dataPaciente[tipo_centro_santario.nombre]=""
 
 
             data.append(dataPaciente)
