@@ -1,0 +1,10 @@
+<td>{{ clasificacion_alarma.nombre }}</td>
+<td>{{ clasificacion_alarma.codigo }}</td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify"
+          [routerLink]="['/clasificaciones_alarmas/modificar', clasificacion_alarma.id]">
+    <i class="fa fa-pen"></i>
+  </button>
+  <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()"
+  ><i class="fa fa-trash"></i></button>
+</td>

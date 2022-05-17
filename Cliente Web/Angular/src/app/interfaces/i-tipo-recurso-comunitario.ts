@@ -1,4 +1,4 @@
 export interface ITipoRecursoComunitario {
-  id: number;
+  id: any;
   nombre: string;
 }

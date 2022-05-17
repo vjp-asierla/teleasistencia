@@ -1,59 +1,76 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ListaUsersComponent} from './componentes/lista-users/lista-users.component';
+import {ListaUsersComponent} from './componentes/user/lista-users/lista-users.component';
 import {ListaUsersResolveService} from './servicios/lista-users-resolve.service';
-import {DetallesUserComponent} from './componentes/detalles-user/detalles-user.component';
+import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
 import {DetallesUserResolveService} from './servicios/detalles-user-resolve.service';
 import {HomeComponent} from './componentes/home/home.component';
-import {NuevoUserComponent} from './componentes/nuevo-user/nuevo-user.component';
-import {ListaClasificacionesAlarmasComponent} from './componentes/lista-clasificaciones-alarmas/lista-clasificaciones-alarmas.component';
-import {DetallesClasificacionAlarmaComponent} from './componentes/detalles-clasificacion-alarma/detalles-clasificacion-alarma.component';
+import {CrearUserComponent} from './componentes/user/crear-user/crear-user.component';
+import {ListaClasificacionesAlarmasComponent} from './componentes/clasificacion-alarma/lista-clasificaciones-alarmas/lista-clasificaciones-alarmas.component';
+import {ModificarClasificacionAlarmaComponent} from './componentes/clasificacion-alarma/modificar-clasificacion-alarma/modificar-clasificacion-alarma.component';
 import {ListaClasificacionesAlarmasResolveService} from './servicios/lista-clasificaciones-alarmas-resolve.service';
 import {DetallesClasificacionAlarmaResolveService} from './servicios/detalles-clasificacion-alarma-resolve.service';
-import {NuevaClasificacionAlarmaComponent} from './componentes/nueva-clasificacion-alarma/nueva-clasificacion-alarma.component';
-import {ListaTiposCentrosSanitariosComponent} from './componentes/lista-tipos-centros-sanitarios/lista-tipos-centros-sanitarios.component';
+import {CrearClasificacionAlarmaComponent} from './componentes/clasificacion-alarma/crear-clasificacion-alarma/crear-clasificacion-alarma.component';
+import {ListaTiposCentrosSanitariosComponent} from './componentes/tipo-centro-sanitario/lista-tipos-centros-sanitarios/lista-tipos-centros-sanitarios.component';
 import {ListaTiposCentrosSanitariosResolveService} from './servicios/lista-tipos-centros-sanitarios-resolve.service';
-import {DetallesTipoCentroSanitarioComponent} from './componentes/detalles-tipo-centro-sanitario/detalles-tipo-centro-sanitario.component';
+import {ModificarTipoCentroSanitarioComponent} from './componentes/tipo-centro-sanitario/modificar-tipo-centro-sanitario/modificar-tipo-centro-sanitario.component';
 import {DetallesTipoCentroSanitarioResolveService} from './servicios/detalles-tipo-centro-sanitario-resolve.service';
-import {NuevoTipoCentroSanitarioComponent} from './componentes/nuevo-tipo-centro-sanitario/nuevo-tipo-centro-sanitario.component';
-import {ListaTiposRecursosComunitariosComponent} from './componentes/lista-tipos-recursos-comunitarios/lista-tipos-recursos-comunitarios.component';
+import {CrearTipoCentroSanitarioComponent} from './componentes/tipo-centro-sanitario/crear-tipo-centro-sanitario/crear-tipo-centro-sanitario.component';
+import {ListaTiposRecursosComunitariosComponent} from './componentes/tipo-recurso-comunitario/lista-tipos-recursos-comunitarios/lista-tipos-recursos-comunitarios.component';
 import {ListaTiposRecursosComunitariosResolveService} from './servicios/lista-tipos-recursos-comunitarios-resolve.service';
-import {DetallesTipoRecursoComunitarioComponent} from './componentes/detalles-tipo-recurso-comunitario/detalles-tipo-recurso-comunitario.component';
+import {ModificarTipoRecursoComunitarioComponent} from './componentes/tipo-recurso-comunitario/modificar-tipo-recurso-comunitario/modificar-tipo-recurso-comunitario.component';
 import {DetallesTipoRecursoComunitarioResolveService} from './servicios/detalles-tipo-recurso-comunitario-resolve.service';
-import {NuevoTipoRecursoComunitarioComponent} from './componentes/nuevo-tipo-recurso-comunitario/nuevo-tipo-recurso-comunitario.component';
-import {ListaTiposModalidadesPacientesComponent} from './componentes/lista-tipos-modalidades-pacientes/lista-tipos-modalidades-pacientes.component';
+import {CrearTipoRecursoComunitarioComponent} from './componentes/tipo-recurso-comunitario/crear-tipo-recurso-comunitario/crear-tipo-recurso-comunitario.component';
+import {ListaTiposModalidadesPacientesComponent} from './componentes/tipo-modalidad-paciente/lista-tipos-modalidades-pacientes/lista-tipos-modalidades-pacientes.component';
 import {ListaTiposModalidadesPacientesResolveService} from './servicios/lista-tipos-modalidades-pacientes-resolve.service';
-import {DetallesTipoModalidadPacienteComponent} from './componentes/detalles-tipo-modalidad-paciente/detalles-tipo-modalidad-paciente.component';
+import {ModificarTipoModalidadPacienteComponent} from './componentes/tipo-modalidad-paciente/modificar-tipo-modalidad-paciente/modificar-tipo-modalidad-paciente.component';
 import {DetallesTipoModalidadPacienteResolveService} from './servicios/detalles-tipo-modalidad-paciente-resolve.service';
-import {NuevoTipoModalidadPacienteComponent} from './componentes/nuevo-tipo-modalidad-paciente/nuevo-tipo-modalidad-paciente.component';
-import {ListaTiposAlarmasComponent} from './componentes/lista-tipos-alarmas/lista-tipos-alarmas.component';
+import {CrearTipoModalidadPacienteComponent} from './componentes/tipo-modalidad-paciente/crear-tipo-modalidad-paciente/crear-tipo-modalidad-paciente.component';
+import {ListaTiposAlarmasComponent} from './componentes/tipo-alarma/lista-tipos-alarmas/lista-tipos-alarmas.component';
 import {ListaTiposAlarmasResolveService} from './servicios/lista-tipos-alarmas-resolve.service';
-import {DetallesTipoAlarmaComponent} from './componentes/detalles-tipo-alarma/detalles-tipo-alarma.component';
+import {ModificarTipoAlarmaComponent} from './componentes/tipo-alarma/modificar-tipo-alarma/modificar-tipo-alarma.component';
 import {DetallesTipoAlarmaResolveService} from './servicios/detalles-tipo-alarma-resolve.service';
-import {NuevoTipoAlarmaComponent} from './componentes/nuevo-tipo-alarma/nuevo-tipo-alarma.component';
-import {ListaDireccionesComponent} from './componentes/lista-direcciones/lista-direcciones.component';
+import {CrearTipoAlarmaComponent} from './componentes/tipo-alarma/crear-tipo-alarma/crear-tipo-alarma.component';
+import {ListaDireccionesComponent} from './componentes/direccion/lista-direcciones/lista-direcciones.component';
 import {ListaDireccionesResolveService} from './servicios/lista-direcciones-resolve.service';
-import {DetallesDireccionComponent} from './componentes/detalles-direccion/detalles-direccion.component';
+import {ModificarDireccionComponent} from './componentes/direccion/modificar-direccion/modificar-direccion.component';
 import {DetallesDireccionResolveService} from './servicios/detalles-direccion-resolve.service';
-import {NuevaDireccionComponent} from './componentes/nueva-direccion/nueva-direccion.component';
-import {ListaCentrosSanitariosComponent} from './componentes/lista-centros-sanitarios/lista-centros-sanitarios.component';
+import {CrearDireccionComponent} from './componentes/direccion/crear-direccion/crear-direccion.component';
+import {ListaCentrosSanitariosComponent} from './componentes/centro-sanitario/lista-centros-sanitarios/lista-centros-sanitarios.component';
 import {ListaCentrosSanitariosResolveService} from './servicios/lista-centros-sanitarios-resolve.service';
-import {DetallesCentroSanitarioComponent} from './componentes/detalles-centro-sanitario/detalles-centro-sanitario.component';
-import {NuevoCentroSanitarioComponent} from './componentes/nuevo-centro-sanitario/nuevo-centro-sanitario.component';
-import {ListaPersonasComponent} from './componentes/lista-personas/lista-personas.component';
+import {ModificarCentroSanitarioComponent} from './componentes/centro-sanitario/modificar-centro-sanitario/modificar-centro-sanitario.component';
+import {CrearCentroSanitarioComponent} from './componentes/centro-sanitario/crear-centro-sanitario/crear-centro-sanitario.component';
+import {ListaPersonasComponent} from './componentes/persona/lista-personas/lista-personas.component';
 import {ListaPersonasResolveService} from './servicios/lista-personas-resolve.service';
-import {DetallesPersonaComponent} from './componentes/detalles-persona/detalles-persona.component';
+import {ModificarPersonaComponent} from './componentes/persona/modificar-persona/modificar-persona.component';
 import {DetallesPersonaResolveService} from './servicios/detalles-persona-resolve.service';
-import {NuevaPersonaComponent} from './componentes/nueva-persona/nueva-persona.component';
+import {CrearPersonaComponent} from './componentes/persona/crear-persona/crear-persona.component';
 import {DetallesCentroSanitarioResolveService} from './servicios/detalles-centro-sanitario-resolve.service';
-import {ListaRecursosComunitariosComponent} from './componentes/lista-recursos-comunitarios/lista-recursos-comunitarios.component';
+import {ListaRecursosComunitariosComponent} from './componentes/recurso-comunitario/lista-recursos-comunitarios/lista-recursos-comunitarios.component';
 import {ListaRecursosComunitariosResolveService} from './servicios/lista-recursos-comunitarios-resolve.service';
-import {DetallesRecursoComunitarioComponent} from './componentes/detalles-recurso-comunitario/detalles-recurso-comunitario.component';
+import {ModificarRecursoComunitarioComponent} from './componentes/recurso-comunitario/modificar-recurso-comunitario/modificar-recurso-comunitario.component';
 import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
-import {NuevoRecursoComunitarioComponent} from './componentes/nuevo-recurso-comunitario/nuevo-recurso-comunitario.component';
+import {CrearRecursoComunitarioComponent} from './componentes/recurso-comunitario/crear-recurso-comunitario/crear-recurso-comunitario.component';
 import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {LoginGuard} from './servicios/login.guard';
 import {RecursosComunitariosPersonalesComponent} from "./componentes/recursos-comunitarios-personales/recursos-comunitarios-personales.component";
+import {ListaTiposViviendaComponent} from "./componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component";
+import {ListaViviendasResolveService} from "./servicios/lista-viviendas-resolve.service";
+import {CrearViviendaComponent} from "./componentes/tipo-vivienda/crear-tipo-vivienda/crear-vivienda.component";
+import {ModificarTipoViviendaComponent} from "./componentes/tipo-vivienda/modificar-tipo-vivienda/modificar-tipo-vivienda.component";
+import {ListaTiposSituacionComponent} from "./componentes/tipo-situacion/lista-tipos-situacion/lista-tipos-situacion.component";
+import {DetallesViviendaResolveService} from "./servicios/detalles-vivienda-resolve.service";
+import {ListaSituacionesService} from "./servicios/lista-situaciones.service";
+import {CrearTipoSituacionComponent} from "./componentes/tipo-situacion/crear-tipo-situacion/crear-tipo-situacion.component";
+import {ModificarTipoSituacionComponent} from "./componentes/tipo-situacion/modificar-tipo-situacion/modificar-tipo-situacion.component";
+import {DetallesTipoSituacionService} from "./servicios/detalles-tipo-situacion.service";
+import {BorrarTipoViviendaComponent} from "./componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component";
+import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
+import {BorrarTipoSituacionComponent} from "./componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component";
+import {BorrarTipoSituacionService} from "./servicios/borrar-tipo-situacion.service";
+import {ListaGruposService} from "./servicios/lista-grupos.service";
+import {GruposComponent} from "./componentes/grupos/grupos.component";
+
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
@@ -70,30 +87,42 @@ const routes: Routes = [
   },
   {
     path: 'usuarios/modificar/:id',
-    component: DetallesUserComponent,
+    component: ModificarUserComponent,
     canActivate: [LoginGuard],
     resolve: {
       user: DetallesUserResolveService
     }
   },
-  {path: 'usuarios/nuevo', component: NuevoUserComponent, canActivate: [LoginGuard]},
+  {
+    path: 'usuarios/nuevo',
+    component: CrearUserComponent,
+    canActivate: [LoginGuard]},
+
+  {
+    path: 'grupos',
+    component: GruposComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      grupos: ListaGruposService
+    },
+  },
   {
     path: 'clasificaciones_alarmas',
     component: ListaClasificacionesAlarmasComponent,
     canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
-    }
+    },
   },
   {
     path: 'clasificaciones_alarmas/modificar/:id',
-    component: DetallesClasificacionAlarmaComponent,
+    component: ModificarClasificacionAlarmaComponent,
     canActivate: [LoginGuard],
     resolve: {
       clasificacion_alarma: DetallesClasificacionAlarmaResolveService
     }
   },
-  {path: 'clasificaciones_alarmas/nueva', component: NuevaClasificacionAlarmaComponent, canActivate: [LoginGuard]},
+  {path: 'clasificaciones_alarmas/nueva', component: CrearClasificacionAlarmaComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_centros_sanitarios',
     component: ListaTiposCentrosSanitariosComponent,
@@ -104,13 +133,13 @@ const routes: Routes = [
   },
   {
     path: 'tipos_centros_sanitarios/modificar/:id',
-    component: DetallesTipoCentroSanitarioComponent,
+    component: ModificarTipoCentroSanitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipo_centro_sanitario: DetallesTipoCentroSanitarioResolveService
     }
   },
-  {path: 'tipos_centros_sanitarios/nuevo', component: NuevoTipoCentroSanitarioComponent, canActivate: [LoginGuard]},
+  {path: 'tipos_centros_sanitarios/nuevo', component: CrearTipoCentroSanitarioComponent, canActivate: [LoginGuard]},
   {
     path: 'tipos_recursos_comunitarios',
     component: ListaTiposRecursosComunitariosComponent,
@@ -121,7 +150,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos_recursos_comunitarios/modificar/:id',
-    component: DetallesTipoRecursoComunitarioComponent,
+    component: ModificarTipoRecursoComunitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipo_recurso_comunitario: DetallesTipoRecursoComunitarioResolveService
@@ -129,7 +158,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos_recursos_comunitarios/nuevo',
-    component: NuevoTipoRecursoComunitarioComponent,
+    component: CrearTipoRecursoComunitarioComponent,
     canActivate: [LoginGuard]
   },
   {
@@ -142,7 +171,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos_modalidades_pacientes/modificar/:id',
-    component: DetallesTipoModalidadPacienteComponent,
+    component: ModificarTipoModalidadPacienteComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipo_modalidad_paciente: DetallesTipoModalidadPacienteResolveService
@@ -150,7 +179,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos_modalidades_pacientes/nuevo',
-    component: NuevoTipoModalidadPacienteComponent,
+    component: CrearTipoModalidadPacienteComponent,
     canActivate: [LoginGuard]
   },
   {
@@ -163,7 +192,7 @@ const routes: Routes = [
   },
   {
     path: 'tipos_alarmas/modificar/:id',
-    component: DetallesTipoAlarmaComponent,
+    component: ModificarTipoAlarmaComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipo_alarma: DetallesTipoAlarmaResolveService,
@@ -172,10 +201,18 @@ const routes: Routes = [
   },
   {
     path: 'tipos_alarmas/nuevo',
-    component: NuevoTipoAlarmaComponent,
+    component: CrearTipoAlarmaComponent,
     canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
+    }
+  },
+  {
+    path: 'direcciones/borrado/:id',
+    component: ListaDireccionesComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      direcciones: ListaDireccionesResolveService
     }
   },
   {
@@ -188,13 +225,13 @@ const routes: Routes = [
   },
   {
     path: 'direcciones/modificar/:id',
-    component: DetallesDireccionComponent,
+    component: ModificarDireccionComponent,
     canActivate: [LoginGuard],
     resolve: {
       direccion: DetallesDireccionResolveService
     }
   },
-  {path: 'direcciones/nueva', component: NuevaDireccionComponent, canActivate: [LoginGuard]},
+  {path: 'direcciones/nueva', component: CrearDireccionComponent, canActivate: [LoginGuard]},
   {
     path: 'centros_sanitarios',
     component: ListaCentrosSanitariosComponent,
@@ -205,7 +242,7 @@ const routes: Routes = [
   },
   {
     path: 'centros_sanitarios/modificar/:id',
-    component: DetallesCentroSanitarioComponent,
+    component: ModificarCentroSanitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       centro_sanitario: DetallesCentroSanitarioResolveService,
@@ -214,7 +251,7 @@ const routes: Routes = [
   },
   {
     path: 'centros_sanitarios/nuevo',
-    component: NuevoCentroSanitarioComponent,
+    component: CrearCentroSanitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipos_centros_sanitarios: ListaTiposCentrosSanitariosResolveService
@@ -230,7 +267,7 @@ const routes: Routes = [
   },
   {
     path: 'recursos_comunitarios/modificar/:id',
-    component: DetallesRecursoComunitarioComponent,
+    component: ModificarRecursoComunitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       recurso_comunitario: DetallesRecursoComunitarioResolveService,
@@ -239,7 +276,7 @@ const routes: Routes = [
   },
   {
     path: 'recursos_comunitarios/nuevo',
-    component: NuevoRecursoComunitarioComponent,
+    component: CrearRecursoComunitarioComponent,
     canActivate: [LoginGuard],
     resolve: {
       tipos_recursos_comunitarios: ListaTiposRecursosComunitariosResolveService
@@ -255,7 +292,7 @@ const routes: Routes = [
   },
   {
     path: 'personas/modificar/:id',
-    component: DetallesPersonaComponent,
+    component: ModificarPersonaComponent,
     canActivate: [LoginGuard],
     resolve: {
       persona: DetallesPersonaResolveService,
@@ -264,10 +301,94 @@ const routes: Routes = [
   },
   {
     path: 'personas/nueva',
-    component: NuevaPersonaComponent,
+    component: CrearPersonaComponent,
     canActivate: [LoginGuard],
     resolve: {
       direcciones: ListaDireccionesResolveService
+    }
+  },
+  {
+    path: 'viviendas',
+    component: ListaTiposViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/nueva',
+    component: CrearViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      clasificaciones_alarmas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/modificar/:id',
+    component: ModificarTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipo_vivienda: DetallesViviendaResolveService,
+      clasificaciones_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'viviendas/borrado/:id',
+    component: BorrarTipoViviendaComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipo_vivienda: BorrarTipoViviendaService,
+      clasificaciones_viviendas: ListaViviendasResolveService
+    }
+  },
+  {
+    path: 'usuarios/modificar/:id',
+    component: ModificarUserComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      user: DetallesUserResolveService
+    }
+  },
+  {
+    path: 'situaciones',
+    component: ListaTiposSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/nueva',
+    component: CrearTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/modificar/:id',
+    component: ModificarTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: DetallesTipoSituacionService,
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'situaciones/borrado/:id',
+    component: BorrarTipoSituacionComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      tipos_situaciones: BorrarTipoSituacionService,
+      clasificaciones_situaciones: ListaSituacionesService
+    }
+  },
+  {
+    path: 'usuarios/modificar/:id',
+    component: ModificarUserComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      user: DetallesUserResolveService
     }
   },
   {path: '', redirectTo: '/inicio', pathMatch: 'full'},
@@ -281,3 +402,4 @@ const routes: Routes = [
 
 export class AppRoutingModule {
 }
+

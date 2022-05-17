@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IUsers} from '../interfaces/i-users';
+import {IDireccion} from "../interfaces/i-direccion";
 import {environment} from "../../environments/environment";
 
 @Injectable({
@@ -29,5 +30,8 @@ export class CargaUserService {
 
   nuevoUser(user: IUsers): Observable<IUsers> {
     return this.http.post<IUsers>(this.URL_SERVER_USERS, user);
+  }
+  eliminarUsuario(user:IUsers): Observable<IUsers> {
+    return this.http.delete<IUsers>(this.URL_SERVER_USERS+ '/' + user.pk);
   }
 }

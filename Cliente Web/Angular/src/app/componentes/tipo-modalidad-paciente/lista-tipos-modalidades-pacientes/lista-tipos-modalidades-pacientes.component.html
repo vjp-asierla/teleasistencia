@@ -1,0 +1,34 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tipos de modalidades de pacientes</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Tipos de modalidades de pacientes</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
+    <div class="table-responsive m-2">
+      <table id="tableList" class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th (click)="ordenacionTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tipo_modalidad_paciente of tipos_modalidades_pacientes | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
+            app-item-tipo-modalidad-paciente [tipo_modalidad_paciente]="tipo_modalidad_paciente">
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
+    </div>
+  </div>
+</main>
