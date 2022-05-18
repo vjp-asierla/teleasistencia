@@ -6,44 +6,51 @@
         <li class="breadcrumb-item active" aria-current="page">Recursos Comunitarios/Personales</li>
       </ol>
     </nav>
-    <h1 class="component-title">Recursos Comunitarios/Personales</h1>
-    <div class="row"></div>
+    <h1 class="component-title">Recursos Comunitarios - Personales</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Búsqueda..." [(ngModel)]="inputBusqueda">
+    </div>
     <div class="table-responsive m-2">
-      <table class="table table-hover text-center">
+      <table id="tableList" class="table table-hover text-center">
         <thead>
         <tr class="table-purple">
-          <th scope="col">Nombre Paciente</th>
-          <th scope="col">Sexo</th>
-          <th scope="col">Localidad</th>
-          <th scope="col">Dirección </th>
-          <th scope="col">Provincia</th>
-          <th scope="col">Unidad Móvil</th>
-          <th scope="col">Hospital</th>
-          <th scope="col">Consultorio local</th>
-          <th scope="col">Centro de salud</th>
-          <!--
-          <th scope="col">Comisaria de Policía</th>
-          <th scope="col">Cuartel Guardia Civil</th>
-          <th scope="col">Bomberos</th>
-          <th scope="col">Servicios Sociales</th>
-          <th scope="col">Cruz Roja</th>-->
-          <th scope="col"></th>
+          <th (click)="ordenacionTabla(0, 'string')" scope="col">Nombre Paciente <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(1, 'string')" scope="col">Sexo <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(2, 'string')" scope="col">Localidad <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(3, 'string')" scope="col">Dirección <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(4, 'string')" scope="col">Provincia <i class="fas fa-sort"></i></th>
+          <ng-container *ngFor="let tipocentro of tipo_centro_sanitario let i=index">
+            <th  (click)="ordenacionTabla(i+5, 'string')" scope="col">{{tipocentro.nombre}} <i class="fas fa-sort"></i></th>
+          </ng-container>
+          <ng-container *ngFor="let tipo of tipo_recurso let i=index">
+            <th (click)="ordenacionTabla(i+9, 'string')" scope="col">{{tipo.nombre}}  <i class="fas fa-sort"></i></th>
+          </ng-container>
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let persona of RCP  let i =index">
+          <tr *ngFor="let persona of RCP  | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }">
             <td>{{persona.Nombre}} {{persona.Apellidos}}</td>
             <td>{{persona.Sexo}}</td>
             <td>{{persona.Localidad}}</td>
             <td>{{persona.Direccion}}</td>
             <td>{{persona.Provincia}}</td>
-            <td>{{persona["Unidad Móvil"]}}</td>
-            <td>{{persona.Hospital}}</td>
-            <td>{{persona["Consultorio local"]}}</td>
             <td>{{persona["Centro de salud"]}}</td>
+            <td>{{persona["Consultorio local"]}}</td>
+            <td>{{persona.Hospital}}</td>
+            <td>{{persona["Unidad Móvil"]}}</td>
+            <td>{{persona["Policía"]}}</td>
+            <td>{{persona["Guardia Civil"]}}</td>
+            <td>{{persona.Bomberos}}</td>
+            <td>{{persona["Servicios Sociales"]}}</td>
+            <td>{{persona["Cruz Roja"]}}</td>
           </tr>
         </tbody>
       </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
 
 
     </div>

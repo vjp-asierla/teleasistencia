@@ -37,7 +37,6 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
         pacientes = Paciente.objects.all().order_by('id_persona')
         tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('nombre')
         tipos_recurso_comunitario=Tipo_Recurso_Comunitario.objects.all().order_by('nombre')
-        terminal=Terminal.objects.all().order_by('id')
 
         for paciente in pacientes:
             dataPaciente={
@@ -48,7 +47,6 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                 "Localidad":paciente.id_persona.id_direccion.localidad,
                 "Direccion":paciente.id_persona.id_direccion.direccion,
                 "Provincia": paciente.id_persona.id_direccion.provincia,
-
             }
                 #recorro los tipo de centro sanitario
             for tipo_centro_santario in tipos_centro_santario:
@@ -59,16 +57,11 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     dataPaciente[tipo_centro_santario.nombre]=""
                     #sino
                 else:
-                    print("---------------")
-                    print(paciente.id)
-                    print(tipo_centro_santario.nombre)
-                    print(centro_sanitario)
                     # obtengo la relacion usuario centro segun el id de centro y el id de paciente
                     relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
                         dataPaciente[tipo_centro_santario.nombre] = relaciones_usuario_centro.id_centro_sanitario.nombre
-                        print("Coincide *************")
                     else:
                             dataPaciente[tipo_centro_santario.nombre]=""
 
@@ -78,11 +71,9 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                 if not recurso_comunitario:
                     dataPaciente[tipo_recurso_comunitario.nombre] = ""
                 else:
-                    relacion_terminal_recurso_comunitario= Relacion_Terminal_Recurso_Comunitario.objects.filter(id_terminal=terminal.numero_terminal).filter(id_recurso_comunitario__in=recurso_comunitario).first()
+                    relacion_terminal_recurso_comunitario= Relacion_Terminal_Recurso_Comunitario.objects.filter(id_terminal=paciente.id_terminal).filter(id_recurso_comunitario__in=recurso_comunitario).first()
                     if relacion_terminal_recurso_comunitario is not None:
-
-                        dataPaciente[tipo_recurso_comunitario.nombre] +tipo_recurso_comunitario.nombre
-                        print("Coincide *************")
+                        dataPaciente[tipo_recurso_comunitario.nombre] =relacion_terminal_recurso_comunitario.id_recurso_comunitario.nombre
                     else:
                         dataPaciente[tipo_recurso_comunitario.nombre] = ""
 
