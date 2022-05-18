@@ -2,9 +2,9 @@
 <td>{{ user.first_name }}</td>
 <td>{{ user.last_name }}</td>
 <td>{{ user.email }}</td>
-<td>{{ user.groups }}</td>
+<td>{{  user.groups[0] != null? user.groups[0].name : "" }}</td>
 <td>
-  <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/usuarios/modificar', user.id]">
+  <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/usuarios/modificar', user.pk]">
     <i class="fa fa-pen"></i>
   </button>
   <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()"

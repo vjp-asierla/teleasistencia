@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ITipoSituacion} from "../interfaces/i-tipo-situacion";
 import {ITipoVivienda} from "../interfaces/i-tipo-vivienda";
+import {IDireccion} from "../interfaces/i-direccion";
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,7 @@ export class CargaTipoSituacionService {
     return this.http.post<ITipoSituacion>(this.URL_SERVER_TIPOS_SITUACIONES, tipoSituacion);
   }
 
-  borrarSituacion(tipoSituacion: ITipoSituacion): Observable<ITipoSituacion> {
+  eliminarTipoSituacion(tipoSituacion:ITipoSituacion): Observable<ITipoSituacion> {
     return this.http.delete<ITipoSituacion>(this.URL_SERVER_TIPOS_SITUACIONES + '/' + tipoSituacion.id);
   }
-
 }

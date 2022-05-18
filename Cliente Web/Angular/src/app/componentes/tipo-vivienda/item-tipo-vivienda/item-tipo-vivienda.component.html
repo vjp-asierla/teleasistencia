@@ -1,11 +1,11 @@
 <td>{{ tipo_vivenda.nombre }}</td>
 <td>
   <button type="submit" class="btn btn-outline-secondary btn-modify" [routerLink]="['/viviendas/modificar', tipo_vivenda.id]">
-    Modificar
+    <i class="fa fa-pen"></i>
   </button>
 
-  <button type="submit" class="btn btn-outline-danger btn-modify" [routerLink]="['/viviendas/borrado', tipo_vivenda.id]">
-    Eliminar
+  <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()">
+    <i class="fa fa-trash"></i>
   </button>
 
 <!-- <app-borrar-tipo-vivienda></app-borrar-tipo-vivienda>-->
