@@ -1,6 +1,5 @@
 import os
-from locale import str
-from tokenize import String
+
 from django.shortcuts import _get_queryset
 from requests import request
 
