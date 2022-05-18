@@ -67,7 +67,7 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
-                        dataPaciente[tipo_centro_santario.nombre+str(tipo_centro_santario.id)]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
                         print("Coincide *************")
                     else:
                         dataPaciente[tipo_centro_santario.nombre]=""

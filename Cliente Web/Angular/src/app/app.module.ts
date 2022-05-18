@@ -129,7 +129,7 @@ import { GruposComponent } from './componentes/grupos/grupos.component';
     HeaderComponent,
     FooterComponent,
     BotonesLoginComponent,
-    RecursosComunitariosPersonalesComponent
+    RecursosComunitariosPersonalesComponent,
     FiltroBusquedaPipe,
     ListaTiposViviendaComponent,
     ListaTiposSituacionComponent,
