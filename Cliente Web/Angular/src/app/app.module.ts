@@ -77,7 +77,9 @@ import { ModificarTipoSituacionComponent } from './componentes/tipo-situacion/mo
 import { BorrarTipoViviendaComponent } from './componentes/tipo-vivienda/borrar-tipo-vivienda/borrar-tipo-vivienda.component';
 import { BorrarTipoSituacionComponent } from './componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component';
 import {InterceptorService} from "./interceptors/interceptor.service";
+import { RecursosComunitariosPersonalesComponent } from './componentes/recursos-comunitarios-personales/recursos-comunitarios-personales.component';
 import { GruposComponent } from './componentes/grupos/grupos.component';
+
 
 @NgModule({
   declarations: [
@@ -127,6 +129,7 @@ import { GruposComponent } from './componentes/grupos/grupos.component';
     HeaderComponent,
     FooterComponent,
     BotonesLoginComponent,
+    RecursosComunitariosPersonalesComponent
     FiltroBusquedaPipe,
     ListaTiposViviendaComponent,
     ListaTiposSituacionComponent,

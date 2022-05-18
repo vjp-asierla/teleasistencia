@@ -8,6 +8,9 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {token} from "../../interfaces/i-token";
 import {NgForm} from "@angular/forms";
+import {environment} from "../../../environments/environment";
+import {ProfileService} from "../../servicios/profile.service";
+import {IProfileUser} from "../../interfaces/i-profile-user";
 
 
 
@@ -20,17 +23,23 @@ import {NgForm} from "@angular/forms";
 export class PantallaLoginComponent implements OnInit, DoCheck {
   public login: ILogin;
   public estaLogin: boolean;
+  public username:string;
+  public userlastname:string;
+  public grupo:number;
+
+  public img:string
+
 
   @ViewChild('formLogin') formLogin!: NgForm
 
 
 
-  constructor(private titleService: Title, private loginService: LoginService,private http:HttpClient, private router: Router) { }
+  constructor(private titleService: Title, private loginService: LoginService,
+              private http:HttpClient, private router: Router,private profileService:ProfileService) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Login');
     this.login = new Login();
-
   }
 
   ngDoCheck(): void {
@@ -42,18 +51,41 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
      this.formLogin.value
    ).subscribe(
       resp=>{
-        // console.log(resp)
         localStorage.setItem('token',resp.access)
-      }
+        this.profileService.getProfile()
+          .subscribe((resp:IProfileUser[])=>{
+            this.username=resp[0].first_name
+            this.userlastname=resp[0].last_name
+            this.grupo=resp[0].groups[0].id
+            localStorage.setItem('username',this.username)
+            localStorage.setItem('userlastname',this.userlastname)
+            localStorage.setItem('grupo',this.grupo.toString())
+            if( resp[0].imagen == null){
+              this.img=null
+            } else{
+              this.img=resp[0].imagen.imagen
+            }
+            localStorage.setItem('img',this.img)
+            this.router.navigate(['/inicio']);
+
+          })
+
+
+      }, err=>{
+        alert('Error login incorrecto')
+       return
+     }
     )
-    this.loginService.hacerLogin();
-    console.log(this.formLogin.value)
-    this.router.navigate(['/inicio']);
+
   }
+
 
   hacerLogout(): void {
     this.loginService.hacerLogout();
     this.router.navigate(['/login']);
+
+
+
   }
 
 
