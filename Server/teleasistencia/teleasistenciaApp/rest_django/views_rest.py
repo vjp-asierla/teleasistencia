@@ -1,5 +1,6 @@
 import os
-
+from locale import str
+from tokenize import String
 from django.shortcuts import _get_queryset
 from requests import request
 
@@ -29,18 +30,19 @@ class IsTeacherMember(permissions.BasePermission):
         if request.user.groups.filter(name="profesor").exists():
             return True
 
-
 class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
     def list(self,request, *args, **kwargs):
         data=[
 
         ]
-        pacientes = Paciente.objects.all().order_by('-id_persona')
-        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('-nombre')
+        pacientes = Paciente.objects.all().order_by('id_persona')
+        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('nombre')
+        tipos_recurso_comunitario=Tipo_Recurso_Comunitario.objects.all().order_by('nombre')
+        terminal=Terminal.objects.all().order_by('id')
 
         for paciente in pacientes:
             dataPaciente={
-                "id_paciente": paciente.id_persona.id,
+                "id_paciente": paciente.id,
                 "Nombre": paciente.id_persona.nombre,
                 "Apellidos": paciente.id_persona.apellidos,
                 "Sexo":paciente.id_persona.sexo,
@@ -58,14 +60,32 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     dataPaciente[tipo_centro_santario.nombre]=""
                     #sino
                 else:
+                    print("---------------")
+                    print(paciente.id)
+                    print(tipo_centro_santario.nombre)
+                    print(centro_sanitario)
                     # obtengo la relacion usuario centro segun el id de centro y el id de paciente
-                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.all().filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
+                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
-                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                        dataPaciente[tipo_centro_santario.nombre] = relaciones_usuario_centro.id_centro_sanitario.nombre
+                        print("Coincide *************")
                     else:
                             dataPaciente[tipo_centro_santario.nombre]=""
 
+            for tipo_recurso_comunitario in tipos_recurso_comunitario:
+                recurso_comunitario=Recurso_Comunitario.objects.filter(id_tipos_recurso_comunitario=tipo_recurso_comunitario)
+
+                if not recurso_comunitario:
+                    dataPaciente[tipo_recurso_comunitario.nombre] = ""
+                else:
+                    relacion_terminal_recurso_comunitario= Relacion_Terminal_Recurso_Comunitario.objects.filter(id_terminal=terminal.numero_terminal).filter(id_recurso_comunitario__in=recurso_comunitario).first()
+                    if relacion_terminal_recurso_comunitario is not None:
+
+                        dataPaciente[tipo_recurso_comunitario.nombre] +tipo_recurso_comunitario.nombre
+                        print("Coincide *************")
+                    else:
+                        dataPaciente[tipo_recurso_comunitario.nombre] = ""
 
             data.append(dataPaciente)
         return JsonResponse(data,safe=False)
