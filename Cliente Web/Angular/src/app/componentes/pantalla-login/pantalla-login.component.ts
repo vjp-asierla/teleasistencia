@@ -31,6 +31,7 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
 
 
   @ViewChild('formLogin') formLogin!: NgForm
+  private urltoken=environment.urlToken
 
 
 
@@ -47,7 +48,7 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
   }
 
   hacerLogin(): void {
-   this.http.post<token>('http://localhost:8000/api/token/',
+   this.http.post<token>(this.urltoken,
      this.formLogin.value
    ).subscribe(
       resp=>{
