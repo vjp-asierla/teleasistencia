@@ -315,4 +315,4 @@ class Migration(migrations.Migration):
             name='id_tipo_agenda',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='teleasistenciaApp.tipo_agenda'),
         ),
-    ]
+        ]

@@ -30,5 +30,8 @@ admin.site.register(Recursos_Comunitarios_En_Alarma)
 admin.site.register(Tipo_Situacion)
 admin.site.register(Historico_Tipo_Situacion)
 admin.site.register(Relacion_Usuario_Centro)
-
+admin.site.register(Desarrollador)
+admin.site.register(Tecnologia)
+admin.site.register(Desarrollador_Tecnologia)
+admin.site.register(Convocatoria_Proyecto)
 
