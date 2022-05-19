@@ -1,4 +1,6 @@
-
+import os
+from locale import str
+from tokenize import String
 
 from django.shortcuts import _get_queryset
 from requests import request
@@ -18,6 +20,7 @@ from ..rest_django.serializers import UserSerializer, GroupSerializer
 from ..rest_django.serializers import *
 # Modelos propios
 from ..models import *
+from django.http import JsonResponse
 
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
@@ -27,6 +30,86 @@ class IsTeacherMember(permissions.BasePermission):
         return True
         if request.user.groups.filter(name="profesor").exists():
             return True
+
+
+class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
+    def list(self,request, *args, **kwargs):
+        data=[
+
+        ]
+        pacientes = Paciente.objects.all().order_by('-id_persona')
+        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('-nombre')
+
+        for paciente in pacientes:
+            dataPaciente={
+                "id_paciente": paciente.id,
+                "Nombre": paciente.id_persona.nombre,
+                "Apellidos": paciente.id_persona.apellidos,
+                "Sexo":paciente.id_persona.sexo,
+                "Localidad":paciente.id_persona.id_direccion.localidad,
+                "Direccion":paciente.id_persona.id_direccion.direccion,
+                "Provincia": paciente.id_persona.id_direccion.provincia,
+            }
+                #recorro los tipo de centro sanitario
+            for tipo_centro_santario in tipos_centro_santario:
+                #obtengo los centros segun el id de tipos centro sanitario
+                centro_sanitario = Centro_Sanitario.objects.filter(id_tipos_centro_sanitario=tipo_centro_santario)
+                #si el array es nulo
+                if not centro_sanitario:
+                    dataPaciente[tipo_centro_santario.nombre]=""
+                    #sino
+                else:
+                    print("---------------")
+                    print(paciente.id)
+                    print(tipo_centro_santario.nombre)
+                    print(centro_sanitario)
+                    # obtengo la relacion usuario centro segun el id de centro y el id de paciente
+                    relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
+                    if relaciones_usuario_centro is not None:
+                        #si no es null muestro elnombre del centro sanitario
+                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
+                        print("Coincide *************")
+                    else:
+                        dataPaciente[tipo_centro_santario.nombre]=""
+
+
+            data.append(dataPaciente)
+        return JsonResponse(data,safe=False)
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    def list(self, request, *args, **kwargs):
+        queryset = User.objects.filter(username=request.user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        user = User.objects.get(pk=kwargs["pk"])
+        if request.data.get("email") is not None:
+            user.email = request.data.get("email")
+        if request.data.get("password") is not None:
+            # Encriptamos la contraseña
+            user.set_password(request.data.get("password"))
+        user.save()
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image = Imagen_User.objects.filter(user=user).first()
+            if image:
+                if (image.imagen) is not None:
+                    os.remove(image.imagen.path)
+                image.imagen = img
+                image.save()
+            else:
+                image = Imagen_User(
+                    user=user,
+                    imagen=img
+                )
+            image.save()
+
+        # Devolvemos el user creado
+        user_serializer = self.get_serializer(user, many=False)
+        return Response(user_serializer.data)
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -53,11 +136,13 @@ class UserViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         # Comprobamos que existe el groups
         id_groups = Group.objects.get(pk=request.data.get("groups"))
+
         if id_groups is None:
             return Response("Error: Groups")
 
         if User.objects.filter(username=request.data.get("username")).exists():
             return Response("El usuario ya existe")
+
 
         user = User(
             username=request.data.get("username"),
@@ -65,12 +150,20 @@ class UserViewSet(viewsets.ModelViewSet):
             last_name=request.data.get("last_name"),
             email=request.data.get("email"),
         )
+
+
         # Encriptamos la contraseña
         user.set_password(request.data.get("password"))
         user.save()
         user.groups.add(id_groups)
 
-
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image = Imagen_User(
+                user=user,
+                imagen=img
+            )
+            image.save()
         # Devolvemos el user creado
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
@@ -92,12 +185,34 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.data.get("password") is not None:
             # Encriptamos la contraseña
             user.set_password(request.data.get("password"))
-
         user.save()
+        if request.FILES:
+            img = request.FILES["imagen"]
+            image = Imagen_User.objects.filter(user=user).first()
+            if image:
+                if (image.imagen) is not None:
+                    os.remove(image.imagen.path)
+                image.imagen = img
+                image.save()
+            else:
+                image = Imagen_User(
+                    user=user,
+                    imagen=img
+                )
+            image.save()
 
         # Devolvemos el user creado
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        user = User.objects.get(pk=kwargs["pk"])
+        image = Imagen_User.objects.get(user=user)
+        if image.imagen is not None:
+            os.remove(image.imagen.path)
+        user.delete()
+        return Response('borrado')
+
 
 class PermissionViewSet(viewsets.ModelViewSet):
     """
@@ -1406,3 +1521,40 @@ class Relacion_Usuario_Centro_ViewSet(viewsets.ModelViewSet):
         # Devolvemos la relacion_usuario_centro modificada
         relacion_usuario_centro_serializer = Relacion_Usuario_Centro_Serializer(relacion_usuario_centro)
         return Response(relacion_usuario_centro_serializer.data)
+
+
+'''{
+               "id": "1",
+               "nombre": "pepe",
+               "apellido": "grillo",
+               "sexo": "Hombre",
+               "telefono": "664489164",
+               "localidad": "Plasencia",
+               "provincia": "Cáceres",
+               "centro_de_salud":" centro de slaud la data",
+               "Hospital":"Hospital de Plasencia",
+               "Guardia Civil":"Guardia civil de plasencia",
+               "Policia":"Policia Local Plasencia",
+               "Bomberos":"Bomberos de Plasencia",
+               "Servicios Sociales":"Servicios Sociales de Plasencia",
+               "Cruz Roja":"Cruz Roja de Plasencia",
+
+           },
+           {
+               "id": "1",
+               "nombre": "María",
+               "apellido": "Gil",
+               "sexo": "Mujer",
+               "telefono": "664428142",
+               "localidad": "Coria",
+               "provincia": "Cáceres",
+               "centro_de_salud": " centro de salud de Coria",
+               "Hospital": "Hospital de Coria",
+               "Guardia Civil": "Guardia civil de Coria",
+               "Policia": "Policia Local Coria",
+               "Bomberos": "Bomberos de Coria",
+               "Servicios Sociales": "Servicios Sociales de Coria",
+               "Cruz Roja": "Cruz Roja de Coria",
+
+               },
+               '''

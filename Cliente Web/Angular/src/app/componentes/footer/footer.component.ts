@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  public nombreUser:string=localStorage.getItem('username')
+  public apellidoUser:string=localStorage.getItem('userlastname')
+
   constructor() { }
 
   ngOnInit(): void {

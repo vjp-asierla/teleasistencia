@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-
+admin.site.register(Imagen_User)
 admin.site.register(Tipo_Agenda)
 admin.site.register(Direccion)
 admin.site.register(Clasificacion_Alarma)

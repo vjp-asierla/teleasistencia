@@ -1,0 +1,99 @@
+package com.example.teleappsistencia.ui.centro_sanitario;
+
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.teleappsistencia.R;
+import com.example.teleappsistencia.ui.tipo_centro_sanitario.TipoCentroSanitario;
+import com.example.teleappsistencia.ui.tipo_centro_sanitario.TipoCentroSanitarioAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link FragmentListarCentroSanitario#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class FragmentListarCentroSanitario extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
+
+    public FragmentListarCentroSanitario() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment FragmentListarCentroSanitario.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static FragmentListarCentroSanitario newInstance(String param1, String param2) {
+        FragmentListarCentroSanitario fragment = new FragmentListarCentroSanitario();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_listar_centro_sanitario, container, false);
+        // Inicializar Centros Sanitarios.
+        List items = new ArrayList();
+        List<String> listaTipoCentroSanitario = new ArrayList();
+        listaTipoCentroSanitario.add("Centro de salud");
+
+        items.add(new CentroSanitario("Centro de salud La Paloma", "972580050",
+                listaTipoCentroSanitario, "Cáceres", "Cáceres",
+                "Cruz de piedra", "10004"));
+
+        // Obtener el Recycler.
+        recycler = (RecyclerView) root.findViewById(R.id.listRecyclerView);
+        recycler.setHasFixedSize(true);
+
+        // Usar un administrador para LinearLayout.
+        lManager = new LinearLayoutManager(getContext());
+        recycler.setLayoutManager(lManager);
+
+        // Crear un nuevo adaptador.
+        adapter = new CentroSanitarioAdapter(items, getActivity(), recycler);
+        recycler.setAdapter(adapter);
+
+        // Inflate the layout for this fragment
+        return root;
+    }
+}
