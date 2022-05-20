@@ -1,5 +1,6 @@
 package com.example.teleappsistencia.api.clases;
 
+import com.example.teleappsistencia.utilidad.Utilidad;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -105,5 +106,11 @@ public class Paciente implements Serializable {
 
     public void setId_tipo_modalidad_paciente(int id_tipo_modalidad_paciente) {
         this.id_tipo_modalidad_paciente = id_tipo_modalidad_paciente;
+    }
+
+    @Override
+    public String toString() {
+        Persona persona = (Persona) Utilidad.getObjeto(getId_persona(), "Persona");
+        return persona.getNombre()+" "+persona.getApellidos();
     }
 }

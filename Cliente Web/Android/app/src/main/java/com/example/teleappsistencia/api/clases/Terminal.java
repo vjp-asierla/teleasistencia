@@ -1,5 +1,7 @@
 package com.example.teleappsistencia.api.clases;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -65,5 +67,11 @@ public class Terminal implements Serializable {
 
     public void setId_tipo_vivienda(int id_tipo_vivienda) {
         this.id_tipo_vivienda = id_tipo_vivienda;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.valueOf(getNumero_terminal());
     }
 }

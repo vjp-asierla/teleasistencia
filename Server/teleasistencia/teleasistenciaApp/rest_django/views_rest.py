@@ -22,7 +22,7 @@ from ..models import *
 # Alarmas
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-import json
+
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
@@ -589,6 +589,18 @@ class Relacion_Terminal_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     serializer_class = Relacion_Terminal_Recurso_Comunitario_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
+    # Obtenemos el listado de relacion_terminal_recurso_comunitario filtrado por los parametros GET
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Relacion_Terminal_Recurso_Comunitario.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         # Comprobamos que exite el terminal
         id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
@@ -1070,6 +1082,17 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
     serializer_class = Alarma_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Alarma.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     # Definimos el metodo para crear la alarma
     def create(self, request, *args, **kwargs):
         # Comprobamos que existe id_tipo_alarma
@@ -1157,7 +1180,7 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             'teleoperadores',
-            {"type": "notify.consumers", "action": accion, "alarma": alarma_serializer.data},
+            {"type": "notify.clients", "action": accion, "alarma": alarma_serializer.data},
         )
 
 

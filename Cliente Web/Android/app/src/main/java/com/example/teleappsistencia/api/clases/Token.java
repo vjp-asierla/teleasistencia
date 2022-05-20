@@ -1,6 +1,7 @@
 package com.example.teleappsistencia.api.clases;
 
 import com.example.teleappsistencia.api.servicios.APIService;
+import com.example.teleappsistencia.utilidad.ClienteRetrofit;
 import com.example.teleappsistencia.utilidad.Utilidad;
 
 import java.io.Serializable;
@@ -36,7 +37,7 @@ public class Token implements Serializable {
     }
 
     public static void cargarToken(String user, String password){
-        APIService apiService = Utilidad.loadApiService();
+        APIService apiService = ClienteRetrofit.getInstance().getAPIService();
         Call<Token> call = apiService.getToken(user, password);
         call.enqueue(new Callback<Token>() {
             @Override

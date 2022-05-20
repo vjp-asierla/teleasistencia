@@ -69,7 +69,7 @@ public class Alarma implements Serializable {
         return id_tipo_alarma;
     }
 
-    public void setId_tipo_alarma(TipoAlarma id_tipo_alarma) {
+    public void setId_tipo_alarma(Object id_tipo_alarma) {
         this.id_tipo_alarma = id_tipo_alarma;
     }
 
@@ -93,7 +93,7 @@ public class Alarma implements Serializable {
         return id_terminal;
     }
 
-    public void setId_terminal(Terminal id_terminal) {
+    public void setId_terminal(Object id_terminal) {
         this.id_terminal = id_terminal;
     }
 }

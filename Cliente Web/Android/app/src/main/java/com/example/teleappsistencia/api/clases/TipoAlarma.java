@@ -2,7 +2,9 @@ package com.example.teleappsistencia.api.clases;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TipoAlarma {
+import java.io.Serializable;
+
+public class TipoAlarma implements Serializable {
 
     @SerializedName("id")
     private int id;
@@ -53,5 +55,10 @@ public class TipoAlarma {
 
     public void setClasificacionAlarma (int clasificacionAlarma) {
         this.clasificacionAlarma = clasificacionAlarma;
+    }
+
+    @Override
+    public String toString() {
+        return getCodigo()+" - "+getNombre();
     }
 }

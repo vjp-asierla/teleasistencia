@@ -14,7 +14,7 @@ import com.example.teleappsistencia.fragments.centroSanitarioEnAlarma.InsertarCe
 import com.example.teleappsistencia.fragments.centroSanitarioEnAlarma.ListarCentrosSanitariosEnAlarmaFragment;
 import com.example.teleappsistencia.fragments.clasificacionAlarma.InsertarClasificacionAlarmaFragment;
 import com.example.teleappsistencia.fragments.clasificacionAlarma.ListarClasificacionAlarmaFragment;
-import com.example.teleappsistencia.fragments.otrosFragments.AlarmAlertFragment;
+import com.example.teleappsistencia.fragments.gestionAlarmasFragments.AlarmAlertFragment;
 import com.example.teleappsistencia.fragments.personaContactoEnAlarma.InsertarPersonaContactoEnAlarmaFragment;
 import com.example.teleappsistencia.fragments.personaContactoEnAlarma.ListarPersonasContactoEnAlarmaFragment;
 import com.example.teleappsistencia.fragments.recursosComunitariosEnAlarma.InsertarRecursosComunitariosEnAlarmaFragment;
@@ -28,7 +28,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
@@ -52,14 +51,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         this.counterFab = (CounterFab) findViewById(R.id.fab);
 
-
         this.counterFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
-
 
         //Iniciamos el servicio de notificación de Alarmas
         Utilidad.iniciarEscuchaAlarmas(this);
@@ -92,33 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
-
-    /*private void loadMenuHeader(){
-        String username = getIntent().getExtras().getString("usuario");
-        Call<List<Usuario>> call = apiService.getUserByUsername(username, "Bearer " + token.getAccess());
-        call.enqueue(new Callback<List<Usuario>>() {
-            @Override
-            public void onResponse(Call<List<Usuario>> call, Response<List<Usuario>> response) {
-                if(response.isSuccessful()) {
-                    List<Usuario> usuariosList = response.body();
-                    Usuario usuario = usuariosList.get(0);
-                    TextView nombreUsuario = (TextView) findViewById(R.id.textView_nombre_usuario);
-                    TextView emailUsuario = (TextView) findViewById(R.id.textView_email_usuario);
-
-                    nombreUsuario.setText(usuario.getFirstName() + " " + usuario.getLastName());
-                    emailUsuario.setText(usuario.getEmail());
-                } else{
-                    System.out.println(response.raw());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Usuario>> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -155,23 +125,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        /* Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } /*else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -273,15 +226,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 if (headerList.get(groupPosition).isGroup()) {
                     if (!headerList.get(groupPosition).hasChildren()) {
-                        /*
-                        MenuModel model = headerList.get(groupPosition);
-                        Fragment fragment = new Fragment(model.getLayout());
-
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.main_fragment, fragment)
-                                .addToBackStack(null)
-                                .commit();
-                         */
                     }
                 }
 
@@ -339,5 +283,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    public void ocultarFAB(){
+        this.counterFab.setVisibility(View.INVISIBLE);
+    }
+
+    public void mostrarFAB(){
+        this.counterFab.setVisibility(View.VISIBLE);
+    }
 
 }

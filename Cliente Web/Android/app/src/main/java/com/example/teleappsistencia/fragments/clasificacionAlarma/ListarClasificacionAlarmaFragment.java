@@ -3,12 +3,29 @@ package com.example.teleappsistencia.fragments.clasificacionAlarma;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.teleappsistencia.R;
+import com.example.teleappsistencia.api.clases.Alarma;
+import com.example.teleappsistencia.api.clases.ClasificacionAlarma;
+import com.example.teleappsistencia.api.clases.Token;
+import com.example.teleappsistencia.api.servicios.APIService;
+import com.example.teleappsistencia.fragments.alarma.AlarmaAdapter;
+import com.example.teleappsistencia.utilidad.ClienteRetrofit;
+import com.example.teleappsistencia.utilidad.Utilidad;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,14 +34,10 @@ import com.example.teleappsistencia.R;
  */
 public class ListarClasificacionAlarmaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private List<ClasificacionAlarma> lClasificacionAlarma;
+    private RecyclerView recycler;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager lManager;
 
     public ListarClasificacionAlarmaFragment() {
         // Required empty public constructor
@@ -34,16 +47,11 @@ public class ListarClasificacionAlarmaFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment ListarClasificacionAlarmaFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static ListarClasificacionAlarmaFragment newInstance(String param1, String param2) {
+    public static ListarClasificacionAlarmaFragment newInstance() {
         ListarClasificacionAlarmaFragment fragment = new ListarClasificacionAlarmaFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +59,50 @@ public class ListarClasificacionAlarmaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_listar_clasificacion_alarma, container, false);
+
+        // Inflar layout
+        View root = inflater.inflate(R.layout.fragment_listar_clasificacion_alarma, container, false);
+
+        // Obtener el Recycler.
+        recycler = (RecyclerView) root.findViewById(R.id.listRecyclerView);
+        recycler.setHasFixedSize(true);
+
+        // Usar un administrador para LinearLayout.
+        lManager = new LinearLayoutManager(getContext());
+        recycler.setLayoutManager(lManager);
+
+        //Cargamos un adaptador vacío mientras se carga la lista desde la API REST
+        this.lClasificacionAlarma = new ArrayList<>();
+        adapter = new ClasificacionAlarmaAdapter(lClasificacionAlarma);
+        recycler.setAdapter(adapter);
+
+        //Cargamos lista desde la API REST
+        cargarLista();
+
+        return root;
+    }
+
+    private void cargarLista(){
+        APIService apiService = ClienteRetrofit.getInstance().getAPIService();
+        Call<List<Object>> call = apiService.getListaClasificacionAlarma("Bearer " + Token.getToken().getAccess());
+        call.enqueue(new Callback<List<Object>>() {
+            @Override
+            public void onResponse(Call<List<Object>> call, Response<List<Object>> response) {
+                List<Object> lObjetos = response.body();
+                lClasificacionAlarma = (ArrayList<ClasificacionAlarma>) Utilidad.getObjeto(lObjetos, "ArrayList<ClasificacionAlarma>");
+                adapter = new ClasificacionAlarmaAdapter(lClasificacionAlarma);
+                recycler.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Object>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error: "+t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -108,6 +108,7 @@
         android:text="Rechazar"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTelefono" />
 
@@ -121,6 +122,7 @@
         android:backgroundTint="@color/azul"
         android:padding="10dp"
         android:text="Aceptar"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

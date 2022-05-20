@@ -1,4 +1,4 @@
-package com.example.teleappsistencia.fragments.otrosFragments;
+package com.example.teleappsistencia.fragments.gestionAlarmasFragments;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.example.teleappsistencia.api.clases.Teleoperador;
 import com.example.teleappsistencia.api.clases.Terminal;
 import com.example.teleappsistencia.api.clases.Token;
 import com.example.teleappsistencia.api.servicios.APIService;
+import com.example.teleappsistencia.utilidad.ClienteRetrofit;
 import com.example.teleappsistencia.utilidad.Utilidad;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -46,7 +47,6 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
     private int numTerminal;
     private String nombrePaciente;
     private String numeroTelefono;
-    private APIService apiService;
 
 
     public AlarmAlertFragment() {
@@ -83,6 +83,20 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_alarm_alert, container, false);
 
         // Capturar los elementos del layout
+        capturarElementos(view);
+
+        //Asignamos el listener a los botones
+        asignarListener();
+
+        if(alarmaNotificada != null){
+            this.extraerDatos();
+            this.cargarDatos();
+        }
+        return view;
+    }
+
+
+    private void capturarElementos(View view){
         this.textViewIdTerminal = (TextView) view.findViewById(R.id.textViewIdTerminal);
         this.textViewNombrePaciente = (TextView) view.findViewById(R.id.textViewNombrePaciente);
         this.textViewTelefono = (TextView) view.findViewById(R.id.textViewTelefono);
@@ -91,19 +105,16 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
         this.imageButtonCerrarAlerta = (ImageButton) view.findViewById(R.id.imageButtonCerrarAlerta);
         this.cabeceraAlerta = (ConstraintLayout) view.findViewById(R.id.cabeceraAlerta);
 
-        //Asignamos el listener a los botones
+    }
+
+    private void asignarListener(){
         this.btnRechazarAlarma.setOnClickListener(this);
         this.btnAceptarAlarma.setOnClickListener(this);
         this.imageButtonCerrarAlerta.setOnClickListener(this);
-
-        if(alarmaNotificada != null){
-            extraerDatos();
-            cargarDatos();
-        }
-        return view;
     }
 
-    public void extraerDatos(){
+
+    private void extraerDatos(){
         Terminal terminal;
         Paciente paciente;
         Persona persona;
@@ -123,13 +134,11 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
         this.numeroTelefono = persona.getTelefono_movil() + "/" + persona.getTelefono_fijo();
     }
 
-    public void cargarDatos(){
+    private void cargarDatos(){
         ColorStateList csl = ColorStateList.valueOf(this.color);
         this.cabeceraAlerta.setBackgroundColor(this.color);
         this.btnRechazarAlarma.setBackgroundTintList(csl);
         this.btnAceptarAlarma.setBackgroundTintList(csl);
-
-        this.apiService = Utilidad.loadApiService();
 
         this.textViewIdTerminal.setText("ID Terminal: "+String.valueOf(this.numTerminal));
         this.textViewNombrePaciente.setText("Paciente: "+this.nombrePaciente);
@@ -151,7 +160,8 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
         }
     }
 
-    public void comprobarAlarma(){
+    private void comprobarAlarma(){
+        APIService apiService = ClienteRetrofit.getInstance().getAPIService();
         Call<Alarma> callAlarma = apiService.getAlarmabyId(this.alarmaNotificada.getId(), "Bearer "+ Token.getToken().getAccess());
         callAlarma.enqueue(new Callback<Alarma>() {
             @Override
@@ -180,22 +190,19 @@ public class AlarmAlertFragment extends DialogFragment implements View.OnClickLi
         });
     }
 
-    public void modificarAlarma(Alarma alarmaRecibida){
+    private void modificarAlarma(Alarma alarmaRecibida){
         /* Cuando la aplicación funcione me imagino que ya habrá un usuario con su id */
         Teleoperador miUsuario = new Teleoperador();
         miUsuario.setId(1);
 
         alarmaRecibida.setId_teleoperador(miUsuario.getId());
+        APIService apiService = ClienteRetrofit.getInstance().getAPIService();
         Call<ResponseBody> call = apiService.actualizarAlarma(alarmaRecibida.getId(), "Bearer "+ Token.getToken().getAccess(), alarmaRecibida);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 System.out.println("alarma asginada");
                 InfoGestionAlarmaFragment iGAF = InfoGestionAlarmaFragment.newInstance(alarmaRecibida);
-                /*getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, iGAF)
-                        .addToBackStack(null)
-                        .commit();*/
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_fragment, iGAF)
                         .addToBackStack(null)

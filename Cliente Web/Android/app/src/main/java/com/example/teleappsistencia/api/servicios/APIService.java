@@ -1,11 +1,19 @@
 package com.example.teleappsistencia.api.servicios;
 
 import com.example.teleappsistencia.api.clases.Alarma;
+import com.example.teleappsistencia.api.clases.CentroSanitario;
+import com.example.teleappsistencia.api.clases.CentroSanitarioEnAlarma;
+import com.example.teleappsistencia.api.clases.ClasificacionAlarma;
+import com.example.teleappsistencia.api.clases.PersonaContactoEnAlarma;
+import com.example.teleappsistencia.api.clases.RecursoComunitario;
+import com.example.teleappsistencia.api.clases.RecursoComunitarioEnAlarma;
+import com.example.teleappsistencia.api.clases.TipoAlarma;
 import com.example.teleappsistencia.api.clases.Token;
 import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -14,134 +22,129 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIService {
 
-    //Peticiones de Alarma
-    @GET("api-rest/alarma")
-    public Call<List<Alarma>> getAlarmas(@Header("Authorization") String token);
-
-    @GET("api-rest/alarma/{id}")
-    public Call<Alarma> getAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
-
-    @FormUrlEncoded
-    @POST("api-rest/alarma")
-    public Call<Alarma> addAlarma(@Body Alarma alarma, @Header("Authorization") String token);
-
-    @PUT("api-rest/alarma/{id}")
-    Call<ResponseBody> actualizarAlarma(@Path("id") int id, @Header("Authorization") String token, @Body Alarma alarma);
-
-
     // Peticiones del Token
-
     @Headers("Accept: application/json")
     @FormUrlEncoded
     @POST("api/token/")
     public Call<Token> getToken(@Field("username") String username, @Field("password") String password);
 
-    /*
-    // Peticiones de Direccion
+    //Peticiones de Alarma
+    @GET("api-rest/alarma")
+    public Call<List<Object>> getAlarmas(@Header("Authorization") String token);
 
-    @GET("api-rest/direccion")
-    public Call<List<Direccion>> getDirecciones(@Header("Authorization") String token);
+    @GET("api-rest/alarma/{id}")
+    public Call<Alarma> getAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
 
-    @GET("api-rest/direccion")
-    public Call<Direccion> getDireccionById(@Query("id") String id, @Header("Authorization") String token);
+    @GET("/api-rest/alarma?id_teleoperador__isnull=true")
+    public Call<List<Object>> getAlarmasSinAsignar(@Header("Authorization") String token);
 
-    @FormUrlEncoded
-    @POST("api-rest/direccion")
-    public Call<Direccion> addDireccion(@Body Direccion direccion, @Header("Authorization") String token);
+    @POST("api-rest/alarma")
+    public Call<Alarma> addAlarma(@Body Alarma alarma, @Header("Authorization") String token);
 
+    @PUT("api-rest/alarma/{id}")
+    public Call<ResponseBody> actualizarAlarma(@Path("id") int id, @Header("Authorization") String token, @Body Alarma alarma);
 
-    // Peticiones de Dispositivos Auxiliares
-
-    @GET("api-rest/dispositivos_auxiliares_en_terminal")
-    public Call<List<DispositivoAuxiliar>> getDispositivosAuxiliares(@Header("Authorization") String token);
-
-    @GET("api-rest/dispositivos_auxiliares_en_terminal")
-    public Call<DispositivoAuxiliar> getDispositivoAuxiliarById(@Query("id") String id, @Header("Authorization") String token);
-
-    @FormUrlEncoded
-    @POST("api-rest/dispositivos_auxiliares_en_terminal")
-    public Call<DispositivoAuxiliar> addDispositivoAuxiliar(@Body DispositivoAuxiliar dispositivoAuxiliar, @Header("Authorization") String token);
+    @DELETE("api-rest/alarma/{id}")
+    public Call<ResponseBody> deleteAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
 
 
-    // Peticiones de Grupo
+    /* Peticiones Clasificacion Alarma */
+    @GET("/api-rest/clasificacion_alarma")
+    public Call<List<Object>> getListaClasificacionAlarma(@Header("Authorization") String token);
 
-    @GET("api-rest/groups")
-    public Call<List<Grupo>> getGrupos(@Header("Authorization") String token);
+    @POST("api-rest/clasificacion_alarma")
+    public Call<ClasificacionAlarma> addClasificacionAlarma(@Body ClasificacionAlarma clasificacionAlarma, @Header("Authorization") String token);
 
-    @GET("api-rest/groups")
-    public Call<Grupo> getGrupoByPk(@Query("pk") String pk, @Header("Authorization") String token);
+    @PUT("api-rest/clasificacion_alarma/{id}")
+    public Call<ResponseBody> actualizarClasificacionAlarma(@Path("id") int id, @Header("Authorization") String token, @Body ClasificacionAlarma clasificacionAlarma);
 
-    @FormUrlEncoded
-    @POST("api-rest/groups")
-    public Call<Grupo> addGrupo(@Body Grupo grupo, @Header("Authorization") String token);
-
-
-
-    // Peticiones de Historico Tipo Situacion
-
-    @GET("api-rest/historico_tipo_situacion")
-    public Call<List<HistoricoTipoSituacion>> getHistoricoTipoSituacion(@Header("Authorization") String token);
-
-    @GET("api-rest/historico_tipo_situacion")
-    public Call<HistoricoTipoSituacion> getHistoricoTipoSituacionById(@Query("id") String id, @Header("Authorization") String token);
-
-    @FormUrlEncoded
-    @POST("api-rest/historico_tipo_situacion")
-    public Call<HistoricoTipoSituacion> addHistoricoTipoSituacion(@Body HistoricoTipoSituacion historicoTipoSituacion, @Header("Authorization") String token);
+    @DELETE("api-rest/clasificacion_alarma/{id}")
+    public Call<ResponseBody> deleteClasificacionAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
 
 
-    // Peticiones de Persona
+    /* Peticiones Tipo Alarma */
+    @GET("/api-rest/tipo_alarma")
+    public Call<List<Object>> getTiposAlarma(@Header("Authorization") String token);
 
-    @GET("api-rest/persona")
-    public Call<List<Persona>> getPersonas(@Header("Authorization") String token);
+    @POST("api-rest/tipo_alarma")
+    public Call<TipoAlarma> addTipoAlarma(@Body TipoAlarma tipoAlarma, @Header("Authorization") String token);
 
-    @GET("api-rest/persona")
-    public Call<Persona> getPersonaById(@Query("id") String id, @Header("Authorization") String token);
+    @PUT("api-rest/tipo_alarma/{id}")
+    public Call<ResponseBody> actualizarTipoAlarma(@Path("id") int id, @Header("Authorization") String token, @Body TipoAlarma tipoAlarma);
 
-    @FormUrlEncoded
-    @POST("api-rest/persona")
-    public Call<Persona> addPersona(@Body Persona persona, @Header("Authorization") String token);
-
-
-    // Peticiones de Tipo Situacion
-
-    @GET("api-rest/tipo_situacion")
-    public Call<List<TipoSituacion>> getTipoSituacion(@Header("Authorization") String token);
-
-    @GET("api-rest/tipo_situacion")
-    public Call<TipoSituacion> getTipoSituacionById(@Query("id") String id, @Header("Authorization") String token);
-
-    @FormUrlEncoded
-    @POST("api-rest/tipo_situacion")
-    public Call<TipoSituacion> addTipoSituacion(@Body TipoSituacion tipo_situacion, @Header("Authorization") String token);
+    @DELETE("api-rest/tipo_alarma/{id}")
+    public Call<ResponseBody> deleteTipoAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
 
 
-    // Peticiones de Tipo Vivienda
+    /* Peticiones Centro_sanitario_en_alarma */
+    @GET("/api-rest/centro_sanitario_en_alarma")
+    public Call<List<Object>> getCentrosSanitariosEnAlarma(@Header("Authorization") String token);
 
-    @GET("api-rest/tipo_vivienda")
-    public Call<List<TipoVivienda>> getTipoVivienda(@Header("Authorization") String token);
+    @POST("/api-rest/centro_sanitario_en_alarma")
+    public Call<CentroSanitarioEnAlarma> addCentroSanitarioEnAlarma(@Body CentroSanitarioEnAlarma centroSanitarioEnAlarma, @Header("Authorization") String token);
 
-    @GET("api-rest/tipo_vivienda")
-    public Call<TipoVivienda> getTipoViviendaById(@Query("id") String id, @Header("Authorization") String token);
+    @PUT("/api-rest/centro_sanitario_en_alarma/{id}")
+    public Call<ResponseBody> actualizarCentroSanitarioEnAlarma(@Path("id") int id, @Header("Authorization") String token, @Body CentroSanitarioEnAlarma centroSanitarioEnAlarma);
 
-    @FormUrlEncoded
-    @POST("api-rest/tipo_vivienda")
-    public Call<TipoVivienda> addTipoVivienda(@Field("nombre") String nombre, @Header("Authorization") String token);
+    @DELETE("/api-rest/centro_sanitario_en_alarma/{id}")
+    public Call<ResponseBody> deleteCentroSanitarioEnAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
 
 
-    // Peticiones de Usuarios
+    /* Peticiones Persona_contacto_en_alarma */
+    @GET("/api-rest/persona_contacto_en_alarma")
+    public Call<List<Object>> getPersonasContactoEnAlarma(@Header("Authorization") String token);
 
-    @GET("api-rest/users")
-    public Call<List<Usuario>> getUsuarios(@Header("Authorization") String token);
+    @POST("/api-rest/persona_contacto_en_alarma")
+    public Call<PersonaContactoEnAlarma> addPersonaContactoEnAlarma(@Body PersonaContactoEnAlarma personaContactoEnAlarma,  @Header("Authorization") String token);
 
-    @GET("api-rest/users")
-    Call<List<Usuario>> getUserByUsername(@Query("username") String username, @Header("Authorization") String token);
+    @PUT("/api-rest/persona_contacto_en_alarma/{id}")
+    public Call<ResponseBody> actualizarPersonaContactoEnAlarma(@Path("id") int id, @Header("Authorization") String token, @Body PersonaContactoEnAlarma personaContactoEnAlarma);
 
-    @FormUrlEncoded
-    @POST("api-rest/users")
-    public Call<Usuario> addUsuario(@Body Usuario usuario, @Header("Authorization") String token);
-    */
+    @DELETE("/api-rest/persona_contacto_en_alarma/{id}")
+    public Call<ResponseBody> deletePersonaContactoEnAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
+
+
+
+    /* Peticiones Recurso_comunitario_en_alarma*/
+    @GET("/api-rest/recursos_comunitarios_en_alarma")
+    public Call<List<Object>> getRecursosComunitariosEnAlarma(@Header("Authorization") String token);
+
+    @POST("/api-rest/recursos_comunitarios_en_alarma")
+    public Call<RecursoComunitarioEnAlarma> addRecursoComunitarioEnAlarma(@Body RecursoComunitarioEnAlarma recursoComunitarioEnAlarma, @Header("Authorization") String token);
+
+    @PUT("/api-rest/recursos_comunitarios_en_alarma/{id}")
+    public Call<ResponseBody> actualizarRecursoComunitarioEnAlarma(@Path("id") int id, @Header("Authorization") String token, @Body RecursoComunitarioEnAlarma recursoComunitarioEnAlarma);
+
+    @DELETE("/api-rest/recursos_comunitarios_en_alarma/{id}")
+    public Call<ResponseBody> deleteRecursoComunitarioEnAlarmabyId(@Path("id") int id, @Header("Authorization") String token);
+
+
+
+    /* Peticiones Terminal */
+    @GET("/api-rest/terminal")
+    public Call<List<Object>> getTerminales(@Header("Authorization") String token);
+
+    /* Peticiones Paciente */
+    @GET("/api-rest/paciente")
+    public Call<List<Object>> getPacientes(@Header("Authorization") String token);
+
+
+    // Peticiones Relacion Paciente - Persona
+    @GET("/api-rest/relacion_paciente_persona")
+    public Call<List<Object>> getContactosbyIdPaciente(@Query("id_paciente") int id, @Header("Authorization") String token);
+
+    // Peticiones Relacion Usuario - Centro
+    @GET("/api-rest/relacion_usuario_centro")
+    public Call<List<Object>> getCentrosbyIdPaciente(@Query("id_paciente") int id, @Header("Authorization") String token);
+
+    // Peticiones Relacion Terminal - Recurso Comunitario
+    @GET("/api-rest/relacion_terminal_recurso_comunitario")
+    public Call<List<Object>> getRecursosComunitariosbyIdTerminal(@Query("id_terminal") int id, @Header("Authorization") String token);
+
+
+
 }
