@@ -6,11 +6,17 @@ from rest_framework.utils.representation import serializer_repr
 
 from ..models import *
 
+class ImagenUserSerializer(serializers.ModelSerializer):
+   class Meta:
+       model = Imagen_User
+       fields = ['imagen']
+
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['pk', 'url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups']
-        depth = 1
+   imagen = ImagenUserSerializer(source='imagen_user', read_only=True)
+   class Meta:
+       model = User
+       fields = ['pk', 'url', 'last_login', 'username', 'first_name', 'last_name', 'email', 'date_joined', 'groups','imagen']
+       depth = 1
 
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:

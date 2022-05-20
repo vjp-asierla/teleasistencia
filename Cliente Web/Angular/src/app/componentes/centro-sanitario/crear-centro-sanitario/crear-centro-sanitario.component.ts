@@ -9,6 +9,7 @@ import {CentroSanitario} from '../../../clases/centro-sanitario';
 import {Direccion} from '../../../clases/direccion';
 import {CargaDireccionService} from '../../../servicios/carga-direccion.service';
 import Swal from "sweetalert2";
+import {environment} from "../../../../environments/environment";
 @Component({
   selector: 'app-crear-centro-sanitario',
   templateUrl: './crear-centro-sanitario.component.html',
@@ -47,20 +48,21 @@ export class CrearCentroSanitarioComponent implements OnInit {
     this.cargaCentrosSanitarios.nuevoCentroSanitario(this.centro_sanitario).subscribe(
       e => {
         this.nuevaDireccion();
-        console.log('Centro sanitario creado');
-        console.log(this.centro_sanitario);
+        this.alertExito()
       },
       error => {
-        console.log(error);
+        this.alertError()
       }
     );
   }
-  ejecutarAlerta() :void{
+  //Toast para el Alert indicando que la operación fue exitosa
+  alertExito() :void {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 2000,
+      //El tiempo que permanece la alerta, se obtiene mediante una variable global en environment.ts
+      timer: environment.timerToast,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -70,8 +72,26 @@ export class CrearCentroSanitarioComponent implements OnInit {
 
     Toast.fire({
       icon: 'success',
-      title: 'Centro Sanitario Creado Correctamente'
+      title: environment.fraseCrear,
+    })
+  }
+  //Toast para el alert indicando que hubo algún error en la operación
+  alertError() :void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: environment.timerToast,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
     })
 
+    Toast.fire({
+      icon: 'error',
+      title: environment.fraseErrorCrear
+    })
   }
 }

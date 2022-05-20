@@ -53,6 +53,7 @@ import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-rec
 import {CrearRecursoComunitarioComponent} from './componentes/recurso-comunitario/crear-recurso-comunitario/crear-recurso-comunitario.component';
 import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
 import {LoginGuard} from './servicios/login.guard';
+import {RecursosComunitariosPersonalesComponent} from "./componentes/recursos-comunitarios-personales/recursos-comunitarios-personales.component";
 import {ListaTiposViviendaComponent} from "./componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component";
 import {ListaViviendasResolveService} from "./servicios/lista-viviendas-resolve.service";
 import {CrearViviendaComponent} from "./componentes/tipo-vivienda/crear-tipo-vivienda/crear-vivienda.component";
@@ -67,10 +68,15 @@ import {BorrarTipoViviendaComponent} from "./componentes/tipo-vivienda/borrar-ti
 import {BorrarTipoViviendaService} from "./servicios/borrar-tipo-vivienda.service";
 import {BorrarTipoSituacionComponent} from "./componentes/tipo-situacion/borrar-tipo-situacion/borrar-tipo-situacion.component";
 import {BorrarTipoSituacionService} from "./servicios/borrar-tipo-situacion.service";
+import {ListaGruposService} from "./servicios/lista-grupos.service";
+import {GruposComponent} from "./componentes/grupos/grupos.component";
+
 
 const routes: Routes = [
   {path: 'login', component: PantallaLoginComponent},
-  {path: 'inicio', component: HomeComponent},
+  {path: 'inicio', canActivate: [LoginGuard], component: HomeComponent},
+  {path: 'recurso-comunitarios-personales', canActivate: [LoginGuard], component: RecursosComunitariosPersonalesComponent},
+
   {
     path: 'usuarios',
     component: ListaUsersComponent,
@@ -87,14 +93,26 @@ const routes: Routes = [
       user: DetallesUserResolveService
     }
   },
-  {path: 'usuarios/nuevo', component: CrearUserComponent, canActivate: [LoginGuard]},
+  {
+    path: 'usuarios/nuevo',
+    component: CrearUserComponent,
+    canActivate: [LoginGuard]},
+
+  {
+    path: 'grupos',
+    component: GruposComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      grupos: ListaGruposService
+    },
+  },
   {
     path: 'clasificaciones_alarmas',
     component: ListaClasificacionesAlarmasComponent,
     canActivate: [LoginGuard],
     resolve: {
       clasificaciones_alarmas: ListaClasificacionesAlarmasResolveService
-    }
+    },
   },
   {
     path: 'clasificaciones_alarmas/modificar/:id',

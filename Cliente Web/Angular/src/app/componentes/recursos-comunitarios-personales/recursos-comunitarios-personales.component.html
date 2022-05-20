@@ -1,0 +1,53 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Recursos Comunitarios/Personales</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Recursos Comunitarios/Personales</h1>
+    <div class="row"></div>
+    <div class="table-responsive m-2">
+      <table class="table table-hover text-center">
+        <thead>
+        <tr class="table-purple">
+          <th scope="col">Nombre Paciente</th>
+          <th scope="col">Sexo</th>
+          <th scope="col">Localidad</th>
+          <th scope="col">Dirección </th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Unidad Móvil</th>
+          <th scope="col">Hospital</th>
+          <th scope="col">Consultorio local</th>
+          <th scope="col">Centro de salud</th>
+          <!--
+          <th scope="col">Comisaria de Policía</th>
+          <th scope="col">Cuartel Guardia Civil</th>
+          <th scope="col">Bomberos</th>
+          <th scope="col">Servicios Sociales</th>
+          <th scope="col">Cruz Roja</th>-->
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let persona of RCP  let i =index">
+            <td>{{persona.Nombre}} {{persona.Apellidos}}</td>
+            <td>{{persona.Sexo}}</td>
+            <td>{{persona.Localidad}}</td>
+            <td>{{persona.Direccion}}</td>
+            <td>{{persona.Provincia}}</td>
+            <td>{{persona["Unidad Móvil"]}}</td>
+            <td>{{persona.Hospital}}</td>
+            <td>{{persona["Consultorio local"]}}</td>
+            <td>{{persona["Centro de salud"]}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
+</main>
+

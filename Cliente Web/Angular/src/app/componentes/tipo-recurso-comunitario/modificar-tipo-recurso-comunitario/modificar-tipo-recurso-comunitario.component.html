@@ -22,8 +22,7 @@
     </div>
 
     <button type="submit" class="btn btn-outline-success m-1" (click)="modificarTipoRecursoComunitario()"
-            [disabled]="!modificarTipoRecursoComunitarioForm.form.valid"
-    (click)="ejecutarAlerta()">
+            [disabled]="!modificarTipoRecursoComunitarioForm.form.valid">
       Guardar
     </button>
     <button type="button" class="btn btn-outline-secondary m-1" [routerLink]="['/tipos_recursos_comunitarios']">
