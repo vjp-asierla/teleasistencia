@@ -7,7 +7,7 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
-    tools:context=".ui.centro_sanitario.centro_sanitario_card" >
+    tools:context=".ui.fragments.centro_sanitario.centro_sanitario_card" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
