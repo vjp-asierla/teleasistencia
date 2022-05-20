@@ -100,10 +100,11 @@ public class RecursoComunitarioAdapter extends RecyclerView.Adapter<RecursoComun
     @Override
     public void onBindViewHolder(RecursoComunitarioViewHolder viewHolder, int i) {
         viewHolder.setOnClickListeners();
-        viewHolder.nombreRecursoComunitario.setText(items.get(i).getNombreRecursoComunitario());
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        /*viewHolder.nombreRecursoComunitario.setText(items.get(i).getNombreRecursoComunitario());
         viewHolder.telefonoRecursoComunitario.setText(items.get(i).getTelefonoRecursoComunitario());
         viewHolder.tipoRecursoComunitarioRecursoComunitario.setText(items.get(i).getTipoRecursoComunitario().get(0));
         viewHolder.direccionRecursoComunitario.setText(items.get(i).getDireccionRecursoComunitario());
-        this.recursoComunitarioViewHolder.setRecursoComunitario(items.get(i));
+        this.recursoComunitarioViewHolder.setRecursoComunitario(items.get(i));*/
     }
 }

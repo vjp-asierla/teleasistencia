@@ -76,9 +76,10 @@ public class FragmentListarRecursoComunitario extends Fragment {
         List<String> listaTipoRecursoComunitario = new ArrayList();
         listaTipoRecursoComunitario.add("Policía");
 
-        items.add(new RecursoComunitario("Bomberos", "678656678",
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        /*items.add(new RecursoComunitario("Bomberos", "678656678",
                 listaTipoRecursoComunitario, "Plasencia", "Cáceres",
-                "Av. Extremadura, 12", "10600"));
+                "Av. Extremadura, 12", "10600"));*/
 
         // Obtener el Recycler.
         recycler = (RecyclerView) root.findViewById(R.id.listRecyclerView);

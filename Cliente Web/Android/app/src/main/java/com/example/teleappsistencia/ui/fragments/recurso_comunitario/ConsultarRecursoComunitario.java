@@ -76,13 +76,14 @@ public class ConsultarRecursoComunitario extends Fragment {
         this.direccionRecursoComunitario = (TextView) root.findViewById(R.id.direccionRecursoComunitario);
         this.codigoPostalRecursoComunitario = (TextView) root.findViewById(R.id.codigoPostalRecursoComunitario);
 
-        this.nombreRecursoComunitario.setText(this.recursoComunitario.getNombreRecursoComunitario());
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        /*this.nombreRecursoComunitario.setText(this.recursoComunitario.getNombreRecursoComunitario());
         this.telefonoRecursoComunitario.setText(this.recursoComunitario.getTelefonoRecursoComunitario());
         this.tipoRecursoComunitarioRecursoComunitario.setText(this.recursoComunitario.getTipoRecursoComunitario().get(0));
         this.localidadRecursoComunitario.setText(this.recursoComunitario.getLocalidadRecursoComunitario());
         this.provinciaRecursoComunitario.setText(this.recursoComunitario.getProvinciaRecursoComunitario());
         this.direccionRecursoComunitario.setText(this.recursoComunitario.getDireccionRecursoComunitario());
-        this.codigoPostalRecursoComunitario.setText(this.recursoComunitario.getCodigoPostalRecursoComunitario());
+        this.codigoPostalRecursoComunitario.setText(this.recursoComunitario.getCodigoPostalRecursoComunitario());*/
 
         // Inflate the layout for this fragment
         return root;

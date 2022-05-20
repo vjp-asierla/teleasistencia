@@ -76,9 +76,10 @@ public class FragmentListarCentroSanitario extends Fragment {
         List<String> listaTipoCentroSanitario = new ArrayList();
         listaTipoCentroSanitario.add("Centro de salud");
 
-        items.add(new CentroSanitario("Centro de salud La Paloma", "972580050",
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        /*items.add(new CentroSanitario("Centro de salud La Paloma", "972580050",
                 listaTipoCentroSanitario, "Cáceres", "Cáceres",
-                "Cruz de piedra", "10004"));
+                "Cruz de piedra", "10004"));*/
 
         // Obtener el Recycler.
         recycler = (RecyclerView) root.findViewById(R.id.listRecyclerView);

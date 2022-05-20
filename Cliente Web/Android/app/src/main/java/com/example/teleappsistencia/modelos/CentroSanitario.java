@@ -1,83 +1,67 @@
 package com.example.teleappsistencia.modelos;
 
+import androidx.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
-import java.util.List;
 
 public class CentroSanitario implements Serializable {
-    private String nombreCentroSanitario;
-    private String telefonoCentroSanitario;
-    private List<String> tipoCentroSanitario;
-    private String localidadCentroSanitario;
-    private String provinciaCentroSanitario;
-    private String direccionCentroSanitario;
-    private String codigoPostalCentroSanitario;
 
-    public CentroSanitario(String nombreCentroSanitario, String telefonoCentroSanitario,
-                           List<String> tipoCentroSanitario, String localidadCentroSanitario,
-                           String provinciaCentroSanitario, String direccionCentroSanitario,
-                           String codigoPostalCentroSanitario) {
-        this.nombreCentroSanitario = nombreCentroSanitario;
-        this.telefonoCentroSanitario = telefonoCentroSanitario;
-        this.tipoCentroSanitario = tipoCentroSanitario;
-        this.localidadCentroSanitario = localidadCentroSanitario;
-        this.provinciaCentroSanitario = provinciaCentroSanitario;
-        this.direccionCentroSanitario = direccionCentroSanitario;
-        this.codigoPostalCentroSanitario = codigoPostalCentroSanitario;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("nombre")
+    private String nombre;
+    @SerializedName("telefono")
+    private String telefono;
+    @SerializedName("id_tipos_centro_sanitario")
+    private Object tipoCentroSanitario;
+    @SerializedName("id_direccion")
+    private Object direccion;
+
+    public int getId() {
+        return id;
     }
 
-    public String getNombreCentroSanitario() {
-        return nombreCentroSanitario;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNombreCentroSanitario(String nombreCentroSanitario) {
-        this.nombreCentroSanitario = nombreCentroSanitario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public String getTelefonoCentroSanitario() {
-        return telefonoCentroSanitario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setTelefonoCentroSanitario(String telefonoCentroSanitario) {
-        this.telefonoCentroSanitario = telefonoCentroSanitario;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public List<String> getTipoCentroSanitario() {
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Object getTipoCentroSanitario() {
         return tipoCentroSanitario;
     }
 
-    public void setTipoCentroSanitario(List<String> tipoCentroSanitario) {
+    public void setTipoCentroSanitario(Object tipoCentroSanitario) {
         this.tipoCentroSanitario = tipoCentroSanitario;
     }
 
-    public String getLocalidadCentroSanitario() {
-        return localidadCentroSanitario;
+    public Object getDireccion() {
+        return direccion;
     }
 
-    public void setLocalidadCentroSanitario(String localidadCentroSanitario) {
-        this.localidadCentroSanitario = localidadCentroSanitario;
+    public void setDireccion(Object direccion) {
+        this.direccion = direccion;
     }
 
-    public String getProvinciaCentroSanitario() {
-        return provinciaCentroSanitario;
-    }
-
-    public void setProvinciaCentroSanitario(String provinciaCentroSanitario) {
-        this.provinciaCentroSanitario = provinciaCentroSanitario;
-    }
-
-    public String getDireccionCentroSanitario() {
-        return direccionCentroSanitario;
-    }
-
-    public void setDireccionCentroSanitario(String direccionCentroSanitario) {
-        this.direccionCentroSanitario = direccionCentroSanitario;
-    }
-
-    public String getCodigoPostalCentroSanitario() {
-        return codigoPostalCentroSanitario;
-    }
-
-    public void setCodigoPostalCentroSanitario(String codigoPostalCentroSanitario) {
-        this.codigoPostalCentroSanitario = codigoPostalCentroSanitario;
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nombre;
     }
 }
