@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".fragments.centroSanitarioEnAlarma.InsertarCentroSanitarioEnAlarmaFragment">
+    tools:context=".ui.fragments.centroSanitarioEnAlarma.InsertarCentroSanitarioEnAlarmaFragment">
 
     <TextView
         android:id="@+id/textViewTitulo"

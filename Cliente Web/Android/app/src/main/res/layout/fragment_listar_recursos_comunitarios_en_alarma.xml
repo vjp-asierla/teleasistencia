@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".fragments.recursosComunitariosEnAlarma.ListarRecursosComunitariosEnAlarmaFragment">
+    tools:context=".ui.fragments.recursosComunitariosEnAlarma.ListarRecursosComunitariosEnAlarmaFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineArriba"

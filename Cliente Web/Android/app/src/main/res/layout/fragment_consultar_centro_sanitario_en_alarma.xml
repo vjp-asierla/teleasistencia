@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#B3AEB3"
-    tools:context=".fragments.centroSanitarioEnAlarma.ConsultarCentroSanitarioEnAlarmaFragment">
+    tools:context=".ui.fragments.centroSanitarioEnAlarma.ConsultarCentroSanitarioEnAlarmaFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

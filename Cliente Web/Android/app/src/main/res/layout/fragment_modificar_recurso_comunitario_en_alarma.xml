@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".fragments.recursosComunitariosEnAlarma.ModificarRecursoComunitarioEnAlarmaFragment">
+    tools:context=".ui.fragments.recursosComunitariosEnAlarma.ModificarRecursoComunitarioEnAlarmaFragment">
     
     <TextView
         android:id="@+id/textViewTituloRCEAModificar"
