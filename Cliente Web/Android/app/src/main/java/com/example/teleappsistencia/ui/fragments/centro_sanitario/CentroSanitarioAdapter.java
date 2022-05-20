@@ -100,10 +100,11 @@ public class CentroSanitarioAdapter extends RecyclerView.Adapter<CentroSanitario
     @Override
     public void onBindViewHolder(CentroSanitarioViewHolder viewHolder, int i) {
         viewHolder.setOnClickListeners();
-        viewHolder.nombreCentroSanitario.setText(items.get(i).getNombreCentroSanitario());
-        viewHolder.telefonoCentroSanitario.setText(items.get(i).getTelefonoCentroSanitario());
-        viewHolder.tipoCentroSanitarioCentroSanitario.setText(items.get(i).getTipoCentroSanitario().get(0));
-        viewHolder.direccionCentroSanitario.setText(items.get(i).getDireccionCentroSanitario());
+        viewHolder.nombreCentroSanitario.setText(items.get(i).getNombre());
+        viewHolder.telefonoCentroSanitario.setText(items.get(i).getNombre());
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        //viewHolder.tipoCentroSanitarioCentroSanitario.setText(items.get(i).getTipoCentroSanitario().get(0));
+        //viewHolder.direccionCentroSanitario.setText(items.get(i).getDireccion());
         this.centroSanitarioViewHolder.setCentroSanitario(items.get(i));
     }
 }

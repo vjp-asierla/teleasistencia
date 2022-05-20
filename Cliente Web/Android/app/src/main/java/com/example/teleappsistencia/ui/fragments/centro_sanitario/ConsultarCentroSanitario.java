@@ -76,13 +76,15 @@ public class ConsultarCentroSanitario extends Fragment {
         this.direccionCentroSanitario = (TextView) root.findViewById(R.id.direccionCentroSanitario);
         this.codigoPostalCentroSanitario = (TextView) root.findViewById(R.id.codigoPostalCentroSanitario);
 
-        this.nombreCentroSanitario.setText(this.centroSanitario.getNombreCentroSanitario());
-        this.telefonoCentroSanitario.setText(this.centroSanitario.getTelefonoCentroSanitario());
-        this.tipoCentroSanitarioCentroSanitario.setText(this.centroSanitario.getTipoCentroSanitario().get(0));
-        this.localidadCentroSanitario.setText(this.centroSanitario.getLocalidadCentroSanitario());
-        this.provinciaCentroSanitario.setText(this.centroSanitario.getProvinciaCentroSanitario());
-        this.direccionCentroSanitario.setText(this.centroSanitario.getDireccionCentroSanitario());
-        this.codigoPostalCentroSanitario.setText(this.centroSanitario.getCodigoPostalCentroSanitario());
+
+        this.nombreCentroSanitario.setText(this.centroSanitario.getNombre());
+        this.telefonoCentroSanitario.setText(this.centroSanitario.getTelefono());
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        //this.tipoCentroSanitarioCentroSanitario.setText(this.centroSanitario.getTipoCentroSanitario().get(0));
+        //this.localidadCentroSanitario.setText(this.centroSanitario.getLocalidadCentroSanitario());
+        //this.provinciaCentroSanitario.setText(this.centroSanitario.getProvinciaCentroSanitario());
+        //this.direccionCentroSanitario.setText(this.centroSanitario.getDireccionCentroSanitario());
+        //this.codigoPostalCentroSanitario.setText(this.centroSanitario.getCodigoPostalCentroSanitario());
 
         // Inflate the layout for this fragment
         return root;

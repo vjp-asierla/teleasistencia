@@ -87,16 +87,17 @@ public class FragmentModificarCentroSanitario extends Fragment implements View.O
         this.buttonVolver.setOnClickListener(this);
 
         if(this.centroSanitario != null) {
-            this.editTextPedirNombre.setText(this.centroSanitario.getNombreCentroSanitario());
+            /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+            /*this.editTextPedirNombre.setText(this.centroSanitario.getNombreCentroSanitario());
             this.editTextPhonePedirTelefono.setText(this.centroSanitario.getTelefonoCentroSanitario());
             this.editTextPedirLocalidad.setText(this.centroSanitario.getLocalidadCentroSanitario());
             this.editTextPedirProvincia.setText(this.centroSanitario.getProvinciaCentroSanitario());
             this.editTextPedirDireccion.setText(this.centroSanitario.getDireccionCentroSanitario());
-            this.editTextTextPostalAddressPedirCodigoPostal.setText(this.centroSanitario.getCodigoPostalCentroSanitario());
+            this.editTextTextPostalAddressPedirCodigoPostal.setText(this.centroSanitario.getCodigoPostalCentroSanitario());*/
 
-            ArrayAdapter<String> adaptador = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, this.centroSanitario.getTipoCentroSanitario());
+            /*ArrayAdapter<String> adaptador = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, this.centroSanitario.getTipoCentroSanitario());
             adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            this.spinnerTipoCentroSanitario.setAdapter(adaptador);
+            this.spinnerTipoCentroSanitario.setAdapter(adaptador);*/
         }
 
         // Inflate the layout for this fragment

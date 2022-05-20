@@ -86,7 +86,8 @@ public class FragmentModificarRecursoComunitario extends Fragment implements Vie
         this.buttonGuardar.setOnClickListener(this);
         this.buttonVolver.setOnClickListener(this);
 
-        if(this.recursoComunitario != null) {
+        /* Hay que revisar el modelo para adaptarlo (hablar con Aaron) */
+        /*if(this.recursoComunitario != null) {
             this.editTextPedirNombre.setText(this.recursoComunitario.getNombreRecursoComunitario());
             this.editTextPhonePedirTelefono.setText(this.recursoComunitario.getTelefonoRecursoComunitario());
             this.editTextPedirLocalidad.setText(this.recursoComunitario.getLocalidadRecursoComunitario());
@@ -97,7 +98,7 @@ public class FragmentModificarRecursoComunitario extends Fragment implements Vie
             ArrayAdapter<String> adaptador = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, this.recursoComunitario.getTipoRecursoComunitario());
             adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             this.spinnerTipoRecursoComunitario.setAdapter(adaptador);
-        }
+        }*/
 
         // Inflate the layout for this fragment
         return root;

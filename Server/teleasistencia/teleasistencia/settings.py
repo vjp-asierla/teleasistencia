@@ -68,20 +68,21 @@ INSTALLED_APPS = [
 ASGI_APPLICATION = 'teleasistencia.asgi.application'
 
 # Para probar las alarmas sin necesidad del servidor Redis (sólo pruebas)
-#CHANNEL_LAYERS = {
-#    'default':{
-#        'BACKEND':'channels.layers.InMemoryChannelLayer'
-#    }
-#}
-
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
-    },
+    'default':{
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
 }
+
+# En producción hay que usar un motor de almacenamiento Redis para alamacenar el Channel Layer
+#CHANNEL_LAYERS = {
+#    "default": {
+#        "BACKEND": "channels_redis.core.RedisChannelLayer",
+#        "CONFIG": {
+#            "hosts": [("127.0.0.1", 6379)],
+#        },
+#    },
+#}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
