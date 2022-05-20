@@ -1,0 +1,16 @@
+<td>{{ direccion.localidad }}</td>
+<td>{{ direccion.provincia }}</td>
+<td>{{ direccion.direccion }}</td>
+<td>{{ direccion.codigo_postal }}</td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify"
+          [routerLink]="['/direcciones/modificar', direccion.id]">
+    <i class="fa fa-pen"></i>
+  </button>
+
+  <!-- Boton eliminar con el evento click que llama al modal -->
+  <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()"
+  ><i class="fa fa-trash"></i></button>
+
+</td>
+

@@ -7,6 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+
     <!-- API -->
     <!-- <string name="api_base_url">http://127.0.0.1:3333/</string>-->
     <string name="api_base_url">http://10.0.2.2:8000/</string>
@@ -24,6 +25,66 @@
     <string name="listar">Listar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <!-- Datos Login. -->
+    <string name="login_nombre">Aarón Martín Jiménez</string>
+    <string name="login_correo">martinjimenezaaron@gmail.com</string>
+
+    <!-- Opciones del menú. -->
+    <string name="menu_tipoCentroSanitario">Tipo_Centro_Sanitario</string>
+    <string name="menu_tipoModalidadPaciente">Tipo_Modalidad_Paciente</string>
+    <string name="menu_centroSanitario">Centro_Sanitario</string>
+    <string name="menu_tipoRecursoComunitario">Tipo_Recurso_Comunitario</string>
+    <string name="menu_recursoComunitario">Recurso_Comunitario</string>
+    <string name="menu_insertar">Insertar</string>
+    <string name="menu_modificar">Modificar</string>
+    <string name="menu_listar">Listar</string>
+
+    <!-- Textos para TextView. -->
+    <string name="titulo_crearNuevoTipoCentroSanitario">Crear nuevo tipo centro sanitario</string>
+    <string name="titulo_crearNuevoTipoModalidadPaciente">Crear nuevo tipo modalidad paciente</string>
+    <string name="titulo_crearNuevoCentroSanitario">Crear nuevo centro sanitario</string>
+    <string name="titulo_crearNuevoTipoRecursoComunitario">Crear nuevo tipo recurso comunitario</string>
+    <string name="titulo_crearNuevoRecursoComunitario">Crear nuevo recurso comunitario</string>
+    <string name="titulo_modificarDatosTipoCentroSanitario">Modificar datos tipo centro sanitario</string>
+    <string name="titulo_modificarDatosTipoModalidadPaciente">Modificar datos tipo modalidad paciente</string>
+    <string name="titulo_modificarDatosCentroSanitario">Modificar datos centro sanitario</string>
+    <string name="titulo_modificarDatosTipoRecursoComunitario">Modificar datos tipo recurso comunitario</string>
+    <string name="titulo_modificarDatosRecursoComunitario">Modificar datos recurso comunitario</string>
+    <string name="titulo_listarDatosTipoCentroSanitario">Tipos de centros sanitarios</string>
+    <string name="titulo_listarDatosTipoModalidadPaciente">Tipos de modalidades de pacientes</string>
+    <string name="titulo_listarDatosCentroSanitario">Centros sanitarios</string>
+    <string name="titulo_listarDatosTipoRecursoComunitario">Tipos de recursos comunitarios</string>
+    <string name="titulo_listarDatosRecursoComunitario">Recursos comunitarios</string>
+    <string name="tipoCentroSanitario">Tipo de centro sanitario</string>
+    <string name="tipoRecursoComunitario">Tipo de recurso comunitario</string>
+    <string name="nombre">Nombre</string>
+    <string name="telefono">Teléfono</string>
+    <string name="localidad">Localidad</string>
+    <string name="provincia">Provincia</string>
+    <string name="direccion">Dirección</string>
+    <string name="codigoPostal">Código Postal</string>
+
+    <!-- Mensajes Botones. -->
+    <string name="guardar">Guardar</string>
+    <string name="volver">Volver</string>
+    <string name="modificar">Modificar datos</string>
+    <string name="visualizar">Visualizar datos</string>
+
+    <!-- Mensajes para AlertDialog. -->
+    <string name="error_nombreVacio">El nombre es obligatorio.</string>
+
+    <!-- Mensajes para Toasts. -->
+    <string name="mensaje_eliminar_tipo_centro_sanitario">Se ha eliminado el tipo de centro sanitario satisfactoriamente.</string>
+    <string name="mensaje_eliminar_tipo_modalidad_paciente">Se ha eliminado el tipo de modalidad paciente satisfactoriamente.</string>
+    <string name="mensaje_eliminar_centro_sanitario">Se ha eliminado el centro sanitario satisfactoriamente.</string>
+    <string name="mensaje_eliminar_tipo_recurso_comunitario">Se ha eliminado el tipo de recurso comunitario satisfactoriamente.</string>
+    <string name="mensaje_eliminar_recurso_comunitario">Se ha eliminado el recurso comunitario satisfactoriamente.</string>
 
 
 </resources>

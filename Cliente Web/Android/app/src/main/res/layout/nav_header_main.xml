@@ -27,9 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="@string/nav_header_title"
+        android:text="@string/login_nombre"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:ignore="TextContrastCheck" />
+
 
     <TextView
         android:id="@+id/textView_email_usuario"

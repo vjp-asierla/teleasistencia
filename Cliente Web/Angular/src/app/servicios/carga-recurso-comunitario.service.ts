@@ -2,13 +2,16 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IRecursoComunitario} from '../interfaces/i-recurso-comunitario';
+import {ICentroSanitario} from "../interfaces/i-centro-sanitario";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CargaRecursoComunitarioService {
-  private URL_SERVER_RECURSOS_COMUNITARIOS = 'http://localhost:8000/api-rest/recurso_comunitario';
+  private urlBase = environment.urlBase;
+  private URL_SERVER_RECURSOS_COMUNITARIOS = this.urlBase + 'recurso_comunitario';
 
   constructor(private http: HttpClient) {
   }
@@ -27,5 +30,9 @@ export class CargaRecursoComunitarioService {
 
   nuevoRecursoComunitario(recursoComunitario: IRecursoComunitario): Observable<IRecursoComunitario> {
     return this.http.post<IRecursoComunitario>(this.URL_SERVER_RECURSOS_COMUNITARIOS, recursoComunitario);
+  }
+
+  eliminarRecursoComunitario(recursoComunitario:IRecursoComunitario): Observable<IRecursoComunitario> {
+    return this.http.delete<IRecursoComunitario>(this.URL_SERVER_RECURSOS_COMUNITARIOS + '/' + recursoComunitario.id);
   }
 }

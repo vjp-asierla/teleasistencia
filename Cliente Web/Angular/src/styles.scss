@@ -9,7 +9,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .cabecera {
   background: linear-gradient(0deg, rgba(248, 228, 221, 0.5) 0%, rgba(117, 89, 125, 0.5) 100%);
   padding: 1rem;
@@ -77,10 +76,26 @@ table {
     background-color: #75597D;
     color: white;
   }
-
-  td > .btn-modify {
-    float: right;
+}
+   td > .btn-modify {
+    float: none;
   }
+  th{
+    cursor: pointer;
+  }
+  th:active{
+    color: #10022b;
+  }
+
+.btn-delete{
+  margin-left: 20px;
+  color:rgb(108, 117, 125);
+  background-color: white;
+  border: 2px solid red;
+}
+.btn-delete:hover{
+  color:white;
+  background-color: red;
 }
 
 .form-group {
@@ -464,4 +479,18 @@ footer {
     text-align: initial;
   }
 }
+//Alert
+#swal2-title{
+  margin:0;
+  padding-top: 10px;
+}
 
+
+
+
+.pointer{
+  cursor: pointer;
+}
+.imagenUsuario{
+  object-fit: cover;
+}

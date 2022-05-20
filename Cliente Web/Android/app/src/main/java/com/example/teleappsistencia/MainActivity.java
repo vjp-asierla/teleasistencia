@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ExpandableListView;
+
 import com.andremion.counterfab.CounterFab;
 import com.example.teleappsistencia.modelos.Alarma;
 import com.example.teleappsistencia.modelos.Token;
@@ -30,12 +31,44 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.DialogFragment;
+
+
+import com.example.teleappsistencia.ui.fragments.centro_sanitario.FragmentInsertarCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.centro_sanitario.FragmentListarCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.centro_sanitario.FragmentModificarCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.recurso_comunitario.FragmentInsertarRecursoComunitario;
+import com.example.teleappsistencia.ui.fragments.recurso_comunitario.FragmentListarRecursoComunitario;
+import com.example.teleappsistencia.ui.fragments.recurso_comunitario.FragmentModificarRecursoComunitario;
+import com.example.teleappsistencia.ui.fragments.tipo_centro_sanitario.FragmentInsertarTipoCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.tipo_centro_sanitario.FragmentListarTipoCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.tipo_centro_sanitario.FragmentModificarTipoCentroSanitario;
+import com.example.teleappsistencia.ui.fragments.tipo_modalidad_paciente.FragmentInsertarTipoModalidadPaciente;
+import com.example.teleappsistencia.ui.fragments.tipo_modalidad_paciente.FragmentListarTipoModalidadPaciente;
+import com.example.teleappsistencia.ui.fragments.tipo_modalidad_paciente.FragmentModificarTipoModalidadPaciente;
+import com.example.teleappsistencia.ui.fragments.tipo_recurso_comunitario.FragmentInsertarTipoRecursoComunitario;
+import com.example.teleappsistencia.ui.fragments.tipo_recurso_comunitario.FragmentListarTipoRecursoComunitario;
+import com.example.teleappsistencia.ui.fragments.tipo_recurso_comunitario.FragmentModificarTipoRecursoComunitario;
+import com.example.teleappsistencia.ui.menu.ExpandableListAdapter;
+import com.example.teleappsistencia.ui.menu.MenuModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,12 +78,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HashMap<MenuModel, List<MenuModel>> childList = new HashMap<>();
     private CounterFab counterFab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         this.counterFab = (CounterFab) findViewById(R.id.fab);
 
         this.counterFab.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Realizo una petición a la API para cargar la cabecera del menu con los datos del usuario logueado.
         //loadMenuHeader();
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -122,18 +158,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void prepareMenuData() {
-        String[] childNames = {getResources().getString(R.string.insertar), getResources().getString(R.string.listar)};
+
+        String[] childNames = {getResources().getString(R.string.menu_insertar), getResources().getString(R.string.menu_modificar), getResources().getString(R.string.menu_listar)};
         List<MenuModel> childModelsList;
         MenuModel menuModel;
 
@@ -212,6 +253,76 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (menuModel.hasChildren()) {
             childList.put(menuModel, childModelsList);
         } else{
+            childList.put(menuModel, null);
+        }
+
+        // Menu Tipo_Centro_Sanitario.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_tipoCentroSanitario), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new FragmentInsertarTipoCentroSanitario()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new FragmentModificarTipoCentroSanitario()));
+        childModelsList.add(new MenuModel(childNames[2], false, false, new FragmentListarTipoCentroSanitario()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else {
+            childList.put(menuModel, null);
+        }
+
+        // Menu Tipo_Modidalidad_Paciente.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_tipoModalidadPaciente), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new FragmentInsertarTipoModalidadPaciente()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new FragmentModificarTipoModalidadPaciente()));
+        childModelsList.add(new MenuModel(childNames[2], false, false, new FragmentListarTipoModalidadPaciente()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else {
+            childList.put(menuModel, null);
+        }
+
+        // Menu Centro_Sanitario.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_centroSanitario), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new FragmentInsertarCentroSanitario()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new FragmentModificarCentroSanitario()));
+        childModelsList.add(new MenuModel(childNames[2], false, false, new FragmentListarCentroSanitario()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else {
+            childList.put(menuModel, null);
+        }
+
+        // Menu Tipo_Recurso_Comunitario.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_tipoRecursoComunitario), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new FragmentInsertarTipoRecursoComunitario()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new FragmentModificarTipoRecursoComunitario()));
+        childModelsList.add(new MenuModel(childNames[2], false, false, new FragmentListarTipoRecursoComunitario()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else {
+            childList.put(menuModel, null);
+        }
+
+        // Menu Recurso_Comunitario.
+        childModelsList = new ArrayList<>();
+        menuModel = new MenuModel(getResources().getString(R.string.menu_recursoComunitario), true, true, null);
+        headerList.add(menuModel);
+        childModelsList.add(new MenuModel(childNames[0], false, false, new FragmentInsertarRecursoComunitario()));
+        childModelsList.add(new MenuModel(childNames[1], false, false, new FragmentModificarRecursoComunitario()));
+        childModelsList.add(new MenuModel(childNames[2], false, false, new FragmentListarRecursoComunitario()));
+
+        if (menuModel.hasChildren()) {
+            childList.put(menuModel, childModelsList);
+        } else {
             childList.put(menuModel, null);
         }
 
