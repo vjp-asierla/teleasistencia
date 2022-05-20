@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -28,5 +29,22 @@
             android:id="@+id/nav_persona_de_contacto_en_alarma"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_persona_de_contacto_en_alarma" />
+
+        <item
+            android:id="@+id/nav_tipoModalidadPaciente"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_tipoModalidadPaciente" />
+        <item
+            android:id="@+id/nav_centroSanitario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_centroSanitario" />
+        <item
+            android:id="@+id/nav_tipoRecursoComunitario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_tipoRecursoComunitario" />
+        <item
+            android:id="@+id/nav_recursoComunitario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_recursoComunitario" />
     </group>
 </menu>

@@ -9,7 +9,7 @@ venviorments/
 *.pot
 *.pyc
 __pycache__
-#db.sqlite3
+db.sqlite3
 media
 
 # Backup files #
@@ -124,3 +124,11 @@ GitHub.sublime-settings
 .idea/teleasistencia_navalmoral.iml
 .idea/workspace.xml
 .idea/
+
+
+
+#img
+./Server/teleasistencia/teleasistenciaApp/imagen_usuario
+/Server/teleasistencia/teleasistenciaApp/imagen_usuario/
+
+Server/teleasistencia/db.sqlite3

@@ -1,0 +1,10 @@
+<td>{{ tipo_centro_sanitario.nombre }}</td>
+<td>
+  <button type="submit" class="btn btn-outline-secondary btn-modify"
+          [routerLink]="['/tipos_centros_sanitarios/modificar', tipo_centro_sanitario.id]">
+    <i class="fa fa-pen"></i>
+  </button>
+  <!-- Button trigger modal -->
+  <button type="submit" class="btn btn-delete m-1" (click)="modalConfirmacion()"
+  ><i class="fa fa-trash"></i></button>
+</td>

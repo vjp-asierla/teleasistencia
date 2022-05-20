@@ -5,7 +5,7 @@ export interface ICentroSanitario {
   id: number;
   nombre: string;
   telefono: string;
-  id_tipos_centro_sanitario: ITipoCentroSanitario;
+  id_tipos_centro_sanitario: any;
   id_direccion: IDireccion;
 }
 

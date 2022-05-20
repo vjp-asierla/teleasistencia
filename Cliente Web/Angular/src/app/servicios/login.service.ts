@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {interval} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,10 @@ export class LoginService {
   constructor() {
   }
 
-  hacerLogin(): void {
-    localStorage.setItem('token', 'usuario');
-  }
+
 
   estaLogin(): boolean {
-    if (localStorage.getItem('token') === 'usuario') {
+    if (localStorage.getItem('token') != null) {
       return true;
     } else {
       return false;
@@ -23,5 +22,12 @@ export class LoginService {
 
   hacerLogout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('img');
+    localStorage.removeItem('username')
+    localStorage.removeItem('userlastname')
+    localStorage.removeItem('grupo')
+
+
+
   }
 }

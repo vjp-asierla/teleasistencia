@@ -1,0 +1,37 @@
+<main class="text-center row p-0 m-0 justify-content-center">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/inicio']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Tipos de alarmas</li>
+      </ol>
+    </nav>
+    <h1 class="component-title">Tipos de alarmas</h1>
+    <div class="form-group mb-3">
+      <input id="campoBusqueda" type="text" class="form-control" placeholder="Busqueda..." [(ngModel)]="inputBusqueda">
+    </div>
+    <div class="table-responsive m-2">
+      <table id="tableList" class="table table-hover text-center sortable">
+        <thead>
+        <tr class="table-purple">
+          <th (click)="ordenacionTabla(0, 'string')" scope="col">Nombre <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(1, 'number')" scope="col">Código <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(2, 'string')" scope="col">Dispositivo <i class="fas fa-sort"></i></th>
+          <th (click)="ordenacionTabla(3, 'string')" scope="col">Clasificación alarma <i class="fas fa-sort"></i></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tipo_alarma of tipos_alarmas | filtroBusqueda: inputBusqueda | paginate: { itemsPerPage: 10, currentPage: numPaginacion }"
+            app-item-tipo-alarma [tipo_alarma]="tipo_alarma">
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        responsive="true"
+        (pageChange)="numPaginacion = $event"></pagination-controls>
+    </div>
+  </div>
+</main>
