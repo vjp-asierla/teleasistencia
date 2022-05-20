@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_tipoCentroSanitario">
+
+    <fragment
+        android:id="@+id/nav_tipoCentroSanitario"
+        android:name="com.example.teleappsistencia.ui.fragments.tipo_centro_sanitario.FragmentInsertarTipoCentroSanitario"
+        android:label="@string/menu_tipoCentroSanitario"
+        tools:layout="@layout/fragment_tipo_centro_sanitario" />
+
+    <fragment
+        android:id="@+id/nav_tipoModalidadPaciente"
+        android:name="com.example.teleappsistencia.ui.fragments.tipo_modalidad_paciente.FragmentInsertarTipoModalidadPaciente"
+        android:label="@string/menu_tipoModalidadPaciente"
+        tools:layout="@layout/fragment_tipo_modalidad_paciente" />
+
+    <fragment
+        android:id="@+id/nav_centroSanitario"
+        android:name="com.example.teleappsistencia.ui.fragments.centro_sanitario.FragmentInsertarCentroSanitario"
+        android:label="@string/menu_centroSanitario"
+        tools:layout="@layout/fragment_centro_sanitario" />
+
+    <fragment
+        android:id="@+id/nav_tipoRecursoComunitario"
+        android:name="com.example.teleappsistencia.ui.fragments.tipo_recurso_comunitario.FragmentInsertarTipoRecursoComunitario"
+        android:label="@string/menu_tipoRecursoComunitario"
+        tools:layout="@layout/fragment_tipo_recurso_comunitario" />
+
+    <fragment
+        android:id="@+id/nav_recursoComunitario"
+        android:name="com.example.teleappsistencia.ui.fragments.recurso_comunitario.FragmentInsertarRecursoComunitario"
+        android:label="@string/menu_recursoComunitario"
+        tools:layout="@layout/fragment_recurso_comunitario" />
+</navigation>

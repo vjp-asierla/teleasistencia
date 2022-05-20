@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo"
+    tools:context=".ui.fragments.centro_sanitario.FragmentModificarCentroSanitario" >
+
+    <TextView
+        android:id="@+id/textViewTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_modificarDatosCentroSanitario"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineArriba" />
+
+    <EditText
+        android:id="@+id/editTextPedirNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/black"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba4"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPedirNombre"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <TextView
+        android:id="@+id/textViewLocalidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/localidad"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPedirLocalidad"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <EditText
+        android:id="@+id/editTextPedirLocalidad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/black"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba7"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewProvincia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/provincia"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPedirProvincia"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <EditText
+        android:id="@+id/editTextPedirProvincia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/black"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba8"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewDireccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/direccion"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPedirDireccion"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <EditText
+        android:id="@+id/editTextPedirDireccion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/black"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba9"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/telefono"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPhonePedirTelefono"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <EditText
+        android:id="@+id/editTextPhonePedirTelefono"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="phone"
+        android:padding="10dp"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba5"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewCodigoPostal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/codigoPostal"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPostalAddressPedirCodigoPostal"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddressPedirCodigoPostal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:padding="10dp"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba10"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textViewTipocentroSanitario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipoCentroSanitario"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerTipoCentroSanitario"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda" />
+
+    <Spinner
+        android:id="@+id/spinnerTipoCentroSanitario"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:background="#FFFFFF"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineArriba6"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineArriba10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineIzquierda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineDerecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCentro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/buttonGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/guardar"
+        android:textColor="#4CAF50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineCentro"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzquierda"
+        app:layout_constraintTop_toTopOf="@+id/guidelineArriba10"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/buttonVolver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:text="@string/volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerecha"
+        app:layout_constraintStart_toStartOf="@+id/guidelineCentro"
+        app:layout_constraintTop_toTopOf="@+id/guidelineArriba10" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
