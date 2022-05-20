@@ -34,15 +34,12 @@
             <td>{{persona.Localidad}}</td>
             <td>{{persona.Direccion}}</td>
             <td>{{persona.Provincia}}</td>
-            <td>{{persona["Centro de salud"]}}</td>
-            <td>{{persona["Consultorio local"]}}</td>
-            <td>{{persona.Hospital}}</td>
-            <td>{{persona["Unidad Móvil"]}}</td>
-            <td>{{persona["Policía"]}}</td>
-            <td>{{persona["Guardia Civil"]}}</td>
-            <td>{{persona.Bomberos}}</td>
-            <td>{{persona["Servicios Sociales"]}}</td>
-            <td>{{persona["Cruz Roja"]}}</td>
+            <ng-container *ngFor="let tipocentro of tipo_centro_sanitario">
+              <td>{{persona[tipocentro.nombre]}}</td>
+            </ng-container>
+            <ng-container *ngFor="let tipo of tipo_recurso">
+              <td >{{persona[tipo.nombre]}}</td>
+            </ng-container>
           </tr>
         </tbody>
       </table>
