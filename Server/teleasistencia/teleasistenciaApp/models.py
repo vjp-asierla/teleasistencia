@@ -258,7 +258,7 @@ class Convocatoria_Proyecto(models.Model):
 class Desarrollador(models.Model):
     id_convocatoria_proyecto = models.ForeignKey(Convocatoria_Proyecto, null=True, on_delete=models.SET_NULL)
     nombre=models.CharField(max_length=1000, blank=True)
-    descripcion=models.CharField(max_length=1000, blank=True)
+    descripcion=models.CharField(max_length=10000, blank=True)
     imagen=models.ImageField(upload_to='desarrollador/imagen_desarrollador', null=True, blank=True, default='')
     es_profesor= models.BooleanField(default=False)
     def __str__(self):

@@ -1558,3 +1558,50 @@ class Relacion_Usuario_Centro_ViewSet(viewsets.ModelViewSet):
 
                },
                '''
+class DesarrolladorTecnologiaViewSet(viewsets.ViewSet):
+    """
+    API endpoint para las empresas
+    """
+    authentication_classes = []
+    permission_classes = (permissions.AllowAny, )
+    queryset = Desarrollador_Tecnologia.objects.all()
+    http_method_names=['get']
+
+    def list(self, request, *args, **kwargs):
+        data=[
+
+        ]
+        desarrolladores = Desarrollador.objects.all().order_by('nombre')
+        for desarrollador in desarrolladores:
+            dataDesarrollador={
+                'nombre':desarrollador.nombre,
+                'descripcion':desarrollador.descripcion,
+                'imagen': desarrollador.imagen.url,
+                'es_profesor':desarrollador.es_profesor,
+                'convocatoria':desarrollador.id_convocatoria_proyecto.convocatoria,
+                'tecnologias': [
+                    {
+                        'nombre' : 'Angular',
+                        'imagen': 'desarrollador/imagen_tecnologia/Angular_full_color_logo.svg.png'
+                    },
+                    {
+                        'nombre' : 'Django',
+                        'imagen' : 'desarrollador/imagen_tecnologia/django-logo-negative.png'
+                    }
+                ]
+            }
+            return JsonResponse(data, safe=False)
+
+            desarrollador_tecnologias=Desarrollador_Tecnologia.objects.all().filter(id_desarrollador=desarrollador)
+            if desarrollador_tecnologias is not None:
+                tecnologias = {}
+                for desarrollador_tecnologia in desarrollador_tecnologias:
+                    #obtengo los centros segun el id de tipos centro sanitario
+                    dataTecnologia = { "nombre": desarrollador_tecnologia.id_tecnologia.nombre,
+                                       "imagen": desarrollador_tecnologia.id_tecnologia.imagen.url}
+                    data.append(dataTecnologia)
+                    dataDesarrollador['tecnologias'].append(dataTecnologia)
+        data.append(dataDesarrollador)
+
+        return JsonResponse(data, safe=False)
+
