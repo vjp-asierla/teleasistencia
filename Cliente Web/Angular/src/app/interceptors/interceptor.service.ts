@@ -18,20 +18,22 @@ import Swal from "sweetalert2";
 export class InterceptorService implements HttpInterceptor{
 
   constructor(private router: Router) { }
-
+  //metodo para el manejo de errores en las peticiones
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
+    //Si las peticiones arrojan errores 401 unauthorized o 403 Prohibido muestro esa alerta
     if (err.status === 401 || err.status === 403) {
       Swal.fire( {
         icon:'error',
         title:'Error',
-        text:'Tu sesión ha caducado',
+        text:'Error de acceso',
         footer:'Vuelve a iniciar sesión'
       })
+      //limpio el localstorage y redirijo al login
       localStorage.clear();
       this.router.navigate(['/login']);
       return of(err.message);
     }
-
+    //Si las peticiones arrojan errores 404 no encontrado
     if(err.status==404){
       Swal.fire( {
         icon:'error',
@@ -50,8 +52,11 @@ export class InterceptorService implements HttpInterceptor{
     }
     return throwError(err);
   }
+  //Interceptor obtiene la request de todas las peticiones http
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    //obtengo el token del localstorage
     const token:string=localStorage.getItem('token')
+    //Si el token existe clono la request y le añado la cabecera de authorizacion Bearer
     if(token){
       req=req.clone({
         setHeaders:{
@@ -59,7 +64,7 @@ export class InterceptorService implements HttpInterceptor{
         }
       })
     }
-
+    //retorno la peticion con el token en la cabecera y si hay un error muestro el metodo anterior
     return next.handle(req).pipe(catchError(x=> this.handleAuthError(x)));
   }
 }
