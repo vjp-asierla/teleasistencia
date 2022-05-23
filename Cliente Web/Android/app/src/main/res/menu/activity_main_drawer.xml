@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_tipo_alarma"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_tipo_alarma" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_clasificacion_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_clasificacion_alarma" />
+        <item
+            android:id="@+id/nav_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_alarma" />
+        <item
+            android:id="@+id/nav_centro_sanitario_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_centro_sanitario_en_alarma" />
+        <item
+            android:id="@+id/nav_recursos_comunitarios_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_recursos_comunitarios_en_alarma" />
+        <item
+            android:id="@+id/nav_persona_de_contacto_en_alarma"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_persona_de_contacto_en_alarma" />
+
+        <item
+            android:id="@+id/nav_tipoModalidadPaciente"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_tipoModalidadPaciente" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_centroSanitario"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_centroSanitario" />
+        <item
+            android:id="@+id/nav_tipoRecursoComunitario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_tipoRecursoComunitario" />
+        <item
+            android:id="@+id/nav_recursoComunitario"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_recursoComunitario" />
     </group>
 </menu>

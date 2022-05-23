@@ -20,12 +20,16 @@ from ..rest_django.serializers import *
 from ..models import *
 from django.http import JsonResponse
 
+# Alarmas
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+
 
 # Comprobamos si el usuario es profesor. Se utiliza para la discernir entre solicitudes de Profesor y Teleoperador
 class IsTeacherMember(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        return True
+        #return True
         if request.user.groups.filter(name="profesor").exists():
             return True
 
@@ -63,7 +67,9 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
+
                         dataPaciente[tipo_centro_santario.nombre] = relaciones_usuario_centro.id_centro_sanitario.nombre
+
                     else:
                             dataPaciente[tipo_centro_santario.nombre]=""
             # recorro los tipo de recurso comunitario
@@ -711,6 +717,18 @@ class Relacion_Terminal_Recurso_Comunitario_ViewSet(viewsets.ModelViewSet):
     serializer_class = Relacion_Terminal_Recurso_Comunitario_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
 
+    # Obtenemos el listado de relacion_terminal_recurso_comunitario filtrado por los parametros GET
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Relacion_Terminal_Recurso_Comunitario.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         # Comprobamos que exite el terminal
         id_terminal = Terminal.objects.get(pk=request.data.get("id_terminal"))
@@ -1182,11 +1200,26 @@ class Recursos_Comunitarios_En_Alarma_ViewSet(viewsets.ModelViewSet):
 
 class Alarma_ViewSet(viewsets.ModelViewSet):
     """
-    API endpoint para las empresas
+    API endpoint para las alarmas
     """
+    #Constantes de notificación
+    ACTION_NEW_ALARM = 'new_alarm'
+    ACTION_ALARM_ASSIGNMENT = 'alarm_assignment'
+
     queryset = Alarma.objects.all()
     serializer_class = Alarma_Serializer
     # permission_classes = [permissions.IsAdminUser] # Si quisieramos para todos los registrados: IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Hacemos una búsqueda por los valores introducidos por parámetros
+        query = getQueryAnd(request.GET)
+        if query:
+            queryset = Alarma.objects.filter(query)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     # Definimos el metodo para crear la alarma
     def create(self, request, *args, **kwargs):
@@ -1210,6 +1243,9 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
 
             alarma.save()
 
+            # Enviamos notificación a los teleoperadores a través de la app alarmas
+            self.notify(alarma, self.ACTION_NEW_ALARM)
+
             # Devolvemos la alarma creada
             alarma_serializer = Alarma_Serializer(alarma)
             return Response(alarma_serializer.data)
@@ -1227,13 +1263,20 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
 
             alarma.save()
 
-            # Devolvemos la alarma creada
+            # Enviamos notificación a los teleoperadores a través de la app alarmas
+            self.notify(alarma, self.ACTION_NEW_ALARM)
+
+            # Devolvemos la alarma creada y notificamos a los clientes
             alarma_serializer = Alarma_Serializer(alarma)
             return Response(alarma_serializer.data)
+
     # TODO id_teleoperador se añade por JSON
     def update(self, request, *args, **kwargs):
         # Obtenemos la alarma a modificar
         alarma = Alarma.objects.get(pk=kwargs["pk"])
+
+        # Guardamos teleoperador antiguo
+        old_id = alarma.id_teleoperador
 
         # Obtenemos el id_teleoperador que ateiende la alarma
         # Este id sera el del usuario
@@ -1251,11 +1294,22 @@ class Alarma_ViewSet(viewsets.ModelViewSet):
 
         alarma.save()
 
+        # Notificamos si es una asignación (el id_teleoperador era null y ahora no)
+        if old_id is None and id_teleoperador is not None:
+            self.notify(alarma, self.ACTION_ALARM_ASSIGNMENT)
+
         # Devolvemos la alarma modificada
         alarma_serializer = Alarma_Serializer(alarma)
         return Response(alarma_serializer.data)
 
 
+    def notify(self, alarma, accion):
+        alarma_serializer = Alarma_Serializer(alarma)
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            'teleoperadores',
+            {"type": "notify.clients", "action": accion, "alarma": alarma_serializer.data},
+        )
 
 
 class Dispositivos_Auxiliares_en_Terminal_ViewSet(viewsets.ModelViewSet):
