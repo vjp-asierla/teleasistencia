@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".ui.tipo_centro_sanitario.FragmentModificarTipoCentroSanitario" >
+    tools:context=".ui.fragments.tipo_centro_sanitario.FragmentModificarTipoCentroSanitario" >
 
     <TextView
         android:id="@+id/textViewTitulo"

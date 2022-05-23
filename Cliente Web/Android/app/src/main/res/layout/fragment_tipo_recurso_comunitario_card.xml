@@ -7,7 +7,7 @@
     app:cardCornerRadius="4dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
-    tools:context=".ui.tipo_recurso_comunitario.tipo_recurso_comunitario_card" >
+    tools:context=".ui.fragments.tipo_recurso_comunitario.tipo_recurso_comunitario_card" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
