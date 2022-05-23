@@ -494,3 +494,30 @@ footer {
 .imagenUsuario{
   object-fit: cover;
 }
+
+.divDesarrolladores{
+  border: 2px solid black;
+}
+.divImagenesDesarrollador{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imagenDesarrollador{
+  margin-top: 20px;
+  width: 400px;
+  height: 350px;
+}
+ .imagenTecnologia{
+  width: 300px;
+  height: 300px;
+  margin-right: 30px;
+}
+.botonMas{
+  width: 200px;
+  height: 200px;
+  border: none;
+}
+.d-none{
+  display: none;
+}

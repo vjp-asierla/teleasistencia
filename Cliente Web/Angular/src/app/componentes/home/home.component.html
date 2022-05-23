@@ -127,22 +127,21 @@
           IES <em>“Valle del Jerte”</em> de Plasencia, con la colaboración principal de Fréderic Sánchez, Angel Enrique
           Pineda y
           Jesús Redondo.</p>
-        <p class="lead">Los alumnos que han contribuido en el desarrollo de este proyecto y la labor que han realizado
-          son:</p>
-        <ul class="lead">
-          <li>Lucía González Martín: Propuesta alumno <abbr title="Proyecto de Fin de Ciclo">PFC</abbr> (Cliente <em>Angular</em>).
-          </li>
-          <li>Javier Fernández Martín: Propuesta alumno <abbr title="Proyecto de Fin de Ciclo">PFC</abbr> (<em>API
-            Rest</em> + <em>Postman</em>).
-          </li>
-        </ul>
-        <p class="lead">Especial mención al departamento de Atención Sociosanitaria del IES <em>“San
-          Martín”</em> de Talayuela. Partícipes e impulsores de la plataforma de prácticas de teleasistencia.</p>
+
       </div>
       <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
              src="../../../assets/home-colaboradores.png" title="Colaboradores" alt="Colaboradores" width="500"
              height="500"/>
+      </div>
+      <div class="divDesarrolladores" *ngFor="let desarrollador of desarrolladores">
+        <div class="divImagenesDesarrollador">
+        <img class="imagenDesarrollador" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_desarrollador.imagen" />
+        <img class="imagenTecnologia" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_tecnologia.imagen" />
+        <img class="imagenTecnologia" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[1].id_tecnologia.imagen" />
+        <button><img class="botonMas" src="assets/plus-button-green-gp-17-tk-1065783.png" (click)="mostrarDescripcion()"></button>
+        </div>
+        <p class="parrafoDescripcionTecnologia d-none" id="mostrarDescripcion" >{{desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_desarrollador.descripcion}}</p>
       </div>
     </div>
     <hr class="featurette-divider">
