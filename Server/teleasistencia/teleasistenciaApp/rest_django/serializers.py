@@ -195,8 +195,45 @@ class Relacion_Usuario_Centro_Serializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 1
 
+class Tecnologia_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tecnologia
+        fields = '__all__' #Indica todos los campos
+        depth = 2
+
 class Desarrollador_Tecnologia_Serializer(serializers.ModelSerializer):
+
+    # Devuelve también los datos de los datos de las tecnologias del Desarrollador_tecnologia
+    tecnologias = Tecnologia_Serializer(
+        many=True,
+        read_only=True)
+
     class Meta:
         model = Desarrollador_Tecnologia
         fields = '__all__' #Indica todos los campos
-        depth = 2
+        depth = 1
+
+
+class Desarrollador_Serializer(serializers.ModelSerializer):
+
+    # Devuelve también los datos de los datos de desarrolladores_tecnologias del Desarrollador
+    desarrollador_tecnologias = Desarrollador_Tecnologia_Serializer(
+        many=True,
+        read_only=True)
+
+    class Meta:
+        model = Desarrollador
+        fields = '__all__' #Indica todos los campos
+        depth = 1
+
+class Convocatoria_Proyecto_Serializer(serializers.ModelSerializer):
+
+    # Devuelve también los datos de los desarrolladores de la convocatoria
+    desarrolladores = Desarrollador_Serializer(
+        many=True,
+        read_only=True)
+
+    class Meta:
+        model = Convocatoria_Proyecto
+        fields = '__all__' #Indica todos los campos
+        depth = 1

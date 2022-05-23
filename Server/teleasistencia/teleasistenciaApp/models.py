@@ -256,7 +256,8 @@ class Convocatoria_Proyecto(models.Model):
     def __str__(self):
         return self.convocatoria
 class Desarrollador(models.Model):
-    id_convocatoria_proyecto = models.ForeignKey(Convocatoria_Proyecto, null=True, on_delete=models.SET_NULL)
+    # Related name nos permite obtener los datos relacionados desde la entidad a la que hace referencia
+    id_convocatoria_proyecto = models.ForeignKey(Convocatoria_Proyecto, null=True, on_delete=models.SET_NULL, related_name='desarrolladores')
     nombre=models.CharField(max_length=1000, blank=True)
     descripcion=models.CharField(max_length=10000, blank=True)
     imagen=models.ImageField(upload_to='desarrollador/imagen_desarrollador', null=True, blank=True, default='')
@@ -271,8 +272,9 @@ class Tecnologia(models.Model):
         return self.nombre
 
 class Desarrollador_Tecnologia(models.Model):
-    id_desarrollador = models.ForeignKey(Desarrollador, null=True, on_delete=models.SET_NULL)
-    id_tecnologia = models.ForeignKey(Tecnologia, null=True, on_delete=models.SET_NULL)
+    # Related name nos permite obtener los datos relacionados desde la entidad a la que hace referencia
+    id_desarrollador = models.ForeignKey(Desarrollador, null=True, on_delete=models.SET_NULL, related_name='desarrollador_tecnologias')
+    id_tecnologia = models.ForeignKey(Tecnologia, null=True, on_delete=models.SET_NULL, related_name='tecnologias')
     def __str__(self):
         return self.id_desarrollador.nombre+ " - "+self.id_tecnologia.nombre
 
