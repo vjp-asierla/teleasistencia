@@ -494,3 +494,10 @@ footer {
 .imagenUsuario{
   object-fit: cover;
 }
+.table-purple{
+  vertical-align: top;
+}
+
+.table>:not(:last-child)>:last-child>* {
+  white-space: nowrap;
+}

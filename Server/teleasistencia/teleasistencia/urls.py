@@ -91,5 +91,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-
+# añadimos el media url y el media root para poder visualizar las imagenes de usuario
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

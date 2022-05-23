@@ -52,7 +52,7 @@ import {ModificarRecursoComunitarioComponent} from './componentes/recurso-comuni
 import {DetallesRecursoComunitarioResolveService} from './servicios/detalles-recurso-comunitario-resolve.service';
 import {CrearRecursoComunitarioComponent} from './componentes/recurso-comunitario/crear-recurso-comunitario/crear-recurso-comunitario.component';
 import {PantallaLoginComponent} from './componentes/pantalla-login/pantalla-login.component';
-import {LoginGuard} from './servicios/login.guard';
+import {LoginGuard} from './guards/login.guard';
 import {RecursosComunitariosPersonalesComponent} from "./componentes/recursos-comunitarios-personales/recursos-comunitarios-personales.component";
 import {ListaTiposViviendaComponent} from "./componentes/tipo-vivienda/lista-tipos-vivienda/lista-tipos-vivienda.component";
 import {ListaViviendasResolveService} from "./servicios/lista-viviendas-resolve.service";

@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit , DoCheck{
   }
   ngOnInit(): void {
   }
+  //Compruebo si esta login para ocultar el navbar
   ngDoCheck(): void {
     this.estaLogin=this.loginService.estaLogin()
   }
