@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".ui.tipo_recurso_comunitario.FragmentListarTipoRecursoComunitario" >
+    tools:context=".ui.fragments.tipo_recurso_comunitario.FragmentListarTipoRecursoComunitario" >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineArriba"

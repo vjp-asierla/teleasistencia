@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#B3AEB3"
-    tools:context=".ui.tipo_recurso_comunitario.ConsultarTipoRecursoComunitario" >
+    tools:context=".ui.fragments.tipo_recurso_comunitario.ConsultarTipoRecursoComunitario" >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

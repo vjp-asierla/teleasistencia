@@ -22,7 +22,7 @@
         android:background="#F0DDF1"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" >
+        app:menu="@menu/activity_main_drawer">
 
         <ExpandableListView
             android:id="@+id/expandableListView"

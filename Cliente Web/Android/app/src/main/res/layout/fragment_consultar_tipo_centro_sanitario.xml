@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#B3AEB3"
-    tools:context=".ui.tipo_centro_sanitario.ConsultarTipoCentroSanitario">
+    tools:context=".ui.fragments.tipo_centro_sanitario.ConsultarTipoCentroSanitario">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

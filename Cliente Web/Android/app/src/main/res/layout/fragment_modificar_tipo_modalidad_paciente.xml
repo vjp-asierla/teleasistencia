@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondo"
-    tools:context=".ui.tipo_modalidad_paciente.FragmentModificarTipoModalidadPaciente" >
+    tools:context=".ui.fragments.tipo_modalidad_paciente.FragmentModificarTipoModalidadPaciente" >
 
     <TextView
         android:id="@+id/textViewTitulo"
