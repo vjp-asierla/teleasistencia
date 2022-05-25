@@ -125,25 +125,45 @@
         <p class="lead">El software ha sido desarrollado bajo la licencia <abbr
           title="GNU General Public License, versión 3">GPL3</abbr> por el departamento de Informática del
           IES <em>“Valle del Jerte”</em> de Plasencia, con la colaboración principal de Fréderic Sánchez, Angel Enrique
-          Pineda y
-          Jesús Redondo.</p>
-
+          Pineda y Jesús Redondo.</p>
+        <p class="lead">Especial mención al departamento de Atención Sociosanitaria del IES “San Martín” de Talayuela. Partícipes e impulsores de la plataforma de prácticas de teleasistencia
+          Los alumnos que han contribuido en el desarrollo de este proyecto son:</p>
       </div>
       <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
              src="../../../assets/home-colaboradores.png" title="Colaboradores" alt="Colaboradores" width="500"
              height="500"/>
       </div>
-      <div class="divDesarrolladores" *ngFor="let desarrollador of desarrolladores">
-        <div class="divImagenesDesarrollador">
-        <img class="imagenDesarrollador" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_desarrollador.imagen" />
-        <img class="imagenTecnologia" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_tecnologia.imagen" />
-        <img class="imagenTecnologia" [src]="desarrollador.desarrolladores[0].desarrollador_tecnologias[1].id_tecnologia.imagen" />
-        <button><img class="botonMas" src="assets/plus-button-green-gp-17-tk-1065783.png" (click)="mostrarDescripcion()"></button>
+      <div class="tecnologias" *ngFor="let convocatoria of desarrolladores">
+        <div>
+          <p class="tituloDescripcion"><b>Convocatoria: {{convocatoria.convocatoria}}</b></p>
+          <ng-container *ngFor="let desarrollador of convocatoria.desarrolladores">
+            <div class="divDesarrolladores container">
+              <div class="divTitulosDesarrollador">
+                <span>{{desarrollador.nombre}}</span><span>Tecnologías</span><span></span>
+              </div>
+              <div class="divImagenesDesarrollador">
+                <div ><img class="imagenDesarrollador" [src]="desarrollador.desarrollador_tecnologias[0].id_desarrollador.imagen" [title]="desarrollador.desarrollador_tecnologias[0].id_desarrollador.nombre" />
+                </div>
+                <div class="divTecnologias" >
+                  <ng-container *ngFor="let tecnologia of desarrollador.desarrollador_tecnologias">
+                    <img class="imagenTecnologia" [src]="tecnologia.id_tecnologia.imagen" [title]="tecnologia.id_tecnologia.nombre"/>
+                  </ng-container>
+                </div>
+                <div>
+                  <i class="fa fa-eye botonMas" (click)="mostrarDescripcion($event)" title="Ver descripción"></i>
+                </div>
+              </div>
+              <div class="parrafoDescripcionTecnologia d-none" id="mostrarDescripcion" >
+                <hr>
+                <p class="tituloDescripcion">Descripción del Proyecto.</p>
+                <p>{{desarrollador.desarrollador_tecnologias[0].id_desarrollador.descripcion}}</p>
+              </div>
+            </div>
+          </ng-container>
         </div>
-        <p class="parrafoDescripcionTecnologia d-none" id="mostrarDescripcion" >{{desarrollador.desarrolladores[0].desarrollador_tecnologias[0].id_desarrollador.descripcion}}</p>
+        </div>
       </div>
-    </div>
     <hr class="featurette-divider">
   </div>
 </main>

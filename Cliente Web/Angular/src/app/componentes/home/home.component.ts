@@ -19,12 +19,11 @@ export class HomeComponent implements OnInit {
     this.cargaDesarrolladorTecnologia.getDesarrolladorTecnologia().subscribe(
       e=>{
         this.desarrolladores = e;
-        console.log(this.desarrolladores)
       }
     )
   }
-  mostrarDescripcion(){
-    let parrafoDescripcion = document.getElementById("mostrarDescripcion");
-    parrafoDescripcion.classList.toggle('d-none');
+  mostrarDescripcion(event){
+    let descripciones =event.target.parentElement.parentElement.parentElement.querySelector(".parrafoDescripcionTecnologia");
+    descripciones.classList.toggle('d-none')
   }
 }
