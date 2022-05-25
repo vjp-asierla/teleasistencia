@@ -479,6 +479,9 @@ footer {
     text-align: initial;
   }
 }
+.imgColaboradores{
+  height: 400px;
+}
 //Alert
 #swal2-title{
   margin:0;
@@ -492,7 +495,9 @@ footer {
   object-fit: cover;
 }
 .divDesarrolladores{
-  border: 1px dotted #75597D;
+  margin: 10px 0;
+  width: 100%;
+
 }
 .divImagenesDesarrollador{
   display: grid;
@@ -514,13 +519,12 @@ footer {
 
 .imagenDesarrollador{
   margin-top: 20px;
-  width: 150px;
   height: 150px;
 
 }
  .imagenTecnologia{
-  width: 150px;
-  height:150px;
+  height:75px;
+  margin: 0 20px;
 
 }
 .botonMas {

@@ -130,9 +130,8 @@
           Los alumnos que han contribuido en el desarrollo de este proyecto son:</p>
       </div>
       <div class="col-md-5">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-             src="../../../assets/home-colaboradores.png" title="Colaboradores" alt="Colaboradores" width="500"
-             height="500"/>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto imgColaboradores"
+             src="../../../assets/home-colaboradores.png" title="Colaboradores" alt="Colaboradores"/>
       </div>
       <div class="tecnologias" *ngFor="let convocatoria of desarrolladores">
         <div>
@@ -159,6 +158,7 @@
                 <p class="tituloDescripcion">Descripción del Proyecto.</p>
                 <p>{{desarrollador.desarrollador_tecnologias[0].id_desarrollador.descripcion}}</p>
               </div>
+              <hr>
             </div>
           </ng-container>
         </div>
