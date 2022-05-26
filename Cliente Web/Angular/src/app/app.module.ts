@@ -8,7 +8,7 @@ import {ItemUserComponent} from './componentes/user/item-user/item-user.componen
 import {ModificarUserComponent} from './componentes/user/modificar-user/modificar-user.component';
 import {CrearUserComponent} from './componentes/user/crear-user/crear-user.component';
 
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from '@angular/forms';
 import {HomeComponent} from './componentes/home/home.component';
 import {CargaUserService} from './servicios/carga-user.service';

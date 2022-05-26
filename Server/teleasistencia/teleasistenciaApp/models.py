@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
+# Creamos la clase imagen con los atributos usuario e imagen
 class Imagen_User(models.Model):
    user = models.OneToOneField(User, on_delete=models.CASCADE)
    imagen = models.ImageField(upload_to='imagen_usuario', null=True, blank=True, default="")

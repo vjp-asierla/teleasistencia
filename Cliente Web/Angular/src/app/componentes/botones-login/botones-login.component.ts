@@ -22,7 +22,9 @@ export class BotonesLoginComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
   }
-
+// compruebo si esta login
+// Obtengo el nombre de usuario del localStorage
+// Obtengo la imagen del usuario y compruebo si es null o tiene imagen para mostrar una por defecto o la del usuario
   ngDoCheck(): void {
     this.estaLogin = this.loginService.estaLogin();
     this.username= localStorage.getItem('username');
