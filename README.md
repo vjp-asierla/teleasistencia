@@ -62,12 +62,18 @@ Existen varias maneras de clonar un proyecto. Para simplificar todas las tareas 
 
 Desde Server\teleasistencia ejecutamos ```python manage.py runserver_plus --cert-file cert.pem --key-file key.pem```
 
-## Copyright
+
+## Comprobar las peticiones
+
+Las peticiones de la API-Rest están documentadas en [Postman](https://www.postman.com/cloudy-space-364257/workspace/tla-teleasistencia-development).
+
+## Licencia
 
 El software ha sido desarrollado bajo la licencia GPL3 por el departamento de Informática del IES Valle del Jerte de Plasencia, con la colaboración principal de Fréderic Sánchez, Angel Enrique Pineda y Jesús Redondo.
 
 Los alumnos que han contribuido en el desarrollo de este proyecto y la labor que han realizado son:
-- **Alumno Apellido**: Tarea desarrollada.
+- **Lucía González**: Creación de la primera versión del cliente Angular.
+- **Javier Fernández**: Inicialización completa de la API-Rest y Postman.
 
 Especial mención al departamento de Atención Sociosanitaria del IES San Martín de Talayuela. Partícipes e impulsores de la plataforma de prácticas de Teleasistencia. 
 
