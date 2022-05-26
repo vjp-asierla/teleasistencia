@@ -1,6 +1,4 @@
 import os
-from locale import str
-from tokenize import String
 
 from django.shortcuts import _get_queryset
 from requests import request
@@ -35,15 +33,17 @@ class IsTeacherMember(permissions.BasePermission):
         if request.user.groups.filter(name="profesor").exists():
             return True
 
-
+# Creamos la vista Recurso Comunitario Personal de tipo viewSet que retorna un JSON
 class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
     def list(self,request, *args, **kwargs):
         data=[
 
         ]
-        pacientes = Paciente.objects.all().order_by('-id_persona')
-        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('-nombre')
-
+        #Obtenemos los pacientes y los tipos de centro sanitario y de recurso comuniatario
+        pacientes = Paciente.objects.all().order_by('id_persona')
+        tipos_centro_santario = Tipo_Centro_Sanitario.objects.all().order_by('nombre')
+        tipos_recurso_comunitario=Tipo_Recurso_Comunitario.objects.all().order_by('nombre')
+        #Recorremos los pacientes y obetensmos loas datos que deseesmos
         for paciente in pacientes:
             dataPaciente={
                 "id_paciente": paciente.id,
@@ -63,27 +63,40 @@ class Recurso_comunitario_personalViewSet(viewsets.ViewSet):
                     dataPaciente[tipo_centro_santario.nombre]=""
                     #sino
                 else:
-                    print("---------------")
-                    print(paciente.id)
-                    print(tipo_centro_santario.nombre)
-                    print(centro_sanitario)
                     # obtengo la relacion usuario centro segun el id de centro y el id de paciente
                     relaciones_usuario_centro = Relacion_Usuario_Centro.objects.filter(id_paciente=paciente.id).filter(id_centro_sanitario__in=centro_sanitario).first()
                     if relaciones_usuario_centro is not None:
                         #si no es null muestro elnombre del centro sanitario
-                        dataPaciente[tipo_centro_santario.nombre]=relaciones_usuario_centro.id_centro_sanitario.nombre
-                        print("Coincide *************")
+
+                        dataPaciente[tipo_centro_santario.nombre] = relaciones_usuario_centro.id_centro_sanitario.nombre
+
                     else:
-                        dataPaciente[tipo_centro_santario.nombre]=""
-
-
+                            dataPaciente[tipo_centro_santario.nombre]=""
+            # recorro los tipo de recurso comunitario
+            for tipo_recurso_comunitario in tipos_recurso_comunitario:
+                # obtengo los recursos segun el id de tipos recursos comunitarios
+                recurso_comunitario=Recurso_Comunitario.objects.filter(id_tipos_recurso_comunitario=tipo_recurso_comunitario)
+                # si el array es nulo comillas vacías
+                if not recurso_comunitario:
+                    dataPaciente[tipo_recurso_comunitario.nombre] = ""
+                else:
+                    # obtengo la relacion terminal recurso segun el id de terminal y el id del recurso comunitario
+                    relacion_terminal_recurso_comunitario= Relacion_Terminal_Recurso_Comunitario.objects.filter(id_terminal=paciente.id_terminal).filter(id_recurso_comunitario__in=recurso_comunitario).first()
+                    if relacion_terminal_recurso_comunitario is not None:
+                        dataPaciente[tipo_recurso_comunitario.nombre] =relacion_terminal_recurso_comunitario.id_recurso_comunitario.nombre
+                    else:
+                        # sino tienen nada comillas vacías
+                        dataPaciente[tipo_recurso_comunitario.nombre] = ""
+            #Incluimos los datos en el Array principal y lo retornamos
             data.append(dataPaciente)
         return JsonResponse(data,safe=False)
 
+# Creamos la vista Profile que  modificara los datos y retornara la informacion del usuario activo en la aplicación
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     def list(self, request, *args, **kwargs):
+        #Obtenemos el usuario filtrando por el usuario de la request
         queryset = User.objects.filter(username=request.user)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
@@ -96,14 +109,18 @@ class ProfileViewSet(viewsets.ModelViewSet):
             # Encriptamos la contraseña
             user.set_password(request.data.get("password"))
         user.save()
+        # si se modifican Files es decir la imagen
         if request.FILES:
+            #obtengo la imagem eue me modifican
             img = request.FILES["imagen"]
             image = Imagen_User.objects.filter(user=user).first()
+            #Si ya tenia imagen borro la anterior y la guardo add al usuario
             if image:
                 if (image.imagen) is not None:
                     os.remove(image.imagen.path)
                 image.imagen = img
                 image.save()
+            #Si no tenia imagen se la añado al usuario
             else:
                 image = Imagen_User(
                     user=user,
@@ -111,7 +128,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
                 )
             image.save()
 
-        # Devolvemos el user creado
+        # Devolvemos el user modificado con su imagen
         user_serializer = self.get_serializer(user, many=False)
         return Response(user_serializer.data)
 

@@ -11,7 +11,7 @@ import {NgForm} from "@angular/forms";
 import {environment} from "../../../environments/environment";
 import {ProfileService} from "../../servicios/profile.service";
 import {IProfileUser} from "../../interfaces/i-profile-user";
-
+import Swal from "sweetalert2";
 
 
 
@@ -31,6 +31,7 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
 
 
   @ViewChild('formLogin') formLogin!: NgForm
+  private urltoken=environment.urlToken
 
 
 
@@ -46,12 +47,15 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
     this.estaLogin = this.loginService.estaLogin();
   }
 
+  //hago la peticion post de login añadiendo los datos del formulario
+  //Si los datos son correctos solicito el token y lo grabo en localstorage
   hacerLogin(): void {
-   this.http.post<token>('http://localhost:8000/api/token/',
+   this.http.post<token>(this.urltoken,
      this.formLogin.value
    ).subscribe(
       resp=>{
         localStorage.setItem('token',resp.access)
+        // Hago la peticional profile y  alamceno en localstorage el nombre grupo e imagen
         this.profileService.getProfile()
           .subscribe((resp:IProfileUser[])=>{
             this.username=resp[0].first_name
@@ -66,13 +70,16 @@ export class PantallaLoginComponent implements OnInit, DoCheck {
               this.img=resp[0].imagen.imagen
             }
             localStorage.setItem('img',this.img)
+            //redirijimos al usuario al inicio
             this.router.navigate(['/inicio']);
-
           })
 
-
       }, err=>{
-        alert('Error login incorrecto')
+       Swal.fire({
+         icon: 'error',
+         title: 'Error',
+         text: 'Nombre de usuario o contraseña incorrectos',
+       })
        return
      }
     )

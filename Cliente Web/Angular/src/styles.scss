@@ -548,3 +548,10 @@ footer {
 }
 
 
+.table-purple{
+  vertical-align: top;
+}
+
+.table>:not(:last-child)>:last-child>* {
+  white-space: nowrap;
+}
