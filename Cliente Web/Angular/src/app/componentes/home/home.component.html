@@ -127,7 +127,8 @@
           IES <em>“Valle del Jerte”</em> de Plasencia, con la colaboración principal de Fréderic Sánchez, Angel Enrique
           Pineda y Jesús Redondo.</p>
         <p class="lead">Especial mención al departamento de Atención Sociosanitaria del IES “San Martín” de Talayuela. Partícipes e impulsores de la plataforma de prácticas de teleasistencia
-          Los alumnos que han contribuido en el desarrollo de este proyecto son:</p>
+          </p>
+        <p class="lead">Los alumnos que han contribuido en el desarrollo de este proyecto son:</p>
       </div>
       <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto imgColaboradores"
@@ -135,7 +136,7 @@
       </div>
       <div class="tecnologias" *ngFor="let convocatoria of desarrolladores">
         <div>
-          <p class="tituloDescripcion"><b>Convocatoria: {{convocatoria.convocatoria}}</b></p>
+          <p class="tituloConvocatoria"><b>Convocatoria: {{convocatoria.convocatoria}}</b></p>
           <ng-container *ngFor="let desarrollador of convocatoria.desarrolladores">
             <div class="divDesarrolladores container">
               <div class="divTitulosDesarrollador">
@@ -150,12 +151,11 @@
                   </ng-container>
                 </div>
                 <div>
-                  <i class="fa fa-eye botonMas" (click)="mostrarDescripcion($event)" title="Ver descripción"></i>
+                  <img class="botonMas" src="../../../assets/verDescripcion.png" (click)="mostrarDescripcion($event)" title="Ver descripción"/>
                 </div>
               </div>
-              <div class="parrafoDescripcionTecnologia d-none" id="mostrarDescripcion" >
-                <hr>
-                <p class="tituloDescripcion">Descripción del Proyecto.</p>
+              <div class="parrafoDescripcionTecnologia d-none" >
+                <h2 class="tituloDescripcion">Descripción del Proyecto.</h2>
                 <p>{{desarrollador.desarrollador_tecnologias[0].id_desarrollador.descripcion}}</p>
               </div>
               <hr>

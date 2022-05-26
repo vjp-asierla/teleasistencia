@@ -520,7 +520,7 @@ footer {
 .imagenDesarrollador{
   margin-top: 20px;
   height: 150px;
-
+  margin-bottom: 20px;
 }
  .imagenTecnologia{
   height:75px;
@@ -530,7 +530,8 @@ footer {
 .botonMas {
   font-size: 40px;
   font-weight: lighter;
-  color: #75597D;
+  height: 50px;
+  width: 50px;
 }
 .botonMas:hover{
   cursor: pointer;
@@ -539,7 +540,11 @@ footer {
   display: none;
 }
 
-.tituloDescripcion{
+.tecnologias > div >.tituloConvocatoria{
   font-size: 30px;
+  color:#75597D;
+  text-align: center;
+  text-decoration: underline;
 }
+
 
